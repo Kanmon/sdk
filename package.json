@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {},
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.13.4"
+  }
+}
