@@ -122,7 +122,6 @@ models/UserAlreadyExistsWithEmailException.ts
 models/UserAlreadyExistsWithPlatformUserIdException.ts
 models/UserNotFoundException.ts
 models/all.ts
-package.json
 rxjsStub.ts
 servers.ts
 types/ObjectParamAPI.ts
