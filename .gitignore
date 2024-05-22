@@ -2,3 +2,6 @@
 .DS_Store
 Thumbs.db
 **/*.icloud
+
+# Node modules
+node_modules
