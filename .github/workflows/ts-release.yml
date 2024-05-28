@@ -34,11 +34,13 @@ jobs:
           cd ts
           yarn
 
+      # git config user.name "$ {{ github.event.pusher.name }}"
+      # git config user.email "$ {{ github.event.pusher.email }}"
       - name: Publish (pre-release)
         if: github.ref_type == 'branch'
         run: |
-          git config user.name "${{ github.event.pusher.name }}"
-          git config user.email "${{ github.event.pusher.email }}"
+          git config user.name "coleby"
+          git config user.email "25941617+coleby@users.noreply.github.com"
           cd ts
           yarn version --prerelease --preid next-${{ github.sha }}
           yarn publish --access public --tag next
