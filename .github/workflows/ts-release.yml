@@ -35,7 +35,6 @@ jobs:
 
       # git config user.name "$ {{ github.event.pusher.name }}"
       # git config user.email "$ {{ github.event.pusher.email }}"
-      # yarn publish --access public --tag next
       - name: Publish (pre-release)
         if: github.ref_type == 'branch'
         run: |
@@ -43,8 +42,7 @@ jobs:
           git config user.email "25941617+coleby@users.noreply.github.com"
           cd ts
           yarn version --prerelease --preid next-${{ github.sha }}
-          npm ci
-          npm publish --provenance --access public --tag next
+          yarn publish --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
