@@ -40,7 +40,7 @@ jobs:
           git config user.email "${{ github.event.pusher.email }}"
           cd ts
           yarn version --prerelease --preid next-${{ github.sha }}
-          yarn publish --tag next
+          yarn publish --access public --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -48,6 +48,6 @@ jobs:
         if: github.ref_type == 'tag'
         run: |
           cd ts
-          yarn publish
+          yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
