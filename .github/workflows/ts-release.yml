@@ -1,0 +1,53 @@
+name: TS Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "kanmon_api_spec.json"
+      - "openapitools.json"
+      - "ts/**"
+      - ".github/workflows/ts-release.yml"
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "18.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Generate openapi lib
+        run: |
+          yarn
+          yarn openapi-generator-cli generate
+
+      - name: Install modules
+        run: |
+          cd ts
+          yarn
+
+      - name: Publish (pre-release)
+        if: github.ref_type == 'branch'
+        run: |
+          git config user.name "${{ github.event.pusher.name }}"
+          git config user.email "${{ github.event.pusher.email }}"
+          cd ts
+          yarn version --prerelease --preid next-${{ github.sha }}
+          yarn publish --tag next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish
+        if: github.ref_type == 'tag'
+        run: |
+          cd ts
+          yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

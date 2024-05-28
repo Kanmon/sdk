@@ -23,6 +23,9 @@
     }
   },
   "typings": "./dist/index.d.ts",
+  "engines": {
+    "node": "^18"
+  },
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
