@@ -1,7 +1,7 @@
 name: TS Release
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
@@ -9,8 +9,8 @@ on:
       - "openapitools.json"
       - "ts/**"
       - ".github/workflows/ts-release.yml"
-    tags:
-      - "v*"
+    # tags:
+    #   - "v*"
 
 jobs:
   build:
