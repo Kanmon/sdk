@@ -1,7 +1,7 @@
 name: TS Release
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
@@ -9,8 +9,8 @@ on:
       - "openapitools.json"
       - "ts/**"
       - ".github/workflows/ts-release.yml"
-    # tags:
-    #   - "v*"
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -33,18 +33,15 @@ jobs:
           cd ts
           yarn
 
-      # git config user.name "$ {{ github.event.pusher.name }}"
-      # git config user.email "$ {{ github.event.pusher.email }}"
       - name: Publish (pre-release)
         if: github.ref_type == 'branch'
         run: |
-          git config user.name "coleby"
-          git config user.email "25941617+coleby@users.noreply.github.com"
+          git config user.name "${{ github.event.pusher.name }}"
+          git config user.email "${{ github.event.pusher.email }}"
           cd ts
           yarn version --prerelease --preid next-${{ github.sha }}
-          yarn --verbose publish --access public --tag next
+          yarn publish --access public --tag next
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish
