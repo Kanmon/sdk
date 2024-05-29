@@ -42,7 +42,7 @@ jobs:
           git config user.email "25941617+coleby@users.noreply.github.com"
           cd ts
           yarn version --prerelease --preid next-${{ github.sha }}
-          yarn publish --access public --tag next
+          yarn --verbose publish --access public --tag next
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
