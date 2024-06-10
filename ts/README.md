@@ -17,7 +17,7 @@ npm install @kanmon/sdk
 Then, you can initialize the SDK in your project:
 
 ```typescript
-import { Kanmon } from '@kanmon/sdk';
+import { KanmonPlatformApi } from '@kanmon/sdk';
 
 const kanmonApi = new KanmonPlatformApi('YOUR_API_KEY');
 ```
@@ -25,7 +25,7 @@ const kanmonApi = new KanmonPlatformApi('YOUR_API_KEY');
 Example use of one of our API endpoints:
 
 ```typescript
-const business = await kanmonApi.businesses.getBusiness({id: 'YourBizId', idType: 'PLATFORM'})
+const business = await kanmonApi.businesses.getBusiness({id: 'YourBizId', idType: 'PLATFORM'});
 ```
 
 ## Versioning
