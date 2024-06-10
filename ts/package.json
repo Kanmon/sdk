@@ -1,6 +1,6 @@
 {
   "name": "@kanmon/sdk",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Kanmon API client",
   "author": "Kanmon",
   "repository": {
@@ -14,6 +14,7 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.js",
   "type": "module",
   "module": "./dist/index.js",
   "exports": {
