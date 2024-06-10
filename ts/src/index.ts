@@ -16,6 +16,8 @@ import {
   servers,
 } from "./openapi";
 
+export * from "./openapi";
+
 const serverEnvToIndex = {
   production: 0,
   sandbox: 1,
