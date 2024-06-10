@@ -14,7 +14,6 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.js",
   "type": "module",
   "module": "./dist/index.js",
   "exports": {
@@ -24,6 +23,9 @@
     }
   },
   "typings": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "engines": {
     "node": "^18"
   },
