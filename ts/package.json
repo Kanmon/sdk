@@ -14,7 +14,7 @@
   ],
   "license": "MIT",
   "main": "./dist/index.js",
-  "type": "module",
+  "type": "commonjs",
   "module": "./dist/index.js",
   "exports": {
     ".": {
