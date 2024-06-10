@@ -20,7 +20,7 @@ const serverEnvToIndex = {
   production: 0,
   sandbox: 1,
   // For internal use only
-  local: 2,
+  development: 2,
   // For internal use only
   staging: 3,
 };
