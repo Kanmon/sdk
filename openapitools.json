@@ -13,7 +13,7 @@
           "supportsES6": true,
           "useObjectParameters": true,
           "platform": "node",
-          "legacyDiscriminatorBehavior": false
+          "legacyDiscriminatorBehavior": true
         }
       }
     }

@@ -117,4 +117,3 @@ src/models/UserAlreadyExistsWithPlatformUserIdException.ts
 src/models/UserNotFoundException.ts
 src/models/index.ts
 src/runtime.ts
-tsconfig.esm.json
