@@ -28,3 +28,4 @@
 /.gitignore
 /git_push.sh
 /*.md
+/tsconfig.esm.json
