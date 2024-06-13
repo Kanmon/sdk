@@ -24,10 +24,12 @@ jobs:
           node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Generate openapi lib
-        run: |
-          yarn
-          yarn openapi-generator-cli generate
+      # Temporarily disabled until a new version is pushed including:
+      # https://github.com/OpenAPITools/openapi-generator/pull/18877/files
+      # - name: Generate openapi lib
+      #   run: |
+      #     yarn
+      #     yarn openapi-generator-cli generate
 
       - name: Install modules
         run: |
