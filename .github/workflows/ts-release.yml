@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - regen
     paths:
       - "kanmon_api_spec.json"
       - "openapitools.json"
