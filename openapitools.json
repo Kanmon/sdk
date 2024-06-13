@@ -6,13 +6,14 @@
     "generators": {
       "typescript": {
         "inputSpec": "#{cwd}/kanmon_api_spec.json",
-        "output": "#{cwd}/ts/src/openapi",
-        "generatorName": "typescript",
+        "output": "#{cwd}/ts",
+        "generatorName": "typescript-fetch",
         "additionalProperties": {
           "npmName": "@kanmon/sdk",
           "supportsES6": true,
           "useObjectParameters": true,
-          "platform": "node"
+          "platform": "node",
+          "legacyDiscriminatorBehavior": false
         }
       }
     }
