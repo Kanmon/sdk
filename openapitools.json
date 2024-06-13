@@ -6,7 +6,7 @@
     "generators": {
       "typescript": {
         "inputSpec": "#{cwd}/kanmon_api_spec.json",
-        "output": "#{cwd}/ts",
+        "output": "#{cwd}/ts/src/openapi",
         "generatorName": "typescript-fetch",
         "additionalProperties": {
           "npmName": "@kanmon/sdk",

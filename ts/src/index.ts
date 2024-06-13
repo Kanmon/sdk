@@ -3,7 +3,6 @@ import {
   BusinessesApi,
   Configuration,
   ConnectTokensApi,
-  createConfiguration,
   DocumentsApi,
   UsersApi,
   DrawRequestsApi,
@@ -13,18 +12,17 @@ import {
   OffersApi,
   PaymentsApi,
   PrequalificationsApi,
-  servers,
-} from "./openapi";
+} from "./openapi/src";
 
-export * from "./openapi";
+export * from "./openapi/src";
 
-const serverEnvToIndex = {
-  production: 0,
-  sandbox: 1,
+const serverEnvToBasePath = {
+  production: "https://api.kanmon.com",
+  sandbox: "https://api.kanmon.dev",
   // For internal use only
-  development: 2,
+  development: "http://localhost:3333",
   // For internal use only
-  staging: 3,
+  staging: "https://workflow.concar.dev",
 };
 
 export class KanmonPlatformApi {
@@ -42,16 +40,12 @@ export class KanmonPlatformApi {
   public readonly payments: PaymentsApi;
   public readonly prequalifications: PrequalificationsApi;
 
-  constructor(apiToken: string, env?: keyof typeof serverEnvToIndex) {
-    const serverIndex = serverEnvToIndex[env || "production"];
+  constructor(apiToken: string, env?: keyof typeof serverEnvToBasePath) {
+    const basePath = serverEnvToBasePath[env || "production"];
 
-    const baseServer = servers[serverIndex];
-
-    const config = createConfiguration({
-      baseServer,
-      authMethods: {
-        Authorization: `ApiKey ${apiToken}`,
-      },
+    const config = new Configuration({
+      basePath,
+      apiKey: `ApiKey ${apiToken}`,
     });
 
     this._configuration = config;
