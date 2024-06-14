@@ -32,7 +32,7 @@ import {
  * This will differ depending on which `component` is used.
  * @export
  */
-export type CreateSessionTokenRequestBodyData = InvoiceFlowSessionTokenData | InvoiceFlowWithInvoiceFileSessionTokenData;
+export type CreateSessionTokenRequestBodyData = { component: 'SESSION_INVOICE_FLOW' } & InvoiceFlowSessionTokenData | { component: 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE' } & InvoiceFlowWithInvoiceFileSessionTokenData;
 
 export function CreateSessionTokenRequestBodyDataFromJSON(json: any): CreateSessionTokenRequestBodyData {
     return CreateSessionTokenRequestBodyDataFromJSONTyped(json, false);
@@ -42,21 +42,28 @@ export function CreateSessionTokenRequestBodyDataFromJSONTyped(json: any, ignore
     if (json == null) {
         return json;
     }
-    return InvoiceFlowSessionTokenDataFromJSONTyped(json, true) || InvoiceFlowWithInvoiceFileSessionTokenDataFromJSONTyped(json, true);
+    switch (json['component']) {
+        case 'SESSION_INVOICE_FLOW':
+            return Object.assign({}, InvoiceFlowSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW' });
+        case 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE':
+            return Object.assign({}, InvoiceFlowWithInvoiceFileSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE' });
+        default:
+            throw new Error(`No variant of CreateSessionTokenRequestBodyData exists with 'component=${json['component']}'`);
+    }
 }
 
 export function CreateSessionTokenRequestBodyDataToJSON(value?: CreateSessionTokenRequestBodyData | null): any {
     if (value == null) {
         return value;
     }
-
-    if (instanceOfInvoiceFlowSessionTokenData(value)) {
-        return InvoiceFlowSessionTokenDataToJSON(value as InvoiceFlowSessionTokenData);
+    switch (value['component']) {
+        case 'SESSION_INVOICE_FLOW':
+            return InvoiceFlowSessionTokenDataToJSON(value);
+        case 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE':
+            return InvoiceFlowWithInvoiceFileSessionTokenDataToJSON(value);
+        default:
+            throw new Error(`No variant of CreateSessionTokenRequestBodyData exists with 'component=${value['component']}'`);
     }
-    if (instanceOfInvoiceFlowWithInvoiceFileSessionTokenData(value)) {
-        return InvoiceFlowWithInvoiceFileSessionTokenDataToJSON(value as InvoiceFlowWithInvoiceFileSessionTokenData);
-    }
 
-    return {};
 }
 
