@@ -1,0 +1,5911 @@
+openapi: 3.0.0
+info:
+  contact: {}
+  description: Kanmon's public api. Contains all of the endpoints for both capital
+    providers and platforms
+  title: Kanmon Public V2 API
+  version: 2.0.0
+servers:
+- description: Production
+  url: https://api.kanmon.com
+- description: Sandbox
+  url: https://api.kanmon.dev
+- description: Local
+  url: http://localhost:3333
+- description: Staging
+  url: https://workflow.concar.dev
+paths:
+  /api/platform/v2/prequalifications:
+    get:
+      operationId: getPrequalifiedBusinesses
+      parameters:
+      - description: A comma delimited list of your platform’s unique IDs for businesses.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GetPrequalificationsResponse'
+                type: array
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch business prequalifications
+      tags:
+      - Prequalifications
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.prequalifications.getPrequalifiedBusinesses({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/businesses:
+    get:
+      operationId: getBusinesses
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique IDs for businesses.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for businesses.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBusinessesResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch businesses
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.getBusinesses({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+    post:
+      operationId: createBusiness
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBusinessRequestBody'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+          description: Business created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessAlreadyExistsException'
+          description: BusinessAlreadyExistsException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Create a business
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.createBusiness({\n  ...params...\n})\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/businesses/{id}:
+    get:
+      operationId: getBusiness
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      - description: Which ID type to query the business by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch a business
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.getBusiness({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+    patch:
+      operationId: updateBusiness
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      - description: Which ID type to query the business by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBusinessRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessAlreadyExistsException'
+          description: BusinessAlreadyExistsException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Update a business
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.updateBusiness({\n  ...params...\n})\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/businesses/{id}/activity-logs:
+    get:
+      operationId: getBusinessActivityLog
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      - description: Which ID type to query the business by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActivityLogsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch activity logs for a business
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.getBusinessActivityLog({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/users:
+    get:
+      operationId: getUsers
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique IDs for users.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for users.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformUserIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique business IDs
+          for users.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your Kanmon’s unique business IDs for
+          users.
+        example: "ecdeda66-dbd6-461f-b4de-5049d317a27c,fec4606f-746d-456a-a27d-0baa7c17d3e3"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch users
+      tags:
+      - Users
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.users.getUsers({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+    post:
+      operationId: createUser
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequestBody'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createUser_409_response'
+          description: "PrimaryBusinessOwnerAlreadyExistsForBusinessException, UserAlreadyExistsWithPlatformUserIdException,\
+            \ UserAlreadyExistsWithEmailException"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Create a user
+      tags:
+      - Users
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.users.createUser({\n  ...params...\n})\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/users/{id}:
+    get:
+      operationId: getUser
+      parameters:
+      - description: "Either the Kanmon user UUID or your platform’s user ID, depending\
+          \ on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which ID type to query the user by. Defaults to `KANMON`. Use
+          `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundException'
+          description: UserNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch a user
+      tags:
+      - Users
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.users.getUser({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+    patch:
+      operationId: updateUser
+      parameters:
+      - description: "Either the Kanmon user UUID or your platform’s user ID, depending\
+          \ on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which ID type to query the user by. Defaults to `KANMON`. Use
+          `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundException'
+          description: UserNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateUser_409_response'
+          description: "UserAlreadyExistsWithEmailException, PrimaryBusinessOwnerAlreadyExistsForBusinessException"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Update a user
+      tags:
+      - Users
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.users.updateUser({\n  ...params...\n})\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/users/merge:
+    post:
+      description: "Users from the source business will be moved into the target business.\
+        \ This will only work if the source business has not started onboarding yet.\
+        \ After the merge, the source business will be deleted."
+      operationId: mergeUserIntoBusiness
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MergeUsersRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MergeUsersResponseBody'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrimaryBusinessOwnerAlreadyExistsForBusinessException'
+          description: PrimaryBusinessOwnerAlreadyExistsForBusinessException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Merge users from a source business into a target business
+      tags:
+      - Users
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.users.mergeUserIntoBusiness({\n  ...params...\n})\n \
+            \   "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/connect-tokens:
+    post:
+      operationId: connectToken
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateConnectTokenRequestBody'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectToken'
+          description: Connect token created.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserNotFoundException'
+          description: UserNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Create a connect token
+      tags:
+      - Connect Tokens
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.connectTokens.connectToken({\n  ...params...\n})\n  \
+            \  "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/invoices/{id}:
+    get:
+      operationId: getInvoice
+      parameters:
+      - description: "Either the Kanmon invoice UUID or your platform’s invoice ID,\
+          \ depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which ID type to query the invoice by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getInvoice_404_response'
+          description: "InvoiceNotFoundException, BusinessNotFoundException"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch an invoice
+      tags:
+      - Invoices
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.invoices.getInvoice({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/invoices:
+    get:
+      operationId: getInvoices
+      parameters:
+      - description: A comma delimited list of invoice statuses.
+        example: "INVOICE_CREATED,INVOICE_FUNDED"
+        explode: true
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for invoices.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for businesses.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for businesses.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platforms’s unique IDs for invoices.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformInvoiceIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetInvoicesResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch invoices
+      tags:
+      - Invoices
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.invoices.getInvoices({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/offers/{id}:
+    get:
+      operationId: getOfferById
+      parameters:
+      - description: The Kanmon offer UUID.
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferNotFoundException'
+          description: OfferNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch an offer
+      tags:
+      - Offers
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.offers.getOfferById({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/offers:
+    get:
+      operationId: getAllOffers
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique IDs for offers.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for businesses.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for businesses.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOffersResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch offers
+      tags:
+      - Offers
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.offers.getAllOffers({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/issued-products/{id}:
+    get:
+      operationId: getIssuedProductById
+      parameters:
+      - description: The Kanmon issued product UUID.
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedProduct'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedProductNotFoundException'
+          description: IssuedProductNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch an issued product
+      tags:
+      - Issued Products
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.issuedProducts.getIssuedProductById({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/issued-products:
+    get:
+      operationId: getIssuedProducts
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique IDs for offers.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for businesses.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for businesses.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIssuedProductsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch issued products
+      tags:
+      - Issued Products
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.issuedProducts.getIssuedProducts({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/bank-accounts:
+    get:
+      description: Please contact Kanmon to enable access to bank account APIs.
+      operationId: getBusinessBankAccounts
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique IDs for bank accounts.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for bank
+          accounts.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBankAccountIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique business IDs
+          for bannk accounts.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your Kanmon’s unique business IDs for
+          bannk accounts.
+        example: "3dac24ba-f14b-4dea-9f3c-b11e2fcb5aed,73422933-ae2c-4367-b880-0cdb1e921ec7"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBusinessBankAccountsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch business bank accounts
+      tags:
+      - Bank Accounts
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.bankAccounts.getBusinessBankAccounts({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        We only support creating disbursement checking accounts at the moment. Each business can only have one disbursement checking account.
+              Please contact Kanmon to enable access to bank account APIs.
+      operationId: createBusinessBankAccount
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBusinessBankAccountRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessBankAccount'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccountAlreadyExistException'
+          description: BankAccountAlreadyExistException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Create a business bank account
+      tags:
+      - Bank Accounts
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.bankAccounts.createBusinessBankAccount({\n  ...params...\n\
+            })\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/bank-accounts/{id}:
+    get:
+      description: Please contact Kanmon to enable access to bank account APIs.
+      operationId: getBusinessBankAccount
+      parameters:
+      - description: "Either the Kanmon bank account UUID or your platform’s bank\
+          \ account ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which ID type to query the bank account by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessBankAccount'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccountNotFoundException'
+          description: BankAccountNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch a business bank account
+      tags:
+      - Bank Accounts
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.bankAccounts.getBusinessBankAccount({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+    patch:
+      description: |-
+        We only support creating disbursement checking accounts at the moment. Each business can only have one disbursement checking account.
+                Please contact Kanmon to enable access to bank account APIs.
+      operationId: updateBusinessBankAccount
+      parameters:
+      - description: "Either the Kanmon bank account UUID or your platform’s bank\
+          \ account ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Which ID type to query the bank account by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBusinessAccountRequestBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessBankAccount'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankAccountNotFoundException'
+          description: BankAccountNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Update a business bank account
+      tags:
+      - Bank Accounts
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.bankAccounts.updateBusinessBankAccount({\n  ...params...\n\
+            })\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/payments/{id}:
+    get:
+      operationId: getPaymentById
+      parameters:
+      - description: The Kanmon payment order UUID.
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOrder'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentOrderNotFoundException'
+          description: PaymentOrderNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch a payment
+      tags:
+      - Payments
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.payments.getPaymentById({\n  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/issued-products/{id}/payment-schedule:
+    get:
+      operationId: getPaymentScheduleForAIssuedProduct
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique draw request IDs.
+        example: "46439ef9-728f-4255-8cb4-262371cb9618,1113ce7c-dc84-4cad-b60a-4824c7a91c8b"
+        explode: true
+        in: query
+        name: drawRequestIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for invoices.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: invoiceIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for invoices.
+        example: "12322,12331"
+        explode: true
+        in: query
+        name: platformInvoiceIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The direction of the payment.
+        example: REPAYMENT
+        explode: true
+        in: query
+        name: direction
+        required: false
+        schema:
+          enum:
+          - DISBURSEMENT
+          - REPAYMENT
+          type: string
+        style: form
+      - description: The status of the payment.
+        example: PAID
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaymentOrderStatus'
+        style: form
+      - description: The Kanmon issued product UUID.
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPaymentScheduleResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedProductNotFoundException'
+          description: IssuedProductNotFoundException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch payment schedule for an issued product
+      tags:
+      - Payments
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.payments.getPaymentScheduleForAIssuedProduct({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/draw-requests/{id}:
+    get:
+      operationId: getDrawRequest
+      parameters:
+      - description: The Kanmon draw request UUID.
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrawRequest'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DrawRequestNotFoundException'
+          description: ""
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch a draw request
+      tags:
+      - Draw Requests
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.drawRequests.getDrawRequest({\n  ...params...\n})\n \
+            \   "
+      x-accepts:
+      - application/json
+  /api/platform/v2/draw-requests:
+    get:
+      operationId: getDrawRequests
+      parameters:
+      - description: A comma delimited list of draw request statuses.
+        example: "DRAW_REQUEST_FUNDED,DRAW_REQUEST_PAID_IN_FULL"
+        explode: true
+        in: query
+        name: statuses
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for invoices.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for businesses.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: platformBusinessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for businesses.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDrawRequestsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch draw requests
+      tags:
+      - Draw Requests
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.drawRequests.getDrawRequests({\n  ...params...\n})\n\
+            \    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/documents:
+    post:
+      operationId: createBusinessDocument
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadBankDocumentsRequest'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBusinessDocumentsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Upload documents for a business
+      tags:
+      - Documents
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.documents.createBusinessDocument({\n  ...params...\n\
+            })\n    "
+      x-content-type: multipart/form-data
+      x-accepts:
+      - application/json
+  /api/platform/v2/embedded-session:
+    post:
+      operationId: createEmbeddedSession
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSessionTokenRequestBody'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddedSession'
+          description: Embedded session created.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessNotFoundException'
+          description: BusinessNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createEmbeddedSession_409_response'
+          description: "BusinessHasNoInvoiceFinancingProductException, PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Create an embedded session
+      tags:
+      - Embedded Sessions
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.embeddedSessions.createEmbeddedSession({\n  ...params...\n\
+            })\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    BusinessPrequalification:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        product: fc70522b-608c-4314-be1f-b96791da5f3d
+        platformBusinessId: b50fb5eb-29f6-479a-af71-f900a93da2c3
+        isPrequalified: true
+        businessId: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
+        platformId: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+        prequalifiedAmountCents: 1000000
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        product:
+          description: The product that the business is prequalified for. This will
+            be null if `isPrequalified` is false.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          example: fc70522b-608c-4314-be1f-b96791da5f3d
+          nullable: true
+          type: string
+        platformId:
+          description: The UUID representing your platform in Kanmon.
+          example: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+          type: string
+        businessId:
+          description: The UUID representing the business in Kanmon.
+          example: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
+          nullable: true
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: b50fb5eb-29f6-479a-af71-f900a93da2c3
+          type: string
+        isPrequalified:
+          description: Whether or not the business has been prequalified.
+          type: boolean
+        prequalifiedAmountCents:
+          description: Number describing the prequalification amount of the business
+            in cents.
+          example: 1000000
+          nullable: true
+          type: number
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the prequalification.
+          format: date-time
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the prequalification.
+          format: date-time
+          type: string
+      required:
+      - businessId
+      - createdAt
+      - isPrequalified
+      - platformBusinessId
+      - platformId
+      - prequalifiedAmountCents
+      - product
+      - updatedAt
+      type: object
+    PaginationResult:
+      properties:
+        limit:
+          description: The number of records to limit when performing pagination.
+          example: 100
+          type: number
+        offset:
+          description: The number of records to skip when performing pagination.
+          example: 0
+          type: number
+        totalCount:
+          description: The total number of records that matched the query.
+          example: 100
+          type: number
+      required:
+      - limit
+      - offset
+      - totalCount
+      type: object
+    GetPrequalificationsResponse:
+      example:
+        pagination: ""
+        prequalifications:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          product: fc70522b-608c-4314-be1f-b96791da5f3d
+          platformBusinessId: b50fb5eb-29f6-479a-af71-f900a93da2c3
+          isPrequalified: true
+          businessId: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
+          platformId: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+          prequalifiedAmountCents: 1000000
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          product: fc70522b-608c-4314-be1f-b96791da5f3d
+          platformBusinessId: b50fb5eb-29f6-479a-af71-f900a93da2c3
+          isPrequalified: true
+          businessId: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
+          platformId: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+          prequalifiedAmountCents: 1000000
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        prequalifications:
+          description: Array of prequalifications.
+          items:
+            $ref: '#/components/schemas/BusinessPrequalification'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - pagination
+      - prequalifications
+      type: object
+    BadRequestException:
+      example:
+        errorCode: BadRequestException
+        message: Bad Request
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BadRequestException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Bad Request
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    ForbiddenException:
+      example:
+        errorCode: ForbiddenException
+        message: Forbidden
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - ForbiddenException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Forbidden
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    InternalServerErrorException:
+      example:
+        errorCode: InternalServerErrorException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - InternalServerErrorException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    Address:
+      properties:
+        addressLineOne:
+          type: string
+        addressLineTwo:
+          example: Apt 123
+          nullable: true
+          type: string
+        city:
+          type: string
+        state:
+          description: The 2 character abbreviated state
+          enum:
+          - AL
+          - KY
+          - OH
+          - AK
+          - LA
+          - OK
+          - AZ
+          - ME
+          - OR
+          - AR
+          - MD
+          - PA
+          - AS
+          - MA
+          - PR
+          - CA
+          - MI
+          - RI
+          - CO
+          - MN
+          - SC
+          - CT
+          - MS
+          - SD
+          - DE
+          - MO
+          - TN
+          - DC
+          - MT
+          - TX
+          - FL
+          - NE
+          - TT
+          - GA
+          - NV
+          - UT
+          - GU
+          - NH
+          - VT
+          - HI
+          - NJ
+          - VA
+          - ID
+          - NM
+          - VI
+          - IL
+          - NY
+          - WA
+          - IN
+          - NC
+          - WV
+          - IA
+          - ND
+          - WI
+          - KS
+          - MP
+          - WY
+          example: CA
+          type: string
+        zipcode:
+          description: "Zip code can be 5 digits, 9 digits, or 5+4 including a hyphen\
+            \ or plus sign, e.g. 90210, 902101234, 90210-1234 or 90210+1234"
+          example: "94401"
+          type: string
+        country:
+          description: USA
+          example: USA
+          type: string
+      required:
+      - addressLineOne
+      - city
+      - country
+      - state
+      - zipcode
+      type: object
+    CreateBusinessRequestBody:
+      example:
+        website: https://www.my-business.com
+        metadata: "{}"
+        platformBusinessId: "12345"
+        address:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        phoneNumber: "+14155556789"
+        name: My Business
+        ein: "123456789"
+      properties:
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: "12345"
+          type: string
+        name:
+          description: The business’s name.
+          example: My Business
+          type: string
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: The business’s address.
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        ein:
+          description: "The business’s EIN. Only digits, no formatting."
+          example: "123456789"
+          type: string
+        phoneNumber:
+          description: "The business’s phone number. No formatting characters, country\
+            \ code is optional."
+          example: "+14155556789"
+          type: string
+        website:
+          description: The business’s website.
+          example: https://www.my-business.com
+          type: string
+        metadata:
+          description: Metadata from your system that you want to associate the business
+            with.
+          type: object
+      required:
+      - platformBusinessId
+      type: object
+    Business:
+      example:
+        createdAt: 2022-06-01T03:57:26.115Z
+        website: https://www.my-business.com
+        metadata: "{}"
+        platformBusinessId: "12345"
+        address:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        phoneNumber: "+14155556789"
+        name: My Business
+        id: 1193fdaf-630c-4771-a629-8da7a87947d2
+        ein: "123456789"
+        updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        id:
+          description: The UUID representing the business in Kanmon.
+          example: 1193fdaf-630c-4771-a629-8da7a87947d2
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: "12345"
+          type: string
+        name:
+          description: The business’s name.
+          example: My Business
+          nullable: true
+          type: object
+        address:
+          $ref: '#/components/schemas/Business_address'
+        ein:
+          description: "The business’s EIN. Only digits, no formatting."
+          example: "123456789"
+          nullable: true
+          type: object
+        phoneNumber:
+          description: "The business’s phone number. No formatting characters, country\
+            \ code is optional."
+          example: "+14155556789"
+          nullable: true
+          type: object
+        website:
+          description: The business’s website.
+          example: https://www.my-business.com
+          nullable: true
+          type: object
+        metadata:
+          description: Metadata from your system that you want to associate the business
+            with.
+          type: object
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the business.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the business.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - address
+      - createdAt
+      - ein
+      - id
+      - metadata
+      - name
+      - phoneNumber
+      - updatedAt
+      - website
+      type: object
+    BusinessAlreadyExistsException:
+      example:
+        errorCode: BusinessAlreadyExistsException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessAlreadyExistsException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    UpdateBusinessRequestBody:
+      example:
+        website: https://www.my-business.com
+        metadata: "{}"
+        platformBusinessId: "12345"
+        address:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        phoneNumber: "+14155556789"
+        name: My Business
+        ein: "123456789"
+      properties:
+        name:
+          description: The business’s name.
+          example: My Business
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: "12345"
+          type: string
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: The business’s address.
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        ein:
+          description: "The business’s EIN. Only digits, no formatting."
+          example: "123456789"
+          type: string
+        phoneNumber:
+          description: "The business’s phone number. No formatting characters, country\
+            \ code is optional."
+          example: "+14155556789"
+          type: string
+        website:
+          description: The business’s website.
+          example: https://www.my-business.com
+          type: string
+        metadata:
+          description: Metadata from your system that you want to associate the business
+            with.
+          type: object
+      type: object
+    BusinessNotFoundException:
+      example:
+        errorCode: BusinessNotFoundException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    ActivityLog:
+      example:
+        createdAt: 2022-06-01T03:57:26.115Z
+        platformBusinessId: "12345"
+        payload: "{}"
+        businessId: 1193fdaf-630c-4771-a629-8da7a87947d2
+        id: 1193fdaf-630c-4771-a629-8da7a87947d2
+        eventType: BUSINESS.NEW_ACCOUNT
+        updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        id:
+          description: The UUID representing the activity log item in Kanmon.
+          example: 1193fdaf-630c-4771-a629-8da7a87947d2
+          type: string
+        businessId:
+          description: The UUID representing the business in Kanmon.
+          example: 1193fdaf-630c-4771-a629-8da7a87947d2
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique business ID for the user.
+          example: "12345"
+          nullable: true
+          type: string
+        payload:
+          description: "Event details and schema: https://kanmon.dev/docs/types-webhooks"
+          type: object
+        eventType:
+          description: A description of the log event type.
+          example: BUSINESS.NEW_ACCOUNT
+          type: string
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the business.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the business.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - businessId
+      - createdAt
+      - eventType
+      - id
+      - payload
+      - platformBusinessId
+      - updatedAt
+      type: object
+    GetActivityLogsResponse:
+      example:
+        pagination: ""
+        activityLogs:
+        - createdAt: 2022-06-01T03:57:26.115Z
+          platformBusinessId: "12345"
+          payload: "{}"
+          businessId: 1193fdaf-630c-4771-a629-8da7a87947d2
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          eventType: BUSINESS.NEW_ACCOUNT
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - createdAt: 2022-06-01T03:57:26.115Z
+          platformBusinessId: "12345"
+          payload: "{}"
+          businessId: 1193fdaf-630c-4771-a629-8da7a87947d2
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          eventType: BUSINESS.NEW_ACCOUNT
+          updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        activityLogs:
+          description: An array of activity logs.
+          items:
+            $ref: '#/components/schemas/ActivityLog'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - activityLogs
+      - pagination
+      type: object
+    GetBusinessesResponse:
+      example:
+        pagination: ""
+        businesses:
+        - createdAt: 2022-06-01T03:57:26.115Z
+          website: https://www.my-business.com
+          metadata: "{}"
+          platformBusinessId: "12345"
+          address:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          phoneNumber: "+14155556789"
+          name: My Business
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          ein: "123456789"
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - createdAt: 2022-06-01T03:57:26.115Z
+          website: https://www.my-business.com
+          metadata: "{}"
+          platformBusinessId: "12345"
+          address:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          phoneNumber: "+14155556789"
+          name: My Business
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          ein: "123456789"
+          updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        businesses:
+          description: Array of businesses.
+          items:
+            $ref: '#/components/schemas/Business'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - businesses
+      - pagination
+      type: object
+    CreateUserRequestBody:
+      example:
+        firstName: John
+        lastName: Smith
+        metadata: "{}"
+        platformBusinessId: "12345"
+        address:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        platformUserId: "12345"
+        roles:
+        - PRIMARY_OWNER
+        businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        email: user@gmail.com
+      properties:
+        platformUserId:
+          description: Your platform’s unique ID for the user.
+          example: "12345"
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique business ID for the business. Either
+            `platformBusinessId` or `businessId` is required.
+          example: "12345"
+          type: string
+        businessId:
+          description: The UUID representing the user’s business in Kanmon. Either
+            `platformBusinessId` or `businessId` is required.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        email:
+          description: The user’s email.
+          example: user@gmail.com
+          type: string
+        firstName:
+          description: The user’s first name.
+          example: John
+          type: string
+        lastName:
+          description: The user’s last name.
+          example: Smith
+          type: string
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: The user’s address.
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        roles:
+          description: "The user’s roles. If no roles are defined, the user will be\
+            \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
+            \ a user with the authority to issue debt on behalf of the business. <br/>This\
+            \ means the user can complete onboarding, receive offers, choose to accept\
+            \ offers, <br/>sign financing agreements, and service an active issued\
+            \ product. <br/><br/>An operator is a user with permission to service\
+            \ an active issued product. Examples are uploading invoices on <br/>behalf\
+            \ of the business, checking the status of payments, etc. <br /><br/>Please\
+            \ note Kanmon supports an additional user role called secondary owners.\
+            \ <br/>Secondary owners are beneficial owners of a business, like primary\
+            \ owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon\
+            \ will handle creating and managing <br/>these users for KYC purposes\
+            \ through a separate process. <br/>"
+          example:
+          - PRIMARY_OWNER
+          items:
+            enum:
+            - PRIMARY_OWNER
+            - OPERATOR
+            type: string
+          type: array
+        metadata:
+          description: Metadata from your system that you want to associate the user
+            with.
+          type: object
+      required:
+      - platformUserId
+      type: object
+    User:
+      example:
+        firstName: John
+        lastName: Smith
+        createdAt: 2022-06-01T03:57:26.115Z
+        metadata: "{}"
+        platformBusinessId: "12345"
+        address:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        platformUserId: "12345"
+        roles:
+        - PRIMARY_OWNER
+        businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        id: 1193fdaf-630c-4771-a629-8da7a87947d2
+        email: user@gmail.com
+        updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        id:
+          description: The UUID representing the user in Kanmon.
+          example: 1193fdaf-630c-4771-a629-8da7a87947d2
+          type: string
+        platformUserId:
+          description: Your platform’s unique ID for the user.
+          example: "12345"
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique business ID for the user.
+          example: "12345"
+          nullable: true
+          type: string
+        businessId:
+          description: The UUID representing the user’s business in Kanmon.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        address:
+          $ref: '#/components/schemas/User_address'
+        email:
+          description: The user’s email.
+          example: user@gmail.com
+          nullable: true
+          type: object
+        firstName:
+          description: The user’s first name.
+          example: John
+          nullable: true
+          type: object
+        lastName:
+          description: The user’s last name.
+          example: Smith
+          nullable: true
+          type: object
+        roles:
+          description: "The user’s roles. If no roles are defined, the user will be\
+            \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
+            \ a user with the authority to issue debt on behalf of the business. <br/>This\
+            \ means the user can complete onboarding, receive offers, choose to accept\
+            \ offers, <br/>sign financing agreements, and service an active issued\
+            \ product. <br/><br/>An operator is a user with permission to service\
+            \ an active issued product. Examples are uploading invoices on <br/>behalf\
+            \ of the business, checking the status of payments, etc. <br /><br/>Please\
+            \ note Kanmon supports an additional user role called secondary owners.\
+            \ <br/>Secondary owners are beneficial owners of a business, like primary\
+            \ owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon\
+            \ will handle creating and managing <br/>these users for KYC purposes\
+            \ through a separate process. <br/>"
+          example:
+          - PRIMARY_OWNER
+          items:
+            enum:
+            - PRIMARY_OWNER
+            - OPERATOR
+            type: string
+          type: array
+        metadata:
+          description: Metadata from your system that you want to associate the user
+            with.
+          type: object
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the user.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the user.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - address
+      - businessId
+      - createdAt
+      - email
+      - firstName
+      - id
+      - lastName
+      - metadata
+      - platformBusinessId
+      - updatedAt
+      type: object
+    UserNotFoundException:
+      example:
+        errorCode: UserNotFoundException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - UserNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    GetUsersResponse:
+      example:
+        pagination: ""
+        users:
+        - firstName: John
+          lastName: Smith
+          createdAt: 2022-06-01T03:57:26.115Z
+          metadata: "{}"
+          platformBusinessId: "12345"
+          address:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          platformUserId: "12345"
+          roles:
+          - PRIMARY_OWNER
+          businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          email: user@gmail.com
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - firstName: John
+          lastName: Smith
+          createdAt: 2022-06-01T03:57:26.115Z
+          metadata: "{}"
+          platformBusinessId: "12345"
+          address:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          platformUserId: "12345"
+          roles:
+          - PRIMARY_OWNER
+          businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          email: user@gmail.com
+          updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        users:
+          description: Array of users.
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - pagination
+      - users
+      type: object
+    UpdateUserRequestBody:
+      example:
+        firstName: John
+        lastName: Smith
+        metadata: "{}"
+        address:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        roles:
+        - PRIMARY_OWNER
+        email: user@gmail.com
+      properties:
+        firstName:
+          description: The user’s first name.
+          example: John
+          type: string
+        lastName:
+          description: The user’s last name.
+          example: Smith
+          type: string
+        address:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: The user’s address.
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        email:
+          description: The user’s email.
+          example: user@gmail.com
+          type: string
+        roles:
+          description: "The user’s roles. If no roles are defined, the user will be\
+            \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
+            \ a user with the authority to issue debt on behalf of the business. <br/>This\
+            \ means the user can complete onboarding, receive offers, choose to accept\
+            \ offers, <br/>sign financing agreements, and service an active issued\
+            \ product. <br/><br/>An operator is a user with permission to service\
+            \ an active issued product. Examples are uploading invoices on <br/>behalf\
+            \ of the business, checking the status of payments, etc. <br /><br/>Please\
+            \ note Kanmon supports an additional user role called secondary owners.\
+            \ <br/>Secondary owners are beneficial owners of a business, like primary\
+            \ owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon\
+            \ will handle creating and managing <br/>these users for KYC purposes\
+            \ through a separate process. <br/>"
+          example:
+          - PRIMARY_OWNER
+          items:
+            enum:
+            - OPERATOR
+            - PRIMARY_OWNER
+            type: string
+          type: array
+        metadata:
+          description: Metadata from your system that you want to associate the user
+            with.
+          type: object
+      type: object
+    MergeUsersRequestBody:
+      example:
+        sourceBusinessId: f532d314-e77a-4d21-b828-2198efdc279d
+        sourcePlatformBusinessId: "12345"
+        targetBusinessId: 762d0b0c-f59f-4935-9e25-e61defa0185b
+        targetPlatformBusinessId: "67890"
+      properties:
+        sourcePlatformBusinessId:
+          description: Your platform’s unique business ID for the business to merge
+            users from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is
+            required.
+          example: "12345"
+          type: string
+        sourceBusinessId:
+          description: The UUID representing the business in Kanmon to merge users
+            from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is required.
+          example: f532d314-e77a-4d21-b828-2198efdc279d
+          type: string
+        targetPlatformBusinessId:
+          description: Your platform’s unique business ID for the business to merge
+            users to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.
+          example: "67890"
+          type: string
+        targetBusinessId:
+          description: The UUID representing the business in Kanmon to merge users
+            to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.
+          example: 762d0b0c-f59f-4935-9e25-e61defa0185b
+          type: string
+      type: object
+    MergeUsersResponseBody:
+      example:
+        mergedUsers:
+        - firstName: John
+          lastName: Smith
+          createdAt: 2022-06-01T03:57:26.115Z
+          metadata: "{}"
+          platformBusinessId: "12345"
+          address:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          platformUserId: "12345"
+          roles:
+          - PRIMARY_OWNER
+          businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          email: user@gmail.com
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - firstName: John
+          lastName: Smith
+          createdAt: 2022-06-01T03:57:26.115Z
+          metadata: "{}"
+          platformBusinessId: "12345"
+          address:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          platformUserId: "12345"
+          roles:
+          - PRIMARY_OWNER
+          businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          email: user@gmail.com
+          updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        mergedUsers:
+          description: An array of users that were merged into the target business.
+          items:
+            $ref: '#/components/schemas/User'
+          type: array
+      required:
+      - mergedUsers
+      type: object
+    PrimaryBusinessOwnerAlreadyExistsForBusinessException:
+      example:
+        errorCode: PrimaryBusinessOwnerAlreadyExistsForBusinessException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PrimaryBusinessOwnerAlreadyExistsForBusinessException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    CreateConnectTokenRequestBody:
+      example:
+        platformUserId: "12345"
+        userId: 145dd895-3243-4741-8e38-6275b6a81d85
+      properties:
+        userId:
+          description: UUID representing the user in Kanmon. Either `userId` or `platformUserId`
+            is required.
+          example: 145dd895-3243-4741-8e38-6275b6a81d85
+          type: string
+        platformUserId:
+          description: Your platform’s unique ID for the user. Either `userId` or
+            `platformUserId` is required.
+          example: "12345"
+          type: string
+      type: object
+    ConnectToken:
+      example:
+        connectToken: 24470124-e9d4-4a0b-9a1a-d575418ae050
+      properties:
+        connectToken:
+          description: The connect token. Pass this to the Kanmon Connect widget.
+          example: 24470124-e9d4-4a0b-9a1a-d575418ae050
+          type: string
+      required:
+      - connectToken
+      type: object
+    InvoiceStatus:
+      enum:
+      - INVOICE_CREATED
+      - INVOICE_FUNDED
+      - INVOICE_PAID_IN_FULL
+      - REJECTED
+      - DEFAULTED
+      - LATE
+      type: string
+    InvoiceRepaymentScheduleItem:
+      properties:
+        repaymentDate:
+          description: The date on which an installment of the invoice is to be repaid
+            - ISO 8601 format.
+          example: 2022-05-01
+          type: string
+        repaymentAmountCents:
+          description: The amount to be paid as installment - in cents.
+          example: 100000
+          type: number
+        repaymentFeeAmountCents:
+          description: The fee amount to be paid as installment - in cents.
+          example: 2000
+          type: number
+        repaymentPrincipalAmountCents:
+          description: The principal amount to be paid as installment - in cents.
+          example: 98000
+          type: number
+      required:
+      - repaymentAmountCents
+      - repaymentDate
+      - repaymentFeeAmountCents
+      - repaymentPrincipalAmountCents
+      type: object
+    InvoiceRepaymentSchedule:
+      properties:
+        schedule:
+          description: The invoice repayment schedule items.
+          example:
+          - repaymentAmountCents: 100000
+            repaymentDate: 2020-11-11
+            repaymentFeeAmountCents: 2000
+            repaymentPrincipalAmountCents: 98000
+          items:
+            $ref: '#/components/schemas/InvoiceRepaymentScheduleItem'
+          type: array
+      required:
+      - schedule
+      type: object
+    Invoice:
+      example:
+        advanceRatePercentage: 100
+        payorEmail: user@gmail.com
+        payorType: BUSINESS
+        payorMiddleName: payorMiddleName
+        payorLastName: Smith
+        payorFirstName: John
+        createdAt: 2022-06-01T03:57:26.115Z
+        amountRequestedForFinancingCents: 100000
+        invoiceIssuedDate: 2022-05-01
+        id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        transactionFeePercentage: 2
+        updatedAt: 2022-06-01T03:57:26.115Z
+        invoiceAdvanceAmountCents: 98000
+        issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        payorBusinessName: My Business
+        platformInvoiceId: 1234abc
+        invoiceDueDate: 2022-06-01
+        repaymentAmountCents: 100000
+        invoiceAmountCents: 100000
+        payorAddress:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        principalAmountCents: 100000
+        platformInvoiceNumber: "123"
+        feeAmountCents: 2000
+        repaymentSchedule:
+          schedule:
+          - repaymentAmountCents: 100000
+            repaymentFeeAmountCents: 2000
+            repaymentPrincipalAmountCents: 98000
+            repaymentDate: 2020-11-11
+        status: null
+      properties:
+        id:
+          description: Kanmon’s unique ID for the invoice.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice.
+          example: 1234abc
+          nullable: true
+          type: string
+        platformInvoiceNumber:
+          description: Your user-facing identifier for the invoice. This does not
+            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          example: "123"
+          nullable: true
+          type: string
+        invoiceAmountCents:
+          description: The invoice amount - in cents.
+          example: 100000
+          type: number
+        invoiceDueDate:
+          description: The date when the invoice will be paid by the payor. ISO 8601
+            date format.
+          example: 2022-06-01
+          nullable: true
+          type: string
+        invoiceIssuedDate:
+          description: The date when the payee issued the invoice. ISO 8601 date format.
+          example: 2022-05-01
+          nullable: true
+          type: string
+        payorEmail:
+          description: The email of the payor.
+          example: user@gmail.com
+          nullable: true
+          type: string
+        payorAddress:
+          $ref: '#/components/schemas/Invoice_payorAddress'
+        payorType:
+          description: '`INDIVIDUAL` if the payor is a person and `BUSINESS` if the
+            payor is a company.'
+          enum:
+          - BUSINESS
+          - INDIVIDUAL
+          example: BUSINESS
+          nullable: true
+          type: string
+        payorBusinessName:
+          description: The registered name of the payor business when the payor is
+            a business and not an individual.
+          example: My Business
+          nullable: true
+          type: string
+        payorFirstName:
+          description: The first name of the payor when the payor is an individual
+            and not a business.
+          example: John
+          nullable: true
+          type: string
+        payorMiddleName:
+          description: The middle name of the payor when the payor is an individual
+            and not a business.
+          nullable: true
+          type: string
+        payorLastName:
+          description: The last name of the payor when the payor is an individual
+            and not a business.
+          example: Smith
+          nullable: true
+          type: string
+        status:
+          $ref: '#/components/schemas/InvoiceStatus'
+        issuedProductId:
+          description: The unique identifier for the issued product in Kanmon′s system.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        feeAmountCents:
+          description: The total fee amount - in cents.
+          example: 2000
+          type: number
+        principalAmountCents:
+          description: The total principal amount - in cents.
+          example: 100000
+          type: number
+        invoiceAdvanceAmountCents:
+          description: The amount after fees the business will receive - in cents.
+          example: 98000
+          type: number
+        repaymentAmountCents:
+          description: The total amount that the business will repay - in cents.
+          example: 100000
+          type: number
+        repaymentSchedule:
+          allOf:
+          - $ref: '#/components/schemas/InvoiceRepaymentSchedule'
+          description: The invoice repayment schedule.
+          example:
+            schedule:
+            - repaymentAmountCents: 100000
+              repaymentFeeAmountCents: 2000
+              repaymentPrincipalAmountCents: 98000
+              repaymentDate: 2020-11-11
+        advanceRatePercentage:
+          description: "The percentage of the invoice that is allowed for advances.\
+            \ E.g. a value of `80` would mean that $800 would be advanced on a $1,000\
+            \ invoice."
+          example: 100
+          type: number
+        transactionFeePercentage:
+          description: The percentage of the transaction that is charged as a fee.
+            E.g. a value of `5` means 5%.
+          example: 2
+          type: number
+        amountRequestedForFinancingCents:
+          description: The portion of the invoice amount that the business requests
+            to be financed - in cents.
+          example: 100000
+          type: number
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the invoice.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the invoice.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - advanceRatePercentage
+      - amountRequestedForFinancingCents
+      - createdAt
+      - feeAmountCents
+      - id
+      - invoiceAdvanceAmountCents
+      - invoiceAmountCents
+      - invoiceDueDate
+      - invoiceIssuedDate
+      - issuedProductId
+      - payorAddress
+      - payorBusinessName
+      - payorEmail
+      - payorFirstName
+      - payorLastName
+      - payorMiddleName
+      - payorType
+      - platformInvoiceId
+      - platformInvoiceNumber
+      - principalAmountCents
+      - repaymentAmountCents
+      - repaymentSchedule
+      - status
+      - transactionFeePercentage
+      - updatedAt
+      type: object
+    GetInvoicesResponse:
+      example:
+        pagination: ""
+        invoices:
+        - advanceRatePercentage: 100
+          payorEmail: user@gmail.com
+          payorType: BUSINESS
+          payorMiddleName: payorMiddleName
+          payorLastName: Smith
+          payorFirstName: John
+          createdAt: 2022-06-01T03:57:26.115Z
+          amountRequestedForFinancingCents: 100000
+          invoiceIssuedDate: 2022-05-01
+          id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          transactionFeePercentage: 2
+          updatedAt: 2022-06-01T03:57:26.115Z
+          invoiceAdvanceAmountCents: 98000
+          issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          payorBusinessName: My Business
+          platformInvoiceId: 1234abc
+          invoiceDueDate: 2022-06-01
+          repaymentAmountCents: 100000
+          invoiceAmountCents: 100000
+          payorAddress:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          principalAmountCents: 100000
+          platformInvoiceNumber: "123"
+          feeAmountCents: 2000
+          repaymentSchedule:
+            schedule:
+            - repaymentAmountCents: 100000
+              repaymentFeeAmountCents: 2000
+              repaymentPrincipalAmountCents: 98000
+              repaymentDate: 2020-11-11
+          status: null
+        - advanceRatePercentage: 100
+          payorEmail: user@gmail.com
+          payorType: BUSINESS
+          payorMiddleName: payorMiddleName
+          payorLastName: Smith
+          payorFirstName: John
+          createdAt: 2022-06-01T03:57:26.115Z
+          amountRequestedForFinancingCents: 100000
+          invoiceIssuedDate: 2022-05-01
+          id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          transactionFeePercentage: 2
+          updatedAt: 2022-06-01T03:57:26.115Z
+          invoiceAdvanceAmountCents: 98000
+          issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          payorBusinessName: My Business
+          platformInvoiceId: 1234abc
+          invoiceDueDate: 2022-06-01
+          repaymentAmountCents: 100000
+          invoiceAmountCents: 100000
+          payorAddress:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          principalAmountCents: 100000
+          platformInvoiceNumber: "123"
+          feeAmountCents: 2000
+          repaymentSchedule:
+            schedule:
+            - repaymentAmountCents: 100000
+              repaymentFeeAmountCents: 2000
+              repaymentPrincipalAmountCents: 98000
+              repaymentDate: 2020-11-11
+          status: null
+      properties:
+        invoices:
+          description: Array of invoices.
+          items:
+            $ref: '#/components/schemas/Invoice'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - invoices
+      - pagination
+      type: object
+    TermLoanOfferTerms:
+      example:
+        maxLoanAmountCents: 1000000
+        loanAmountCents: 1000000
+        durationMonths: 6
+        feePercentage: 3
+        interestRatePercentage: 10
+        productType: TERM_LOAN
+      properties:
+        productType:
+          enum:
+          - TERM_LOAN
+          type: string
+        maxLoanAmountCents:
+          description: The maximum loan amount - in cents.
+          example: 1000000
+          type: number
+        loanAmountCents:
+          description: "The loan amount - in cents. This defaults to `maxLoanAmountCents`.\
+            \ However, the business can select a smaller amount."
+          example: 1000000
+          type: number
+        interestRatePercentage:
+          description: The rate of interest on the loan. E.g. a value of `10` means
+            10%.
+          example: 10
+          type: number
+        durationMonths:
+          description: The duration of the loan - in months.
+          example: 6
+          type: number
+        feePercentage:
+          description: The fee percentage on the loan. E.g. a value of `3` means 3%.
+          example: 3
+          type: number
+      required:
+      - durationMonths
+      - feePercentage
+      - interestRatePercentage
+      - loanAmountCents
+      - maxLoanAmountCents
+      - productType
+      type: object
+    FixedDateInvoiceRepaymentWindow:
+      properties:
+        repaymentType:
+          enum:
+          - FIXED_DATE
+          type: string
+        monthlyRepaymentDay:
+          description: The day on which the repayment is due. E.g. a value of `15`
+            means the repayment is due on the 15th.
+          example: 15
+          type: number
+      required:
+      - monthlyRepaymentDay
+      - repaymentType
+      type: object
+    FixedDurationInvoiceRepaymentWindow:
+      properties:
+        repaymentType:
+          enum:
+          - FIXED_DURATION
+          type: string
+        repaymentDurationDays:
+          description: This amount of days after which the repayment duration is due.
+          example: 30
+          type: number
+      required:
+      - repaymentDurationDays
+      - repaymentType
+      type: object
+    PaymentPlanRepaymentScheduleItem:
+      properties:
+        repaymentDurationDays:
+          description: This amount of days after which the repayment duration is due.
+          example: 30
+          type: number
+        repaymentPercentage:
+          description: The percentage of the payment that is due for this repayment.
+            E.g. a value of `50` means 50%.
+          example: 50
+          type: number
+      required:
+      - repaymentDurationDays
+      - repaymentPercentage
+      type: object
+    PaymentPlanRepaymentSchedule:
+      properties:
+        schedule:
+          description: An array of repayment schedule items that represents how the
+            invoice will be paid back over multiple repayments.
+          items:
+            $ref: '#/components/schemas/PaymentPlanRepaymentScheduleItem'
+          type: array
+      required:
+      - schedule
+      type: object
+    MultipleDurationInvoiceRepaymentWindow:
+      properties:
+        repaymentType:
+          enum:
+          - MULTIPLE_DURATION
+          type: string
+        repaymentSchedule:
+          $ref: '#/components/schemas/PaymentPlanRepaymentSchedule'
+      required:
+      - repaymentSchedule
+      - repaymentType
+      type: object
+    InvoicePaymentPlan:
+      properties:
+        advanceRatePercentage:
+          description: "The percentage of the invoice that is allowed for advances.\
+            \ E.g. a value of `80` would mean that $800 would be advanced on a $1,000\
+            \ invoice."
+          example: 80
+          type: number
+        transactionFeePercentage:
+          description: The percentage of the transaction that is charged as a fee.
+            E.g. a value of `5` means 5%.
+          example: 5
+          type: number
+        repaymentWindow:
+          description: The repayment window
+          items:
+            type: object
+          type: array
+      required:
+      - advanceRatePercentage
+      - repaymentWindow
+      - transactionFeePercentage
+      type: object
+    InvoiceFinancingOfferTerms:
+      properties:
+        productType:
+          enum:
+          - INVOICE_FINANCING
+          type: string
+        totalLimitCents:
+          description: The total limit allowed for this offer - in cents.
+          example: 1000000
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this offer.
+          items:
+            $ref: '#/components/schemas/InvoicePaymentPlan'
+          type: array
+      required:
+      - pricingPlans
+      - productType
+      - totalLimitCents
+      type: object
+    McaOfferTerms:
+      properties:
+        productType:
+          enum:
+          - MCA
+          type: string
+        advanceAmountCents:
+          description: The loan amount - in cents.
+          example: 1000000
+          type: number
+        repaymentPercentage:
+          description: "The repayment percentage for calculating repayment amounts.\
+            \ E.g. a value of a `20` means 20%. If a business has $100 of income over\
+            \ a repayment period, the repayment amount would be $20."
+          example: 20
+          type: number
+        feeFactor:
+          description: The fee percentage charged as the borrowing cost of the loan.
+            E.g. a value of `1.3` means a 30% fee.
+          example: 1.3
+          type: number
+        repaymentFrequency:
+          description: "The repayment frequency of the loan. E.g. biweekly repayment\
+            \ occurs every 14 days, weekly repayment occurs every 7 days, etc."
+          enum:
+          - DAILY
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          example: WEEKLY
+          type: string
+        totalRepaymentCents:
+          description: "The total repayment amount in cents required to settle and\
+            \ close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the\
+            \ repayment amount equates to $13,000."
+          example: 1300000
+          type: number
+      required:
+      - advanceAmountCents
+      - feeFactor
+      - productType
+      - repaymentFrequency
+      - repaymentPercentage
+      - totalRepaymentCents
+      type: object
+    LineOfCreditOfferTerms:
+      properties:
+        productType:
+          enum:
+          - LINE_OF_CREDIT
+          type: string
+        totalLimitCents:
+          description: The total limit allowed for this offer - in cents.
+          example: 1000000
+          type: number
+        interestRatePercentage:
+          description: The rate of interest on the loan. E.g. a value of `10` means
+            10%.
+          example: 10
+          type: number
+        feePercentage:
+          description: The fee percentage charged as the borrowing cost of the loan.
+            E.g. a value of `2` means a 2% fee.
+          example: 2
+          type: number
+        repaymentDurationMonths:
+          description: The duration of the repayment for each draw - in months.
+          example: 3
+          type: number
+      required:
+      - feePercentage
+      - interestRatePercentage
+      - productType
+      - repaymentDurationMonths
+      - totalLimitCents
+      type: object
+    Offer:
+      example:
+        expiredAt: 2023-12-29T03:57:26.115Z
+        createdAt: 2023-12-15T03:57:26.115Z
+        platformBusinessId: "12345"
+        terms:
+          maxLoanAmountCents: 1000000
+          loanAmountCents: 1000000
+          durationMonths: 6
+          feePercentage: 3
+          interestRatePercentage: 10
+          productType: TERM_LOAN
+        businessId: 8104204b-6172-4daa-ae0f-5b2502197e6d
+        id: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+        selectedAt: 2023-12-15T03:57:26.115Z
+        updatedAt: 2023-12-15T03:57:26.115Z
+      properties:
+        id:
+          description: A unique id representing the offer object.
+          example: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+          type: string
+        businessId:
+          description: The UUID representing the business in Kanmon.
+          example: 8104204b-6172-4daa-ae0f-5b2502197e6d
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: "12345"
+          nullable: true
+          type: string
+        terms:
+          $ref: '#/components/schemas/Offer_terms'
+        expiredAt:
+          description: The ISO 8601 timestamp for when the offer expires.
+          example: 2023-12-29T03:57:26.115Z
+          nullable: true
+          type: string
+        selectedAt:
+          description: "If the offer has been selected by the business, the ISO 8601\
+            \ timestamp for when it was selected."
+          example: 2023-12-15T03:57:26.115Z
+          nullable: true
+          type: string
+        createdAt:
+          description: Creation ISO 8601 timestamp of the offer.
+          example: 2023-12-15T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated ISO 8601 timestamp of the offer.
+          example: 2023-12-15T03:57:26.115Z
+          type: string
+      required:
+      - businessId
+      - createdAt
+      - expiredAt
+      - id
+      - platformBusinessId
+      - selectedAt
+      - terms
+      - updatedAt
+      type: object
+    OfferNotFoundException:
+      example:
+        errorCode: OfferNotFoundException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - OfferNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    GetOffersResponse:
+      example:
+        offers:
+        - expiredAt: 2023-12-29T03:57:26.115Z
+          createdAt: 2023-12-15T03:57:26.115Z
+          platformBusinessId: "12345"
+          terms:
+            maxLoanAmountCents: 1000000
+            loanAmountCents: 1000000
+            durationMonths: 6
+            feePercentage: 3
+            interestRatePercentage: 10
+            productType: TERM_LOAN
+          businessId: 8104204b-6172-4daa-ae0f-5b2502197e6d
+          id: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+          selectedAt: 2023-12-15T03:57:26.115Z
+          updatedAt: 2023-12-15T03:57:26.115Z
+        - expiredAt: 2023-12-29T03:57:26.115Z
+          createdAt: 2023-12-15T03:57:26.115Z
+          platformBusinessId: "12345"
+          terms:
+            maxLoanAmountCents: 1000000
+            loanAmountCents: 1000000
+            durationMonths: 6
+            feePercentage: 3
+            interestRatePercentage: 10
+            productType: TERM_LOAN
+          businessId: 8104204b-6172-4daa-ae0f-5b2502197e6d
+          id: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+          selectedAt: 2023-12-15T03:57:26.115Z
+          updatedAt: 2023-12-15T03:57:26.115Z
+        pagination: ""
+      properties:
+        offers:
+          description: Array of offers.
+          items:
+            $ref: '#/components/schemas/Offer'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - offers
+      - pagination
+      type: object
+    TermLoanServicingData:
+      example:
+        interestRate: 10
+        loanAmountCents: 1000000
+        monthlyPaymentCents: 100000
+        nextPaymentDate: 2023-12-15
+        originationFeeCents: 100000
+        productType: TERM_LOAN
+        principalBalanceCents: 1000000
+      properties:
+        productType:
+          enum:
+          - TERM_LOAN
+          type: string
+        loanAmountCents:
+          description: The total loan amount - in cents.
+          example: 1000000
+          type: number
+        originationFeeCents:
+          description: The total origination fee amount - in cents.
+          example: 100000
+          type: number
+        principalBalanceCents:
+          description: The principal remaining on the loan - in cents.
+          example: 1000000
+          type: number
+        monthlyPaymentCents:
+          description: The monthly payment amount - in cents.
+          example: 100000
+          type: number
+        interestRate:
+          description: The interest rate of the loan. E.g. a value of `10` means 10%.
+          example: 10
+          type: number
+        nextPaymentDate:
+          description: The next scheduled payment date - ISO 8601 date format.
+          example: 2023-12-15
+          nullable: true
+          type: string
+      required:
+      - interestRate
+      - loanAmountCents
+      - monthlyPaymentCents
+      - nextPaymentDate
+      - originationFeeCents
+      - principalBalanceCents
+      - productType
+      type: object
+    InvoiceFinancingServicingData:
+      properties:
+        productType:
+          enum:
+          - INVOICE_FINANCING
+          type: string
+        totalLimitCents:
+          description: The total limit allowed - in cents.
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this issued product.
+          items:
+            $ref: '#/components/schemas/InvoicePaymentPlan'
+          type: array
+        availableLimitCents:
+          description: The total limit less the amount of balance outstanding - in
+            cents.
+          type: number
+      required:
+      - availableLimitCents
+      - pricingPlans
+      - productType
+      - totalLimitCents
+      type: object
+    McaServicingData:
+      properties:
+        productType:
+          enum:
+          - MCA
+          type: string
+        advanceAmountCents:
+          description: The loan amount - in cents.
+          example: 1000000
+          type: number
+        repaymentPercentage:
+          description: "The repayment percentage for calculating repayment amounts.\
+            \ E.g. a value of a `20` means 20%. If a business has $100 of income over\
+            \ a repayment period, the repayment amount would be $20."
+          example: 20
+          type: number
+        feeFactor:
+          description: The fee percentage charged as the borrowing cost of the loan.
+            E.g. a value of `1.3` means a 30% fee.
+          example: 1.3
+          type: number
+        totalRepaymentCents:
+          description: "The total repayment amount in cents required to settle and\
+            \ close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the\
+            \ repayment amount equates to $13,000."
+          example: 1300000
+          type: number
+        repaymentFrequency:
+          description: "The repayment frequency of the loan. E.g. biweekly repayment\
+            \ occurs every 14 days, weekly repayment occurs every 7 days, etc."
+          enum:
+          - DAILY
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          example: WEEKLY
+          type: string
+        nextPaymentDate:
+          description: The next scheduled payment date - ISO 8601 date format.
+          example: 2023-12-15
+          nullable: true
+          type: string
+        advanceBalanceCents:
+          description: The total repayment amount less the amount repaid - in cents.
+          example: 1100000
+          type: number
+      required:
+      - advanceAmountCents
+      - advanceBalanceCents
+      - feeFactor
+      - nextPaymentDate
+      - productType
+      - repaymentFrequency
+      - repaymentPercentage
+      - totalRepaymentCents
+      type: object
+    LineOfCreditServicingData:
+      properties:
+        productType:
+          enum:
+          - LINE_OF_CREDIT
+          type: string
+        totalLimitCents:
+          description: The total credit limit - in cents.
+          example: 1000000
+          type: number
+        availableLimitCents:
+          description: The total limit less the amount of balance outstanding - in
+            cents.
+          example: 900000
+          type: number
+        interestRatePercentage:
+          description: The rate of interest on the loan. E.g. a value of `10` means
+            10%.
+          example: 10
+          type: number
+        feePercentage:
+          description: The fee percentage charged as the borrowing cost of the loan.
+            E.g. a value of `2` means a 2% fee.
+          example: 2
+          type: number
+        repaymentDurationMonths:
+          description: The duration of the repayment for each draw - in months.
+          example: 3
+          type: number
+      required:
+      - availableLimitCents
+      - feePercentage
+      - interestRatePercentage
+      - productType
+      - repaymentDurationMonths
+      - totalLimitCents
+      type: object
+    IssuedProduct:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        platformBusinessId: "12345"
+        servicingData:
+          interestRate: 10
+          loanAmountCents: 1000000
+          monthlyPaymentCents: 100000
+          nextPaymentDate: 2023-12-15
+          originationFeeCents: 100000
+          productType: TERM_LOAN
+          principalBalanceCents: 1000000
+        businessId: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+        loanStatus: CURRENT
+        offerId: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
+        id: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The UUID representing the issued product in Kanmon.
+          example: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+          type: string
+        offerId:
+          description: The UUID representing the offer tied to this issued product
+            in Kanmon.
+          example: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
+          type: string
+        businessId:
+          description: The UUID representing the business in Kanmon.
+          example: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: "12345"
+          nullable: true
+          type: string
+        loanStatus:
+          description: The current status of the loan.
+          enum:
+          - CURRENT
+          - LATE
+          - FULLY_PAID
+          - REFINANCED
+          - DEFAULTED
+          example: CURRENT
+          type: string
+        servicingData:
+          $ref: '#/components/schemas/IssuedProduct_servicingData'
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the prequalification.
+          format: date-time
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the prequalification.
+          format: date-time
+          type: string
+      required:
+      - businessId
+      - createdAt
+      - id
+      - loanStatus
+      - offerId
+      - platformBusinessId
+      - servicingData
+      - updatedAt
+      type: object
+    IssuedProductNotFoundException:
+      example:
+        errorCode: IssuedProductNotFoundException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - IssuedProductNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    GetIssuedProductsResponse:
+      example:
+        pagination: ""
+        issuedProducts:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          platformBusinessId: "12345"
+          servicingData:
+            interestRate: 10
+            loanAmountCents: 1000000
+            monthlyPaymentCents: 100000
+            nextPaymentDate: 2023-12-15
+            originationFeeCents: 100000
+            productType: TERM_LOAN
+            principalBalanceCents: 1000000
+          businessId: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+          loanStatus: CURRENT
+          offerId: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
+          id: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          platformBusinessId: "12345"
+          servicingData:
+            interestRate: 10
+            loanAmountCents: 1000000
+            monthlyPaymentCents: 100000
+            nextPaymentDate: 2023-12-15
+            originationFeeCents: 100000
+            productType: TERM_LOAN
+            principalBalanceCents: 1000000
+          businessId: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+          loanStatus: CURRENT
+          offerId: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
+          id: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        issuedProducts:
+          description: Array of issued products.
+          items:
+            $ref: '#/components/schemas/IssuedProduct'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - issuedProducts
+      - pagination
+      type: object
+    CreateBusinessBankAccountRequestBody:
+      example:
+        routingNumber: "123456789"
+        platformBusinessId: "12345"
+        accountName: My bank account
+        accountType: CHECKING
+        roles:
+        - DISBURSEMENT
+        businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        accountNumber: "123456789"
+        platformBankAccountId: "12345"
+      properties:
+        platformBusinessId:
+          description: Your platform’s unique business ID for the business. Either
+            `platformBusinessId` or `businessId` is required.
+          example: "12345"
+          type: string
+        businessId:
+          description: The UUID representing the user’s business in Kanmon. Either
+            `platformBusinessId` or `businessId` is required.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformBankAccountId:
+          description: Your platform’s unique ID for the bank account.
+          example: "12345"
+          type: string
+        accountName:
+          description: The business defined bank account name.
+          example: My bank account
+          type: string
+        accountNumber:
+          description: "The business’s bank account number. Only digits, no formatting."
+          example: "123456789"
+          type: string
+        routingNumber:
+          description: "The business’s bank routing number. Should be a 9 digits number,\
+            \ no formatting."
+          example: "123456789"
+          type: string
+        accountType:
+          description: "The bank account’s type. Currently, we only support checking\
+            \ accounts. We may support others in the future."
+          enum:
+          - CHECKING
+          example: CHECKING
+          type: string
+        roles:
+          description: "The bank account’s roles. Currently, we only support creating\
+            \ disbursement bank account. We may support others in the future."
+          example:
+          - DISBURSEMENT
+          items:
+            enum:
+            - DISBURSEMENT
+            type: string
+          type: array
+      required:
+      - accountName
+      - accountNumber
+      - accountType
+      - platformBankAccountId
+      - roles
+      - routingNumber
+      type: object
+    BusinessBankAccount:
+      example:
+        routingNumber: "123456789"
+        createdAt: 2022-06-01T03:57:26.115Z
+        accountName: My bank account
+        accountType: CHECKING
+        roles:
+        - DISBURSEMENT
+        id: 1193fdaf-630c-4771-a629-8da7a87947d2
+        accountNumber: "123456789"
+        platformBankAccountId: "12345"
+        updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        id:
+          description: The UUID representing the business bank account in Kanmon.
+          example: 1193fdaf-630c-4771-a629-8da7a87947d2
+          type: string
+        platformBankAccountId:
+          description: Your platform’s unique ID for the bank account.
+          example: "12345"
+          type: string
+        accountName:
+          description: The business bank account’s name.
+          example: My bank account
+          nullable: true
+          type: object
+        accountNumber:
+          description: "The business’s bank account number. Only digits, no formatting."
+          example: "123456789"
+          type: string
+        routingNumber:
+          description: "The business’s bank routing number. Only digits, no formatting."
+          example: "123456789"
+          type: string
+        accountType:
+          description: "The bank account’s type. Currently, we only support checking\
+            \ accounts. We may support others in the future."
+          enum:
+          - CHECKING
+          example: CHECKING
+          type: string
+        roles:
+          description: "The bank account’s roles. Currently, we only support disbursement\
+            \ bank role."
+          example:
+          - DISBURSEMENT
+          items:
+            enum:
+            - DISBURSEMENT
+            type: string
+          type: array
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the business.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the business.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - accountName
+      - accountNumber
+      - accountType
+      - createdAt
+      - id
+      - platformBankAccountId
+      - roles
+      - routingNumber
+      - updatedAt
+      type: object
+    BankAccountAlreadyExistException:
+      example:
+        errorCode: BankAccountAlreadyExistException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BankAccountAlreadyExistException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    BankAccountNotFoundException:
+      example:
+        errorCode: BankAccountNotFoundException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BankAccountNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    GetBusinessBankAccountsResponse:
+      example:
+        pagination: ""
+        bankAccounts:
+        - routingNumber: "123456789"
+          createdAt: 2022-06-01T03:57:26.115Z
+          accountName: My bank account
+          accountType: CHECKING
+          roles:
+          - DISBURSEMENT
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          accountNumber: "123456789"
+          platformBankAccountId: "12345"
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - routingNumber: "123456789"
+          createdAt: 2022-06-01T03:57:26.115Z
+          accountName: My bank account
+          accountType: CHECKING
+          roles:
+          - DISBURSEMENT
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          accountNumber: "123456789"
+          platformBankAccountId: "12345"
+          updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        bankAccounts:
+          description: Array of business bank accounts.
+          items:
+            $ref: '#/components/schemas/BusinessBankAccount'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - bankAccounts
+      - pagination
+      type: object
+    UpdateBusinessAccountRequestBody:
+      example:
+        routingNumber: "123456789"
+        accountName: My account
+        accountNumber: "123456789"
+        platformBankAccountId: "12345"
+      properties:
+        platformBankAccountId:
+          description: Your platform’s unique ID for the bank account.
+          example: "12345"
+          type: string
+        accountName:
+          description: The business defined bank account name.
+          example: My account
+          type: string
+        accountNumber:
+          description: "The business’s bank account number. Only digits, no formatting."
+          example: "123456789"
+          type: string
+        routingNumber:
+          description: "The business’s bank routing number. Should be a 9 digits number,\
+            \ no formatting."
+          example: "123456789"
+          type: string
+      type: object
+    PaymentOrderStatus:
+      enum:
+      - FAILED
+      - PAID
+      - PENDING
+      type: string
+    PaymentOrder:
+      example:
+        drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
+        issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+        platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+        feeType: INSUFFICIENT_FUNDS
+        totalPaymentAmountCents: 100000
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        principalPaymentAmountCents: 80000
+        interestPaymentAmountCents: 10000
+        invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
+        id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+        settledDate: 2024-01-03
+        effectiveDate: 2024-01-01
+        feePaymentAmountCents: 10000
+        direction: DISBURSEMENT
+        status: null
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The UUID representing the payment order in Kanmon.
+          example: 952c5dce-112b-4839-a32c-daae2e1a7a44
+          type: string
+        issuedProductId:
+          description: The UUID representing the issued product in Kanmon.
+          example: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+          type: string
+        drawRequestId:
+          description: The UUID representing the draw request in Kanmon. (only present
+            for Line of Credit).
+          example: b1df1bd5-1c73-4231-915c-64b49b9c61db
+          nullable: true
+          type: string
+        invoiceId:
+          description: The UUID representing the invoice in Kanmon. (only present
+            for Invoice Financing).
+          example: 7bef158f-61bb-4a7c-b337-278276a9f957
+          nullable: true
+          type: string
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice. (only present for
+            Invoice Financing).
+          example: 78ea95fb-3f77-4697-9cac-03b15d162100
+          nullable: true
+          type: string
+        effectiveDate:
+          description: The effective UTC ISO 8601 date that the payment will process.
+          example: 2024-01-01
+          type: string
+        settledDate:
+          description: The UTC ISO 8601 date that the payment was settled.
+          example: 2024-01-03
+          nullable: true
+          type: string
+        totalPaymentAmountCents:
+          description: The total payment amount - in cents.
+          example: 100000
+          type: number
+        principalPaymentAmountCents:
+          description: The principal payment amount - in cents. (null for disbursements).
+          example: 80000
+          nullable: true
+          type: number
+        interestPaymentAmountCents:
+          description: The interest payment amount - in cents. (null for disbursements).
+          example: 10000
+          nullable: true
+          type: number
+        feePaymentAmountCents:
+          description: The fee payment amount - in cents. (null for disbursements).
+          example: 10000
+          nullable: true
+          type: number
+        feeType:
+          description: The type of the fee that was charged. (only present when `feePaymentAmountCents`
+            is not 0 or null).
+          enum:
+          - LATE_PAYMENT
+          - INSUFFICIENT_FUNDS
+          - TRANSACTION_FEE
+          - MAINTENANCE
+          example: INSUFFICIENT_FUNDS
+          nullable: true
+          type: string
+        direction:
+          description: The direction of the payment.
+          enum:
+          - DISBURSEMENT
+          - REPAYMENT
+          example: DISBURSEMENT
+          type: string
+        status:
+          $ref: '#/components/schemas/PaymentOrderStatus'
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the payment order.
+          format: date-time
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the payment order.
+          format: date-time
+          type: string
+      required:
+      - createdAt
+      - direction
+      - drawRequestId
+      - effectiveDate
+      - feePaymentAmountCents
+      - feeType
+      - id
+      - interestPaymentAmountCents
+      - invoiceId
+      - issuedProductId
+      - platformInvoiceId
+      - principalPaymentAmountCents
+      - settledDate
+      - status
+      - totalPaymentAmountCents
+      - updatedAt
+      type: object
+    PaymentOrderNotFoundException:
+      example:
+        errorCode: PaymentOrderNotFoundException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PaymentOrderNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PaymentScheduleItem:
+      example:
+        totalPaymentAmountCents: 100000
+        paymentOrder:
+          drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
+          issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+          platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+          feeType: INSUFFICIENT_FUNDS
+          totalPaymentAmountCents: 100000
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          principalPaymentAmountCents: 80000
+          interestPaymentAmountCents: 10000
+          invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
+          id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+          settledDate: 2024-01-03
+          effectiveDate: 2024-01-01
+          feePaymentAmountCents: 10000
+          direction: DISBURSEMENT
+          status: null
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        effectiveDate: 2024-01-01
+      properties:
+        effectiveDate:
+          description: The effective UTC ISO 8601 date that the payment will process.
+          example: 2024-01-01
+          type: string
+        totalPaymentAmountCents:
+          description: The total payment amount - in cents.
+          example: 100000
+          type: number
+        paymentOrder:
+          $ref: '#/components/schemas/PaymentScheduleItem_paymentOrder'
+      required:
+      - effectiveDate
+      - paymentOrder
+      - totalPaymentAmountCents
+      type: object
+    GetPaymentScheduleResponse:
+      example:
+        pagination: ""
+        paymentSchedule:
+        - totalPaymentAmountCents: 100000
+          paymentOrder:
+            drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
+            issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+            platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+            feeType: INSUFFICIENT_FUNDS
+            totalPaymentAmountCents: 100000
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            principalPaymentAmountCents: 80000
+            interestPaymentAmountCents: 10000
+            invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
+            id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+            settledDate: 2024-01-03
+            effectiveDate: 2024-01-01
+            feePaymentAmountCents: 10000
+            direction: DISBURSEMENT
+            status: null
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          effectiveDate: 2024-01-01
+        - totalPaymentAmountCents: 100000
+          paymentOrder:
+            drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
+            issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+            platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+            feeType: INSUFFICIENT_FUNDS
+            totalPaymentAmountCents: 100000
+            createdAt: 2000-01-23T04:56:07.000+00:00
+            principalPaymentAmountCents: 80000
+            interestPaymentAmountCents: 10000
+            invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
+            id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+            settledDate: 2024-01-03
+            effectiveDate: 2024-01-01
+            feePaymentAmountCents: 10000
+            direction: DISBURSEMENT
+            status: null
+            updatedAt: 2000-01-23T04:56:07.000+00:00
+          effectiveDate: 2024-01-01
+      properties:
+        paymentSchedule:
+          description: Array of payment schedule items for an issued product.
+          items:
+            $ref: '#/components/schemas/PaymentScheduleItem'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - pagination
+      - paymentSchedule
+      type: object
+    DrawRequestState:
+      enum:
+      - DRAW_REQUEST_CREATED
+      - DRAW_REQUEST_FUNDED
+      - DRAW_REQUEST_PAID_IN_FULL
+      - REJECTED
+      - DEFAULTED
+      type: string
+    DrawRequest:
+      example:
+        createdAt: 2022-06-01T03:57:26.115Z
+        amountCents: 1000000
+        feePercentage: 5
+        issuedProductId: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+        disbursementAmountCents: 960000
+        id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        feeAmountCents: 40000
+        interestRatePercentage: 10
+        repaymentDurationMonths: 6
+        status: null
+        updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        id:
+          description: Kanmon’s unique ID for the draw request.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        issuedProductId:
+          description: The UUID representing the issued product in Kanmon.
+          example: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+          type: string
+        amountCents:
+          description: The total draw request amount - in cents.
+          example: 1000000
+          type: number
+        disbursementAmountCents:
+          description: "The total draw request amount, less the fees - in cents. This\
+            \ is the amount disbursed to the business if the draw request is approved."
+          example: 960000
+          type: number
+        feeAmountCents:
+          description: The fee amount - in cents.
+          example: 40000
+          type: number
+        status:
+          $ref: '#/components/schemas/DrawRequestState'
+        interestRatePercentage:
+          description: The interest rate for the draw request. E.g. a value of `10`
+            means 10%.
+          example: 10
+          type: number
+        feePercentage:
+          description: The fee percentage charged as the borrowing cost of the draw
+            request. E.g. a value of `2` means a 2% fee.
+          example: 5
+          type: number
+        repaymentDurationMonths:
+          description: The duration of the repayment for the draw request - in months.
+          example: 6
+          type: number
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the draw request.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the draw request.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - amountCents
+      - createdAt
+      - disbursementAmountCents
+      - feeAmountCents
+      - feePercentage
+      - id
+      - interestRatePercentage
+      - issuedProductId
+      - repaymentDurationMonths
+      - status
+      - updatedAt
+      type: object
+    DrawRequestNotFoundException:
+      example:
+        errorCode: DrawRequestNotFoundException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - DrawRequestNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    GetDrawRequestsResponse:
+      example:
+        drawRequests:
+        - createdAt: 2022-06-01T03:57:26.115Z
+          amountCents: 1000000
+          feePercentage: 5
+          issuedProductId: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+          disbursementAmountCents: 960000
+          id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          feeAmountCents: 40000
+          interestRatePercentage: 10
+          repaymentDurationMonths: 6
+          status: null
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - createdAt: 2022-06-01T03:57:26.115Z
+          amountCents: 1000000
+          feePercentage: 5
+          issuedProductId: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+          disbursementAmountCents: 960000
+          id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          feeAmountCents: 40000
+          interestRatePercentage: 10
+          repaymentDurationMonths: 6
+          status: null
+          updatedAt: 2022-06-01T03:57:26.115Z
+        pagination: ""
+      properties:
+        drawRequests:
+          description: Array of draw requests.
+          items:
+            $ref: '#/components/schemas/DrawRequest'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - drawRequests
+      - pagination
+      type: object
+    UploadBankDocumentsRequest:
+      properties:
+        invoices:
+          description: "Invoices to be uploaded. The file format must be PDF. The\
+            \ limit is 10 files, 10 MB per file."
+          items:
+            format: binary
+            type: string
+          type: array
+        businessId:
+          description: The unique identifier for business in our system. Either of
+            `businessId` or `platformBusinessId` is required.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformBusinessId:
+          description: The unique identifier for business in your platform. Either
+            of `businessId` or `platformBusinessId` is required.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+      required:
+      - invoices
+      type: object
+    BusinessDocumentType:
+      enum:
+      - INVOICE
+      type: string
+    BusinessDocument:
+      example:
+        originalFileName: ad0b6877-4f0f-4b01-a624-094dba3a4947
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        platformBusinessId: "12345"
+        documentType: null
+        businessId: 709c1055-7cbf-477d-befc-5d8027d95ebb
+        id: 1193fdaf-630c-4771-a629-8da7a87947d2
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: The UUID representing the business document in Kanmon.
+          example: 1193fdaf-630c-4771-a629-8da7a87947d2
+          type: string
+        platformBusinessId:
+          description: Your platform’s unique ID for the business.
+          example: "12345"
+          nullable: true
+          type: string
+        businessId:
+          description: The UUID representing the business in Kanmon.
+          example: 709c1055-7cbf-477d-befc-5d8027d95ebb
+          type: string
+        documentType:
+          $ref: '#/components/schemas/BusinessDocumentType'
+        originalFileName:
+          description: The file’s original file name.
+          example: ad0b6877-4f0f-4b01-a624-094dba3a4947
+          type: string
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the business document.
+          format: date-time
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the business document.
+          format: date-time
+          type: string
+      required:
+      - businessId
+      - createdAt
+      - documentType
+      - id
+      - originalFileName
+      - platformBusinessId
+      - updatedAt
+      type: object
+    CreateBusinessDocumentsResponse:
+      example:
+        documents:
+        - originalFileName: ad0b6877-4f0f-4b01-a624-094dba3a4947
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          platformBusinessId: "12345"
+          documentType: null
+          businessId: 709c1055-7cbf-477d-befc-5d8027d95ebb
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - originalFileName: ad0b6877-4f0f-4b01-a624-094dba3a4947
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          platformBusinessId: "12345"
+          documentType: null
+          businessId: 709c1055-7cbf-477d-befc-5d8027d95ebb
+          id: 1193fdaf-630c-4771-a629-8da7a87947d2
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        documents:
+          description: The documents that were uploaded.
+          items:
+            $ref: '#/components/schemas/BusinessDocument'
+          type: array
+      required:
+      - documents
+      type: object
+    SessionInvoice:
+      example:
+        payorEmail: user@gmail.com
+        payorType: BUSINESS
+        description: Invoice for equipment purchased.
+        payorMiddleName: payorMiddleName
+        payorBusinessName: My Business
+        payorLastName: Smith
+        platformInvoiceId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        invoiceDueDate: 2022-06-01
+        payorFirstName: John
+        invoiceAmountCents: 1000000
+        payorAddress:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        platformInvoiceNumber: "123"
+        invoiceIssuedDate: 2022-04-01
+      properties:
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceNumber:
+          description: Your user-facing identifier for the invoice. This does not
+            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          example: "123"
+          type: string
+        invoiceAmountCents:
+          description: The invoice amount - in cents. This needs to be greater than
+            or equal to 100.
+          example: 1000000
+          type: number
+        invoiceDueDate:
+          description: The date when the invoice will be paid by the payor. ISO 8601
+            date format. This date must be at least 7 days in the future and must
+            be after the `invoiceIssuedDate`.
+          example: 2022-06-01
+          type: string
+        invoiceIssuedDate:
+          description: The date when the payee issued the invoice. ISO 8601 date format.
+          example: 2022-04-01
+          type: string
+        payorEmail:
+          description: The email of the payor.
+          example: user@gmail.com
+          type: string
+        payorAddress:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: The address of the payor.
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        payorType:
+          description: '`INDIVIDUAL` if the payor is a person and `BUSINESS` if the
+            payor is a company.'
+          enum:
+          - BUSINESS
+          - INDIVIDUAL
+          example: BUSINESS
+          type: string
+        payorBusinessName:
+          description: The registered name of the payor business when the payor is
+            a business and not an individual. Required and should only be defined
+            if `payorType` is `BUSINESS`.
+          example: My Business
+          type: string
+        payorFirstName:
+          description: The first name of the payor when the payor is an individual
+            and not a business. Required and should only be defined if `payorType`
+            is `INDIVIDUAL`.
+          example: John
+          type: string
+        payorMiddleName:
+          description: The middle name of the payor when the payor is an individual
+            and not a business. Optional and should only be defined if `payorType`
+            is `INDIVIDUAL`.
+          type: string
+        payorLastName:
+          description: The last name of the payor when the payor is an individual
+            and not a business. Required and should only be defined if `payorType`
+            is `INDIVIDUAL`.
+          example: Smith
+          type: string
+        description:
+          description: The description of the goods or services in the invoice.
+          example: Invoice for equipment purchased.
+          type: string
+      required:
+      - description
+      - invoiceAmountCents
+      - invoiceDueDate
+      - invoiceIssuedDate
+      - payorType
+      - platformInvoiceId
+      - platformInvoiceNumber
+      type: object
+    InvoiceFlowSessionTokenData:
+      example:
+        component: SESSION_INVOICE_FLOW
+        invoices:
+        - payorEmail: user@gmail.com
+          payorType: BUSINESS
+          description: Invoice for equipment purchased.
+          payorMiddleName: payorMiddleName
+          payorBusinessName: My Business
+          payorLastName: Smith
+          platformInvoiceId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          invoiceDueDate: 2022-06-01
+          payorFirstName: John
+          invoiceAmountCents: 1000000
+          payorAddress:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          platformInvoiceNumber: "123"
+          invoiceIssuedDate: 2022-04-01
+        - payorEmail: user@gmail.com
+          payorType: BUSINESS
+          description: Invoice for equipment purchased.
+          payorMiddleName: payorMiddleName
+          payorBusinessName: My Business
+          payorLastName: Smith
+          platformInvoiceId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          invoiceDueDate: 2022-06-01
+          payorFirstName: John
+          invoiceAmountCents: 1000000
+          payorAddress:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          platformInvoiceNumber: "123"
+          invoiceIssuedDate: 2022-04-01
+      properties:
+        component:
+          enum:
+          - SESSION_INVOICE_FLOW
+          type: string
+        invoices:
+          description: Details about the list of invoices which are to be created.
+          items:
+            $ref: '#/components/schemas/SessionInvoice'
+          type: array
+      required:
+      - component
+      - invoices
+      type: object
+    SessionInvoiceWithInvoiceFile:
+      properties:
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        documentId:
+          description: The UUID of the invoice document created in Kanmon.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceNumber:
+          description: Your user-facing identifier for the invoice. This does not
+            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          example: "123"
+          type: string
+        invoiceAmountCents:
+          description: The invoice amount - in cents. This needs to be greater than
+            or equal to 100.
+          example: 1000000
+          type: number
+        invoiceDueDate:
+          description: The date when the invoice will be paid by the payor. ISO 8601
+            date format. This date must be at least 7 days in the future and must
+            be after the `invoiceIssuedDate`.
+          example: 2022-06-01
+          type: string
+        invoiceIssuedDate:
+          description: The date when the payee issued the invoice. ISO 8601 date format.
+          example: 2022-04-01
+          type: string
+        payorEmail:
+          description: The email of the payor.
+          example: user@gmail.com
+          type: string
+        payorAddress:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: The address of the payor.
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        payorType:
+          description: '`INDIVIDUAL` if the payor is a person and `BUSINESS` if the
+            payor is a company.'
+          enum:
+          - BUSINESS
+          - INDIVIDUAL
+          example: BUSINESS
+          type: string
+        payorBusinessName:
+          description: The registered name of the payor business when the payor is
+            a business and not an individual.
+          example: My Business
+          type: string
+        payorFirstName:
+          description: The first name of the payor when the payor is an individual
+            and not a business.
+          example: John
+          type: string
+        payorMiddleName:
+          description: The middle name of the payor when the payor is an individual
+            and not a business.
+          type: string
+        payorLastName:
+          description: The last name of the payor when the payor is an individual
+            and not a business.
+          example: Smith
+          type: string
+        description:
+          description: The description of the goods or services in the invoice.
+          example: Invoice for equipment purchased.
+          type: string
+      required:
+      - documentId
+      - platformInvoiceId
+      type: object
+    InvoiceFlowWithInvoiceFileSessionTokenData:
+      properties:
+        component:
+          enum:
+          - SESSION_INVOICE_FLOW_WITH_INVOICE_FILE
+          type: string
+        invoices:
+          description: Details about the list of invoices which are to be created.
+          items:
+            $ref: '#/components/schemas/SessionInvoiceWithInvoiceFile'
+          type: array
+      required:
+      - component
+      - invoices
+      type: object
+    CreateSessionTokenRequestBody:
+      example:
+        platformBusinessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        data:
+          component: SESSION_INVOICE_FLOW
+          invoices:
+          - payorEmail: user@gmail.com
+            payorType: BUSINESS
+            description: Invoice for equipment purchased.
+            payorMiddleName: payorMiddleName
+            payorBusinessName: My Business
+            payorLastName: Smith
+            platformInvoiceId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+            invoiceDueDate: 2022-06-01
+            payorFirstName: John
+            invoiceAmountCents: 1000000
+            payorAddress:
+              city: San Mateo
+              state: CA
+              country: USA
+              zipcode: "94401"
+              addressLineOne: 123 Main Street
+            platformInvoiceNumber: "123"
+            invoiceIssuedDate: 2022-04-01
+          - payorEmail: user@gmail.com
+            payorType: BUSINESS
+            description: Invoice for equipment purchased.
+            payorMiddleName: payorMiddleName
+            payorBusinessName: My Business
+            payorLastName: Smith
+            platformInvoiceId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+            invoiceDueDate: 2022-06-01
+            payorFirstName: John
+            invoiceAmountCents: 1000000
+            payorAddress:
+              city: San Mateo
+              state: CA
+              country: USA
+              zipcode: "94401"
+              addressLineOne: 123 Main Street
+            platformInvoiceNumber: "123"
+            invoiceIssuedDate: 2022-04-01
+        businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+      properties:
+        businessId:
+          description: The unique identifier for business in our system. Either of
+            `businessId` or `platformBusinessId` is required.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformBusinessId:
+          description: The unique identifier for business in your platform. Either
+            of `businessId` or `platformBusinessId` is required.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        data:
+          $ref: '#/components/schemas/CreateSessionTokenRequestBody_data'
+      required:
+      - data
+      type: object
+    EmbeddedSession:
+      example:
+        sessionToken: sessionToken
+      properties:
+        sessionToken:
+          description: The session token used to launch an embedded session.
+          type: string
+      required:
+      - sessionToken
+      type: object
+    BusinessHasNoPrimaryOwnerException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessHasNoPrimaryOwnerException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PrimaryBusinessOwnerAlreadyExistsWithEmailException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PrimaryBusinessOwnerAlreadyExistsWithEmailException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PrimaryBusinessOwnerNotFoundException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PrimaryBusinessOwnerNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    UnmergeableBusinessException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - UnmergeableBusinessException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    UserAlreadyExistsWithEmailException:
+      example:
+        errorCode: UserAlreadyExistsWithEmailException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - UserAlreadyExistsWithEmailException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    UserAlreadyExistsWithPlatformUserIdException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - UserAlreadyExistsWithPlatformUserIdException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    BusinessHasNoInvoiceFinancingProductException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessHasNoInvoiceFinancingProductException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    InvalidInvoiceDueDateException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - InvalidInvoiceDueDateException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    InvoiceNotFoundException:
+      example:
+        errorCode: InvoiceNotFoundException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - InvoiceNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    OfferAlreadySelectedException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - OfferAlreadySelectedException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    OfferNotLockedException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - OfferNotLockedException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    SomeOffersHaveExpiredException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - SomeOffersHaveExpiredException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException:
+      example:
+        errorCode: PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    BankStatementsInvalidException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BankStatementsInvalidException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PlaidAssetReportsInvalidException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PlaidAssetReportsInvalidException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    CheckingAccountRequiredException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - CheckingAccountMustPresentException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    BusinessPlaidBankAccountNotFoundException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessPlaidBankAccountNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    createUser_409_response:
+      oneOf:
+      - $ref: '#/components/schemas/PrimaryBusinessOwnerAlreadyExistsForBusinessException'
+      - $ref: '#/components/schemas/UserAlreadyExistsWithPlatformUserIdException'
+      - $ref: '#/components/schemas/UserAlreadyExistsWithEmailException'
+    updateUser_409_response:
+      oneOf:
+      - $ref: '#/components/schemas/UserAlreadyExistsWithEmailException'
+      - $ref: '#/components/schemas/PrimaryBusinessOwnerAlreadyExistsForBusinessException'
+    getInvoice_404_response:
+      oneOf:
+      - $ref: '#/components/schemas/InvoiceNotFoundException'
+      - $ref: '#/components/schemas/BusinessNotFoundException'
+    createEmbeddedSession_409_response:
+      oneOf:
+      - $ref: '#/components/schemas/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException'
+      - $ref: '#/components/schemas/BusinessHasNoInvoiceFinancingProductException'
+    Business_address:
+      allOf:
+      - $ref: '#/components/schemas/Address'
+      description: The business’s address.
+      example:
+        city: San Mateo
+        state: CA
+        country: USA
+        zipcode: "94401"
+        addressLineOne: 123 Main Street
+      nullable: true
+    User_address:
+      allOf:
+      - $ref: '#/components/schemas/Address'
+      description: The user’s address.
+      example:
+        city: San Mateo
+        state: CA
+        country: USA
+        zipcode: "94401"
+        addressLineOne: 123 Main Street
+      nullable: true
+    Invoice_payorAddress:
+      allOf:
+      - $ref: '#/components/schemas/Address'
+      description: The address of the payor.
+      example:
+        city: San Mateo
+        state: CA
+        country: USA
+        zipcode: "94401"
+        addressLineOne: 123 Main Street
+      nullable: true
+    Offer_terms:
+      description: Terms of the offer.
+      oneOf:
+      - $ref: '#/components/schemas/TermLoanOfferTerms'
+      - $ref: '#/components/schemas/InvoiceFinancingOfferTerms'
+      - $ref: '#/components/schemas/McaOfferTerms'
+      - $ref: '#/components/schemas/LineOfCreditOfferTerms'
+    IssuedProduct_servicingData:
+      description: The data needed to service this specific type of issued product
+      discriminator:
+        mapping:
+          TERM_LOAN: '#/components/schemas/TermLoanServicingData'
+          INVOICE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
+          MCA: '#/components/schemas/McaServicingData'
+          LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
+        propertyName: productType
+      oneOf:
+      - $ref: '#/components/schemas/TermLoanServicingData'
+      - $ref: '#/components/schemas/InvoiceFinancingServicingData'
+      - $ref: '#/components/schemas/McaServicingData'
+      - $ref: '#/components/schemas/LineOfCreditServicingData'
+    PaymentScheduleItem_paymentOrder:
+      allOf:
+      - $ref: '#/components/schemas/PaymentOrder'
+      description: The payment order for this schedule item
+      example:
+        drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
+        issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+        platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+        feeType: INSUFFICIENT_FUNDS
+        totalPaymentAmountCents: 100000
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        principalPaymentAmountCents: 80000
+        interestPaymentAmountCents: 10000
+        invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
+        id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+        settledDate: 2024-01-03
+        effectiveDate: 2024-01-01
+        feePaymentAmountCents: 10000
+        direction: DISBURSEMENT
+        status: null
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      nullable: true
+    CreateSessionTokenRequestBody_data:
+      description: This will differ depending on which `component` is used.
+      discriminator:
+        mapping:
+          SESSION_INVOICE_FLOW: '#/components/schemas/InvoiceFlowSessionTokenData'
+          SESSION_INVOICE_FLOW_WITH_INVOICE_FILE: '#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData'
+        propertyName: component
+      oneOf:
+      - $ref: '#/components/schemas/InvoiceFlowSessionTokenData'
+      - $ref: '#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData'
+  securitySchemes:
+    Authorization:
+      in: header
+      name: Authorization
+      type: apiKey
+
