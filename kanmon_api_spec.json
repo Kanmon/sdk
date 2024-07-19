@@ -1065,7 +1065,7 @@
     },
     "/api/platform/v2/connect-tokens": {
       "post": {
-        "operationId": "connectToken",
+        "operationId": "createConnectToken",
         "x-readme": {
           "code-samples": [
             {
@@ -3921,7 +3921,7 @@
               }
             ],
             "description": "The repayment window",
-            "items": { "type": "object" }
+            "type": "object"
           }
         },
         "required": [

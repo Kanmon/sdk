@@ -42,9 +42,9 @@ public class ConnectTokensApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void connectTokenTest() throws ApiException {
+    public void createConnectTokenTest() throws ApiException {
         CreateConnectTokenRequestBody createConnectTokenRequestBody = null;
-        ConnectToken response = api.connectToken(createConnectTokenRequestBody);
+        ConnectToken response = api.createConnectToken(createConnectTokenRequestBody);
         // TODO: test validations
     }
 

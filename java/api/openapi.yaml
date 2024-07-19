@@ -928,7 +928,7 @@ paths:
       - application/json
   /api/platform/v2/connect-tokens:
     post:
-      operationId: connectToken
+      operationId: createConnectToken
       parameters: []
       requestBody:
         content:
@@ -3860,10 +3860,7 @@ components:
           example: 5
           type: number
         repaymentWindow:
-          description: The repayment window
-          items:
-            type: object
-          type: array
+          $ref: '#/components/schemas/InvoicePaymentPlan_repaymentWindow'
       required:
       - advanceRatePercentage
       - repaymentWindow
@@ -5850,6 +5847,13 @@ components:
         zipcode: "94401"
         addressLineOne: 123 Main Street
       nullable: true
+    InvoicePaymentPlan_repaymentWindow:
+      anyOf:
+      - $ref: '#/components/schemas/FixedDateInvoiceRepaymentWindow'
+      - $ref: '#/components/schemas/FixedDurationInvoiceRepaymentWindow'
+      - $ref: '#/components/schemas/MultipleDurationInvoiceRepaymentWindow'
+      description: The repayment window
+      type: object
     Offer_terms:
       description: Terms of the offer.
       oneOf:

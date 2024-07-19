@@ -21,3 +21,10 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+**/README.md
+**/git_push.sh
+**/*.md
+**/.travis.yml
+#**/src/main/java/com/kanmon/client/model/*Exception.java
+#**/src/test

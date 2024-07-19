@@ -323,12 +323,6 @@
             <version>${junit-platform-runner.version}</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.6</version>
-			<scope>test</scope>
-		</dependency>
     </dependencies>
     <properties>
         <java.version>1.8</java.version>

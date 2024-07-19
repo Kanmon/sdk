@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { InvoicePaymentPlanRepaymentWindow } from './InvoicePaymentPlanRepaymentWindow';
+import {
+    InvoicePaymentPlanRepaymentWindowFromJSON,
+    InvoicePaymentPlanRepaymentWindowFromJSONTyped,
+    InvoicePaymentPlanRepaymentWindowToJSON,
+} from './InvoicePaymentPlanRepaymentWindow';
+
 /**
  * 
  * @export
@@ -32,11 +39,11 @@ export interface InvoicePaymentPlan {
      */
     transactionFeePercentage: number;
     /**
-     * The repayment window
-     * @type {Array<object>}
+     * 
+     * @type {InvoicePaymentPlanRepaymentWindow}
      * @memberof InvoicePaymentPlan
      */
-    repaymentWindow: Array<object>;
+    repaymentWindow: InvoicePaymentPlanRepaymentWindow;
 }
 
 /**
@@ -61,7 +68,7 @@ export function InvoicePaymentPlanFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'advanceRatePercentage': json['advanceRatePercentage'],
         'transactionFeePercentage': json['transactionFeePercentage'],
-        'repaymentWindow': json['repaymentWindow'],
+        'repaymentWindow': InvoicePaymentPlanRepaymentWindowFromJSON(json['repaymentWindow']),
     };
 }
 
@@ -73,7 +80,7 @@ export function InvoicePaymentPlanToJSON(value?: InvoicePaymentPlan | null): any
         
         'advanceRatePercentage': value['advanceRatePercentage'],
         'transactionFeePercentage': value['transactionFeePercentage'],
-        'repaymentWindow': value['repaymentWindow'],
+        'repaymentWindow': InvoicePaymentPlanRepaymentWindowToJSON(value['repaymentWindow']),
     };
 }
 

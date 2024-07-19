@@ -78,7 +78,7 @@ public class ConnectTokensApi {
     }
 
     /**
-     * Build call for connectToken
+     * Build call for createConnectToken
      * @param createConnectTokenRequestBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -93,7 +93,7 @@ public class ConnectTokensApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call connectTokenCall(CreateConnectTokenRequestBody createConnectTokenRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createConnectTokenCall(CreateConnectTokenRequestBody createConnectTokenRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -139,13 +139,13 @@ public class ConnectTokensApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call connectTokenValidateBeforeCall(CreateConnectTokenRequestBody createConnectTokenRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call createConnectTokenValidateBeforeCall(CreateConnectTokenRequestBody createConnectTokenRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'createConnectTokenRequestBody' is set
         if (createConnectTokenRequestBody == null) {
-            throw new ApiException("Missing the required parameter 'createConnectTokenRequestBody' when calling connectToken(Async)");
+            throw new ApiException("Missing the required parameter 'createConnectTokenRequestBody' when calling createConnectToken(Async)");
         }
 
-        return connectTokenCall(createConnectTokenRequestBody, _callback);
+        return createConnectTokenCall(createConnectTokenRequestBody, _callback);
 
     }
 
@@ -165,8 +165,8 @@ public class ConnectTokensApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ConnectToken connectToken(CreateConnectTokenRequestBody createConnectTokenRequestBody) throws ApiException {
-        ApiResponse<ConnectToken> localVarResp = connectTokenWithHttpInfo(createConnectTokenRequestBody);
+    public ConnectToken createConnectToken(CreateConnectTokenRequestBody createConnectTokenRequestBody) throws ApiException {
+        ApiResponse<ConnectToken> localVarResp = createConnectTokenWithHttpInfo(createConnectTokenRequestBody);
         return localVarResp.getData();
     }
 
@@ -186,8 +186,8 @@ public class ConnectTokensApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ConnectToken> connectTokenWithHttpInfo(CreateConnectTokenRequestBody createConnectTokenRequestBody) throws ApiException {
-        okhttp3.Call localVarCall = connectTokenValidateBeforeCall(createConnectTokenRequestBody, null);
+    public ApiResponse<ConnectToken> createConnectTokenWithHttpInfo(CreateConnectTokenRequestBody createConnectTokenRequestBody) throws ApiException {
+        okhttp3.Call localVarCall = createConnectTokenValidateBeforeCall(createConnectTokenRequestBody, null);
         Type localVarReturnType = new TypeToken<ConnectToken>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -209,9 +209,9 @@ public class ConnectTokensApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call connectTokenAsync(CreateConnectTokenRequestBody createConnectTokenRequestBody, final ApiCallback<ConnectToken> _callback) throws ApiException {
+    public okhttp3.Call createConnectTokenAsync(CreateConnectTokenRequestBody createConnectTokenRequestBody, final ApiCallback<ConnectToken> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = connectTokenValidateBeforeCall(createConnectTokenRequestBody, _callback);
+        okhttp3.Call localVarCall = createConnectTokenValidateBeforeCall(createConnectTokenRequestBody, _callback);
         Type localVarReturnType = new TypeToken<ConnectToken>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

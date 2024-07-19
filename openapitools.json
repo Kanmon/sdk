@@ -14,7 +14,8 @@
           "useObjectParameters": true,
           "platform": "node",
           "legacyDiscriminatorBehavior": true
-        }
+        },
+        "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-ts-generator-ignore"
       },
       "java": {
         "inputSpec": "#{cwd}/kanmon_api_spec.json",
@@ -30,7 +31,8 @@
           "snapshotVersion": false,
           "openApiNullable": true,
           "library": "okhttp-gson"
-        }
+        },
+        "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-java-generator-ignore"
       }
     }
   }

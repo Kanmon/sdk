@@ -55,6 +55,7 @@ export * from './InvoiceFlowSessionTokenData';
 export * from './InvoiceFlowWithInvoiceFileSessionTokenData';
 export * from './InvoiceNotFoundException';
 export * from './InvoicePaymentPlan';
+export * from './InvoicePaymentPlanRepaymentWindow';
 export * from './InvoicePayorAddress';
 export * from './InvoiceRepaymentSchedule';
 export * from './InvoiceRepaymentScheduleItem';

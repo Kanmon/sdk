@@ -183,6 +183,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceFlowWithInvoiceFileSessionTokenData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlan.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlanRepaymentWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePayorAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceRepaymentSchedule.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceRepaymentScheduleItem.CustomTypeAdapterFactory());

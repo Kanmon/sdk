@@ -19,11 +19,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.InvoicePaymentPlanRepaymentWindow;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoicePaymentPlan
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-15T15:34:24.061123-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class InvoicePaymentPlan {
   public static final String SERIALIZED_NAME_ADVANCE_RATE_PERCENTAGE = "advanceRatePercentage";
   @SerializedName(SERIALIZED_NAME_ADVANCE_RATE_PERCENTAGE)
@@ -64,7 +63,7 @@ public class InvoicePaymentPlan {
 
   public static final String SERIALIZED_NAME_REPAYMENT_WINDOW = "repaymentWindow";
   @SerializedName(SERIALIZED_NAME_REPAYMENT_WINDOW)
-  private List<Object> repaymentWindow = new ArrayList<>();
+  private InvoicePaymentPlanRepaymentWindow repaymentWindow;
 
   public InvoicePaymentPlan() {
   }
@@ -107,29 +106,21 @@ public class InvoicePaymentPlan {
   }
 
 
-  public InvoicePaymentPlan repaymentWindow(List<Object> repaymentWindow) {
+  public InvoicePaymentPlan repaymentWindow(InvoicePaymentPlanRepaymentWindow repaymentWindow) {
     this.repaymentWindow = repaymentWindow;
     return this;
   }
 
-  public InvoicePaymentPlan addRepaymentWindowItem(Object repaymentWindowItem) {
-    if (this.repaymentWindow == null) {
-      this.repaymentWindow = new ArrayList<>();
-    }
-    this.repaymentWindow.add(repaymentWindowItem);
-    return this;
-  }
-
    /**
-   * The repayment window
+   * Get repaymentWindow
    * @return repaymentWindow
   **/
   @javax.annotation.Nonnull
-  public List<Object> getRepaymentWindow() {
+  public InvoicePaymentPlanRepaymentWindow getRepaymentWindow() {
     return repaymentWindow;
   }
 
-  public void setRepaymentWindow(List<Object> repaymentWindow) {
+  public void setRepaymentWindow(InvoicePaymentPlanRepaymentWindow repaymentWindow) {
     this.repaymentWindow = repaymentWindow;
   }
 
@@ -222,12 +213,8 @@ public class InvoicePaymentPlan {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the required json array is present
-      if (jsonObj.get("repaymentWindow") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("repaymentWindow").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `repaymentWindow` to be an array in the JSON string but got `%s`", jsonObj.get("repaymentWindow").toString()));
-      }
+      // validate the required field `repaymentWindow`
+      InvoicePaymentPlanRepaymentWindow.validateJsonElement(jsonObj.get("repaymentWindow"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
