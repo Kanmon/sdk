@@ -153,7 +153,7 @@ public class EmbeddedSessionsApi {
 
     /**
      * Create an embedded session
-     * 
+     * Embedded session tokens allow you to securely pass data to Kanmon. First, you will need to call this API to create a token. Then, you will use the token when launching the embedded application.
      * @param createSessionTokenRequestBody  (required)
      * @return EmbeddedSession
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -175,7 +175,7 @@ public class EmbeddedSessionsApi {
 
     /**
      * Create an embedded session
-     * 
+     * Embedded session tokens allow you to securely pass data to Kanmon. First, you will need to call this API to create a token. Then, you will use the token when launching the embedded application.
      * @param createSessionTokenRequestBody  (required)
      * @return ApiResponse&lt;EmbeddedSession&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -198,7 +198,7 @@ public class EmbeddedSessionsApi {
 
     /**
      * Create an embedded session (asynchronously)
-     * 
+     * Embedded session tokens allow you to securely pass data to Kanmon. First, you will need to call this API to create a token. Then, you will use the token when launching the embedded application.
      * @param createSessionTokenRequestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

@@ -85,6 +85,7 @@ export const IssuedProductLoanStatusEnum = {
     Late: 'LATE',
     FullyPaid: 'FULLY_PAID',
     Refinanced: 'REFINANCED',
+    Closed: 'CLOSED',
     Defaulted: 'DEFAULTED'
 } as const;
 export type IssuedProductLoanStatusEnum = typeof IssuedProductLoanStatusEnum[keyof typeof IssuedProductLoanStatusEnum];

@@ -40,6 +40,8 @@ public class EmbeddedSessionsApiTest {
     /**
      * Create an embedded session
      *
+     * Embedded session tokens allow you to securely pass data to Kanmon. First, you will need to call this API to create a token. Then, you will use the token when launching the embedded application.
+     *
      * @throws ApiException if the Api call fails
      */
     @Test

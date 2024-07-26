@@ -18,13 +18,14 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.InvoicePayorAddress;
 import com.kanmon.client.model.InvoiceRepaymentSchedule;
-import com.kanmon.client.model.InvoiceStatus;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,7 +54,7 @@ import com.kanmon.client.JSON;
 /**
  * Invoice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class Invoice {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -128,12 +129,20 @@ public class Invoice {
 
       @Override
       public PayorTypeEnum read(final JsonReader jsonReader) throws IOException {
+        if (jsonReader.peek() == JsonToken.NULL) {
+          jsonReader.nextNull();
+          return null;
+        }
         String value =  jsonReader.nextString();
         return PayorTypeEnum.fromValue(value);
       }
     }
 
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement.isJsonNull()) {
+        PayorTypeEnum.fromValue(null);
+        return;
+      }
       String value = jsonElement.getAsString();
       PayorTypeEnum.fromValue(value);
     }
@@ -159,9 +168,69 @@ public class Invoice {
   @SerializedName(SERIALIZED_NAME_PAYOR_LAST_NAME)
   private String payorLastName;
 
+  /**
+   * The status of the invoice.   &lt;table&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_CREATED&lt;/td&gt;       &lt;td&gt;The business has submitted an invoice and it is under review.&lt;td/&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_FUNDED&lt;/td&gt;       &lt;td&gt;         The funds for the invoice have been disbursed. The business is now         expected to pay back the funds. Note that an invoice transitions to         this state when the disbursement is initiated, not when the disbursement         has cleared.       &lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_PAID_IN_FULL&lt;/td&gt;       &lt;td&gt; A payment was made that fully paid off an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;LATE&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;REJECTED&lt;/td&gt;       &lt;td&gt; An invoice was rejected during the funding step.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;DEFAULTED&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.&lt;/td&gt;     &lt;/tr&gt;   &lt;/table&gt;   
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    INVOICE_CREATED("INVOICE_CREATED"),
+    
+    INVOICE_FUNDED("INVOICE_FUNDED"),
+    
+    INVOICE_PAID_IN_FULL("INVOICE_PAID_IN_FULL"),
+    
+    REJECTED("REJECTED"),
+    
+    DEFAULTED("DEFAULTED"),
+    
+    LATE("LATE");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      StatusEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private InvoiceStatus status;
+  private StatusEnum status;
 
   public static final String SERIALIZED_NAME_ISSUED_PRODUCT_ID = "issuedProductId";
   @SerializedName(SERIALIZED_NAME_ISSUED_PRODUCT_ID)
@@ -457,21 +526,21 @@ public class Invoice {
   }
 
 
-  public Invoice status(InvoiceStatus status) {
+  public Invoice status(StatusEnum status) {
     this.status = status;
     return this;
   }
 
    /**
-   * Get status
+   * The status of the invoice.   &lt;table&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_CREATED&lt;/td&gt;       &lt;td&gt;The business has submitted an invoice and it is under review.&lt;td/&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_FUNDED&lt;/td&gt;       &lt;td&gt;         The funds for the invoice have been disbursed. The business is now         expected to pay back the funds. Note that an invoice transitions to         this state when the disbursement is initiated, not when the disbursement         has cleared.       &lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_PAID_IN_FULL&lt;/td&gt;       &lt;td&gt; A payment was made that fully paid off an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;LATE&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;REJECTED&lt;/td&gt;       &lt;td&gt; An invoice was rejected during the funding step.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;DEFAULTED&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.&lt;/td&gt;     &lt;/tr&gt;   &lt;/table&gt;   
    * @return status
   **/
   @javax.annotation.Nonnull
-  public InvoiceStatus getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
-  public void setStatus(InvoiceStatus status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
@@ -722,9 +791,20 @@ public class Invoice {
         Objects.equals(this.updatedAt, invoice.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, platformInvoiceId, platformInvoiceNumber, invoiceAmountCents, invoiceDueDate, invoiceIssuedDate, payorEmail, payorAddress, payorType, payorBusinessName, payorFirstName, payorMiddleName, payorLastName, status, issuedProductId, feeAmountCents, principalAmountCents, invoiceAdvanceAmountCents, repaymentAmountCents, repaymentSchedule, advanceRatePercentage, transactionFeePercentage, amountRequestedForFinancingCents, createdAt, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -813,7 +893,6 @@ public class Invoice {
     openapiRequiredFields.add("invoiceDueDate");
     openapiRequiredFields.add("invoiceIssuedDate");
     openapiRequiredFields.add("payorEmail");
-    openapiRequiredFields.add("payorAddress");
     openapiRequiredFields.add("payorType");
     openapiRequiredFields.add("payorBusinessName");
     openapiRequiredFields.add("payorFirstName");
@@ -879,8 +958,10 @@ public class Invoice {
       if ((jsonObj.get("payorEmail") != null && !jsonObj.get("payorEmail").isJsonNull()) && !jsonObj.get("payorEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorEmail").toString()));
       }
-      // validate the required field `payorAddress`
-      InvoicePayorAddress.validateJsonElement(jsonObj.get("payorAddress"));
+      // validate the optional field `payorAddress`
+      if (jsonObj.get("payorAddress") != null && !jsonObj.get("payorAddress").isJsonNull()) {
+        InvoicePayorAddress.validateJsonElement(jsonObj.get("payorAddress"));
+      }
       if ((jsonObj.get("payorType") != null && !jsonObj.get("payorType").isJsonNull()) && !jsonObj.get("payorType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorType").toString()));
       }
@@ -898,8 +979,11 @@ public class Invoice {
       if ((jsonObj.get("payorLastName") != null && !jsonObj.get("payorLastName").isJsonNull()) && !jsonObj.get("payorLastName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorLastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorLastName").toString()));
       }
+      if (!jsonObj.get("status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
+      }
       // validate the required field `status`
-      InvoiceStatus.validateJsonElement(jsonObj.get("status"));
+      StatusEnum.validateJsonElement(jsonObj.get("status"));
       if (!jsonObj.get("issuedProductId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `issuedProductId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuedProductId").toString()));
       }

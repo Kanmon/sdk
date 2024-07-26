@@ -173,7 +173,7 @@ public class PrequalificationsApi {
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
      * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return List&lt;GetPrequalificationsResponse&gt;
+     * @return GetPrequalificationsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -184,8 +184,8 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public List<GetPrequalificationsResponse> getPrequalifiedBusinesses(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<List<GetPrequalificationsResponse>> localVarResp = getPrequalifiedBusinessesWithHttpInfo(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
+    public GetPrequalificationsResponse getPrequalifiedBusinesses(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetPrequalificationsResponse> localVarResp = getPrequalifiedBusinessesWithHttpInfo(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
         return localVarResp.getData();
     }
 
@@ -197,7 +197,7 @@ public class PrequalificationsApi {
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
      * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return ApiResponse&lt;List&lt;GetPrequalificationsResponse&gt;&gt;
+     * @return ApiResponse&lt;GetPrequalificationsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -208,9 +208,9 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<List<GetPrequalificationsResponse>> getPrequalifiedBusinessesWithHttpInfo(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+    public ApiResponse<GetPrequalificationsResponse> getPrequalifiedBusinessesWithHttpInfo(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
         okhttp3.Call localVarCall = getPrequalifiedBusinessesValidateBeforeCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, null);
-        Type localVarReturnType = new TypeToken<List<GetPrequalificationsResponse>>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetPrequalificationsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -234,10 +234,10 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPrequalifiedBusinessesAsync(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<List<GetPrequalificationsResponse>> _callback) throws ApiException {
+    public okhttp3.Call getPrequalifiedBusinessesAsync(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPrequalificationsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getPrequalifiedBusinessesValidateBeforeCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
-        Type localVarReturnType = new TypeToken<List<GetPrequalificationsResponse>>(){}.getType();
+        Type localVarReturnType = new TypeToken<GetPrequalificationsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

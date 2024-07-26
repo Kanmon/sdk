@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets InvoiceStatus
+ * The status of the invoice.   &lt;table&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_CREATED&lt;/td&gt;       &lt;td&gt;The business has submitted an invoice and it is under review.&lt;td/&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_FUNDED&lt;/td&gt;       &lt;td&gt;         The funds for the invoice have been disbursed. The business is now         expected to pay back the funds. Note that an invoice transitions to         this state when the disbursement is initiated, not when the disbursement         has cleared.       &lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_PAID_IN_FULL&lt;/td&gt;       &lt;td&gt; A payment was made that fully paid off an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;LATE&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;REJECTED&lt;/td&gt;       &lt;td&gt; An invoice was rejected during the funding step.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;DEFAULTED&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.&lt;/td&gt;     &lt;/tr&gt;   &lt;/table&gt;   
  */
 @JsonAdapter(InvoiceStatus.Adapter.class)
 public enum InvoiceStatus {

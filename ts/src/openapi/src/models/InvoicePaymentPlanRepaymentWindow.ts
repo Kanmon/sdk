@@ -12,84 +12,34 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
 import type { FixedDateInvoiceRepaymentWindow } from './FixedDateInvoiceRepaymentWindow';
 import {
+    instanceOfFixedDateInvoiceRepaymentWindow,
     FixedDateInvoiceRepaymentWindowFromJSON,
     FixedDateInvoiceRepaymentWindowFromJSONTyped,
     FixedDateInvoiceRepaymentWindowToJSON,
 } from './FixedDateInvoiceRepaymentWindow';
 import type { FixedDurationInvoiceRepaymentWindow } from './FixedDurationInvoiceRepaymentWindow';
 import {
+    instanceOfFixedDurationInvoiceRepaymentWindow,
     FixedDurationInvoiceRepaymentWindowFromJSON,
     FixedDurationInvoiceRepaymentWindowFromJSONTyped,
     FixedDurationInvoiceRepaymentWindowToJSON,
 } from './FixedDurationInvoiceRepaymentWindow';
 import type { MultipleDurationInvoiceRepaymentWindow } from './MultipleDurationInvoiceRepaymentWindow';
 import {
+    instanceOfMultipleDurationInvoiceRepaymentWindow,
     MultipleDurationInvoiceRepaymentWindowFromJSON,
     MultipleDurationInvoiceRepaymentWindowFromJSONTyped,
     MultipleDurationInvoiceRepaymentWindowToJSON,
 } from './MultipleDurationInvoiceRepaymentWindow';
-import type { PaymentPlanRepaymentSchedule } from './PaymentPlanRepaymentSchedule';
-import {
-    PaymentPlanRepaymentScheduleFromJSON,
-    PaymentPlanRepaymentScheduleFromJSONTyped,
-    PaymentPlanRepaymentScheduleToJSON,
-} from './PaymentPlanRepaymentSchedule';
 
 /**
+ * @type InvoicePaymentPlanRepaymentWindow
  * The repayment window
  * @export
- * @interface InvoicePaymentPlanRepaymentWindow
  */
-export interface InvoicePaymentPlanRepaymentWindow {
-    /**
-     * 
-     * @type {string}
-     * @memberof InvoicePaymentPlanRepaymentWindow
-     */
-    repaymentType: InvoicePaymentPlanRepaymentWindowRepaymentTypeEnum;
-    /**
-     * The day on which the repayment is due. E.g. a value of `15` means the repayment is due on the 15th.
-     * @type {number}
-     * @memberof InvoicePaymentPlanRepaymentWindow
-     */
-    monthlyRepaymentDay: number;
-    /**
-     * This amount of days after which the repayment duration is due.
-     * @type {number}
-     * @memberof InvoicePaymentPlanRepaymentWindow
-     */
-    repaymentDurationDays: number;
-    /**
-     * 
-     * @type {PaymentPlanRepaymentSchedule}
-     * @memberof InvoicePaymentPlanRepaymentWindow
-     */
-    repaymentSchedule: PaymentPlanRepaymentSchedule;
-}
-
-
-/**
- * @export
- */
-export const InvoicePaymentPlanRepaymentWindowRepaymentTypeEnum = {
-    MultipleDuration: 'MULTIPLE_DURATION'
-} as const;
-export type InvoicePaymentPlanRepaymentWindowRepaymentTypeEnum = typeof InvoicePaymentPlanRepaymentWindowRepaymentTypeEnum[keyof typeof InvoicePaymentPlanRepaymentWindowRepaymentTypeEnum];
-
-
-/**
- * Check if a given object implements the InvoicePaymentPlanRepaymentWindow interface.
- */
-export function instanceOfInvoicePaymentPlanRepaymentWindow(value: object): boolean {
-    if (!('repaymentType' in value)) return false;
-    if (!('monthlyRepaymentDay' in value)) return false;
-    if (!('repaymentDurationDays' in value)) return false;
-    if (!('repaymentSchedule' in value)) return false;
-    return true;
-}
+export type InvoicePaymentPlanRepaymentWindow = FixedDateInvoiceRepaymentWindow | FixedDurationInvoiceRepaymentWindow | MultipleDurationInvoiceRepaymentWindow;
 
 export function InvoicePaymentPlanRepaymentWindowFromJSON(json: any): InvoicePaymentPlanRepaymentWindow {
     return InvoicePaymentPlanRepaymentWindowFromJSONTyped(json, false);
@@ -99,25 +49,24 @@ export function InvoicePaymentPlanRepaymentWindowFromJSONTyped(json: any, ignore
     if (json == null) {
         return json;
     }
-    return {
-        
-        'repaymentType': json['repaymentType'],
-        'monthlyRepaymentDay': json['monthlyRepaymentDay'],
-        'repaymentDurationDays': json['repaymentDurationDays'],
-        'repaymentSchedule': PaymentPlanRepaymentScheduleFromJSON(json['repaymentSchedule']),
-    };
+    return FixedDateInvoiceRepaymentWindowFromJSONTyped(json, true) || FixedDurationInvoiceRepaymentWindowFromJSONTyped(json, true) || MultipleDurationInvoiceRepaymentWindowFromJSONTyped(json, true);
 }
 
 export function InvoicePaymentPlanRepaymentWindowToJSON(value?: InvoicePaymentPlanRepaymentWindow | null): any {
     if (value == null) {
         return value;
     }
-    return {
-        
-        'repaymentType': value['repaymentType'],
-        'monthlyRepaymentDay': value['monthlyRepaymentDay'],
-        'repaymentDurationDays': value['repaymentDurationDays'],
-        'repaymentSchedule': PaymentPlanRepaymentScheduleToJSON(value['repaymentSchedule']),
-    };
+
+    if (instanceOfFixedDateInvoiceRepaymentWindow(value)) {
+        return FixedDateInvoiceRepaymentWindowToJSON(value as FixedDateInvoiceRepaymentWindow);
+    }
+    if (instanceOfFixedDurationInvoiceRepaymentWindow(value)) {
+        return FixedDurationInvoiceRepaymentWindowToJSON(value as FixedDurationInvoiceRepaymentWindow);
+    }
+    if (instanceOfMultipleDurationInvoiceRepaymentWindow(value)) {
+        return MultipleDurationInvoiceRepaymentWindowToJSON(value as MultipleDurationInvoiceRepaymentWindow);
+    }
+
+    return {};
 }
 

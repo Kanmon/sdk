@@ -904,8 +904,10 @@ public class ApiClient {
 
         String respBody;
         try {
-            if (response.body() != null)
+            if (response.body() != null) {
                 respBody = response.body().string();
+                System.out.println(respBody);
+            }
             else
                 respBody = null;
         } catch (IOException e) {

@@ -52,10 +52,10 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFlowWithInvoiceFileSessionTokenData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class InvoiceFlowWithInvoiceFileSessionTokenData {
   /**
-   * Gets or Sets component
+   * Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;
    */
   @JsonAdapter(ComponentEnum.Adapter.class)
   public enum ComponentEnum {
@@ -121,7 +121,7 @@ public class InvoiceFlowWithInvoiceFileSessionTokenData {
   }
 
    /**
-   * Get component
+   * Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;
    * @return component
   **/
   @javax.annotation.Nonnull

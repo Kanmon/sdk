@@ -62,7 +62,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(InvoicePaymentPlanRepaymentWindow.class.getName());
 
@@ -104,7 +104,7 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match anyOf schemas: FixedDateInvoiceRepaymentWindow, FixedDurationInvoiceRepaymentWindow, MultipleDurationInvoiceRepaymentWindow");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: FixedDateInvoiceRepaymentWindow, FixedDurationInvoiceRepaymentWindow, MultipleDurationInvoiceRepaymentWindow");
                 }
 
                 @Override
@@ -112,6 +112,7 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
+                    int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
@@ -120,9 +121,8 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
                         // validate the JSON object to see if any exception is thrown
                         FixedDateInvoiceRepaymentWindow.validateJsonElement(jsonElement);
                         actualAdapter = adapterFixedDateInvoiceRepaymentWindow;
-                        InvoicePaymentPlanRepaymentWindow ret = new InvoicePaymentPlanRepaymentWindow();
-                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
-                        return ret;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'FixedDateInvoiceRepaymentWindow'");
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for FixedDateInvoiceRepaymentWindow failed with `%s`.", e.getMessage()));
@@ -133,9 +133,8 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
                         // validate the JSON object to see if any exception is thrown
                         FixedDurationInvoiceRepaymentWindow.validateJsonElement(jsonElement);
                         actualAdapter = adapterFixedDurationInvoiceRepaymentWindow;
-                        InvoicePaymentPlanRepaymentWindow ret = new InvoicePaymentPlanRepaymentWindow();
-                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
-                        return ret;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'FixedDurationInvoiceRepaymentWindow'");
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for FixedDurationInvoiceRepaymentWindow failed with `%s`.", e.getMessage()));
@@ -146,40 +145,45 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
                         // validate the JSON object to see if any exception is thrown
                         MultipleDurationInvoiceRepaymentWindow.validateJsonElement(jsonElement);
                         actualAdapter = adapterMultipleDurationInvoiceRepaymentWindow;
-                        InvoicePaymentPlanRepaymentWindow ret = new InvoicePaymentPlanRepaymentWindow();
-                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
-                        return ret;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'MultipleDurationInvoiceRepaymentWindow'");
                     } catch (Exception e) {
                         // deserialization failed, continue
                         errorMessages.add(String.format("Deserialization for MultipleDurationInvoiceRepaymentWindow failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'MultipleDurationInvoiceRepaymentWindow'", e);
                     }
 
-                    throw new IOException(String.format("Failed deserialization for InvoicePaymentPlanRepaymentWindow: no class matches result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+                    if (match == 1) {
+                        InvoicePaymentPlanRepaymentWindow ret = new InvoicePaymentPlanRepaymentWindow();
+                        ret.setActualInstance(actualAdapter.fromJsonTree(jsonElement));
+                        return ret;
+                    }
+
+                    throw new IOException(String.format("Failed deserialization for InvoicePaymentPlanRepaymentWindow: %d classes match result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", match, errorMessages, jsonElement.toString()));
                 }
             }.nullSafe();
         }
     }
 
-    // store a list of schema names defined in anyOf
+    // store a list of schema names defined in oneOf
     public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
 
     public InvoicePaymentPlanRepaymentWindow() {
-        super("anyOf", Boolean.FALSE);
+        super("oneOf", Boolean.FALSE);
     }
 
     public InvoicePaymentPlanRepaymentWindow(FixedDateInvoiceRepaymentWindow o) {
-        super("anyOf", Boolean.FALSE);
+        super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
     public InvoicePaymentPlanRepaymentWindow(FixedDurationInvoiceRepaymentWindow o) {
-        super("anyOf", Boolean.FALSE);
+        super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
     public InvoicePaymentPlanRepaymentWindow(MultipleDurationInvoiceRepaymentWindow o) {
-        super("anyOf", Boolean.FALSE);
+        super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }
 
@@ -195,11 +199,11 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
     }
 
     /**
-     * Set the instance that matches the anyOf child schema, check
-     * the instance parameter is valid against the anyOf child schemas:
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
      * FixedDateInvoiceRepaymentWindow, FixedDurationInvoiceRepaymentWindow, MultipleDurationInvoiceRepaymentWindow
      *
-     * It could be an instance of the 'anyOf' schemas.
+     * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
@@ -271,12 +275,13 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
      * @throws IOException if the JSON Element is invalid with respect to InvoicePaymentPlanRepaymentWindow
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        // validate anyOf schemas one by one
+        // validate oneOf schemas one by one
+        int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
         // validate the json string with FixedDateInvoiceRepaymentWindow
         try {
             FixedDateInvoiceRepaymentWindow.validateJsonElement(jsonElement);
-            return;
+            validCount++;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for FixedDateInvoiceRepaymentWindow failed with `%s`.", e.getMessage()));
             // continue to the next one
@@ -284,7 +289,7 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
         // validate the json string with FixedDurationInvoiceRepaymentWindow
         try {
             FixedDurationInvoiceRepaymentWindow.validateJsonElement(jsonElement);
-            return;
+            validCount++;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for FixedDurationInvoiceRepaymentWindow failed with `%s`.", e.getMessage()));
             // continue to the next one
@@ -292,12 +297,14 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
         // validate the json string with MultipleDurationInvoiceRepaymentWindow
         try {
             MultipleDurationInvoiceRepaymentWindow.validateJsonElement(jsonElement);
-            return;
+            validCount++;
         } catch (Exception e) {
             errorMessages.add(String.format("Deserialization for MultipleDurationInvoiceRepaymentWindow failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
-        throw new IOException(String.format("The JSON string is invalid for InvoicePaymentPlanRepaymentWindow with anyOf schemas: FixedDateInvoiceRepaymentWindow, FixedDurationInvoiceRepaymentWindow, MultipleDurationInvoiceRepaymentWindow. no class match the result, expected at least 1. Detailed failure message for anyOf schemas: %s. JSON: %s", errorMessages, jsonElement.toString()));
+        if (validCount != 1) {
+            throw new IOException(String.format("The JSON string is invalid for InvoicePaymentPlanRepaymentWindow with oneOf schemas: FixedDateInvoiceRepaymentWindow, FixedDurationInvoiceRepaymentWindow, MultipleDurationInvoiceRepaymentWindow. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+        }
     }
 
     /**

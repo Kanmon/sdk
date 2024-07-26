@@ -18,6 +18,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
@@ -48,9 +49,9 @@ import java.util.Set;
 import com.kanmon.client.JSON;
 
 /**
- * The address of the payor.
+ * The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class InvoicePayorAddress {
   public static final String SERIALIZED_NAME_ADDRESS_LINE_ONE = "addressLineOne";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE_ONE)
@@ -501,18 +502,26 @@ public class InvoicePayorAddress {
        return (TypeAdapter<T>) new TypeAdapter<InvoicePayorAddress>() {
            @Override
            public void write(JsonWriter out, InvoicePayorAddress value) throws IOException {
+             if (value == null) {
+              out.nullValue();
+              return;
+             }
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
            public InvoicePayorAddress read(JsonReader in) throws IOException {
+            if (in.peek() == JsonToken.NULL) {
+              in.nextNull();
+              return null;
+             }
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
            }
 
-       }.nullSafe();
+       };
     }
   }
 

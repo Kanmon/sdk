@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * The type of document that is uploaded.
  * @export
  */
 export const BusinessDocumentType = {

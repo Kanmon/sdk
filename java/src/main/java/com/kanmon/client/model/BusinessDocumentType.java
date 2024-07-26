@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets BusinessDocumentType
+ * The type of document that is uploaded.
  */
 @JsonAdapter(BusinessDocumentType.Adapter.class)
 public enum BusinessDocumentType {

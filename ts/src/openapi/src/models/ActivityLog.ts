@@ -38,7 +38,7 @@ export interface ActivityLog {
      */
     platformBusinessId: string | null;
     /**
-     * Event details and schema: https://kanmon.dev/docs/types-webhooks
+     * Event details and schema: https://kanmon.dev/docs/webhook-events
      * @type {object}
      * @memberof ActivityLog
      */

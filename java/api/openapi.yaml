@@ -73,9 +73,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/GetPrequalificationsResponse'
-                type: array
+                $ref: '#/components/schemas/GetPrequalificationsResponse'
           description: ""
         "400":
           content:
@@ -560,7 +558,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "ecdeda66-dbd6-461f-b4de-5049d317a27c,fec4606f-746d-456a-a27d-0baa7c17d3e3"
+        example: "294af491-7d5e-4d6d-bb49-e8e5e4eef757,2a53ef26-8a0c-4fbd-b4e3-782a2655b3ea"
         explode: true
         in: query
         name: businessIds
@@ -977,8 +975,8 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.connectTokens.connectToken({\n  ...params...\n})\n  \
-            \  "
+          code: "\nkanmonApi.createConnectTokens.createConnectToken({\n  ...params...\n\
+            })\n    "
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -1550,7 +1548,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "3dac24ba-f14b-4dea-9f3c-b11e2fcb5aed,73422933-ae2c-4367-b880-0cdb1e921ec7"
+        example: "821fbeb4-e128-422e-ac70-67f25963220a,6f654667-69a3-469a-beb8-d6cad5d20cdb"
         explode: true
         in: query
         name: businessIds
@@ -1917,7 +1915,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "46439ef9-728f-4255-8cb4-262371cb9618,1113ce7c-dc84-4cad-b60a-4824c7a91c8b"
+        example: "3ae8d3fd-bcb0-4178-949a-db3511c2face,226a8afd-7a41-4390-b929-614b15570c84"
         explode: true
         in: query
         name: drawRequestIds
@@ -2267,6 +2265,9 @@ paths:
       - application/json
   /api/platform/v2/embedded-session:
     post:
+      description: "Embedded session tokens allow you to securely pass data to Kanmon.\
+        \ First, you will need to call this API to create a token. Then, you will\
+        \ use the token when launching the embedded application."
       operationId: createEmbeddedSession
       parameters: []
       requestBody:
@@ -2332,11 +2333,11 @@ components:
     BusinessPrequalification:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
-        product: fc70522b-608c-4314-be1f-b96791da5f3d
-        platformBusinessId: b50fb5eb-29f6-479a-af71-f900a93da2c3
+        product: TERM_LOAN
+        platformBusinessId: 0da6cdc6-4074-4cea-936b-141abdd7e608
         isPrequalified: true
-        businessId: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
-        platformId: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+        businessId: 58a38e0d-a02e-4baa-8baa-1bb50fb7161d
+        platformId: 3ec42448-d863-4afc-b3b2-6c3668b327e6
         prequalifiedAmountCents: 1000000
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -2348,21 +2349,21 @@ components:
           - TERM_LOAN
           - MCA
           - LINE_OF_CREDIT
-          example: fc70522b-608c-4314-be1f-b96791da5f3d
+          example: TERM_LOAN
           nullable: true
           type: string
         platformId:
           description: The UUID representing your platform in Kanmon.
-          example: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+          example: 3ec42448-d863-4afc-b3b2-6c3668b327e6
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
+          example: 58a38e0d-a02e-4baa-8baa-1bb50fb7161d
           nullable: true
           type: string
         platformBusinessId:
           description: Your platform’s unique ID for the business.
-          example: b50fb5eb-29f6-479a-af71-f900a93da2c3
+          example: 0da6cdc6-4074-4cea-936b-141abdd7e608
           type: string
         isPrequalified:
           description: Whether or not the business has been prequalified.
@@ -2415,19 +2416,19 @@ components:
         pagination: ""
         prequalifications:
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          product: fc70522b-608c-4314-be1f-b96791da5f3d
-          platformBusinessId: b50fb5eb-29f6-479a-af71-f900a93da2c3
+          product: TERM_LOAN
+          platformBusinessId: 0da6cdc6-4074-4cea-936b-141abdd7e608
           isPrequalified: true
-          businessId: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
-          platformId: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+          businessId: 58a38e0d-a02e-4baa-8baa-1bb50fb7161d
+          platformId: 3ec42448-d863-4afc-b3b2-6c3668b327e6
           prequalifiedAmountCents: 1000000
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          product: fc70522b-608c-4314-be1f-b96791da5f3d
-          platformBusinessId: b50fb5eb-29f6-479a-af71-f900a93da2c3
+          product: TERM_LOAN
+          platformBusinessId: 0da6cdc6-4074-4cea-936b-141abdd7e608
           isPrequalified: true
-          businessId: 36f4ca53-7c06-425d-a6ca-17bfd4b9b559
-          platformId: 84dd39b2-fd59-48a6-8b0d-1b5ec29a8547
+          businessId: 58a38e0d-a02e-4baa-8baa-1bb50fb7161d
+          platformId: 3ec42448-d863-4afc-b3b2-6c3668b327e6
           prequalifiedAmountCents: 1000000
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -2630,7 +2631,8 @@ components:
         address:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: The business’s address.
+          description: "The business’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -2689,7 +2691,16 @@ components:
           nullable: true
           type: object
         address:
-          $ref: '#/components/schemas/Business_address'
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The business’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
         ein:
           description: "The business’s EIN. Only digits, no formatting."
           example: "123456789"
@@ -2719,7 +2730,6 @@ components:
           example: 2022-06-01T03:57:26.115Z
           type: string
       required:
-      - address
       - createdAt
       - ein
       - id
@@ -2779,7 +2789,8 @@ components:
         address:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: The business’s address.
+          description: "The business’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -2852,7 +2863,7 @@ components:
           nullable: true
           type: string
         payload:
-          description: "Event details and schema: https://kanmon.dev/docs/types-webhooks"
+          description: "Event details and schema: https://kanmon.dev/docs/webhook-events"
           type: object
         eventType:
           description: A description of the log event type.
@@ -3002,7 +3013,8 @@ components:
         address:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: The user’s address.
+          description: "The user’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3243,7 +3255,8 @@ components:
         address:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: The user’s address.
+          description: "The user’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3283,9 +3296,9 @@ components:
       type: object
     MergeUsersRequestBody:
       example:
-        sourceBusinessId: f532d314-e77a-4d21-b828-2198efdc279d
+        sourceBusinessId: 22367362-ea16-419d-b86e-afd0d5aebbfb
         sourcePlatformBusinessId: "12345"
-        targetBusinessId: 762d0b0c-f59f-4935-9e25-e61defa0185b
+        targetBusinessId: e8a07a15-4365-4153-90ff-d007e14d4664
         targetPlatformBusinessId: "67890"
       properties:
         sourcePlatformBusinessId:
@@ -3297,7 +3310,7 @@ components:
         sourceBusinessId:
           description: The UUID representing the business in Kanmon to merge users
             from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is required.
-          example: f532d314-e77a-4d21-b828-2198efdc279d
+          example: 22367362-ea16-419d-b86e-afd0d5aebbfb
           type: string
         targetPlatformBusinessId:
           description: Your platform’s unique business ID for the business to merge
@@ -3307,7 +3320,7 @@ components:
         targetBusinessId:
           description: The UUID representing the business in Kanmon to merge users
             to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.
-          example: 762d0b0c-f59f-4935-9e25-e61defa0185b
+          example: e8a07a15-4365-4153-90ff-d007e14d4664
           type: string
       type: object
     MergeUsersResponseBody:
@@ -3409,15 +3422,6 @@ components:
       required:
       - connectToken
       type: object
-    InvoiceStatus:
-      enum:
-      - INVOICE_CREATED
-      - INVOICE_FUNDED
-      - INVOICE_PAID_IN_FULL
-      - REJECTED
-      - DEFAULTED
-      - LATE
-      type: string
     InvoiceRepaymentScheduleItem:
       properties:
         repaymentDate:
@@ -3494,7 +3498,7 @@ components:
             repaymentFeeAmountCents: 2000
             repaymentPrincipalAmountCents: 98000
             repaymentDate: 2020-11-11
-        status: null
+        status: INVOICE_CREATED
       properties:
         id:
           description: Kanmon’s unique ID for the invoice.
@@ -3566,7 +3570,30 @@ components:
           nullable: true
           type: string
         status:
-          $ref: '#/components/schemas/InvoiceStatus'
+          description: "The status of the invoice.\n  <table>\n    <tr>\n      <td>INVOICE_CREATED</td>\n\
+            \      <td>The business has submitted an invoice and it is under review.<td/>\n\
+            \    </tr>\n    <tr>\n      <td>INVOICE_FUNDED</td>\n      <td>\n    \
+            \    The funds for the invoice have been disbursed. The business is now\n\
+            \        expected to pay back the funds. Note that an invoice transitions\
+            \ to\n        this state when the disbursement is initiated, not when\
+            \ the disbursement\n        has cleared.\n      </td>\n    </tr>\n   \
+            \ <tr>\n      <td>INVOICE_PAID_IN_FULL</td>\n      <td> A payment was\
+            \ made that fully paid off an outstanding invoice.</td>\n    </tr>\n \
+            \   <tr>\n      <td>LATE</td>\n      <td>A payment was not made towards\
+            \ an outstanding invoice.</td>\n    </tr>\n    <tr>\n      <td>REJECTED</td>\n\
+            \      <td> An invoice was rejected during the funding step.</td>\n  \
+            \  </tr>\n    <tr>\n      <td>DEFAULTED</td>\n      <td>A payment was\
+            \ not made towards an outstanding invoice and we were unable to encourage\
+            \ the borrower to make a payment.</td>\n    </tr>\n  </table>\n  "
+          enum:
+          - INVOICE_CREATED
+          - INVOICE_FUNDED
+          - INVOICE_PAID_IN_FULL
+          - REJECTED
+          - DEFAULTED
+          - LATE
+          example: INVOICE_CREATED
+          type: string
         issuedProductId:
           description: The unique identifier for the issued product in Kanmon′s system.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
@@ -3632,7 +3659,6 @@ components:
       - invoiceDueDate
       - invoiceIssuedDate
       - issuedProductId
-      - payorAddress
       - payorBusinessName
       - payorEmail
       - payorFirstName
@@ -3686,7 +3712,7 @@ components:
               repaymentFeeAmountCents: 2000
               repaymentPrincipalAmountCents: 98000
               repaymentDate: 2020-11-11
-          status: null
+          status: INVOICE_CREATED
         - advanceRatePercentage: 100
           payorEmail: user@gmail.com
           payorType: BUSINESS
@@ -3721,7 +3747,7 @@ components:
               repaymentFeeAmountCents: 2000
               repaymentPrincipalAmountCents: 98000
               repaymentDate: 2020-11-11
-          status: null
+          status: INVOICE_CREATED
       properties:
         invoices:
           description: Array of invoices.
@@ -3736,6 +3762,10 @@ components:
       - invoices
       - pagination
       type: object
+    ProductType:
+      enum:
+      - LINE_OF_CREDIT
+      type: string
     TermLoanOfferTerms:
       example:
         maxLoanAmountCents: 1000000
@@ -3743,12 +3773,10 @@ components:
         durationMonths: 6
         feePercentage: 3
         interestRatePercentage: 10
-        productType: TERM_LOAN
+        productType: null
       properties:
         productType:
-          enum:
-          - TERM_LOAN
-          type: string
+          $ref: '#/components/schemas/ProductType'
         maxLoanAmountCents:
           description: The maximum loan amount - in cents.
           example: 1000000
@@ -3869,9 +3897,7 @@ components:
     InvoiceFinancingOfferTerms:
       properties:
         productType:
-          enum:
-          - INVOICE_FINANCING
-          type: string
+          $ref: '#/components/schemas/ProductType'
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -3889,9 +3915,7 @@ components:
     McaOfferTerms:
       properties:
         productType:
-          enum:
-          - MCA
-          type: string
+          $ref: '#/components/schemas/ProductType'
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -3934,9 +3958,7 @@ components:
     LineOfCreditOfferTerms:
       properties:
         productType:
-          enum:
-          - LINE_OF_CREDIT
-          type: string
+          $ref: '#/components/schemas/ProductType'
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -3973,19 +3995,19 @@ components:
           durationMonths: 6
           feePercentage: 3
           interestRatePercentage: 10
-          productType: TERM_LOAN
-        businessId: 8104204b-6172-4daa-ae0f-5b2502197e6d
-        id: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+          productType: null
+        businessId: 2c344777-8bed-4f92-a8e2-f3f111d398a3
+        id: cc59d712-b786-41d0-9bf9-6b5a08133437
         selectedAt: 2023-12-15T03:57:26.115Z
         updatedAt: 2023-12-15T03:57:26.115Z
       properties:
         id:
           description: A unique id representing the offer object.
-          example: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+          example: cc59d712-b786-41d0-9bf9-6b5a08133437
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 8104204b-6172-4daa-ae0f-5b2502197e6d
+          example: 2c344777-8bed-4f92-a8e2-f3f111d398a3
           type: string
         platformBusinessId:
           description: Your platform’s unique ID for the business.
@@ -4059,9 +4081,9 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: TERM_LOAN
-          businessId: 8104204b-6172-4daa-ae0f-5b2502197e6d
-          id: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+            productType: null
+          businessId: 2c344777-8bed-4f92-a8e2-f3f111d398a3
+          id: cc59d712-b786-41d0-9bf9-6b5a08133437
           selectedAt: 2023-12-15T03:57:26.115Z
           updatedAt: 2023-12-15T03:57:26.115Z
         - expiredAt: 2023-12-29T03:57:26.115Z
@@ -4073,9 +4095,9 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: TERM_LOAN
-          businessId: 8104204b-6172-4daa-ae0f-5b2502197e6d
-          id: 2fa331ac-7769-4c57-98f3-b6ea94c05fa4
+            productType: null
+          businessId: 2c344777-8bed-4f92-a8e2-f3f111d398a3
+          id: cc59d712-b786-41d0-9bf9-6b5a08133437
           selectedAt: 2023-12-15T03:57:26.115Z
           updatedAt: 2023-12-15T03:57:26.115Z
         pagination: ""
@@ -4270,24 +4292,24 @@ components:
           originationFeeCents: 100000
           productType: TERM_LOAN
           principalBalanceCents: 1000000
-        businessId: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+        businessId: 847c1a00-173c-442f-9470-1d3121f3a234
         loanStatus: CURRENT
-        offerId: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
-        id: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+        offerId: 4c7ceaba-1768-44a8-9940-8cd2193163da
+        id: 44e58edc-10f4-4faf-aa5c-93acfa315bf2
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           description: The UUID representing the issued product in Kanmon.
-          example: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+          example: 44e58edc-10f4-4faf-aa5c-93acfa315bf2
           type: string
         offerId:
           description: The UUID representing the offer tied to this issued product
             in Kanmon.
-          example: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
+          example: 4c7ceaba-1768-44a8-9940-8cd2193163da
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+          example: 847c1a00-173c-442f-9470-1d3121f3a234
           type: string
         platformBusinessId:
           description: Your platform’s unique ID for the business.
@@ -4301,6 +4323,7 @@ components:
           - LATE
           - FULLY_PAID
           - REFINANCED
+          - CLOSED
           - DEFAULTED
           example: CURRENT
           type: string
@@ -4362,10 +4385,10 @@ components:
             originationFeeCents: 100000
             productType: TERM_LOAN
             principalBalanceCents: 1000000
-          businessId: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+          businessId: 847c1a00-173c-442f-9470-1d3121f3a234
           loanStatus: CURRENT
-          offerId: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
-          id: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+          offerId: 4c7ceaba-1768-44a8-9940-8cd2193163da
+          id: 44e58edc-10f4-4faf-aa5c-93acfa315bf2
           updatedAt: 2000-01-23T04:56:07.000+00:00
         - createdAt: 2000-01-23T04:56:07.000+00:00
           platformBusinessId: "12345"
@@ -4377,10 +4400,10 @@ components:
             originationFeeCents: 100000
             productType: TERM_LOAN
             principalBalanceCents: 1000000
-          businessId: 2e9caedf-68d0-4465-b150-0360cd4d6e68
+          businessId: 847c1a00-173c-442f-9470-1d3121f3a234
           loanStatus: CURRENT
-          offerId: 59e3cf04-542d-43dc-83b3-206d54ef2ebc
-          id: 82a0eb9d-5bd0-4379-8824-10c06c1411a5
+          offerId: 4c7ceaba-1768-44a8-9940-8cd2193163da
+          id: 44e58edc-10f4-4faf-aa5c-93acfa315bf2
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         issuedProducts:
@@ -4642,6 +4665,7 @@ components:
           type: string
       type: object
     PaymentOrderStatus:
+      description: The status of the payment.
       enum:
       - FAILED
       - PAID
@@ -4649,16 +4673,16 @@ components:
       type: string
     PaymentOrder:
       example:
-        drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
-        issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
-        platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+        drawRequestId: 0b8aad75-31c1-4a6f-9586-bda2fd28566b
+        issuedProductId: cacd8c9c-4027-40aa-b560-c293fe8ac788
+        platformInvoiceId: 9ff4b43b-67d5-41fd-8bdc-164cbcebc01a
         feeType: INSUFFICIENT_FUNDS
         totalPaymentAmountCents: 100000
         createdAt: 2000-01-23T04:56:07.000+00:00
         principalPaymentAmountCents: 80000
         interestPaymentAmountCents: 10000
-        invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
-        id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+        invoiceId: fb46dcbe-40e1-4167-9e74-1a3d4798931d
+        id: 08128f4a-f432-4f5e-8e78-06b45dee25e5
         settledDate: 2024-01-03
         effectiveDate: 2024-01-01
         feePaymentAmountCents: 10000
@@ -4668,28 +4692,28 @@ components:
       properties:
         id:
           description: The UUID representing the payment order in Kanmon.
-          example: 952c5dce-112b-4839-a32c-daae2e1a7a44
+          example: 08128f4a-f432-4f5e-8e78-06b45dee25e5
           type: string
         issuedProductId:
           description: The UUID representing the issued product in Kanmon.
-          example: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
+          example: cacd8c9c-4027-40aa-b560-c293fe8ac788
           type: string
         drawRequestId:
           description: The UUID representing the draw request in Kanmon. (only present
             for Line of Credit).
-          example: b1df1bd5-1c73-4231-915c-64b49b9c61db
+          example: 0b8aad75-31c1-4a6f-9586-bda2fd28566b
           nullable: true
           type: string
         invoiceId:
           description: The UUID representing the invoice in Kanmon. (only present
             for Invoice Financing).
-          example: 7bef158f-61bb-4a7c-b337-278276a9f957
+          example: fb46dcbe-40e1-4167-9e74-1a3d4798931d
           nullable: true
           type: string
         platformInvoiceId:
           description: Your platform’s unique ID for the invoice. (only present for
             Invoice Financing).
-          example: 78ea95fb-3f77-4697-9cac-03b15d162100
+          example: 9ff4b43b-67d5-41fd-8bdc-164cbcebc01a
           nullable: true
           type: string
         effectiveDate:
@@ -4794,16 +4818,16 @@ components:
       example:
         totalPaymentAmountCents: 100000
         paymentOrder:
-          drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
-          issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
-          platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+          drawRequestId: 0b8aad75-31c1-4a6f-9586-bda2fd28566b
+          issuedProductId: cacd8c9c-4027-40aa-b560-c293fe8ac788
+          platformInvoiceId: 9ff4b43b-67d5-41fd-8bdc-164cbcebc01a
           feeType: INSUFFICIENT_FUNDS
           totalPaymentAmountCents: 100000
           createdAt: 2000-01-23T04:56:07.000+00:00
           principalPaymentAmountCents: 80000
           interestPaymentAmountCents: 10000
-          invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
-          id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+          invoiceId: fb46dcbe-40e1-4167-9e74-1a3d4798931d
+          id: 08128f4a-f432-4f5e-8e78-06b45dee25e5
           settledDate: 2024-01-03
           effectiveDate: 2024-01-01
           feePaymentAmountCents: 10000
@@ -4833,16 +4857,16 @@ components:
         paymentSchedule:
         - totalPaymentAmountCents: 100000
           paymentOrder:
-            drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
-            issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
-            platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+            drawRequestId: 0b8aad75-31c1-4a6f-9586-bda2fd28566b
+            issuedProductId: cacd8c9c-4027-40aa-b560-c293fe8ac788
+            platformInvoiceId: 9ff4b43b-67d5-41fd-8bdc-164cbcebc01a
             feeType: INSUFFICIENT_FUNDS
             totalPaymentAmountCents: 100000
             createdAt: 2000-01-23T04:56:07.000+00:00
             principalPaymentAmountCents: 80000
             interestPaymentAmountCents: 10000
-            invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
-            id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+            invoiceId: fb46dcbe-40e1-4167-9e74-1a3d4798931d
+            id: 08128f4a-f432-4f5e-8e78-06b45dee25e5
             settledDate: 2024-01-03
             effectiveDate: 2024-01-01
             feePaymentAmountCents: 10000
@@ -4852,16 +4876,16 @@ components:
           effectiveDate: 2024-01-01
         - totalPaymentAmountCents: 100000
           paymentOrder:
-            drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
-            issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
-            platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+            drawRequestId: 0b8aad75-31c1-4a6f-9586-bda2fd28566b
+            issuedProductId: cacd8c9c-4027-40aa-b560-c293fe8ac788
+            platformInvoiceId: 9ff4b43b-67d5-41fd-8bdc-164cbcebc01a
             feeType: INSUFFICIENT_FUNDS
             totalPaymentAmountCents: 100000
             createdAt: 2000-01-23T04:56:07.000+00:00
             principalPaymentAmountCents: 80000
             interestPaymentAmountCents: 10000
-            invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
-            id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+            invoiceId: fb46dcbe-40e1-4167-9e74-1a3d4798931d
+            id: 08128f4a-f432-4f5e-8e78-06b45dee25e5
             settledDate: 2024-01-03
             effectiveDate: 2024-01-01
             feePaymentAmountCents: 10000
@@ -4884,6 +4908,7 @@ components:
       - paymentSchedule
       type: object
     DrawRequestState:
+      description: The state of the draw request.
       enum:
       - DRAW_REQUEST_CREATED
       - DRAW_REQUEST_FUNDED
@@ -4896,7 +4921,7 @@ components:
         createdAt: 2022-06-01T03:57:26.115Z
         amountCents: 1000000
         feePercentage: 5
-        issuedProductId: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+        issuedProductId: 5021d8b7-2e36-4d88-aa61-7f2437285be5
         disbursementAmountCents: 960000
         id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
         feeAmountCents: 40000
@@ -4911,7 +4936,7 @@ components:
           type: string
         issuedProductId:
           description: The UUID representing the issued product in Kanmon.
-          example: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+          example: 5021d8b7-2e36-4d88-aa61-7f2437285be5
           type: string
         amountCents:
           description: The total draw request amount - in cents.
@@ -4993,7 +5018,7 @@ components:
         - createdAt: 2022-06-01T03:57:26.115Z
           amountCents: 1000000
           feePercentage: 5
-          issuedProductId: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+          issuedProductId: 5021d8b7-2e36-4d88-aa61-7f2437285be5
           disbursementAmountCents: 960000
           id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           feeAmountCents: 40000
@@ -5004,7 +5029,7 @@ components:
         - createdAt: 2022-06-01T03:57:26.115Z
           amountCents: 1000000
           feePercentage: 5
-          issuedProductId: 6be8ac2e-9139-420c-b3d6-8503b940c2d1
+          issuedProductId: 5021d8b7-2e36-4d88-aa61-7f2437285be5
           disbursementAmountCents: 960000
           id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           feeAmountCents: 40000
@@ -5050,16 +5075,17 @@ components:
       - invoices
       type: object
     BusinessDocumentType:
+      description: The type of document that is uploaded.
       enum:
       - INVOICE
       type: string
     BusinessDocument:
       example:
-        originalFileName: ad0b6877-4f0f-4b01-a624-094dba3a4947
+        originalFileName: 6fdb1ec8-617a-4a6e-87ad-064bfdf31741
         createdAt: 2000-01-23T04:56:07.000+00:00
         platformBusinessId: "12345"
         documentType: null
-        businessId: 709c1055-7cbf-477d-befc-5d8027d95ebb
+        businessId: 284cf08e-a0ba-470e-8d7e-b5c5aa83e1f5
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -5074,13 +5100,13 @@ components:
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 709c1055-7cbf-477d-befc-5d8027d95ebb
+          example: 284cf08e-a0ba-470e-8d7e-b5c5aa83e1f5
           type: string
         documentType:
           $ref: '#/components/schemas/BusinessDocumentType'
         originalFileName:
           description: The file’s original file name.
-          example: ad0b6877-4f0f-4b01-a624-094dba3a4947
+          example: 6fdb1ec8-617a-4a6e-87ad-064bfdf31741
           type: string
         createdAt:
           description: Creation UTC ISO 8601 timestamp of the business document.
@@ -5102,18 +5128,18 @@ components:
     CreateBusinessDocumentsResponse:
       example:
         documents:
-        - originalFileName: ad0b6877-4f0f-4b01-a624-094dba3a4947
+        - originalFileName: 6fdb1ec8-617a-4a6e-87ad-064bfdf31741
           createdAt: 2000-01-23T04:56:07.000+00:00
           platformBusinessId: "12345"
           documentType: null
-          businessId: 709c1055-7cbf-477d-befc-5d8027d95ebb
+          businessId: 284cf08e-a0ba-470e-8d7e-b5c5aa83e1f5
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           updatedAt: 2000-01-23T04:56:07.000+00:00
-        - originalFileName: ad0b6877-4f0f-4b01-a624-094dba3a4947
+        - originalFileName: 6fdb1ec8-617a-4a6e-87ad-064bfdf31741
           createdAt: 2000-01-23T04:56:07.000+00:00
           platformBusinessId: "12345"
           documentType: null
-          businessId: 709c1055-7cbf-477d-befc-5d8027d95ebb
+          businessId: 284cf08e-a0ba-470e-8d7e-b5c5aa83e1f5
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           updatedAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -5177,7 +5203,9 @@ components:
         payorAddress:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: The address of the payor.
+          description: "The address of the payor. The address is optional. If you\
+            \ provide the address, you need to provide all the required fields in\
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -5270,6 +5298,8 @@ components:
           invoiceIssuedDate: 2022-04-01
       properties:
         component:
+          description: Generates a session token for the invoice confirmation flow.
+            This option can be used if you have all the required invoice data.
           enum:
           - SESSION_INVOICE_FLOW
           type: string
@@ -5319,7 +5349,9 @@ components:
         payorAddress:
           allOf:
           - $ref: '#/components/schemas/Address'
-          description: The address of the payor.
+          description: "The address of the payor. The address is optional. If you\
+            \ provide the address, you need to provide all the required fields in\
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -5364,6 +5396,10 @@ components:
     InvoiceFlowWithInvoiceFileSessionTokenData:
       properties:
         component:
+          description: Generates a session token for the invoice confirmation flow.
+            This option can be used if you do not have all the required invoice data
+            for the SESSION_INVOICE_FLOW option. Optional data that is not provided
+            may be collected from the user. An invoice PDF must be provided.`
           enum:
           - SESSION_INVOICE_FLOW_WITH_INVOICE_FILE
           type: string
@@ -5814,21 +5850,11 @@ components:
       oneOf:
       - $ref: '#/components/schemas/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException'
       - $ref: '#/components/schemas/BusinessHasNoInvoiceFinancingProductException'
-    Business_address:
-      allOf:
-      - $ref: '#/components/schemas/Address'
-      description: The business’s address.
-      example:
-        city: San Mateo
-        state: CA
-        country: USA
-        zipcode: "94401"
-        addressLineOne: 123 Main Street
-      nullable: true
     User_address:
       allOf:
       - $ref: '#/components/schemas/Address'
-      description: The user’s address.
+      description: "The user’s address. The address is optional. If you provide the\
+        \ address, you need to provide all the required fields in the address."
       example:
         city: San Mateo
         state: CA
@@ -5839,7 +5865,8 @@ components:
     Invoice_payorAddress:
       allOf:
       - $ref: '#/components/schemas/Address'
-      description: The address of the payor.
+      description: "The address of the payor. The address is optional. If you provide\
+        \ the address, you need to provide all the required fields in the address."
       example:
         city: San Mateo
         state: CA
@@ -5848,12 +5875,11 @@ components:
         addressLineOne: 123 Main Street
       nullable: true
     InvoicePaymentPlan_repaymentWindow:
-      anyOf:
+      description: The repayment window
+      oneOf:
       - $ref: '#/components/schemas/FixedDateInvoiceRepaymentWindow'
       - $ref: '#/components/schemas/FixedDurationInvoiceRepaymentWindow'
       - $ref: '#/components/schemas/MultipleDurationInvoiceRepaymentWindow'
-      description: The repayment window
-      type: object
     Offer_terms:
       description: Terms of the offer.
       oneOf:
@@ -5880,16 +5906,16 @@ components:
       - $ref: '#/components/schemas/PaymentOrder'
       description: The payment order for this schedule item
       example:
-        drawRequestId: b1df1bd5-1c73-4231-915c-64b49b9c61db
-        issuedProductId: 64280ce6-4ffc-4394-ad31-5d2117fe55e6
-        platformInvoiceId: 78ea95fb-3f77-4697-9cac-03b15d162100
+        drawRequestId: 0b8aad75-31c1-4a6f-9586-bda2fd28566b
+        issuedProductId: cacd8c9c-4027-40aa-b560-c293fe8ac788
+        platformInvoiceId: 9ff4b43b-67d5-41fd-8bdc-164cbcebc01a
         feeType: INSUFFICIENT_FUNDS
         totalPaymentAmountCents: 100000
         createdAt: 2000-01-23T04:56:07.000+00:00
         principalPaymentAmountCents: 80000
         interestPaymentAmountCents: 10000
-        invoiceId: 7bef158f-61bb-4a7c-b337-278276a9f957
-        id: 952c5dce-112b-4839-a32c-daae2e1a7a44
+        invoiceId: fb46dcbe-40e1-4167-9e74-1a3d4798931d
+        id: 08128f4a-f432-4f5e-8e78-06b45dee25e5
         settledDate: 2024-01-03
         effectiveDate: 2024-01-01
         feePaymentAmountCents: 10000

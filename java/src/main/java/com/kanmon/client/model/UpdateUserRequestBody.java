@@ -52,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * UpdateUserRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class UpdateUserRequestBody {
   public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -177,7 +177,7 @@ public class UpdateUserRequestBody {
   }
 
    /**
-   * The user’s address.
+   * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
   **/
   @javax.annotation.Nullable

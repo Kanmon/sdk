@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets DrawRequestState
+ * The state of the draw request.
  */
 @JsonAdapter(DrawRequestState.Adapter.class)
 public enum DrawRequestState {

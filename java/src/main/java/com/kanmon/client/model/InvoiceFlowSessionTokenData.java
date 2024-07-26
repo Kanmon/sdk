@@ -52,10 +52,10 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFlowSessionTokenData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class InvoiceFlowSessionTokenData {
   /**
-   * Gets or Sets component
+   * Generates a session token for the invoice confirmation flow. This option can be used if you have all the required invoice data.
    */
   @JsonAdapter(ComponentEnum.Adapter.class)
   public enum ComponentEnum {
@@ -121,7 +121,7 @@ public class InvoiceFlowSessionTokenData {
   }
 
    /**
-   * Get component
+   * Generates a session token for the invoice confirmation flow. This option can be used if you have all the required invoice data.
    * @return component
   **/
   @javax.annotation.Nonnull

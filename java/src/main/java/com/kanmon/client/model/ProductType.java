@@ -24,20 +24,16 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * The status of the payment.
+ * Gets or Sets ProductType
  */
-@JsonAdapter(PaymentOrderStatus.Adapter.class)
-public enum PaymentOrderStatus {
+@JsonAdapter(ProductType.Adapter.class)
+public enum ProductType {
   
-  FAILED("FAILED"),
-  
-  PAID("PAID"),
-  
-  PENDING("PENDING");
+  LINE_OF_CREDIT("LINE_OF_CREDIT");
 
   private String value;
 
-  PaymentOrderStatus(String value) {
+  ProductType(String value) {
     this.value = value;
   }
 
@@ -50,8 +46,8 @@ public enum PaymentOrderStatus {
     return String.valueOf(value);
   }
 
-  public static PaymentOrderStatus fromValue(String value) {
-    for (PaymentOrderStatus b : PaymentOrderStatus.values()) {
+  public static ProductType fromValue(String value) {
+    for (ProductType b : ProductType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -59,22 +55,22 @@ public enum PaymentOrderStatus {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<PaymentOrderStatus> {
+  public static class Adapter extends TypeAdapter<ProductType> {
     @Override
-    public void write(final JsonWriter jsonWriter, final PaymentOrderStatus enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final ProductType enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public PaymentOrderStatus read(final JsonReader jsonReader) throws IOException {
+    public ProductType read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return PaymentOrderStatus.fromValue(value);
+      return ProductType.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    PaymentOrderStatus.fromValue(value);
+    ProductType.fromValue(value);
   }
 }
 

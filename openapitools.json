@@ -30,7 +30,8 @@
           "modelPackage": "com.kanmon.client.model",
           "snapshotVersion": false,
           "openApiNullable": true,
-          "library": "okhttp-gson"
+          "library": "okhttp-gson",
+          "serializationLibrary": "gson"
         },
         "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-java-generator-ignore"
       }

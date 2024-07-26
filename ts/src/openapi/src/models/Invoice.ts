@@ -25,12 +25,6 @@ import {
     InvoiceRepaymentScheduleFromJSONTyped,
     InvoiceRepaymentScheduleToJSON,
 } from './InvoiceRepaymentSchedule';
-import type { InvoiceStatus } from './InvoiceStatus';
-import {
-    InvoiceStatusFromJSON,
-    InvoiceStatusFromJSONTyped,
-    InvoiceStatusToJSON,
-} from './InvoiceStatus';
 
 /**
  * 
@@ -85,7 +79,7 @@ export interface Invoice {
      * @type {InvoicePayorAddress}
      * @memberof Invoice
      */
-    payorAddress: InvoicePayorAddress | null;
+    payorAddress?: InvoicePayorAddress;
     /**
      * `INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company.
      * @type {string}
@@ -117,11 +111,43 @@ export interface Invoice {
      */
     payorLastName: string | null;
     /**
-     * 
-     * @type {InvoiceStatus}
+     * The status of the invoice.
+     *   <table>
+     *     <tr>
+     *       <td>INVOICE_CREATED</td>
+     *       <td>The business has submitted an invoice and it is under review.<td/>
+     *     </tr>
+     *     <tr>
+     *       <td>INVOICE_FUNDED</td>
+     *       <td>
+     *         The funds for the invoice have been disbursed. The business is now
+     *         expected to pay back the funds. Note that an invoice transitions to
+     *         this state when the disbursement is initiated, not when the disbursement
+     *         has cleared.
+     *       </td>
+     *     </tr>
+     *     <tr>
+     *       <td>INVOICE_PAID_IN_FULL</td>
+     *       <td> A payment was made that fully paid off an outstanding invoice.</td>
+     *     </tr>
+     *     <tr>
+     *       <td>LATE</td>
+     *       <td>A payment was not made towards an outstanding invoice.</td>
+     *     </tr>
+     *     <tr>
+     *       <td>REJECTED</td>
+     *       <td> An invoice was rejected during the funding step.</td>
+     *     </tr>
+     *     <tr>
+     *       <td>DEFAULTED</td>
+     *       <td>A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.</td>
+     *     </tr>
+     *   </table>
+     *   
+     * @type {string}
      * @memberof Invoice
      */
-    status: InvoiceStatus;
+    status: InvoiceStatusEnum;
     /**
      * The unique identifier for the issued product in Kanmon′s system.
      * @type {string}
@@ -200,6 +226,19 @@ export const InvoicePayorTypeEnum = {
 } as const;
 export type InvoicePayorTypeEnum = typeof InvoicePayorTypeEnum[keyof typeof InvoicePayorTypeEnum];
 
+/**
+ * @export
+ */
+export const InvoiceStatusEnum = {
+    InvoiceCreated: 'INVOICE_CREATED',
+    InvoiceFunded: 'INVOICE_FUNDED',
+    InvoicePaidInFull: 'INVOICE_PAID_IN_FULL',
+    Rejected: 'REJECTED',
+    Defaulted: 'DEFAULTED',
+    Late: 'LATE'
+} as const;
+export type InvoiceStatusEnum = typeof InvoiceStatusEnum[keyof typeof InvoiceStatusEnum];
+
 
 /**
  * Check if a given object implements the Invoice interface.
@@ -212,7 +251,6 @@ export function instanceOfInvoice(value: object): boolean {
     if (!('invoiceDueDate' in value)) return false;
     if (!('invoiceIssuedDate' in value)) return false;
     if (!('payorEmail' in value)) return false;
-    if (!('payorAddress' in value)) return false;
     if (!('payorType' in value)) return false;
     if (!('payorBusinessName' in value)) return false;
     if (!('payorFirstName' in value)) return false;
@@ -250,13 +288,13 @@ export function InvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): I
         'invoiceDueDate': json['invoiceDueDate'],
         'invoiceIssuedDate': json['invoiceIssuedDate'],
         'payorEmail': json['payorEmail'],
-        'payorAddress': InvoicePayorAddressFromJSON(json['payorAddress']),
+        'payorAddress': json['payorAddress'] == null ? undefined : InvoicePayorAddressFromJSON(json['payorAddress']),
         'payorType': json['payorType'],
         'payorBusinessName': json['payorBusinessName'],
         'payorFirstName': json['payorFirstName'],
         'payorMiddleName': json['payorMiddleName'],
         'payorLastName': json['payorLastName'],
-        'status': InvoiceStatusFromJSON(json['status']),
+        'status': json['status'],
         'issuedProductId': json['issuedProductId'],
         'feeAmountCents': json['feeAmountCents'],
         'principalAmountCents': json['principalAmountCents'],
@@ -290,7 +328,7 @@ export function InvoiceToJSON(value?: Invoice | null): any {
         'payorFirstName': value['payorFirstName'],
         'payorMiddleName': value['payorMiddleName'],
         'payorLastName': value['payorLastName'],
-        'status': InvoiceStatusToJSON(value['status']),
+        'status': value['status'],
         'issuedProductId': value['issuedProductId'],
         'feeAmountCents': value['feeAmountCents'],
         'principalAmountCents': value['principalAmountCents'],

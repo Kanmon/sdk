@@ -47,7 +47,7 @@ public class PrequalificationsApiTest {
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        List<GetPrequalificationsResponse> response = api.getPrequalifiedBusinesses(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
+        GetPrequalificationsResponse response = api.getPrequalifiedBusinesses(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

@@ -51,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * SessionInvoiceWithInvoiceFile
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class SessionInvoiceWithInvoiceFile {
   public static final String SERIALIZED_NAME_PLATFORM_INVOICE_ID = "platformInvoiceId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_INVOICE_ID)
@@ -303,7 +303,7 @@ public class SessionInvoiceWithInvoiceFile {
   }
 
    /**
-   * The address of the payor.
+   * The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return payorAddress
   **/
   @javax.annotation.Nullable

@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BusinessAddress } from './BusinessAddress';
+import type { Address } from './Address';
 import {
-    BusinessAddressFromJSON,
-    BusinessAddressFromJSONTyped,
-    BusinessAddressToJSON,
-} from './BusinessAddress';
+    AddressFromJSON,
+    AddressFromJSONTyped,
+    AddressToJSON,
+} from './Address';
 
 /**
  * 
@@ -45,11 +45,11 @@ export interface Business {
      */
     name: object | null;
     /**
-     * 
-     * @type {BusinessAddress}
+     * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+     * @type {Address}
      * @memberof Business
      */
-    address: BusinessAddress | null;
+    address?: Address;
     /**
      * The business’s EIN. Only digits, no formatting.
      * @type {object}
@@ -94,7 +94,6 @@ export interface Business {
 export function instanceOfBusiness(value: object): boolean {
     if (!('id' in value)) return false;
     if (!('name' in value)) return false;
-    if (!('address' in value)) return false;
     if (!('ein' in value)) return false;
     if (!('phoneNumber' in value)) return false;
     if (!('website' in value)) return false;
@@ -117,7 +116,7 @@ export function BusinessFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'id': json['id'],
         'platformBusinessId': json['platformBusinessId'] == null ? undefined : json['platformBusinessId'],
         'name': json['name'],
-        'address': BusinessAddressFromJSON(json['address']),
+        'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
         'ein': json['ein'],
         'phoneNumber': json['phoneNumber'],
         'website': json['website'],
@@ -136,7 +135,7 @@ export function BusinessToJSON(value?: Business | null): any {
         'id': value['id'],
         'platformBusinessId': value['platformBusinessId'],
         'name': value['name'],
-        'address': BusinessAddressToJSON(value['address']),
+        'address': AddressToJSON(value['address']),
         'ein': value['ein'],
         'phoneNumber': value['phoneNumber'],
         'website': value['website'],

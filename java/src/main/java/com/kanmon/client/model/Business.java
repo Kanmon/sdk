@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.BusinessAddress;
+import com.kanmon.client.model.Address;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -50,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * Business
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-18T19:11:29.794846-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class Business {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -66,7 +66,7 @@ public class Business {
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
-  private BusinessAddress address;
+  private Address address;
 
   public static final String SERIALIZED_NAME_EIN = "ein";
   @SerializedName(SERIALIZED_NAME_EIN)
@@ -152,21 +152,21 @@ public class Business {
   }
 
 
-  public Business address(BusinessAddress address) {
+  public Business address(Address address) {
     this.address = address;
     return this;
   }
 
    /**
-   * Get address
+   * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
   **/
   @javax.annotation.Nullable
-  public BusinessAddress getAddress() {
+  public Address getAddress() {
     return address;
   }
 
-  public void setAddress(BusinessAddress address) {
+  public void setAddress(Address address) {
     this.address = address;
   }
 
@@ -363,7 +363,6 @@ public class Business {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("name");
-    openapiRequiredFields.add("address");
     openapiRequiredFields.add("ein");
     openapiRequiredFields.add("phoneNumber");
     openapiRequiredFields.add("website");
@@ -406,8 +405,10 @@ public class Business {
       if ((jsonObj.get("platformBusinessId") != null && !jsonObj.get("platformBusinessId").isJsonNull()) && !jsonObj.get("platformBusinessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformBusinessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformBusinessId").toString()));
       }
-      // validate the required field `address`
-      BusinessAddress.validateJsonElement(jsonObj.get("address"));
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("address"));
+      }
       if (!jsonObj.get("createdAt").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `createdAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdAt").toString()));
       }
