@@ -51,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentScheduleItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T19:00:57.767815-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class PaymentScheduleItem {
   public static final String SERIALIZED_NAME_EFFECTIVE_DATE = "effectiveDate";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_DATE)

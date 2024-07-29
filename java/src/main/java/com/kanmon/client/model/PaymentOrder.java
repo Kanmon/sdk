@@ -18,6 +18,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.PaymentOrderStatus;
 import java.io.IOException;
@@ -52,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentOrder
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T19:00:57.767815-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class PaymentOrder {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -143,12 +144,20 @@ public class PaymentOrder {
 
       @Override
       public FeeTypeEnum read(final JsonReader jsonReader) throws IOException {
+        if (jsonReader.peek() == JsonToken.NULL) {
+          jsonReader.nextNull();
+          return null;
+        }
         String value =  jsonReader.nextString();
         return FeeTypeEnum.fromValue(value);
       }
     }
 
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement.isJsonNull()) {
+        FeeTypeEnum.fromValue(null);
+        return;
+      }
       String value = jsonElement.getAsString();
       FeeTypeEnum.fromValue(value);
     }

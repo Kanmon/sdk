@@ -19,6 +19,12 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
 
 /**
  * 
@@ -28,10 +34,10 @@ import {
 export interface InvoiceFinancingServicingData {
     /**
      * 
-     * @type {string}
+     * @type {ProductType}
      * @memberof InvoiceFinancingServicingData
      */
-    productType: InvoiceFinancingServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The total limit allowed - in cents.
      * @type {number}
@@ -51,16 +57,6 @@ export interface InvoiceFinancingServicingData {
      */
     availableLimitCents: number;
 }
-
-
-/**
- * @export
- */
-export const InvoiceFinancingServicingDataProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING'
-} as const;
-export type InvoiceFinancingServicingDataProductTypeEnum = typeof InvoiceFinancingServicingDataProductTypeEnum[keyof typeof InvoiceFinancingServicingDataProductTypeEnum];
-
 
 /**
  * Check if a given object implements the InvoiceFinancingServicingData interface.
@@ -83,7 +79,7 @@ export function InvoiceFinancingServicingDataFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
         'availableLimitCents': json['availableLimitCents'],
@@ -96,7 +92,7 @@ export function InvoiceFinancingServicingDataToJSON(value?: InvoiceFinancingServ
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
         'availableLimitCents': value['availableLimitCents'],

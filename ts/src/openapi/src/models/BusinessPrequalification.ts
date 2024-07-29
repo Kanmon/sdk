@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { mapValues } from '../runtime';
  */
 export interface BusinessPrequalification {
     /**
-     * The product that the business is prequalified for. This will be null if `isPrequalified` is false.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof BusinessPrequalification
      */
-    product: BusinessPrequalificationProductEnum | null;
+    product: ProductType;
     /**
      * The UUID representing your platform in Kanmon.
      * @type {string}
@@ -69,19 +76,6 @@ export interface BusinessPrequalification {
     updatedAt: Date;
 }
 
-
-/**
- * @export
- */
-export const BusinessPrequalificationProductEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT'
-} as const;
-export type BusinessPrequalificationProductEnum = typeof BusinessPrequalificationProductEnum[keyof typeof BusinessPrequalificationProductEnum];
-
-
 /**
  * Check if a given object implements the BusinessPrequalification interface.
  */
@@ -107,7 +101,7 @@ export function BusinessPrequalificationFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'product': json['product'],
+        'product': ProductTypeFromJSON(json['product']),
         'platformId': json['platformId'],
         'businessId': json['businessId'],
         'platformBusinessId': json['platformBusinessId'],
@@ -124,7 +118,7 @@ export function BusinessPrequalificationToJSON(value?: BusinessPrequalification 
     }
     return {
         
-        'product': value['product'],
+        'product': ProductTypeToJSON(value['product']),
         'platformId': value['platformId'],
         'businessId': value['businessId'],
         'platformBusinessId': value['platformBusinessId'],

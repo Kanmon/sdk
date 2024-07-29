@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -21,10 +28,10 @@ import { mapValues } from '../runtime';
 export interface TermLoanServicingData {
     /**
      * 
-     * @type {string}
+     * @type {ProductType}
      * @memberof TermLoanServicingData
      */
-    productType: TermLoanServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The total loan amount - in cents.
      * @type {number}
@@ -63,16 +70,6 @@ export interface TermLoanServicingData {
     nextPaymentDate: string | null;
 }
 
-
-/**
- * @export
- */
-export const TermLoanServicingDataProductTypeEnum = {
-    TermLoan: 'TERM_LOAN'
-} as const;
-export type TermLoanServicingDataProductTypeEnum = typeof TermLoanServicingDataProductTypeEnum[keyof typeof TermLoanServicingDataProductTypeEnum];
-
-
 /**
  * Check if a given object implements the TermLoanServicingData interface.
  */
@@ -97,7 +94,7 @@ export function TermLoanServicingDataFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'loanAmountCents': json['loanAmountCents'],
         'originationFeeCents': json['originationFeeCents'],
         'principalBalanceCents': json['principalBalanceCents'],
@@ -113,7 +110,7 @@ export function TermLoanServicingDataToJSON(value?: TermLoanServicingData | null
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'loanAmountCents': value['loanAmountCents'],
         'originationFeeCents': value['originationFeeCents'],
         'principalBalanceCents': value['principalBalanceCents'],

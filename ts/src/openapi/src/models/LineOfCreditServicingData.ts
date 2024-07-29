@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -21,10 +28,10 @@ import { mapValues } from '../runtime';
 export interface LineOfCreditServicingData {
     /**
      * 
-     * @type {string}
+     * @type {ProductType}
      * @memberof LineOfCreditServicingData
      */
-    productType: LineOfCreditServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The total credit limit - in cents.
      * @type {number}
@@ -57,16 +64,6 @@ export interface LineOfCreditServicingData {
     repaymentDurationMonths: number;
 }
 
-
-/**
- * @export
- */
-export const LineOfCreditServicingDataProductTypeEnum = {
-    LineOfCredit: 'LINE_OF_CREDIT'
-} as const;
-export type LineOfCreditServicingDataProductTypeEnum = typeof LineOfCreditServicingDataProductTypeEnum[keyof typeof LineOfCreditServicingDataProductTypeEnum];
-
-
 /**
  * Check if a given object implements the LineOfCreditServicingData interface.
  */
@@ -90,7 +87,7 @@ export function LineOfCreditServicingDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'totalLimitCents': json['totalLimitCents'],
         'availableLimitCents': json['availableLimitCents'],
         'interestRatePercentage': json['interestRatePercentage'],
@@ -105,7 +102,7 @@ export function LineOfCreditServicingDataToJSON(value?: LineOfCreditServicingDat
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'totalLimitCents': value['totalLimitCents'],
         'availableLimitCents': value['availableLimitCents'],
         'interestRatePercentage': value['interestRatePercentage'],

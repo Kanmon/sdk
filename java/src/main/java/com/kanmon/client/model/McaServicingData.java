@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -50,61 +51,11 @@ import com.kanmon.client.JSON;
 /**
  * McaServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T19:00:57.767815-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class McaServicingData {
-  /**
-   * Gets or Sets productType
-   */
-  @JsonAdapter(ProductTypeEnum.Adapter.class)
-  public enum ProductTypeEnum {
-    MCA("MCA");
-
-    private String value;
-
-    ProductTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ProductTypeEnum fromValue(String value) {
-      for (ProductTypeEnum b : ProductTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ProductTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ProductTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ProductTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ProductTypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      ProductTypeEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private ProductTypeEnum productType;
+  private ProductType productType;
 
   public static final String SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS = "advanceAmountCents";
   @SerializedName(SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS)
@@ -193,7 +144,7 @@ public class McaServicingData {
   public McaServicingData() {
   }
 
-  public McaServicingData productType(ProductTypeEnum productType) {
+  public McaServicingData productType(ProductType productType) {
     this.productType = productType;
     return this;
   }
@@ -203,11 +154,11 @@ public class McaServicingData {
    * @return productType
   **/
   @javax.annotation.Nonnull
-  public ProductTypeEnum getProductType() {
+  public ProductType getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductTypeEnum productType) {
+  public void setProductType(ProductType productType) {
     this.productType = productType;
   }
 
@@ -453,11 +404,8 @@ public class McaServicingData {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("productType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
-      }
       // validate the required field `productType`
-      ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
+      ProductType.validateJsonElement(jsonObj.get("productType"));
       if (!jsonObj.get("repaymentFrequency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `repaymentFrequency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("repaymentFrequency").toString()));
       }

@@ -29,6 +29,12 @@ import com.google.gson.stream.JsonWriter;
 @JsonAdapter(ProductType.Adapter.class)
 public enum ProductType {
   
+  INVOICE_FINANCING("INVOICE_FINANCING"),
+  
+  TERM_LOAN("TERM_LOAN"),
+  
+  MCA("MCA"),
+  
   LINE_OF_CREDIT("LINE_OF_CREDIT");
 
   private String value;

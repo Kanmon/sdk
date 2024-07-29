@@ -53,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * GetIssuedProductsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T14:34:18.978357-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-26T19:00:57.767815-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class GetIssuedProductsResponse {
   public static final String SERIALIZED_NAME_ISSUED_PRODUCTS = "issuedProducts";
   @SerializedName(SERIALIZED_NAME_ISSUED_PRODUCTS)

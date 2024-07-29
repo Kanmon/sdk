@@ -18,6 +18,9 @@
  * @export
  */
 export const ProductType = {
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
     LineOfCredit: 'LINE_OF_CREDIT'
 } as const;
 export type ProductType = typeof ProductType[keyof typeof ProductType];
