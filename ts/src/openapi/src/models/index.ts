@@ -58,6 +58,7 @@ export * from './InvoicePaymentPlanRepaymentWindow';
 export * from './InvoicePayorAddress';
 export * from './InvoiceRepaymentSchedule';
 export * from './InvoiceRepaymentScheduleItem';
+export * from './InvoiceStatus';
 export * from './IssuedProduct';
 export * from './IssuedProductNotFoundException';
 export * from './IssuedProductServicingData';

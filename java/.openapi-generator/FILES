@@ -99,6 +99,7 @@ src/main/java/com/kanmon/client/model/InvoicePaymentPlanRepaymentWindow.java
 src/main/java/com/kanmon/client/model/InvoicePayorAddress.java
 src/main/java/com/kanmon/client/model/InvoiceRepaymentSchedule.java
 src/main/java/com/kanmon/client/model/InvoiceRepaymentScheduleItem.java
+src/main/java/com/kanmon/client/model/InvoiceStatus.java
 src/main/java/com/kanmon/client/model/IssuedProduct.java
 src/main/java/com/kanmon/client/model/IssuedProductNotFoundException.java
 src/main/java/com/kanmon/client/model/IssuedProductServicingData.java

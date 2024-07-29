@@ -71,6 +71,7 @@ src/models/InvoicePaymentPlanRepaymentWindow.ts
 src/models/InvoicePayorAddress.ts
 src/models/InvoiceRepaymentSchedule.ts
 src/models/InvoiceRepaymentScheduleItem.ts
+src/models/InvoiceStatus.ts
 src/models/IssuedProduct.ts
 src/models/IssuedProductNotFoundException.ts
 src/models/IssuedProductServicingData.ts
