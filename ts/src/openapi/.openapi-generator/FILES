@@ -20,6 +20,7 @@ src/models/BankAccountAlreadyExistException.ts
 src/models/BankAccountNotFoundException.ts
 src/models/BankStatementsInvalidException.ts
 src/models/Business.ts
+src/models/BusinessAddress.ts
 src/models/BusinessAlreadyExistsException.ts
 src/models/BusinessBankAccount.ts
 src/models/BusinessDocument.ts
@@ -100,7 +101,6 @@ src/models/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsForBusinessException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsWithEmailException.ts
 src/models/PrimaryBusinessOwnerNotFoundException.ts
-src/models/ProductType.ts
 src/models/SessionInvoice.ts
 src/models/SessionInvoiceWithInvoiceFile.ts
 src/models/SomeOffersHaveExpiredException.ts

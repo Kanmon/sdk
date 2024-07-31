@@ -23,7 +23,6 @@ import com.kanmon.client.model.InvoiceFinancingServicingData;
 import com.kanmon.client.model.InvoicePaymentPlan;
 import com.kanmon.client.model.LineOfCreditServicingData;
 import com.kanmon.client.model.McaServicingData;
-import com.kanmon.client.model.ProductType;
 import com.kanmon.client.model.TermLoanServicingData;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -66,7 +65,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class IssuedProductServicingData extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(IssuedProductServicingData.class.getName());
 

@@ -125,7 +125,6 @@ public class JSON {
 
     static {
         GsonBuilder gsonBuilder = createGson();
-        gsonBuilder.serializeNulls();
         gsonBuilder.registerTypeAdapter(Date.class, dateTypeAdapter);
         gsonBuilder.registerTypeAdapter(java.sql.Date.class, sqlDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
@@ -138,6 +137,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BankAccountNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BankStatementsInvalidException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.Business.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessAlreadyExistsException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessBankAccount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessDocument.CustomTypeAdapterFactory());

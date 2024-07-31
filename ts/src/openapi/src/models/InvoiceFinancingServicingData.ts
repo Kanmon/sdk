@@ -19,12 +19,6 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
 
 /**
  * 
@@ -33,11 +27,11 @@ import {
  */
 export interface InvoiceFinancingServicingData {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingServicingData`.
+     * @type {string}
      * @memberof InvoiceFinancingServicingData
      */
-    productType: ProductType;
+    productType: string;
     /**
      * The total limit allowed - in cents.
      * @type {number}
@@ -79,7 +73,7 @@ export function InvoiceFinancingServicingDataFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
         'availableLimitCents': json['availableLimitCents'],
@@ -92,7 +86,7 @@ export function InvoiceFinancingServicingDataToJSON(value?: InvoiceFinancingServ
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
         'availableLimitCents': value['availableLimitCents'],

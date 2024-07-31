@@ -20,7 +20,6 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.InvoicePaymentPlan;
-import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -54,11 +53,11 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFinancingServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class InvoiceFinancingServicingData {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private ProductType productType;
+  private String productType;
 
   public static final String SERIALIZED_NAME_TOTAL_LIMIT_CENTS = "totalLimitCents";
   @SerializedName(SERIALIZED_NAME_TOTAL_LIMIT_CENTS)
@@ -75,21 +74,21 @@ public class InvoiceFinancingServicingData {
   public InvoiceFinancingServicingData() {
   }
 
-  public InvoiceFinancingServicingData productType(ProductType productType) {
+  public InvoiceFinancingServicingData productType(String productType) {
     this.productType = productType;
     return this;
   }
 
    /**
-   * Get productType
+   * The type of product being offered. Always &#x60;INVOICE_FINANCING&#x60; for &#x60;InvoiceFinancingServicingData&#x60;.
    * @return productType
   **/
   @javax.annotation.Nonnull
-  public ProductType getProductType() {
+  public String getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductType productType) {
+  public void setProductType(String productType) {
     this.productType = productType;
   }
 
@@ -251,8 +250,9 @@ public class InvoiceFinancingServicingData {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `productType`
-      ProductType.validateJsonElement(jsonObj.get("productType"));
+      if (!jsonObj.get("productType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
+      }
       // ensure the json data is an array
       if (!jsonObj.get("pricingPlans").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricingPlans` to be an array in the JSON string but got `%s`", jsonObj.get("pricingPlans").toString()));

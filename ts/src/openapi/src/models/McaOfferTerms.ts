@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface McaOfferTerms {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `MCA` for `McaOfferTerms`.
+     * @type {string}
      * @memberof McaOfferTerms
      */
-    productType: ProductType;
+    productType: string;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -100,7 +93,7 @@ export function McaOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'advanceAmountCents': json['advanceAmountCents'],
         'repaymentPercentage': json['repaymentPercentage'],
         'feeFactor': json['feeFactor'],
@@ -115,7 +108,7 @@ export function McaOfferTermsToJSON(value?: McaOfferTerms | null): any {
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'advanceAmountCents': value['advanceAmountCents'],
         'repaymentPercentage': value['repaymentPercentage'],
         'feeFactor': value['feeFactor'],

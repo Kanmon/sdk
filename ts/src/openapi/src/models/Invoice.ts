@@ -91,7 +91,7 @@ export interface Invoice {
      * @type {string}
      * @memberof Invoice
      */
-    payorType: InvoicePayorTypeEnum | null;
+    payorType?: InvoicePayorTypeEnum;
     /**
      * The registered name of the payor business when the payor is a business and not an individual.
      * @type {string}
@@ -212,7 +212,6 @@ export function instanceOfInvoice(value: object): boolean {
     if (!('invoiceDueDate' in value)) return false;
     if (!('invoiceIssuedDate' in value)) return false;
     if (!('payorEmail' in value)) return false;
-    if (!('payorType' in value)) return false;
     if (!('payorBusinessName' in value)) return false;
     if (!('payorFirstName' in value)) return false;
     if (!('payorMiddleName' in value)) return false;
@@ -250,7 +249,7 @@ export function InvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): I
         'invoiceIssuedDate': json['invoiceIssuedDate'],
         'payorEmail': json['payorEmail'],
         'payorAddress': json['payorAddress'] == null ? undefined : InvoicePayorAddressFromJSON(json['payorAddress']),
-        'payorType': json['payorType'],
+        'payorType': json['payorType'] == null ? undefined : json['payorType'],
         'payorBusinessName': json['payorBusinessName'],
         'payorFirstName': json['payorFirstName'],
         'payorMiddleName': json['payorMiddleName'],

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -52,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * User
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class User {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -76,15 +77,15 @@ public class User {
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
-  private Object email;
+  private String email;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  private Object firstName;
+  private String firstName;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
-  private Object lastName;
+  private String lastName;
 
   /**
    * Gets or Sets roles
@@ -252,7 +253,7 @@ public class User {
   }
 
 
-  public User email(Object email) {
+  public User email(String email) {
     this.email = email;
     return this;
   }
@@ -262,16 +263,16 @@ public class User {
    * @return email
   **/
   @javax.annotation.Nullable
-  public Object getEmail() {
+  public String getEmail() {
     return email;
   }
 
-  public void setEmail(Object email) {
+  public void setEmail(String email) {
     this.email = email;
   }
 
 
-  public User firstName(Object firstName) {
+  public User firstName(String firstName) {
     this.firstName = firstName;
     return this;
   }
@@ -281,16 +282,16 @@ public class User {
    * @return firstName
   **/
   @javax.annotation.Nullable
-  public Object getFirstName() {
+  public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(Object firstName) {
+  public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
 
-  public User lastName(Object lastName) {
+  public User lastName(String lastName) {
     this.lastName = lastName;
     return this;
   }
@@ -300,11 +301,11 @@ public class User {
    * @return lastName
   **/
   @javax.annotation.Nullable
-  public Object getLastName() {
+  public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(Object lastName) {
+  public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
@@ -417,9 +418,20 @@ public class User {
         Objects.equals(this.updatedAt, user.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, platformUserId, platformBusinessId, businessId, address, email, firstName, lastName, roles, metadata, createdAt, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -480,8 +492,6 @@ public class User {
     openapiRequiredFields.add("businessId");
     openapiRequiredFields.add("address");
     openapiRequiredFields.add("email");
-    openapiRequiredFields.add("firstName");
-    openapiRequiredFields.add("lastName");
     openapiRequiredFields.add("metadata");
     openapiRequiredFields.add("createdAt");
     openapiRequiredFields.add("updatedAt");
@@ -529,6 +539,15 @@ public class User {
       }
       // validate the required field `address`
       UserAddress.validateJsonElement(jsonObj.get("address"));
+      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+      }
+      if ((jsonObj.get("firstName") != null && !jsonObj.get("firstName").isJsonNull()) && !jsonObj.get("firstName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `firstName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("firstName").toString()));
+      }
+      if ((jsonObj.get("lastName") != null && !jsonObj.get("lastName").isJsonNull()) && !jsonObj.get("lastName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `lastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lastName").toString()));
+      }
       // ensure the optional json data is an array if present
       if (jsonObj.get("roles") != null && !jsonObj.get("roles").isJsonNull() && !jsonObj.get("roles").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `roles` to be an array in the JSON string but got `%s`", jsonObj.get("roles").toString()));

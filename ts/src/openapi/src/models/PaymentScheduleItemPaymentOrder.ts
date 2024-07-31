@@ -97,7 +97,7 @@ export interface PaymentScheduleItemPaymentOrder {
      * @type {string}
      * @memberof PaymentScheduleItemPaymentOrder
      */
-    feeType: PaymentScheduleItemPaymentOrderFeeTypeEnum | null;
+    feeType?: PaymentScheduleItemPaymentOrderFeeTypeEnum;
     /**
      * The direction of the payment.
      * @type {string}
@@ -161,7 +161,6 @@ export function instanceOfPaymentScheduleItemPaymentOrder(value: object): boolea
     if (!('principalPaymentAmountCents' in value)) return false;
     if (!('interestPaymentAmountCents' in value)) return false;
     if (!('feePaymentAmountCents' in value)) return false;
-    if (!('feeType' in value)) return false;
     if (!('direction' in value)) return false;
     if (!('status' in value)) return false;
     if (!('createdAt' in value)) return false;
@@ -190,7 +189,7 @@ export function PaymentScheduleItemPaymentOrderFromJSONTyped(json: any, ignoreDi
         'principalPaymentAmountCents': json['principalPaymentAmountCents'],
         'interestPaymentAmountCents': json['interestPaymentAmountCents'],
         'feePaymentAmountCents': json['feePaymentAmountCents'],
-        'feeType': json['feeType'],
+        'feeType': json['feeType'] == null ? undefined : json['feeType'],
         'direction': json['direction'],
         'status': PaymentOrderStatusFromJSON(json['status']),
         'createdAt': (new Date(json['createdAt'])),

@@ -43,7 +43,7 @@ export interface PaymentScheduleItem {
      * @type {PaymentScheduleItemPaymentOrder}
      * @memberof PaymentScheduleItem
      */
-    paymentOrder: PaymentScheduleItemPaymentOrder | null;
+    paymentOrder?: PaymentScheduleItemPaymentOrder;
 }
 
 /**
@@ -52,7 +52,6 @@ export interface PaymentScheduleItem {
 export function instanceOfPaymentScheduleItem(value: object): boolean {
     if (!('effectiveDate' in value)) return false;
     if (!('totalPaymentAmountCents' in value)) return false;
-    if (!('paymentOrder' in value)) return false;
     return true;
 }
 
@@ -68,7 +67,7 @@ export function PaymentScheduleItemFromJSONTyped(json: any, ignoreDiscriminator:
         
         'effectiveDate': json['effectiveDate'],
         'totalPaymentAmountCents': json['totalPaymentAmountCents'],
-        'paymentOrder': PaymentScheduleItemPaymentOrderFromJSON(json['paymentOrder']),
+        'paymentOrder': json['paymentOrder'] == null ? undefined : PaymentScheduleItemPaymentOrderFromJSON(json['paymentOrder']),
     };
 }
 

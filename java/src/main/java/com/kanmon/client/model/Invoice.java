@@ -18,7 +18,6 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.InvoicePayorAddress;
 import com.kanmon.client.model.InvoiceRepaymentSchedule;
@@ -55,7 +54,7 @@ import com.kanmon.client.JSON;
 /**
  * Invoice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class Invoice {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -130,20 +129,12 @@ public class Invoice {
 
       @Override
       public PayorTypeEnum read(final JsonReader jsonReader) throws IOException {
-        if (jsonReader.peek() == JsonToken.NULL) {
-          jsonReader.nextNull();
-          return null;
-        }
         String value =  jsonReader.nextString();
         return PayorTypeEnum.fromValue(value);
       }
     }
 
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement.isJsonNull()) {
-        PayorTypeEnum.fromValue(null);
-        return;
-      }
       String value = jsonElement.getAsString();
       PayorTypeEnum.fromValue(value);
     }
@@ -834,7 +825,6 @@ public class Invoice {
     openapiRequiredFields.add("invoiceDueDate");
     openapiRequiredFields.add("invoiceIssuedDate");
     openapiRequiredFields.add("payorEmail");
-    openapiRequiredFields.add("payorType");
     openapiRequiredFields.add("payorBusinessName");
     openapiRequiredFields.add("payorFirstName");
     openapiRequiredFields.add("payorMiddleName");
@@ -906,8 +896,10 @@ public class Invoice {
       if ((jsonObj.get("payorType") != null && !jsonObj.get("payorType").isJsonNull()) && !jsonObj.get("payorType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorType").toString()));
       }
-      // validate the required field `payorType`
-      PayorTypeEnum.validateJsonElement(jsonObj.get("payorType"));
+      // validate the optional field `payorType`
+      if (jsonObj.get("payorType") != null && !jsonObj.get("payorType").isJsonNull()) {
+        PayorTypeEnum.validateJsonElement(jsonObj.get("payorType"));
+      }
       if ((jsonObj.get("payorBusinessName") != null && !jsonObj.get("payorBusinessName").isJsonNull()) && !jsonObj.get("payorBusinessName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorBusinessName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorBusinessName").toString()));
       }

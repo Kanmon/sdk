@@ -58,22 +58,22 @@ export interface User {
     address: UserAddress | null;
     /**
      * The user’s email.
-     * @type {object}
+     * @type {string}
      * @memberof User
      */
-    email: object | null;
+    email: string | null;
     /**
      * The user’s first name.
-     * @type {object}
+     * @type {string}
      * @memberof User
      */
-    firstName: object | null;
+    firstName?: string;
     /**
      * The user’s last name.
-     * @type {object}
+     * @type {string}
      * @memberof User
      */
-    lastName: object | null;
+    lastName?: string;
     /**
      * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>
      * @type {Array<string>}
@@ -120,8 +120,6 @@ export function instanceOfUser(value: object): boolean {
     if (!('businessId' in value)) return false;
     if (!('address' in value)) return false;
     if (!('email' in value)) return false;
-    if (!('firstName' in value)) return false;
-    if (!('lastName' in value)) return false;
     if (!('metadata' in value)) return false;
     if (!('createdAt' in value)) return false;
     if (!('updatedAt' in value)) return false;
@@ -144,8 +142,8 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'businessId': json['businessId'],
         'address': UserAddressFromJSON(json['address']),
         'email': json['email'],
-        'firstName': json['firstName'],
-        'lastName': json['lastName'],
+        'firstName': json['firstName'] == null ? undefined : json['firstName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
         'roles': json['roles'] == null ? undefined : json['roles'],
         'metadata': json['metadata'],
         'createdAt': json['createdAt'],

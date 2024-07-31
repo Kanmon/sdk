@@ -19,9 +19,10 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.Address;
+import com.kanmon.client.model.BusinessAddress;
 import java.io.IOException;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -50,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * Business
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class Business {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -66,7 +67,7 @@ public class Business {
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
-  private Address address;
+  private BusinessAddress address;
 
   public static final String SERIALIZED_NAME_EIN = "ein";
   @SerializedName(SERIALIZED_NAME_EIN)
@@ -152,21 +153,21 @@ public class Business {
   }
 
 
-  public Business address(Address address) {
+  public Business address(BusinessAddress address) {
     this.address = address;
     return this;
   }
 
    /**
-   * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+   * Get address
    * @return address
   **/
   @javax.annotation.Nullable
-  public Address getAddress() {
+  public BusinessAddress getAddress() {
     return address;
   }
 
-  public void setAddress(Address address) {
+  public void setAddress(BusinessAddress address) {
     this.address = address;
   }
 
@@ -307,9 +308,20 @@ public class Business {
         Objects.equals(this.updatedAt, business.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, platformBusinessId, name, address, ein, phoneNumber, website, metadata, createdAt, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -407,7 +419,7 @@ public class Business {
       }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
-        Address.validateJsonElement(jsonObj.get("address"));
+        BusinessAddress.validateJsonElement(jsonObj.get("address"));
       }
       if (!jsonObj.get("createdAt").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `createdAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdAt").toString()));

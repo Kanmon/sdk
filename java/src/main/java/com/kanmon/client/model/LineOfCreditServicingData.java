@@ -19,7 +19,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -51,11 +50,11 @@ import com.kanmon.client.JSON;
 /**
  * LineOfCreditServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class LineOfCreditServicingData {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private ProductType productType;
+  private String productType;
 
   public static final String SERIALIZED_NAME_TOTAL_LIMIT_CENTS = "totalLimitCents";
   @SerializedName(SERIALIZED_NAME_TOTAL_LIMIT_CENTS)
@@ -80,21 +79,21 @@ public class LineOfCreditServicingData {
   public LineOfCreditServicingData() {
   }
 
-  public LineOfCreditServicingData productType(ProductType productType) {
+  public LineOfCreditServicingData productType(String productType) {
     this.productType = productType;
     return this;
   }
 
    /**
-   * Get productType
+   * The type of product being offered. Always &#x60;LINE_OF_CREDIT&#x60; for &#x60;LineOfCreditServicingData&#x60;.
    * @return productType
   **/
   @javax.annotation.Nonnull
-  public ProductType getProductType() {
+  public String getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductType productType) {
+  public void setProductType(String productType) {
     this.productType = productType;
   }
 
@@ -294,8 +293,9 @@ public class LineOfCreditServicingData {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `productType`
-      ProductType.validateJsonElement(jsonObj.get("productType"));
+      if (!jsonObj.get("productType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

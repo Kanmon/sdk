@@ -50,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * FixedDurationInvoiceRepaymentWindow
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class FixedDurationInvoiceRepaymentWindow {
   /**
    * Gets or Sets repaymentType

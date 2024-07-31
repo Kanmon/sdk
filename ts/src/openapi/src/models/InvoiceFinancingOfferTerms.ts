@@ -19,12 +19,6 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
 
 /**
  * 
@@ -33,11 +27,11 @@ import {
  */
 export interface InvoiceFinancingOfferTerms {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.
+     * @type {string}
      * @memberof InvoiceFinancingOfferTerms
      */
-    productType: ProductType;
+    productType: string;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
@@ -72,7 +66,7 @@ export function InvoiceFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
     };
@@ -84,7 +78,7 @@ export function InvoiceFinancingOfferTermsToJSON(value?: InvoiceFinancingOfferTe
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
     };

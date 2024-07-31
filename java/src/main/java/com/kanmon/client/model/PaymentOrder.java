@@ -18,13 +18,13 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.PaymentOrderStatus;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -53,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentOrder
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class PaymentOrder {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -144,20 +144,12 @@ public class PaymentOrder {
 
       @Override
       public FeeTypeEnum read(final JsonReader jsonReader) throws IOException {
-        if (jsonReader.peek() == JsonToken.NULL) {
-          jsonReader.nextNull();
-          return null;
-        }
         String value =  jsonReader.nextString();
         return FeeTypeEnum.fromValue(value);
       }
     }
 
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement.isJsonNull()) {
-        FeeTypeEnum.fromValue(null);
-        return;
-      }
       String value = jsonElement.getAsString();
       FeeTypeEnum.fromValue(value);
     }
@@ -570,9 +562,20 @@ public class PaymentOrder {
         Objects.equals(this.updatedAt, paymentOrder.updatedAt);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(id, issuedProductId, drawRequestId, invoiceId, platformInvoiceId, effectiveDate, settledDate, totalPaymentAmountCents, principalPaymentAmountCents, interestPaymentAmountCents, feePaymentAmountCents, feeType, direction, status, createdAt, updatedAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -647,7 +650,6 @@ public class PaymentOrder {
     openapiRequiredFields.add("principalPaymentAmountCents");
     openapiRequiredFields.add("interestPaymentAmountCents");
     openapiRequiredFields.add("feePaymentAmountCents");
-    openapiRequiredFields.add("feeType");
     openapiRequiredFields.add("direction");
     openapiRequiredFields.add("status");
     openapiRequiredFields.add("createdAt");
@@ -706,8 +708,10 @@ public class PaymentOrder {
       if ((jsonObj.get("feeType") != null && !jsonObj.get("feeType").isJsonNull()) && !jsonObj.get("feeType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `feeType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("feeType").toString()));
       }
-      // validate the required field `feeType`
-      FeeTypeEnum.validateJsonElement(jsonObj.get("feeType"));
+      // validate the optional field `feeType`
+      if (jsonObj.get("feeType") != null && !jsonObj.get("feeType").isJsonNull()) {
+        FeeTypeEnum.validateJsonElement(jsonObj.get("feeType"));
+      }
       if (!jsonObj.get("direction").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `direction` to be a primitive type in the JSON string but got `%s`", jsonObj.get("direction").toString()));
       }

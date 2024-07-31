@@ -48,10 +48,10 @@ import java.util.Set;
 import com.kanmon.client.JSON;
 
 /**
- * Address
+ * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
-public class Address {
+public class BusinessAddress {
   public static final String SERIALIZED_NAME_ADDRESS_LINE_ONE = "addressLineOne";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE_ONE)
   private String addressLineOne;
@@ -238,10 +238,10 @@ public class Address {
   @SerializedName(SERIALIZED_NAME_COUNTRY)
   private String country;
 
-  public Address() {
+  public BusinessAddress() {
   }
 
-  public Address addressLineOne(String addressLineOne) {
+  public BusinessAddress addressLineOne(String addressLineOne) {
     this.addressLineOne = addressLineOne;
     return this;
   }
@@ -260,7 +260,7 @@ public class Address {
   }
 
 
-  public Address addressLineTwo(String addressLineTwo) {
+  public BusinessAddress addressLineTwo(String addressLineTwo) {
     this.addressLineTwo = addressLineTwo;
     return this;
   }
@@ -279,7 +279,7 @@ public class Address {
   }
 
 
-  public Address city(String city) {
+  public BusinessAddress city(String city) {
     this.city = city;
     return this;
   }
@@ -298,7 +298,7 @@ public class Address {
   }
 
 
-  public Address state(StateEnum state) {
+  public BusinessAddress state(StateEnum state) {
     this.state = state;
     return this;
   }
@@ -317,7 +317,7 @@ public class Address {
   }
 
 
-  public Address zipcode(String zipcode) {
+  public BusinessAddress zipcode(String zipcode) {
     this.zipcode = zipcode;
     return this;
   }
@@ -336,7 +336,7 @@ public class Address {
   }
 
 
-  public Address country(String country) {
+  public BusinessAddress country(String country) {
     this.country = country;
     return this;
   }
@@ -364,13 +364,13 @@ public class Address {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Address address = (Address) o;
-    return Objects.equals(this.addressLineOne, address.addressLineOne) &&
-        Objects.equals(this.addressLineTwo, address.addressLineTwo) &&
-        Objects.equals(this.city, address.city) &&
-        Objects.equals(this.state, address.state) &&
-        Objects.equals(this.zipcode, address.zipcode) &&
-        Objects.equals(this.country, address.country);
+    BusinessAddress businessAddress = (BusinessAddress) o;
+    return Objects.equals(this.addressLineOne, businessAddress.addressLineOne) &&
+        Objects.equals(this.addressLineTwo, businessAddress.addressLineTwo) &&
+        Objects.equals(this.city, businessAddress.city) &&
+        Objects.equals(this.state, businessAddress.state) &&
+        Objects.equals(this.zipcode, businessAddress.zipcode) &&
+        Objects.equals(this.country, businessAddress.country);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -392,7 +392,7 @@ public class Address {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Address {\n");
+    sb.append("class BusinessAddress {\n");
     sb.append("    addressLineOne: ").append(toIndentedString(addressLineOne)).append("\n");
     sb.append("    addressLineTwo: ").append(toIndentedString(addressLineTwo)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
@@ -441,25 +441,25 @@ public class Address {
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Address
+  * @throws IOException if the JSON Element is invalid with respect to BusinessAddress
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!Address.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Address is not found in the empty JSON string", Address.openapiRequiredFields.toString()));
+        if (!BusinessAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in BusinessAddress is not found in the empty JSON string", BusinessAddress.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Address.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Address` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!BusinessAddress.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BusinessAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Address.openapiRequiredFields) {
+      for (String requiredField : BusinessAddress.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -491,22 +491,22 @@ public class Address {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Address.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Address' and its subtypes
+       if (!BusinessAddress.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'BusinessAddress' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Address> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Address.class));
+       final TypeAdapter<BusinessAddress> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(BusinessAddress.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<Address>() {
+       return (TypeAdapter<T>) new TypeAdapter<BusinessAddress>() {
            @Override
-           public void write(JsonWriter out, Address value) throws IOException {
+           public void write(JsonWriter out, BusinessAddress value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public Address read(JsonReader in) throws IOException {
+           public BusinessAddress read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -517,18 +517,18 @@ public class Address {
   }
 
  /**
-  * Create an instance of Address given an JSON string
+  * Create an instance of BusinessAddress given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of Address
-  * @throws IOException if the JSON string is invalid with respect to Address
+  * @return An instance of BusinessAddress
+  * @throws IOException if the JSON string is invalid with respect to BusinessAddress
   */
-  public static Address fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Address.class);
+  public static BusinessAddress fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, BusinessAddress.class);
   }
 
  /**
-  * Convert an instance of Address to an JSON string
+  * Convert an instance of BusinessAddress to an JSON string
   *
   * @return JSON string
   */

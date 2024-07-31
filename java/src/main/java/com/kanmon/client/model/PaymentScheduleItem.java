@@ -23,6 +23,7 @@ import com.kanmon.client.model.PaymentScheduleItemPaymentOrder;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -51,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentScheduleItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-28T22:23:19.704752-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class PaymentScheduleItem {
   public static final String SERIALIZED_NAME_EFFECTIVE_DATE = "effectiveDate";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_DATE)
@@ -140,9 +141,20 @@ public class PaymentScheduleItem {
         Objects.equals(this.paymentOrder, paymentScheduleItem.paymentOrder);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(effectiveDate, totalPaymentAmountCents, paymentOrder);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -182,7 +194,6 @@ public class PaymentScheduleItem {
     openapiRequiredFields = new HashSet<String>();
     openapiRequiredFields.add("effectiveDate");
     openapiRequiredFields.add("totalPaymentAmountCents");
-    openapiRequiredFields.add("paymentOrder");
   }
 
  /**
@@ -216,8 +227,10 @@ public class PaymentScheduleItem {
       if (!jsonObj.get("effectiveDate").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `effectiveDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("effectiveDate").toString()));
       }
-      // validate the required field `paymentOrder`
-      PaymentScheduleItemPaymentOrder.validateJsonElement(jsonObj.get("paymentOrder"));
+      // validate the optional field `paymentOrder`
+      if (jsonObj.get("paymentOrder") != null && !jsonObj.get("paymentOrder").isJsonNull()) {
+        PaymentScheduleItemPaymentOrder.validateJsonElement(jsonObj.get("paymentOrder"));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

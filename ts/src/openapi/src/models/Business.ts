@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Address } from './Address';
+import type { BusinessAddress } from './BusinessAddress';
 import {
-    AddressFromJSON,
-    AddressFromJSONTyped,
-    AddressToJSON,
-} from './Address';
+    BusinessAddressFromJSON,
+    BusinessAddressFromJSONTyped,
+    BusinessAddressToJSON,
+} from './BusinessAddress';
 
 /**
  * 
@@ -45,11 +45,11 @@ export interface Business {
      */
     name: object | null;
     /**
-     * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
-     * @type {Address}
+     * 
+     * @type {BusinessAddress}
      * @memberof Business
      */
-    address?: Address;
+    address?: BusinessAddress;
     /**
      * The business’s EIN. Only digits, no formatting.
      * @type {object}
@@ -116,7 +116,7 @@ export function BusinessFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'id': json['id'],
         'platformBusinessId': json['platformBusinessId'] == null ? undefined : json['platformBusinessId'],
         'name': json['name'],
-        'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
+        'address': json['address'] == null ? undefined : BusinessAddressFromJSON(json['address']),
         'ein': json['ein'],
         'phoneNumber': json['phoneNumber'],
         'website': json['website'],
@@ -135,7 +135,7 @@ export function BusinessToJSON(value?: Business | null): any {
         'id': value['id'],
         'platformBusinessId': value['platformBusinessId'],
         'name': value['name'],
-        'address': AddressToJSON(value['address']),
+        'address': BusinessAddressToJSON(value['address']),
         'ein': value['ein'],
         'phoneNumber': value['phoneNumber'],
         'website': value['website'],

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface TermLoanOfferTerms {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.
+     * @type {string}
      * @memberof TermLoanOfferTerms
      */
-    productType: ProductType;
+    productType: string;
     /**
      * The maximum loan amount - in cents.
      * @type {number}
@@ -87,7 +80,7 @@ export function TermLoanOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'maxLoanAmountCents': json['maxLoanAmountCents'],
         'loanAmountCents': json['loanAmountCents'],
         'interestRatePercentage': json['interestRatePercentage'],
@@ -102,7 +95,7 @@ export function TermLoanOfferTermsToJSON(value?: TermLoanOfferTerms | null): any
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'maxLoanAmountCents': value['maxLoanAmountCents'],
         'loanAmountCents': value['loanAmountCents'],
         'interestRatePercentage': value['interestRatePercentage'],
