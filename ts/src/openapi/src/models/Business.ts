@@ -52,10 +52,10 @@ export interface Business {
     address?: BusinessAddress;
     /**
      * The business’s EIN. Only digits, no formatting.
-     * @type {object}
+     * @type {string}
      * @memberof Business
      */
-    ein: object | null;
+    ein: string | null;
     /**
      * The business’s phone number. No formatting characters, country code is optional.
      * @type {object}

@@ -33,10 +33,10 @@ export interface BusinessBankAccount {
     platformBankAccountId: string;
     /**
      * The business bank account’s name.
-     * @type {object}
+     * @type {string}
      * @memberof BusinessBankAccount
      */
-    accountName: object | null;
+    accountName: string | null;
     /**
      * The business’s bank account number. Only digits, no formatting.
      * @type {string}

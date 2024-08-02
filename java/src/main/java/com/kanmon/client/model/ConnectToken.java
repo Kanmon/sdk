@@ -49,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * ConnectToken
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T16:25:47.631908-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class ConnectToken {
   public static final String SERIALIZED_NAME_CONNECT_TOKEN = "connectToken";
   @SerializedName(SERIALIZED_NAME_CONNECT_TOKEN)

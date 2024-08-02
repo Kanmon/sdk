@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "034ccca4-23e0-48d7-98e3-a1cadc94d3d3,075f78b2-df5f-425c-a2f7-c5ffeb213d19",
+            "example": "81989726-36db-47cc-b9c9-e333b4c5d202,1c0dddac-d1e6-4f2f-98d4-34b6cb626802",
             "schema":
             {
               "type": "string"
@@ -2871,7 +2871,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "66222c47-940c-4746-9c9a-a87353454f39,881560c0-0aba-4471-9418-6c08e7d9ecf1",
+            "example": "3006293b-7a77-4242-b06e-4f6975660f3a,d2c56a98-68ee-4278-ad79-eb79e67ab570",
             "schema":
             {
               "type": "string"
@@ -3418,7 +3418,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "67cc5e52-333c-451a-ba7e-9e03962dbd2f,839a768c-fb15-41ec-9d30-5e86e6ed3b27",
+            "example": "095bc6e4-1b1b-45c3-8fde-74d4f3ff8de2,18dc6dcd-cc9e-49a3-bc8a-ffba5029d782",
             "schema":
             {
               "type": "string"
@@ -4200,20 +4200,20 @@
           {
             "type": "string",
             "description": "The UUID representing your platform in Kanmon.",
-            "example": "931d455c-7212-4422-b49a-4f25b1c750fa"
+            "example": "1cd76eec-badf-41df-9124-952606ccdf64"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
             "nullable": true,
-            "example": "f9bc9c53-da3b-4e0a-8246-009fa0dc47fc"
+            "example": "7abc4e9c-e873-452a-aa32-988db1a3c90a"
           },
           "platformBusinessId":
           {
             "type": "string",
             "description": "Your platform’s unique ID for the business.",
-            "example": "9d064f1e-0380-41ca-ac6b-e2536623d9d8"
+            "example": "ce861ab3-e154-40c7-8429-3d129d1429e1"
           },
           "isPrequalified":
           {
@@ -4229,15 +4229,15 @@
           },
           "createdAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Creation UTC ISO 8601 timestamp of the prequalification."
+            "description": "Creation UTC ISO 8601 timestamp of the prequalification.",
+            "example": "2022-06-01T03:57:26.115Z"
           },
           "updatedAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Last updated UTC ISO 8601 timestamp of the prequalification."
+            "description": "Last updated UTC ISO 8601 timestamp of the prequalification.",
+            "example": "2022-06-01T03:57:26.115Z"
           }
         },
         "required":
@@ -4632,7 +4632,7 @@
           },
           "ein":
           {
-            "type": "object",
+            "type": "string",
             "description": "The business’s EIN. Only digits, no formatting.",
             "example": "123456789",
             "nullable": true
@@ -5282,7 +5282,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon to merge users from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is required.",
-            "example": "eca6b6cd-290d-4a57-8c5c-6eb4bdd455dc"
+            "example": "d2fb7de7-d4d6-48fc-a584-ef36bb5f157c"
           },
           "targetPlatformBusinessId":
           {
@@ -5294,7 +5294,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon to merge users to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.",
-            "example": "2b84a1b9-2444-4667-bd4d-773008718131"
+            "example": "381a9dff-d40c-4a7a-8186-19aae5b15758"
           }
         }
       },
@@ -6085,13 +6085,13 @@
           {
             "type": "string",
             "description": "A unique id representing the offer object.",
-            "example": "6c2d27a8-ea49-42b9-96ad-7b925cfff0fe"
+            "example": "935a8aa6-0479-45cd-a713-f71a31a53093"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "37319b1e-849b-4df3-94c3-b9f15d439e19"
+            "example": "45b2a14b-e66d-44df-a3f0-f7021743dc7b"
           },
           "platformBusinessId":
           {
@@ -6457,19 +6457,19 @@
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "457d21cb-eef5-4350-ae27-7448eeab3af8"
+            "example": "4b9fce11-892d-4261-98a7-af13c4ba90ba"
           },
           "offerId":
           {
             "type": "string",
             "description": "The UUID representing the offer tied to this issued product in Kanmon.",
-            "example": "eeb622bb-f876-4e4e-89e8-a79a9faca74e"
+            "example": "88325c9b-36b7-4141-8bae-be09a36ba9fa"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "96306af7-9dce-4b4a-a6ac-2da128648e0f"
+            "example": "6f426e2d-fa8f-441f-9e48-bc81e068f736"
           },
           "platformBusinessId":
           {
@@ -6525,15 +6525,15 @@
           },
           "createdAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Creation UTC ISO 8601 timestamp of the prequalification."
+            "description": "Creation UTC ISO 8601 timestamp of the prequalification.",
+            "example": "2022-06-01T03:57:26.115Z"
           },
           "updatedAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Last updated UTC ISO 8601 timestamp of the prequalification."
+            "description": "Last updated UTC ISO 8601 timestamp of the prequalification.",
+            "example": "2022-06-01T03:57:26.115Z"
           }
         },
         "required":
@@ -6711,7 +6711,7 @@
           },
           "accountName":
           {
-            "type": "object",
+            "type": "string",
             "description": "The business bank account’s name.",
             "example": "My bank account",
             "nullable": true
@@ -6931,33 +6931,33 @@
           {
             "type": "string",
             "description": "The UUID representing the payment order in Kanmon.",
-            "example": "fb6373bf-3e43-4c48-aff9-398a419da118"
+            "example": "7539df01-59eb-45e1-b5a8-aecb974b8d87"
           },
           "issuedProductId":
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "a22bd05b-7fce-4566-ac42-23048f95eb21"
+            "example": "9e2ff219-0331-4f59-94e8-179658f446db"
           },
           "drawRequestId":
           {
             "type": "string",
             "description": "The UUID representing the draw request in Kanmon. (only present for Line of Credit).",
-            "example": "077eb149-f5e4-4f78-b92e-eea8b7f423a3",
+            "example": "314f1d9d-45cf-45d8-b017-a568c874f025",
             "nullable": true
           },
           "invoiceId":
           {
             "type": "string",
             "description": "The UUID representing the invoice in Kanmon. (only present for Invoice Financing).",
-            "example": "4cb5292b-daea-476f-a27b-222a44bff37b",
+            "example": "35cd4775-0c19-472d-961e-75ef0313387f",
             "nullable": true
           },
           "platformInvoiceId":
           {
             "type": "string",
             "description": "Your platform’s unique ID for the invoice. (only present for Invoice Financing).",
-            "example": "db623695-afd7-47ab-85f5-ef5ccf0064ff",
+            "example": "38035fc0-ed86-4d90-9cf7-d3374a6ae3f4",
             "nullable": true
           },
           "effectiveDate":
@@ -7032,15 +7032,15 @@
           },
           "createdAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Creation UTC ISO 8601 timestamp of the payment order."
+            "description": "Creation UTC ISO 8601 timestamp of the payment order.",
+            "example": "2022-06-01T03:57:26.115Z"
           },
           "updatedAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Last updated UTC ISO 8601 timestamp of the payment order."
+            "description": "Last updated UTC ISO 8601 timestamp of the payment order.",
+            "example": "2022-06-01T03:57:26.115Z"
           }
         },
         "required":
@@ -7190,7 +7190,7 @@
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "4c3cfd7b-e383-43db-b674-60c827677ebc"
+            "example": "b4ac9b30-f579-418c-9ffa-ece59320010d"
           },
           "amountCents":
           {
@@ -7390,7 +7390,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "30fa405a-1d59-457b-a1d0-aa3b5d54507a"
+            "example": "ba2681ca-e099-451b-a36e-3ab663373407"
           },
           "documentType":
           {
@@ -7400,19 +7400,19 @@
           {
             "type": "string",
             "description": "The file’s original file name.",
-            "example": "b5c60759-88b1-4891-a47f-f20d8aaa43fb"
+            "example": "dfd15707-e172-4ee8-b0df-7d780bd3f0c6"
           },
           "createdAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Creation UTC ISO 8601 timestamp of the business document."
+            "description": "Creation UTC ISO 8601 timestamp of the business document.",
+            "example": "2022-06-01T03:57:26.115Z"
           },
           "updatedAt":
           {
-            "format": "date-time",
             "type": "string",
-            "description": "Last updated UTC ISO 8601 timestamp of the business document."
+            "description": "Last updated UTC ISO 8601 timestamp of the business document.",
+            "example": "2022-06-01T03:57:26.115Z"
           }
         },
         "required":

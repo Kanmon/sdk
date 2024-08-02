@@ -112,16 +112,16 @@ export interface PaymentScheduleItemPaymentOrder {
     status: PaymentOrderStatus;
     /**
      * Creation UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentScheduleItemPaymentOrder
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentScheduleItemPaymentOrder
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 
@@ -192,8 +192,8 @@ export function PaymentScheduleItemPaymentOrderFromJSONTyped(json: any, ignoreDi
         'feeType': json['feeType'] == null ? undefined : json['feeType'],
         'direction': json['direction'],
         'status': PaymentOrderStatusFromJSON(json['status']),
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -217,8 +217,8 @@ export function PaymentScheduleItemPaymentOrderToJSON(value?: PaymentScheduleIte
         'feeType': value['feeType'],
         'direction': value['direction'],
         'status': PaymentOrderStatusToJSON(value['status']),
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

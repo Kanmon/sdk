@@ -57,16 +57,16 @@ export interface BusinessPrequalification {
     prequalifiedAmountCents: number | null;
     /**
      * Creation UTC ISO 8601 timestamp of the prequalification.
-     * @type {Date}
+     * @type {string}
      * @memberof BusinessPrequalification
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the prequalification.
-     * @type {Date}
+     * @type {string}
      * @memberof BusinessPrequalification
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 /**
@@ -100,8 +100,8 @@ export function BusinessPrequalificationFromJSONTyped(json: any, ignoreDiscrimin
         'platformBusinessId': json['platformBusinessId'],
         'isPrequalified': json['isPrequalified'],
         'prequalifiedAmountCents': json['prequalifiedAmountCents'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -117,8 +117,8 @@ export function BusinessPrequalificationToJSON(value?: BusinessPrequalification 
         'platformBusinessId': value['platformBusinessId'],
         'isPrequalified': value['isPrequalified'],
         'prequalifiedAmountCents': value['prequalifiedAmountCents'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

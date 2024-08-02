@@ -51,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * BusinessBankAccount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T16:25:47.631908-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class BusinessBankAccount {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -63,7 +63,7 @@ public class BusinessBankAccount {
 
   public static final String SERIALIZED_NAME_ACCOUNT_NAME = "accountName";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NAME)
-  private Object accountName;
+  private String accountName;
 
   public static final String SERIALIZED_NAME_ACCOUNT_NUMBER = "accountNumber";
   @SerializedName(SERIALIZED_NAME_ACCOUNT_NUMBER)
@@ -230,7 +230,7 @@ public class BusinessBankAccount {
   }
 
 
-  public BusinessBankAccount accountName(Object accountName) {
+  public BusinessBankAccount accountName(String accountName) {
     this.accountName = accountName;
     return this;
   }
@@ -240,11 +240,11 @@ public class BusinessBankAccount {
    * @return accountName
   **/
   @javax.annotation.Nullable
-  public Object getAccountName() {
+  public String getAccountName() {
     return accountName;
   }
 
-  public void setAccountName(Object accountName) {
+  public void setAccountName(String accountName) {
     this.accountName = accountName;
   }
 
@@ -488,6 +488,9 @@ public class BusinessBankAccount {
       }
       if (!jsonObj.get("platformBankAccountId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformBankAccountId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformBankAccountId").toString()));
+      }
+      if ((jsonObj.get("accountName") != null && !jsonObj.get("accountName").isJsonNull()) && !jsonObj.get("accountName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `accountName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountName").toString()));
       }
       if (!jsonObj.get("accountNumber").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `accountNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("accountNumber").toString()));

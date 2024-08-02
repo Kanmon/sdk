@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * BusinessPrequalification
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T16:25:47.631908-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class BusinessPrequalification {
   public static final String SERIALIZED_NAME_PRODUCT = "product";
   @SerializedName(SERIALIZED_NAME_PRODUCT)
@@ -79,11 +78,11 @@ public class BusinessPrequalification {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public BusinessPrequalification() {
   }
@@ -202,7 +201,7 @@ public class BusinessPrequalification {
   }
 
 
-  public BusinessPrequalification createdAt(OffsetDateTime createdAt) {
+  public BusinessPrequalification createdAt(String createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -212,16 +211,16 @@ public class BusinessPrequalification {
    * @return createdAt
   **/
   @javax.annotation.Nonnull
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public BusinessPrequalification updatedAt(OffsetDateTime updatedAt) {
+  public BusinessPrequalification updatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -231,11 +230,11 @@ public class BusinessPrequalification {
    * @return updatedAt
   **/
   @javax.annotation.Nonnull
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -359,6 +358,12 @@ public class BusinessPrequalification {
       }
       if (!jsonObj.get("platformBusinessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformBusinessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformBusinessId").toString()));
+      }
+      if (!jsonObj.get("createdAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `createdAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdAt").toString()));
+      }
+      if (!jsonObj.get("updatedAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `updatedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("updatedAt").toString()));
       }
   }
 

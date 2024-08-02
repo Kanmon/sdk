@@ -112,16 +112,16 @@ export interface PaymentOrder {
     status: PaymentOrderStatus;
     /**
      * Creation UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentOrder
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentOrder
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 
@@ -192,8 +192,8 @@ export function PaymentOrderFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'feeType': json['feeType'] == null ? undefined : json['feeType'],
         'direction': json['direction'],
         'status': PaymentOrderStatusFromJSON(json['status']),
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -217,8 +217,8 @@ export function PaymentOrderToJSON(value?: PaymentOrder | null): any {
         'feeType': value['feeType'],
         'direction': value['direction'],
         'status': PaymentOrderStatusToJSON(value['status']),
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

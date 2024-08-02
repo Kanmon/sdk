@@ -51,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * Business
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T16:25:47.631908-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class Business {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -71,7 +71,7 @@ public class Business {
 
   public static final String SERIALIZED_NAME_EIN = "ein";
   @SerializedName(SERIALIZED_NAME_EIN)
-  private Object ein;
+  private String ein;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
@@ -172,7 +172,7 @@ public class Business {
   }
 
 
-  public Business ein(Object ein) {
+  public Business ein(String ein) {
     this.ein = ein;
     return this;
   }
@@ -182,11 +182,11 @@ public class Business {
    * @return ein
   **/
   @javax.annotation.Nullable
-  public Object getEin() {
+  public String getEin() {
     return ein;
   }
 
-  public void setEin(Object ein) {
+  public void setEin(String ein) {
     this.ein = ein;
   }
 
@@ -420,6 +420,9 @@ public class Business {
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
         BusinessAddress.validateJsonElement(jsonObj.get("address"));
+      }
+      if ((jsonObj.get("ein") != null && !jsonObj.get("ein").isJsonNull()) && !jsonObj.get("ein").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ein` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ein").toString()));
       }
       if (!jsonObj.get("createdAt").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `createdAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdAt").toString()));

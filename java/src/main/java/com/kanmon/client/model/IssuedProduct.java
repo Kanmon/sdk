@@ -21,7 +21,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.IssuedProductServicingData;
 import java.io.IOException;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 
 import com.google.gson.Gson;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * IssuedProduct
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-31T15:58:38.669848-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T16:25:47.631908-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
 public class IssuedProduct {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -139,11 +138,11 @@ public class IssuedProduct {
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
-  private OffsetDateTime createdAt;
+  private String createdAt;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-  private OffsetDateTime updatedAt;
+  private String updatedAt;
 
   public IssuedProduct() {
   }
@@ -262,7 +261,7 @@ public class IssuedProduct {
   }
 
 
-  public IssuedProduct createdAt(OffsetDateTime createdAt) {
+  public IssuedProduct createdAt(String createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -272,16 +271,16 @@ public class IssuedProduct {
    * @return createdAt
   **/
   @javax.annotation.Nonnull
-  public OffsetDateTime getCreatedAt() {
+  public String getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(OffsetDateTime createdAt) {
+  public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
 
 
-  public IssuedProduct updatedAt(OffsetDateTime updatedAt) {
+  public IssuedProduct updatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -291,11 +290,11 @@ public class IssuedProduct {
    * @return updatedAt
   **/
   @javax.annotation.Nonnull
-  public OffsetDateTime getUpdatedAt() {
+  public String getUpdatedAt() {
     return updatedAt;
   }
 
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
+  public void setUpdatedAt(String updatedAt) {
     this.updatedAt = updatedAt;
   }
 
@@ -427,6 +426,12 @@ public class IssuedProduct {
       LoanStatusEnum.validateJsonElement(jsonObj.get("loanStatus"));
       // validate the required field `servicingData`
       IssuedProductServicingData.validateJsonElement(jsonObj.get("servicingData"));
+      if (!jsonObj.get("createdAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `createdAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdAt").toString()));
+      }
+      if (!jsonObj.get("updatedAt").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `updatedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("updatedAt").toString()));
+      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

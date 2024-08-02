@@ -1,6 +1,6 @@
 package com.kanmon.client;
 
-import com.kanmon.client.ApiClient;
+import com.google.gson.Gson;
 import com.kanmon.client.api.*;
 
 public class KanmonPlatformApi {
@@ -37,6 +37,7 @@ public class KanmonPlatformApi {
     private OffersApi offersApi;
     private PaymentsApi paymentsApi;
     private PrequalificationsApi prequalificationsApi;
+    private Gson gson;
 
     public KanmonPlatformApi(String apiToken) {
         this(apiToken, Environment.PRODUCTION);
@@ -59,6 +60,7 @@ public class KanmonPlatformApi {
         this.offersApi = new OffersApi(this.apiClient);
         this.paymentsApi = new PaymentsApi(this.apiClient);
         this.prequalificationsApi = new PrequalificationsApi(this.apiClient);
+        gson = new Gson();
     }
 
     public ConnectTokensApi getConnectTokensApi() {
@@ -107,5 +109,9 @@ public class KanmonPlatformApi {
 
     public PrequalificationsApi getPrequalificationsApi() {
         return prequalificationsApi;
+    }
+
+    public KanmonApiException getKanmonException(ApiException apiException) {
+        return gson.fromJson(apiException.getResponseBody(), KanmonApiException.class);
     }
 }

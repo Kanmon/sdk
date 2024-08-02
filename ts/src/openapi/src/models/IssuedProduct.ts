@@ -64,16 +64,16 @@ export interface IssuedProduct {
     servicingData: IssuedProductServicingData;
     /**
      * Creation UTC ISO 8601 timestamp of the prequalification.
-     * @type {Date}
+     * @type {string}
      * @memberof IssuedProduct
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the prequalification.
-     * @type {Date}
+     * @type {string}
      * @memberof IssuedProduct
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 
@@ -122,8 +122,8 @@ export function IssuedProductFromJSONTyped(json: any, ignoreDiscriminator: boole
         'platformBusinessId': json['platformBusinessId'],
         'loanStatus': json['loanStatus'],
         'servicingData': IssuedProductServicingDataFromJSON(json['servicingData']),
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -139,8 +139,8 @@ export function IssuedProductToJSON(value?: IssuedProduct | null): any {
         'platformBusinessId': value['platformBusinessId'],
         'loanStatus': value['loanStatus'],
         'servicingData': IssuedProductServicingDataToJSON(value['servicingData']),
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 
