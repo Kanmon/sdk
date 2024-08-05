@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "7d73ef6b-2acd-4778-8a47-68f25296420b,cea8d012-d7e2-44f3-abce-e9ec9994f78f",
+            "example": "3465fb67-3198-465e-bf4a-0e409119b00d,df02f15f-0f84-40c2-901d-fa26b48b8c1b",
             "schema":
             {
               "type": "string"
@@ -2871,7 +2871,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "96430b25-742c-4014-a123-a7c1c9f9dc91,bba5879a-71f2-40d1-8fc4-850b6b5be391",
+            "example": "337563c3-599a-44f6-953e-9a8e624bac87,81aa5787-ea3a-44d5-b8cf-e251394729e6",
             "schema":
             {
               "type": "string"
@@ -3418,7 +3418,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "688670f8-6342-4e1f-9ea5-af9da4370c2e,3cd4f53a-18bf-4caf-a2df-bac93ec42c47",
+            "example": "e5c3b057-96bc-4f9d-86f1-c82adeaef6e2,480b8e89-06b1-4101-8fe4-989a2b028278",
             "schema":
             {
               "type": "string"
@@ -4200,20 +4200,20 @@
           {
             "type": "string",
             "description": "The UUID representing your platform in Kanmon.",
-            "example": "4394309a-a885-47d4-b061-6b3e3f9bb7fe"
+            "example": "2d9b74f0-d348-4a20-907b-94dc5cd234f5"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
             "nullable": true,
-            "example": "304e4f54-ae24-44b6-86bf-c545e51008f6"
+            "example": "8cbe71d5-c0c1-441a-9e18-6d1cb12d45d7"
           },
           "platformBusinessId":
           {
             "type": "string",
             "description": "Your platform’s unique ID for the business.",
-            "example": "1fc9477b-977c-4066-802a-a2c30bcb5bbb"
+            "example": "46383b52-02f6-4f64-bab7-8d479d820ee4"
           },
           "isPrequalified":
           {
@@ -5282,7 +5282,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon to merge users from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is required.",
-            "example": "0737a6db-cd45-47fd-b5b9-407a133280ac"
+            "example": "799615e7-82d1-4c02-8447-c6c51db0ec8c"
           },
           "targetPlatformBusinessId":
           {
@@ -5294,7 +5294,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon to merge users to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.",
-            "example": "678d2640-87c2-49ee-9255-aea353bebd4d"
+            "example": "13868e59-c468-4cb5-8a95-3ca1a1a5bd2a"
           }
         }
       },
@@ -6085,13 +6085,13 @@
           {
             "type": "string",
             "description": "A unique id representing the offer object.",
-            "example": "9f3337ad-cbca-48cb-a679-18fb73a8c057"
+            "example": "bf827965-db35-4fef-ac95-1bea9f909925"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "53395f42-cd59-4c3c-8257-850396bb05ab"
+            "example": "8df34fe6-1091-4958-9aa1-f65c30cee37c"
           },
           "platformBusinessId":
           {
@@ -6117,6 +6117,17 @@
                 "$ref": "#/components/schemas/LineOfCreditOfferTerms"
               }
             ],
+            "discriminator":
+            {
+              "propertyName": "productType",
+              "mapping":
+              {
+                "TERM_LOAN": "#/components/schemas/TermLoanOfferTerms",
+                "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingOfferTerms",
+                "MCA": "#/components/schemas/McaOfferTerms",
+                "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditOfferTerms"
+              }
+            },
             "description": "Terms of the offer."
           },
           "expiredAt":
@@ -6457,19 +6468,19 @@
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "a9a80be9-0b8a-438d-b940-269b33da3381"
+            "example": "1a653161-f46f-4bd6-baf5-b725ebe70aee"
           },
           "offerId":
           {
             "type": "string",
             "description": "The UUID representing the offer tied to this issued product in Kanmon.",
-            "example": "ffa1de6b-90fa-44f0-a93c-5e01e677747a"
+            "example": "d16ed0fe-5db1-430f-ab75-f41dabfc532d"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "c5ca8674-2cb6-49b6-b713-d11be4370a03"
+            "example": "475ad00d-65d9-4935-99f0-74a174b93b67"
           },
           "platformBusinessId":
           {
@@ -6931,33 +6942,33 @@
           {
             "type": "string",
             "description": "The UUID representing the payment order in Kanmon.",
-            "example": "9e6b6e57-2736-4bee-9131-3df3506fe5c0"
+            "example": "942d2248-a6fa-48f7-b1f4-419921e852d4"
           },
           "issuedProductId":
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "da50bc5a-4ae3-4cd1-858a-a13a28cd0362"
+            "example": "976a25a6-45e7-431c-ae5f-5fb6e7df4f2d"
           },
           "drawRequestId":
           {
             "type": "string",
             "description": "The UUID representing the draw request in Kanmon. (only present for Line of Credit).",
-            "example": "662be3dd-f250-4354-b857-79754cebcd3a",
+            "example": "c863bf40-b55d-4564-a253-f9246903ecd2",
             "nullable": true
           },
           "invoiceId":
           {
             "type": "string",
             "description": "The UUID representing the invoice in Kanmon. (only present for Invoice Financing).",
-            "example": "64f67c97-eb1e-45f0-ab3b-e59deaf72097",
+            "example": "dd697bf4-48eb-43c6-a232-fcb47be689d8",
             "nullable": true
           },
           "platformInvoiceId":
           {
             "type": "string",
             "description": "Your platform’s unique ID for the invoice. (only present for Invoice Financing).",
-            "example": "3985fe68-6dc7-4d37-b93d-6d566fd5073d",
+            "example": "fe846730-4b92-4d44-a014-51324e8e6d13",
             "nullable": true
           },
           "effectiveDate":
@@ -7190,7 +7201,7 @@
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "0e74eae1-057d-4aa0-a20d-186fc588f17a"
+            "example": "f8c8f988-355a-45b1-a38a-5716960dca7b"
           },
           "amountCents":
           {
@@ -7390,7 +7401,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "fd7dedba-f5b5-4f80-af4c-6ceef895abb5"
+            "example": "d71a1d4b-4d34-446c-97aa-d6dffae6d477"
           },
           "documentType":
           {
@@ -7400,7 +7411,7 @@
           {
             "type": "string",
             "description": "The file’s original file name.",
-            "example": "d304b78b-a8e9-493e-8456-934436d23e7f"
+            "example": "a2af06d0-a90f-4a63-a651-6ff6d2eaecfc"
           },
           "createdAt":
           {

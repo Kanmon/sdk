@@ -95,6 +95,23 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "productType"));
                     }
           })
+                .registerTypeSelector(com.kanmon.client.model.OfferTerms.class, new TypeSelector<com.kanmon.client.model.OfferTerms>() {
+                    @Override
+                    public Class<? extends com.kanmon.client.model.OfferTerms> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
+                        classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditOfferTerms.class);
+                        classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaOfferTerms.class);
+                        classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanOfferTerms.class);
+                        classByDiscriminatorValue.put("InvoiceFinancingOfferTerms", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
+                        classByDiscriminatorValue.put("LineOfCreditOfferTerms", com.kanmon.client.model.LineOfCreditOfferTerms.class);
+                        classByDiscriminatorValue.put("McaOfferTerms", com.kanmon.client.model.McaOfferTerms.class);
+                        classByDiscriminatorValue.put("TermLoanOfferTerms", com.kanmon.client.model.TermLoanOfferTerms.class);
+                        classByDiscriminatorValue.put("Offer_terms", com.kanmon.client.model.OfferTerms.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "productType"));
+                    }
+          })
         ;
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;

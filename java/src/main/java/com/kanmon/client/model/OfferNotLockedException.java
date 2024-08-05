@@ -49,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * OfferNotLockedException
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T17:11:18.940267-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class OfferNotLockedException {
   /**
    * Safe for programmatic use.
