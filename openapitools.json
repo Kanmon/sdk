@@ -14,7 +14,26 @@
           "useObjectParameters": true,
           "platform": "node",
           "legacyDiscriminatorBehavior": true
-        }
+        },
+        "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-ts-generator-ignore"
+      },
+      "java": {
+        "inputSpec": "#{cwd}/kanmon_api_spec.json",
+        "output": "#{cwd}/java",
+        "generatorName": "java",
+        "additionalProperties": {
+          "apiPackage": "com.kanmon.client.api",
+          "artifactDescription": "Kanmon API SDK",
+          "artifactId": "kanmon-sdk",
+          "artifactVersion": "1.0.0",
+          "groupId": "com.kanmon",
+          "modelPackage": "com.kanmon.client.model",
+          "snapshotVersion": false,
+          "openApiNullable": true,
+          "library": "okhttp-gson",
+          "serializationLibrary": "gson"
+        },
+        "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-java-generator-ignore"
       }
     }
   }

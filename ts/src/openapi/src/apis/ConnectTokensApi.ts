@@ -37,7 +37,7 @@ import {
     UserNotFoundExceptionToJSON,
 } from '../models/index';
 
-export interface ConnectTokenRequest {
+export interface CreateConnectTokenRequest {
     createConnectTokenRequestBody: CreateConnectTokenRequestBody;
 }
 
@@ -49,11 +49,11 @@ export class ConnectTokensApi extends runtime.BaseAPI {
     /**
      * Create a connect token
      */
-    async connectTokenRaw(requestParameters: ConnectTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConnectToken>> {
+    async createConnectTokenRaw(requestParameters: CreateConnectTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConnectToken>> {
         if (requestParameters['createConnectTokenRequestBody'] == null) {
             throw new runtime.RequiredError(
                 'createConnectTokenRequestBody',
-                'Required parameter "createConnectTokenRequestBody" was null or undefined when calling connectToken().'
+                'Required parameter "createConnectTokenRequestBody" was null or undefined when calling createConnectToken().'
             );
         }
 
@@ -81,8 +81,8 @@ export class ConnectTokensApi extends runtime.BaseAPI {
     /**
      * Create a connect token
      */
-    async connectToken(requestParameters: ConnectTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConnectToken> {
-        const response = await this.connectTokenRaw(requestParameters, initOverrides);
+    async createConnectToken(requestParameters: CreateConnectTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConnectToken> {
+        const response = await this.createConnectTokenRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

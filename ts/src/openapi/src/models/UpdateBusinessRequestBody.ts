@@ -39,7 +39,7 @@ export interface UpdateBusinessRequestBody {
      */
     platformBusinessId?: string;
     /**
-     * The business’s address.
+     * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
      * @type {Address}
      * @memberof UpdateBusinessRequestBody
      */

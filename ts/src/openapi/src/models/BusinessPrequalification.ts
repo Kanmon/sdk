@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface BusinessPrequalification {
     /**
-     * The product that the business is prequalified for. This will be null if `isPrequalified` is false.
+     * The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`
      * @type {string}
      * @memberof BusinessPrequalification
      */
-    product: BusinessPrequalificationProductEnum | null;
+    product: string | null;
     /**
      * The UUID representing your platform in Kanmon.
      * @type {string}
@@ -57,30 +57,17 @@ export interface BusinessPrequalification {
     prequalifiedAmountCents: number | null;
     /**
      * Creation UTC ISO 8601 timestamp of the prequalification.
-     * @type {Date}
+     * @type {string}
      * @memberof BusinessPrequalification
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the prequalification.
-     * @type {Date}
+     * @type {string}
      * @memberof BusinessPrequalification
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
-
-
-/**
- * @export
- */
-export const BusinessPrequalificationProductEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT'
-} as const;
-export type BusinessPrequalificationProductEnum = typeof BusinessPrequalificationProductEnum[keyof typeof BusinessPrequalificationProductEnum];
-
 
 /**
  * Check if a given object implements the BusinessPrequalification interface.
@@ -113,8 +100,8 @@ export function BusinessPrequalificationFromJSONTyped(json: any, ignoreDiscrimin
         'platformBusinessId': json['platformBusinessId'],
         'isPrequalified': json['isPrequalified'],
         'prequalifiedAmountCents': json['prequalifiedAmountCents'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -130,8 +117,8 @@ export function BusinessPrequalificationToJSON(value?: BusinessPrequalification 
         'platformBusinessId': value['platformBusinessId'],
         'isPrequalified': value['isPrequalified'],
         'prequalifiedAmountCents': value['prequalifiedAmountCents'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

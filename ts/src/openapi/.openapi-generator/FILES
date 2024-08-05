@@ -68,6 +68,7 @@ src/models/InvoiceFlowSessionTokenData.ts
 src/models/InvoiceFlowWithInvoiceFileSessionTokenData.ts
 src/models/InvoiceNotFoundException.ts
 src/models/InvoicePaymentPlan.ts
+src/models/InvoicePaymentPlanRepaymentWindow.ts
 src/models/InvoicePayorAddress.ts
 src/models/InvoiceRepaymentSchedule.ts
 src/models/InvoiceRepaymentScheduleItem.ts

@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface McaOfferTerms {
     /**
-     * 
+     * The type of product being offered. Always `MCA` for `McaOfferTerms`.
      * @type {string}
      * @memberof McaOfferTerms
      */
-    productType: McaOfferTermsProductTypeEnum;
+    productType: string;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -57,14 +57,6 @@ export interface McaOfferTerms {
     totalRepaymentCents: number;
 }
 
-
-/**
- * @export
- */
-export const McaOfferTermsProductTypeEnum = {
-    Mca: 'MCA'
-} as const;
-export type McaOfferTermsProductTypeEnum = typeof McaOfferTermsProductTypeEnum[keyof typeof McaOfferTermsProductTypeEnum];
 
 /**
  * @export

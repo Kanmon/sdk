@@ -47,7 +47,7 @@ export class PrequalificationsApi extends runtime.BaseAPI {
     /**
      * Fetch business prequalifications
      */
-    async getPrequalifiedBusinessesRaw(requestParameters: GetPrequalifiedBusinessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GetPrequalificationsResponse>>> {
+    async getPrequalifiedBusinessesRaw(requestParameters: GetPrequalifiedBusinessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPrequalificationsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['platformBusinessIds'] != null) {
@@ -83,13 +83,13 @@ export class PrequalificationsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GetPrequalificationsResponseFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPrequalificationsResponseFromJSON(jsonValue));
     }
 
     /**
      * Fetch business prequalifications
      */
-    async getPrequalifiedBusinesses(requestParameters: GetPrequalifiedBusinessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GetPrequalificationsResponse>> {
+    async getPrequalifiedBusinesses(requestParameters: GetPrequalifiedBusinessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPrequalificationsResponse> {
         const response = await this.getPrequalifiedBusinessesRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -50,6 +50,7 @@ export interface CreateEmbeddedSessionRequest {
 export class EmbeddedSessionsApi extends runtime.BaseAPI {
 
     /**
+     * Embedded session tokens allow you to securely pass data to Kanmon. First, you will need to call this API to create a token. Then, you will use the token when launching the embedded application.
      * Create an embedded session
      */
     async createEmbeddedSessionRaw(requestParameters: CreateEmbeddedSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmbeddedSession>> {
@@ -82,6 +83,7 @@ export class EmbeddedSessionsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Embedded session tokens allow you to securely pass data to Kanmon. First, you will need to call this API to create a token. Then, you will use the token when launching the embedded application.
      * Create an embedded session
      */
     async createEmbeddedSession(requestParameters: CreateEmbeddedSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmbeddedSession> {

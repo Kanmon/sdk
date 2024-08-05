@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface TermLoanServicingData {
     /**
-     * 
+     * The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.
      * @type {string}
      * @memberof TermLoanServicingData
      */
-    productType: TermLoanServicingDataProductTypeEnum;
+    productType: string;
     /**
      * The total loan amount - in cents.
      * @type {number}
@@ -62,16 +62,6 @@ export interface TermLoanServicingData {
      */
     nextPaymentDate: string | null;
 }
-
-
-/**
- * @export
- */
-export const TermLoanServicingDataProductTypeEnum = {
-    TermLoan: 'TERM_LOAN'
-} as const;
-export type TermLoanServicingDataProductTypeEnum = typeof TermLoanServicingDataProductTypeEnum[keyof typeof TermLoanServicingDataProductTypeEnum];
-
 
 /**
  * Check if a given object implements the TermLoanServicingData interface.

@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * The status of the payment.
  * @export
  */
 export const PaymentOrderStatus = {

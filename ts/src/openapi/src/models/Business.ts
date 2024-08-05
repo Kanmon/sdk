@@ -49,13 +49,13 @@ export interface Business {
      * @type {BusinessAddress}
      * @memberof Business
      */
-    address: BusinessAddress | null;
+    address?: BusinessAddress;
     /**
      * The business’s EIN. Only digits, no formatting.
-     * @type {object}
+     * @type {string}
      * @memberof Business
      */
-    ein: object | null;
+    ein: string | null;
     /**
      * The business’s phone number. No formatting characters, country code is optional.
      * @type {object}
@@ -94,7 +94,6 @@ export interface Business {
 export function instanceOfBusiness(value: object): boolean {
     if (!('id' in value)) return false;
     if (!('name' in value)) return false;
-    if (!('address' in value)) return false;
     if (!('ein' in value)) return false;
     if (!('phoneNumber' in value)) return false;
     if (!('website' in value)) return false;
@@ -117,7 +116,7 @@ export function BusinessFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'id': json['id'],
         'platformBusinessId': json['platformBusinessId'] == null ? undefined : json['platformBusinessId'],
         'name': json['name'],
-        'address': BusinessAddressFromJSON(json['address']),
+        'address': json['address'] == null ? undefined : BusinessAddressFromJSON(json['address']),
         'ein': json['ein'],
         'phoneNumber': json['phoneNumber'],
         'website': json['website'],

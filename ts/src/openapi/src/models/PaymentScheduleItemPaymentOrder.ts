@@ -97,7 +97,7 @@ export interface PaymentScheduleItemPaymentOrder {
      * @type {string}
      * @memberof PaymentScheduleItemPaymentOrder
      */
-    feeType: PaymentScheduleItemPaymentOrderFeeTypeEnum | null;
+    feeType?: PaymentScheduleItemPaymentOrderFeeTypeEnum;
     /**
      * The direction of the payment.
      * @type {string}
@@ -112,16 +112,16 @@ export interface PaymentScheduleItemPaymentOrder {
     status: PaymentOrderStatus;
     /**
      * Creation UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentScheduleItemPaymentOrder
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentScheduleItemPaymentOrder
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 
@@ -161,7 +161,6 @@ export function instanceOfPaymentScheduleItemPaymentOrder(value: object): boolea
     if (!('principalPaymentAmountCents' in value)) return false;
     if (!('interestPaymentAmountCents' in value)) return false;
     if (!('feePaymentAmountCents' in value)) return false;
-    if (!('feeType' in value)) return false;
     if (!('direction' in value)) return false;
     if (!('status' in value)) return false;
     if (!('createdAt' in value)) return false;
@@ -190,11 +189,11 @@ export function PaymentScheduleItemPaymentOrderFromJSONTyped(json: any, ignoreDi
         'principalPaymentAmountCents': json['principalPaymentAmountCents'],
         'interestPaymentAmountCents': json['interestPaymentAmountCents'],
         'feePaymentAmountCents': json['feePaymentAmountCents'],
-        'feeType': json['feeType'],
+        'feeType': json['feeType'] == null ? undefined : json['feeType'],
         'direction': json['direction'],
         'status': PaymentOrderStatusFromJSON(json['status']),
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -218,8 +217,8 @@ export function PaymentScheduleItemPaymentOrderToJSON(value?: PaymentScheduleIte
         'feeType': value['feeType'],
         'direction': value['direction'],
         'status': PaymentOrderStatusToJSON(value['status']),
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

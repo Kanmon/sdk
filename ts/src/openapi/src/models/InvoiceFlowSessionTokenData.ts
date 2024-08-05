@@ -27,7 +27,7 @@ import {
  */
 export interface InvoiceFlowSessionTokenData {
     /**
-     * 
+     * Generates a session token for the invoice confirmation flow. This option can be used if you have all the required invoice data.
      * @type {string}
      * @memberof InvoiceFlowSessionTokenData
      */

@@ -97,7 +97,7 @@ export interface PaymentOrder {
      * @type {string}
      * @memberof PaymentOrder
      */
-    feeType: PaymentOrderFeeTypeEnum | null;
+    feeType?: PaymentOrderFeeTypeEnum;
     /**
      * The direction of the payment.
      * @type {string}
@@ -112,16 +112,16 @@ export interface PaymentOrder {
     status: PaymentOrderStatus;
     /**
      * Creation UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentOrder
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the payment order.
-     * @type {Date}
+     * @type {string}
      * @memberof PaymentOrder
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 
@@ -161,7 +161,6 @@ export function instanceOfPaymentOrder(value: object): boolean {
     if (!('principalPaymentAmountCents' in value)) return false;
     if (!('interestPaymentAmountCents' in value)) return false;
     if (!('feePaymentAmountCents' in value)) return false;
-    if (!('feeType' in value)) return false;
     if (!('direction' in value)) return false;
     if (!('status' in value)) return false;
     if (!('createdAt' in value)) return false;
@@ -190,11 +189,11 @@ export function PaymentOrderFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'principalPaymentAmountCents': json['principalPaymentAmountCents'],
         'interestPaymentAmountCents': json['interestPaymentAmountCents'],
         'feePaymentAmountCents': json['feePaymentAmountCents'],
-        'feeType': json['feeType'],
+        'feeType': json['feeType'] == null ? undefined : json['feeType'],
         'direction': json['direction'],
         'status': PaymentOrderStatusFromJSON(json['status']),
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -218,8 +217,8 @@ export function PaymentOrderToJSON(value?: PaymentOrder | null): any {
         'feeType': value['feeType'],
         'direction': value['direction'],
         'status': PaymentOrderStatusToJSON(value['status']),
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

@@ -58,16 +58,16 @@ export interface BusinessDocument {
     originalFileName: string;
     /**
      * Creation UTC ISO 8601 timestamp of the business document.
-     * @type {Date}
+     * @type {string}
      * @memberof BusinessDocument
      */
-    createdAt: Date;
+    createdAt: string;
     /**
      * Last updated UTC ISO 8601 timestamp of the business document.
-     * @type {Date}
+     * @type {string}
      * @memberof BusinessDocument
      */
-    updatedAt: Date;
+    updatedAt: string;
 }
 
 /**
@@ -99,8 +99,8 @@ export function BusinessDocumentFromJSONTyped(json: any, ignoreDiscriminator: bo
         'businessId': json['businessId'],
         'documentType': BusinessDocumentTypeFromJSON(json['documentType']),
         'originalFileName': json['originalFileName'],
-        'createdAt': (new Date(json['createdAt'])),
-        'updatedAt': (new Date(json['updatedAt'])),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
@@ -115,8 +115,8 @@ export function BusinessDocumentToJSON(value?: BusinessDocument | null): any {
         'businessId': value['businessId'],
         'documentType': BusinessDocumentTypeToJSON(value['documentType']),
         'originalFileName': value['originalFileName'],
-        'createdAt': ((value['createdAt']).toISOString()),
-        'updatedAt': ((value['updatedAt']).toISOString()),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

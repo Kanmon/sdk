@@ -20,11 +20,11 @@ import { mapValues } from '../runtime';
  */
 export interface LineOfCreditOfferTerms {
     /**
-     * 
+     * The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditOfferTerms`.
      * @type {string}
      * @memberof LineOfCreditOfferTerms
      */
-    productType: LineOfCreditOfferTermsProductTypeEnum;
+    productType: string;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
@@ -50,16 +50,6 @@ export interface LineOfCreditOfferTerms {
      */
     repaymentDurationMonths: number;
 }
-
-
-/**
- * @export
- */
-export const LineOfCreditOfferTermsProductTypeEnum = {
-    LineOfCredit: 'LINE_OF_CREDIT'
-} as const;
-export type LineOfCreditOfferTermsProductTypeEnum = typeof LineOfCreditOfferTermsProductTypeEnum[keyof typeof LineOfCreditOfferTermsProductTypeEnum];
-
 
 /**
  * Check if a given object implements the LineOfCreditOfferTerms interface.

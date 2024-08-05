@@ -14,7 +14,39 @@
 
 
 /**
- * 
+ * The status of the invoice.
+ *   <table>
+ *     <tr>
+ *       <td>INVOICE_CREATED</td>
+ *       <td>The business has submitted an invoice and it is under review.<td/>
+ *     </tr>
+ *     <tr>
+ *       <td>INVOICE_FUNDED</td>
+ *       <td>
+ *         The funds for the invoice have been disbursed. The business is now
+ *         expected to pay back the funds. Note that an invoice transitions to
+ *         this state when the disbursement is initiated, not when the disbursement
+ *         has cleared.
+ *       </td>
+ *     </tr>
+ *     <tr>
+ *       <td>INVOICE_PAID_IN_FULL</td>
+ *       <td> A payment was made that fully paid off an outstanding invoice.</td>
+ *     </tr>
+ *     <tr>
+ *       <td>LATE</td>
+ *       <td>A payment was not made towards an outstanding invoice.</td>
+ *     </tr>
+ *     <tr>
+ *       <td>REJECTED</td>
+ *       <td> An invoice was rejected during the funding step.</td>
+ *     </tr>
+ *     <tr>
+ *       <td>DEFAULTED</td>
+ *       <td>A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.</td>
+ *     </tr>
+ *   </table>
+ *   
  * @export
  */
 export const InvoiceStatus = {

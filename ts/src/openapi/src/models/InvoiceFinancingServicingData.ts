@@ -27,11 +27,11 @@ import {
  */
 export interface InvoiceFinancingServicingData {
     /**
-     * 
+     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingServicingData`.
      * @type {string}
      * @memberof InvoiceFinancingServicingData
      */
-    productType: InvoiceFinancingServicingDataProductTypeEnum;
+    productType: string;
     /**
      * The total limit allowed - in cents.
      * @type {number}
@@ -51,16 +51,6 @@ export interface InvoiceFinancingServicingData {
      */
     availableLimitCents: number;
 }
-
-
-/**
- * @export
- */
-export const InvoiceFinancingServicingDataProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING'
-} as const;
-export type InvoiceFinancingServicingDataProductTypeEnum = typeof InvoiceFinancingServicingDataProductTypeEnum[keyof typeof InvoiceFinancingServicingDataProductTypeEnum];
-
 
 /**
  * Check if a given object implements the InvoiceFinancingServicingData interface.

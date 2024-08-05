@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * The state of the draw request.
  * @export
  */
 export const DrawRequestState = {
