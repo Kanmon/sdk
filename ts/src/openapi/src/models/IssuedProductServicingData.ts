@@ -33,6 +33,7 @@ import {
     McaServicingDataFromJSONTyped,
     McaServicingDataToJSON,
 } from './McaServicingData';
+import { ProductType } from './ProductType';
 import type { TermLoanServicingData } from './TermLoanServicingData';
 import {
     instanceOfTermLoanServicingData,
@@ -58,13 +59,13 @@ export function IssuedProductServicingDataFromJSONTyped(json: any, ignoreDiscrim
     }
     switch (json['productType']) {
         case 'INVOICE_FINANCING':
-            return Object.assign({}, InvoiceFinancingServicingDataFromJSONTyped(json, true), { productType: 'INVOICE_FINANCING' });
+            return Object.assign({}, InvoiceFinancingServicingDataFromJSONTyped(json, true), { productType: ProductType.InvoiceFinancing });
         case 'LINE_OF_CREDIT':
-            return Object.assign({}, LineOfCreditServicingDataFromJSONTyped(json, true), { productType: 'LINE_OF_CREDIT' });
+            return Object.assign({}, LineOfCreditServicingDataFromJSONTyped(json, true), { productType: ProductType.LineOfCredit });
         case 'MCA':
-            return Object.assign({}, McaServicingDataFromJSONTyped(json, true), { productType: 'MCA' });
+            return Object.assign({}, McaServicingDataFromJSONTyped(json, true), { productType: ProductType.Mca });
         case 'TERM_LOAN':
-            return Object.assign({}, TermLoanServicingDataFromJSONTyped(json, true), { productType: 'TERM_LOAN' });
+            return Object.assign({}, TermLoanServicingDataFromJSONTyped(json, true), { productType: ProductType.TermLoan });
         default:
             throw new Error(`No variant of IssuedProductServicingData exists with 'productType=${json['productType']}'`);
     }
