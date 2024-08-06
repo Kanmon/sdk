@@ -24,7 +24,7 @@ export interface LineOfCreditOfferTerms {
      * @type {string}
      * @memberof LineOfCreditOfferTerms
      */
-    productType: string;
+    productType: LineOfCreditOfferTermsProductTypeEnum;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
@@ -50,6 +50,16 @@ export interface LineOfCreditOfferTerms {
      */
     repaymentDurationMonths: number;
 }
+
+
+/**
+ * @export
+ */
+export const LineOfCreditOfferTermsProductTypeEnum = {
+    LineOfCredit: 'LINE_OF_CREDIT'
+} as const;
+export type LineOfCreditOfferTermsProductTypeEnum = typeof LineOfCreditOfferTermsProductTypeEnum[keyof typeof LineOfCreditOfferTermsProductTypeEnum];
+
 
 /**
  * Check if a given object implements the LineOfCreditOfferTerms interface.

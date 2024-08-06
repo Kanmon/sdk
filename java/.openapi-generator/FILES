@@ -129,6 +129,7 @@ src/main/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsForAnotherIs
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsForBusinessException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerNotFoundException.java
+src/main/java/com/kanmon/client/model/ProductType.java
 src/main/java/com/kanmon/client/model/SessionInvoice.java
 src/main/java/com/kanmon/client/model/SessionInvoiceWithInvoiceFile.java
 src/main/java/com/kanmon/client/model/SomeOffersHaveExpiredException.java

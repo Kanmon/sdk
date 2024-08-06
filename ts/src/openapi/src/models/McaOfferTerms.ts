@@ -24,7 +24,7 @@ export interface McaOfferTerms {
      * @type {string}
      * @memberof McaOfferTerms
      */
-    productType: string;
+    productType: McaOfferTermsProductTypeEnum;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -57,6 +57,14 @@ export interface McaOfferTerms {
     totalRepaymentCents: number;
 }
 
+
+/**
+ * @export
+ */
+export const McaOfferTermsProductTypeEnum = {
+    Mca: 'MCA'
+} as const;
+export type McaOfferTermsProductTypeEnum = typeof McaOfferTermsProductTypeEnum[keyof typeof McaOfferTermsProductTypeEnum];
 
 /**
  * @export

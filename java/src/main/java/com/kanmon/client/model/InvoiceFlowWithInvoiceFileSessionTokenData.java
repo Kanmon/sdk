@@ -52,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFlowWithInvoiceFileSessionTokenData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T17:11:18.940267-07:00[America/Los_Angeles]", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class InvoiceFlowWithInvoiceFileSessionTokenData {
   /**
    * Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;

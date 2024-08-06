@@ -88,6 +88,7 @@ export * from './PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException'
 export * from './PrimaryBusinessOwnerAlreadyExistsForBusinessException';
 export * from './PrimaryBusinessOwnerAlreadyExistsWithEmailException';
 export * from './PrimaryBusinessOwnerNotFoundException';
+export * from './ProductType';
 export * from './SessionInvoice';
 export * from './SessionInvoiceWithInvoiceFile';
 export * from './SomeOffersHaveExpiredException';
