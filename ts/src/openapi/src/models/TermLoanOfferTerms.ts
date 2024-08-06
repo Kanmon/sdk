@@ -24,7 +24,7 @@ export interface TermLoanOfferTerms {
      * @type {string}
      * @memberof TermLoanOfferTerms
      */
-    productType: string;
+    productType: TermLoanOfferTermsProductTypeEnum;
     /**
      * The maximum loan amount - in cents.
      * @type {number}
@@ -56,6 +56,16 @@ export interface TermLoanOfferTerms {
      */
     feePercentage: number;
 }
+
+
+/**
+ * @export
+ */
+export const TermLoanOfferTermsProductTypeEnum = {
+    TermLoan: 'TERM_LOAN'
+} as const;
+export type TermLoanOfferTermsProductTypeEnum = typeof TermLoanOfferTermsProductTypeEnum[keyof typeof TermLoanOfferTermsProductTypeEnum];
+
 
 /**
  * Check if a given object implements the TermLoanOfferTerms interface.

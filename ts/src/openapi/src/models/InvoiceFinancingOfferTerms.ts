@@ -31,7 +31,7 @@ export interface InvoiceFinancingOfferTerms {
      * @type {string}
      * @memberof InvoiceFinancingOfferTerms
      */
-    productType: string;
+    productType: InvoiceFinancingOfferTermsProductTypeEnum;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
@@ -45,6 +45,16 @@ export interface InvoiceFinancingOfferTerms {
      */
     pricingPlans: Array<InvoicePaymentPlan>;
 }
+
+
+/**
+ * @export
+ */
+export const InvoiceFinancingOfferTermsProductTypeEnum = {
+    InvoiceFinancing: 'INVOICE_FINANCING'
+} as const;
+export type InvoiceFinancingOfferTermsProductTypeEnum = typeof InvoiceFinancingOfferTermsProductTypeEnum[keyof typeof InvoiceFinancingOfferTermsProductTypeEnum];
+
 
 /**
  * Check if a given object implements the InvoiceFinancingOfferTerms interface.

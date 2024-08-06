@@ -14,7 +14,7 @@
 
 
 /**
- * The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.
+ * The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`
  * @export
  */
 export const ProductType = {

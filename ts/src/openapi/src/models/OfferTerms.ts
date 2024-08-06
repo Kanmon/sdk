@@ -33,7 +33,6 @@ import {
     McaOfferTermsFromJSONTyped,
     McaOfferTermsToJSON,
 } from './McaOfferTerms';
-import { ProductType } from './ProductType';
 import type { TermLoanOfferTerms } from './TermLoanOfferTerms';
 import {
     instanceOfTermLoanOfferTerms,
@@ -47,7 +46,7 @@ import {
  * Terms of the offer.
  * @export
  */
-export type OfferTerms = { productType: 'INVOICE_FINANCING' } & InvoiceFinancingOfferTerms | { productType: 'LINE_OF_CREDIT' } & LineOfCreditOfferTerms | { productType: 'MCA' } & McaOfferTerms | { productType: 'TERM_LOAN' } & TermLoanOfferTerms;
+export type OfferTerms = InvoiceFinancingOfferTerms | LineOfCreditOfferTerms | McaOfferTerms | TermLoanOfferTerms;
 
 export function OfferTermsFromJSON(json: any): OfferTerms {
     return OfferTermsFromJSONTyped(json, false);
@@ -57,36 +56,27 @@ export function OfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     if (json == null) {
         return json;
     }
-    switch (json['productType']) {
-        case 'INVOICE_FINANCING':
-            return Object.assign({}, InvoiceFinancingOfferTermsFromJSONTyped(json, true), { productType: ProductType.InvoiceFinancing });
-        case 'LINE_OF_CREDIT':
-            return Object.assign({}, LineOfCreditOfferTermsFromJSONTyped(json, true), { productType: ProductType.LineOfCredit });
-        case 'MCA':
-            return Object.assign({}, McaOfferTermsFromJSONTyped(json, true), { productType: ProductType.Mca });
-        case 'TERM_LOAN':
-            return Object.assign({}, TermLoanOfferTermsFromJSONTyped(json, true), { productType: ProductType.TermLoan });
-        default:
-            throw new Error(`No variant of OfferTerms exists with 'productType=${json['productType']}'`);
-    }
+    return InvoiceFinancingOfferTermsFromJSONTyped(json, true) || LineOfCreditOfferTermsFromJSONTyped(json, true) || McaOfferTermsFromJSONTyped(json, true) || TermLoanOfferTermsFromJSONTyped(json, true);
 }
 
 export function OfferTermsToJSON(value?: OfferTerms | null): any {
     if (value == null) {
         return value;
     }
-    switch (value['productType']) {
-        case 'INVOICE_FINANCING':
-            return InvoiceFinancingOfferTermsToJSON(value);
-        case 'LINE_OF_CREDIT':
-            return LineOfCreditOfferTermsToJSON(value);
-        case 'MCA':
-            return McaOfferTermsToJSON(value);
-        case 'TERM_LOAN':
-            return TermLoanOfferTermsToJSON(value);
-        default:
-            throw new Error(`No variant of OfferTerms exists with 'productType=${value['productType']}'`);
+
+    if (instanceOfInvoiceFinancingOfferTerms(value)) {
+        return InvoiceFinancingOfferTermsToJSON(value as InvoiceFinancingOfferTerms);
+    }
+    if (instanceOfLineOfCreditOfferTerms(value)) {
+        return LineOfCreditOfferTermsToJSON(value as LineOfCreditOfferTerms);
+    }
+    if (instanceOfMcaOfferTerms(value)) {
+        return McaOfferTermsToJSON(value as McaOfferTerms);
+    }
+    if (instanceOfTermLoanOfferTerms(value)) {
+        return TermLoanOfferTermsToJSON(value as TermLoanOfferTerms);
     }
 
+    return {};
 }
 

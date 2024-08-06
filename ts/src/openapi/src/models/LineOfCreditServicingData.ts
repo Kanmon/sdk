@@ -24,7 +24,7 @@ export interface LineOfCreditServicingData {
      * @type {string}
      * @memberof LineOfCreditServicingData
      */
-    productType: string;
+    productType: LineOfCreditServicingDataProductTypeEnum;
     /**
      * The total credit limit - in cents.
      * @type {number}
@@ -56,6 +56,16 @@ export interface LineOfCreditServicingData {
      */
     repaymentDurationMonths: number;
 }
+
+
+/**
+ * @export
+ */
+export const LineOfCreditServicingDataProductTypeEnum = {
+    LineOfCredit: 'LINE_OF_CREDIT'
+} as const;
+export type LineOfCreditServicingDataProductTypeEnum = typeof LineOfCreditServicingDataProductTypeEnum[keyof typeof LineOfCreditServicingDataProductTypeEnum];
+
 
 /**
  * Check if a given object implements the LineOfCreditServicingData interface.

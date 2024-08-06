@@ -24,7 +24,7 @@ export interface McaServicingData {
      * @type {string}
      * @memberof McaServicingData
      */
-    productType: string;
+    productType: McaServicingDataProductTypeEnum;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -69,6 +69,14 @@ export interface McaServicingData {
     advanceBalanceCents: number;
 }
 
+
+/**
+ * @export
+ */
+export const McaServicingDataProductTypeEnum = {
+    Mca: 'MCA'
+} as const;
+export type McaServicingDataProductTypeEnum = typeof McaServicingDataProductTypeEnum[keyof typeof McaServicingDataProductTypeEnum];
 
 /**
  * @export

@@ -55,9 +55,59 @@ import com.kanmon.client.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class InvoiceFinancingServicingData {
+  /**
+   * The type of product being offered. Always &#x60;INVOICE_FINANCING&#x60; for &#x60;InvoiceFinancingServicingData&#x60;.
+   */
+  @JsonAdapter(ProductTypeEnum.Adapter.class)
+  public enum ProductTypeEnum {
+    INVOICE_FINANCING("INVOICE_FINANCING");
+
+    private String value;
+
+    ProductTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ProductTypeEnum fromValue(String value) {
+      for (ProductTypeEnum b : ProductTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ProductTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ProductTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ProductTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ProductTypeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ProductTypeEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private String productType;
+  private ProductTypeEnum productType;
 
   public static final String SERIALIZED_NAME_TOTAL_LIMIT_CENTS = "totalLimitCents";
   @SerializedName(SERIALIZED_NAME_TOTAL_LIMIT_CENTS)
@@ -74,7 +124,7 @@ public class InvoiceFinancingServicingData {
   public InvoiceFinancingServicingData() {
   }
 
-  public InvoiceFinancingServicingData productType(String productType) {
+  public InvoiceFinancingServicingData productType(ProductTypeEnum productType) {
     this.productType = productType;
     return this;
   }
@@ -84,11 +134,11 @@ public class InvoiceFinancingServicingData {
    * @return productType
   **/
   @javax.annotation.Nonnull
-  public String getProductType() {
+  public ProductTypeEnum getProductType() {
     return productType;
   }
 
-  public void setProductType(String productType) {
+  public void setProductType(ProductTypeEnum productType) {
     this.productType = productType;
   }
 
@@ -253,6 +303,8 @@ public class InvoiceFinancingServicingData {
       if (!jsonObj.get("productType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
       }
+      // validate the required field `productType`
+      ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
       // ensure the json data is an array
       if (!jsonObj.get("pricingPlans").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricingPlans` to be an array in the JSON string but got `%s`", jsonObj.get("pricingPlans").toString()));

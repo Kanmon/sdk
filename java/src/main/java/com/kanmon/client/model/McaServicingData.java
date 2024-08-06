@@ -52,9 +52,59 @@ import com.kanmon.client.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class McaServicingData {
+  /**
+   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaServicingData&#x60;.
+   */
+  @JsonAdapter(ProductTypeEnum.Adapter.class)
+  public enum ProductTypeEnum {
+    MCA("MCA");
+
+    private String value;
+
+    ProductTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ProductTypeEnum fromValue(String value) {
+      for (ProductTypeEnum b : ProductTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ProductTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ProductTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ProductTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ProductTypeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ProductTypeEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private String productType;
+  private ProductTypeEnum productType;
 
   public static final String SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS = "advanceAmountCents";
   @SerializedName(SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS)
@@ -143,7 +193,7 @@ public class McaServicingData {
   public McaServicingData() {
   }
 
-  public McaServicingData productType(String productType) {
+  public McaServicingData productType(ProductTypeEnum productType) {
     this.productType = productType;
     return this;
   }
@@ -153,11 +203,11 @@ public class McaServicingData {
    * @return productType
   **/
   @javax.annotation.Nonnull
-  public String getProductType() {
+  public ProductTypeEnum getProductType() {
     return productType;
   }
 
-  public void setProductType(String productType) {
+  public void setProductType(ProductTypeEnum productType) {
     this.productType = productType;
   }
 
@@ -406,6 +456,8 @@ public class McaServicingData {
       if (!jsonObj.get("productType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
       }
+      // validate the required field `productType`
+      ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
       if (!jsonObj.get("repaymentFrequency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `repaymentFrequency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("repaymentFrequency").toString()));
       }
