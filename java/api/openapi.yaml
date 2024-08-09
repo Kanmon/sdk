@@ -558,7 +558,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "c327a5b6-9b69-452b-bf56-10bfc4386f7d,c215bfe0-86d1-484a-ad6d-50609b2ee26c"
+        example: "c325087c-9301-4702-b1c2-ecc2f722b197,850966dd-37b0-4f03-a884-e62fb9af7597"
         explode: true
         in: query
         name: businessIds
@@ -1410,6 +1410,15 @@ paths:
         example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
         explode: true
         in: query
+        name: offerIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for issued products.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
         name: ids
         required: false
         schema:
@@ -1548,7 +1557,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "9b8a27e5-5845-4990-9bc6-84c3d0d25e71,dca3a9e5-8e59-4ccc-86fc-1bf821b4040e"
+        example: "53c5f128-ae50-45d9-b10e-4e7c19e85951,24aca1ed-4e99-4374-aa45-f28428e064fd"
         explode: true
         in: query
         name: businessIds
@@ -1915,7 +1924,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "ce2522aa-dbe7-4f67-ad30-2fa8ddf6e2e5,5211b9bb-8bfb-4293-be1d-c36f16421b9f"
+        example: "de8662ac-9547-4f14-9314-8a8b9d3f1a9c,4451cd08-3e48-4bfe-8d8e-2d048c5c1634"
         explode: true
         in: query
         name: drawRequestIds
@@ -2263,6 +2272,178 @@ paths:
       x-content-type: multipart/form-data
       x-accepts:
       - application/json
+  /api/platform/v2/integrated-mca-receivables:
+    get:
+      operationId: getIntegratedMcaReceivablesByIssuedProductId
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique IDs for integrated
+          MCA receivable.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon unique IDs for issued product.
+        example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
+        explode: true
+        in: query
+        name: issuedProductIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of your platform’s unique IDs for transaction.
+        example: "12345,67890"
+        explode: true
+        in: query
+        name: transactionIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegratedMcaReceivablesResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch integrated MCA receivables
+      tags:
+      - Integrated MCA Receivables
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.integratedMcaReceivable.getIntegratedMcaReceivablesByIssuedProductId({\n\
+            \  ...params...\n})\n    "
+      x-accepts:
+      - application/json
+    post:
+      operationId: createIntegratedMcaReceivable
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIntegratedMcaReceivableBody'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IntegratedMcaReceivable'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createIntegratedMcaReceivable_400_response'
+          description: "BadRequestException, NoRemainingBalanceException, IncorrectRepaymentAmountException"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedProductNotFoundException'
+          description: IssuedProductNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createIntegratedMcaReceivable_409_response'
+          description: "IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Create an integrated MCA receivable
+      tags:
+      - Integrated MCA Receivables
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.integratedMcaReceivable.createIntegratedMcaReceivable({\n\
+            \  ...params...\n})\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /api/platform/v2/embedded-session:
     post:
       description: "Embedded session tokens allow you to securely pass data to Kanmon.\
@@ -2333,21 +2514,22 @@ components:
     ProductType:
       description: "The product that the business is prequalified for. This will be\
         \ null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`,\
-        \ `MCA`, `LINE_OF_CREDIT`"
+        \ `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`."
       enum:
       - INVOICE_FINANCING
       - TERM_LOAN
       - MCA
       - LINE_OF_CREDIT
+      - INTEGRATED_MCA
       type: string
     BusinessPrequalification:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
         product: null
-        platformBusinessId: af17f6b3-588c-47e4-96c7-a0497667e542
+        platformBusinessId: 76965a38-51fb-4875-8d5f-e78b3ac6f91d
         isPrequalified: true
-        businessId: 36896dab-83dd-4988-99a0-2aca40936d15
-        platformId: bface0fd-546f-4e96-9e31-e18d72326e3d
+        businessId: 0b72d514-90e5-4bbc-83b2-ad6c2fb5612b
+        platformId: 9ab16afc-e47d-4e18-aeb1-e1cceac2561f
         prequalifiedAmountCents: 1000000
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
@@ -2355,16 +2537,16 @@ components:
           $ref: '#/components/schemas/ProductType'
         platformId:
           description: The UUID representing your platform in Kanmon.
-          example: bface0fd-546f-4e96-9e31-e18d72326e3d
+          example: 9ab16afc-e47d-4e18-aeb1-e1cceac2561f
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 36896dab-83dd-4988-99a0-2aca40936d15
+          example: 0b72d514-90e5-4bbc-83b2-ad6c2fb5612b
           nullable: true
           type: string
         platformBusinessId:
           description: Your platform’s unique ID for the business.
-          example: af17f6b3-588c-47e4-96c7-a0497667e542
+          example: 76965a38-51fb-4875-8d5f-e78b3ac6f91d
           type: string
         isPrequalified:
           description: Whether or not the business has been prequalified.
@@ -2418,18 +2600,18 @@ components:
         prequalifications:
         - createdAt: 2022-06-01T03:57:26.115Z
           product: null
-          platformBusinessId: af17f6b3-588c-47e4-96c7-a0497667e542
+          platformBusinessId: 76965a38-51fb-4875-8d5f-e78b3ac6f91d
           isPrequalified: true
-          businessId: 36896dab-83dd-4988-99a0-2aca40936d15
-          platformId: bface0fd-546f-4e96-9e31-e18d72326e3d
+          businessId: 0b72d514-90e5-4bbc-83b2-ad6c2fb5612b
+          platformId: 9ab16afc-e47d-4e18-aeb1-e1cceac2561f
           prequalifiedAmountCents: 1000000
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
           product: null
-          platformBusinessId: af17f6b3-588c-47e4-96c7-a0497667e542
+          platformBusinessId: 76965a38-51fb-4875-8d5f-e78b3ac6f91d
           isPrequalified: true
-          businessId: 36896dab-83dd-4988-99a0-2aca40936d15
-          platformId: bface0fd-546f-4e96-9e31-e18d72326e3d
+          businessId: 0b72d514-90e5-4bbc-83b2-ad6c2fb5612b
+          platformId: 9ab16afc-e47d-4e18-aeb1-e1cceac2561f
           prequalifiedAmountCents: 1000000
           updatedAt: 2022-06-01T03:57:26.115Z
       properties:
@@ -3286,9 +3468,9 @@ components:
       type: object
     MergeUsersRequestBody:
       example:
-        sourceBusinessId: 50f37384-df37-421a-80f5-c2af1addc587
+        sourceBusinessId: 7943588a-1370-4cff-950b-ecff4513cdba
         sourcePlatformBusinessId: "12345"
-        targetBusinessId: b3d2566a-d261-41cd-84fc-d48716e6d8b8
+        targetBusinessId: 25b1a4c2-26ab-4ec8-b9ac-ba2214ca34d4
         targetPlatformBusinessId: "67890"
       properties:
         sourcePlatformBusinessId:
@@ -3300,7 +3482,7 @@ components:
         sourceBusinessId:
           description: The UUID representing the business in Kanmon to merge users
             from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is required.
-          example: 50f37384-df37-421a-80f5-c2af1addc587
+          example: 7943588a-1370-4cff-950b-ecff4513cdba
           type: string
         targetPlatformBusinessId:
           description: Your platform’s unique business ID for the business to merge
@@ -3310,7 +3492,7 @@ components:
         targetBusinessId:
           description: The UUID representing the business in Kanmon to merge users
             to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.
-          example: b3d2566a-d261-41cd-84fc-d48716e6d8b8
+          example: 25b1a4c2-26ab-4ec8-b9ac-ba2214ca34d4
           type: string
       type: object
     MergeUsersResponseBody:
@@ -3945,9 +4127,14 @@ components:
             \ repayment amount equates to $13,000."
           example: 1300000
           type: number
+        maxAdvanceAmountCents:
+          description: The maximum loan amount - in cents.
+          example: 1000000
+          type: number
       required:
       - advanceAmountCents
       - feeFactor
+      - maxAdvanceAmountCents
       - productType
       - repaymentFrequency
       - repaymentPercentage
@@ -3987,6 +4174,45 @@ components:
       - repaymentDurationMonths
       - totalLimitCents
       type: object
+    IntegratedMcaOfferTerms:
+      properties:
+        productType:
+          enum:
+          - INTEGRATED_MCA
+          type: string
+        advanceAmountCents:
+          description: The loan amount - in cents.
+          example: 1000000
+          type: number
+        repaymentPercentage:
+          description: "The repayment percentage for calculating repayment amounts.\
+            \ E.g. a value of a `20` means 20%. If a business has $100 of income over\
+            \ a repayment period, the repayment amount would be $20."
+          example: 20
+          type: number
+        feeFactor:
+          description: The fee percentage charged as the borrowing cost of the loan.
+            E.g. a value of `1.3` means a 30% fee.
+          example: 1.3
+          type: number
+        totalRepaymentCents:
+          description: "The total repayment amount in cents required to settle and\
+            \ close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the\
+            \ repayment amount equates to $13,000."
+          example: 1300000
+          type: number
+        maxAdvanceAmountCents:
+          description: The maximum loan amount - in cents.
+          example: 1000000
+          type: number
+      required:
+      - advanceAmountCents
+      - feeFactor
+      - maxAdvanceAmountCents
+      - productType
+      - repaymentPercentage
+      - totalRepaymentCents
+      type: object
     Offer:
       example:
         expiredAt: 2023-12-29T03:57:26.115Z
@@ -3999,18 +4225,18 @@ components:
           feePercentage: 3
           interestRatePercentage: 10
           productType: TERM_LOAN
-        businessId: 44feaffe-d474-4061-b381-077a44df08e9
-        id: bb78a80b-0de6-4516-b2aa-3f15a99ee0b7
+        businessId: be15626e-8533-48d7-805d-c91b8524acad
+        id: f4c2b11b-2046-4454-90bd-aeb5870e0fba
         selectedAt: 2023-12-15T03:57:26.115Z
         updatedAt: 2023-12-15T03:57:26.115Z
       properties:
         id:
           description: A unique id representing the offer object.
-          example: bb78a80b-0de6-4516-b2aa-3f15a99ee0b7
+          example: f4c2b11b-2046-4454-90bd-aeb5870e0fba
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 44feaffe-d474-4061-b381-077a44df08e9
+          example: be15626e-8533-48d7-805d-c91b8524acad
           type: string
         platformBusinessId:
           description: Your platform’s unique ID for the business.
@@ -4085,8 +4311,8 @@ components:
             feePercentage: 3
             interestRatePercentage: 10
             productType: TERM_LOAN
-          businessId: 44feaffe-d474-4061-b381-077a44df08e9
-          id: bb78a80b-0de6-4516-b2aa-3f15a99ee0b7
+          businessId: be15626e-8533-48d7-805d-c91b8524acad
+          id: f4c2b11b-2046-4454-90bd-aeb5870e0fba
           selectedAt: 2023-12-15T03:57:26.115Z
           updatedAt: 2023-12-15T03:57:26.115Z
         - expiredAt: 2023-12-29T03:57:26.115Z
@@ -4099,8 +4325,8 @@ components:
             feePercentage: 3
             interestRatePercentage: 10
             productType: TERM_LOAN
-          businessId: 44feaffe-d474-4061-b381-077a44df08e9
-          id: bb78a80b-0de6-4516-b2aa-3f15a99ee0b7
+          businessId: be15626e-8533-48d7-805d-c91b8524acad
+          id: f4c2b11b-2046-4454-90bd-aeb5870e0fba
           selectedAt: 2023-12-15T03:57:26.115Z
           updatedAt: 2023-12-15T03:57:26.115Z
         pagination: ""
@@ -4253,6 +4479,45 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
+    IntegratedMcaServicingData:
+      properties:
+        productType:
+          enum:
+          - INTEGRATED_MCA
+          type: string
+        advanceAmountCents:
+          description: The loan amount - in cents.
+          example: 1000000
+          type: number
+        repaymentPercentage:
+          description: "The repayment percentage for calculating repayment amounts.\
+            \ E.g. a value of a `20` means 20%. If a business has $100 of income over\
+            \ a repayment period, the repayment amount would be $20."
+          example: 20
+          type: number
+        feeFactor:
+          description: The fee percentage charged as the borrowing cost of the loan.
+            E.g. a value of `1.3` means a 30% fee.
+          example: 1.3
+          type: number
+        totalRepaymentCents:
+          description: "The total repayment amount in cents required to settle and\
+            \ close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the\
+            \ repayment amount equates to $13,000."
+          example: 1300000
+          type: number
+        advanceBalanceCents:
+          description: The total repayment amount less the amount repaid - in cents.
+          example: 1100000
+          type: number
+      required:
+      - advanceAmountCents
+      - advanceBalanceCents
+      - feeFactor
+      - productType
+      - repaymentPercentage
+      - totalRepaymentCents
+      type: object
     LineOfCreditServicingData:
       properties:
         productType:
@@ -4305,24 +4570,24 @@ components:
           originationFeeCents: 100000
           productType: TERM_LOAN
           principalBalanceCents: 1000000
-        businessId: 49bfc1e4-cc83-46f9-b303-41b64353478c
+        businessId: 3d175a5a-f225-498b-ac3c-899b523a64b6
         loanStatus: CURRENT
-        offerId: 540ec331-145e-4089-aba2-62e49a594b60
-        id: 416daad3-0d6b-469b-a6c2-fccd503fe1b3
+        offerId: 8cc8b888-2b87-4e7e-931a-672cb2b445e4
+        id: ed83778c-5d25-4e86-a52c-7ada554f8b22
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         id:
           description: The UUID representing the issued product in Kanmon.
-          example: 416daad3-0d6b-469b-a6c2-fccd503fe1b3
+          example: ed83778c-5d25-4e86-a52c-7ada554f8b22
           type: string
         offerId:
           description: The UUID representing the offer tied to this issued product
             in Kanmon.
-          example: 540ec331-145e-4089-aba2-62e49a594b60
+          example: 8cc8b888-2b87-4e7e-931a-672cb2b445e4
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 49bfc1e4-cc83-46f9-b303-41b64353478c
+          example: 3d175a5a-f225-498b-ac3c-899b523a64b6
           type: string
         platformBusinessId:
           description: Your platform’s unique ID for the business.
@@ -4398,10 +4663,10 @@ components:
             originationFeeCents: 100000
             productType: TERM_LOAN
             principalBalanceCents: 1000000
-          businessId: 49bfc1e4-cc83-46f9-b303-41b64353478c
+          businessId: 3d175a5a-f225-498b-ac3c-899b523a64b6
           loanStatus: CURRENT
-          offerId: 540ec331-145e-4089-aba2-62e49a594b60
-          id: 416daad3-0d6b-469b-a6c2-fccd503fe1b3
+          offerId: 8cc8b888-2b87-4e7e-931a-672cb2b445e4
+          id: ed83778c-5d25-4e86-a52c-7ada554f8b22
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
@@ -4413,10 +4678,10 @@ components:
             originationFeeCents: 100000
             productType: TERM_LOAN
             principalBalanceCents: 1000000
-          businessId: 49bfc1e4-cc83-46f9-b303-41b64353478c
+          businessId: 3d175a5a-f225-498b-ac3c-899b523a64b6
           loanStatus: CURRENT
-          offerId: 540ec331-145e-4089-aba2-62e49a594b60
-          id: 416daad3-0d6b-469b-a6c2-fccd503fe1b3
+          offerId: 8cc8b888-2b87-4e7e-931a-672cb2b445e4
+          id: ed83778c-5d25-4e86-a52c-7ada554f8b22
           updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         issuedProducts:
@@ -4686,16 +4951,16 @@ components:
       type: string
     PaymentOrder:
       example:
-        drawRequestId: e672af00-d8c4-45a3-885d-f9dfd53fbc1d
-        issuedProductId: 19c574c9-4a37-419c-ac31-606a44ba92f5
-        platformInvoiceId: 87bd9ff8-d2b0-4a5a-866a-e400aab79a38
+        drawRequestId: a911cfc9-b566-4078-9a9f-46da3c9382ad
+        issuedProductId: 848565c0-0eb6-4569-9768-ab7979a2f81a
+        platformInvoiceId: b165ee95-e397-41e3-9a45-0bf3b3561d5b
         feeType: INSUFFICIENT_FUNDS
         totalPaymentAmountCents: 100000
         createdAt: 2022-06-01T03:57:26.115Z
         principalPaymentAmountCents: 80000
         interestPaymentAmountCents: 10000
-        invoiceId: 111f4361-b563-4e92-8e8f-3cff4a6b77ff
-        id: c275ea2d-b1a9-4ad7-a246-fceaac1f81fb
+        invoiceId: d1469381-b104-4c72-a99d-b8e36e11a05c
+        id: 804b6493-bc7c-4135-bb7f-83a6d29050c9
         settledDate: 2024-01-03
         effectiveDate: 2024-01-01
         feePaymentAmountCents: 10000
@@ -4705,28 +4970,28 @@ components:
       properties:
         id:
           description: The UUID representing the payment order in Kanmon.
-          example: c275ea2d-b1a9-4ad7-a246-fceaac1f81fb
+          example: 804b6493-bc7c-4135-bb7f-83a6d29050c9
           type: string
         issuedProductId:
           description: The UUID representing the issued product in Kanmon.
-          example: 19c574c9-4a37-419c-ac31-606a44ba92f5
+          example: 848565c0-0eb6-4569-9768-ab7979a2f81a
           type: string
         drawRequestId:
           description: The UUID representing the draw request in Kanmon. (only present
             for Line of Credit).
-          example: e672af00-d8c4-45a3-885d-f9dfd53fbc1d
+          example: a911cfc9-b566-4078-9a9f-46da3c9382ad
           nullable: true
           type: string
         invoiceId:
           description: The UUID representing the invoice in Kanmon. (only present
             for Invoice Financing).
-          example: 111f4361-b563-4e92-8e8f-3cff4a6b77ff
+          example: d1469381-b104-4c72-a99d-b8e36e11a05c
           nullable: true
           type: string
         platformInvoiceId:
           description: Your platform’s unique ID for the invoice. (only present for
             Invoice Financing).
-          example: 87bd9ff8-d2b0-4a5a-866a-e400aab79a38
+          example: b165ee95-e397-41e3-9a45-0bf3b3561d5b
           nullable: true
           type: string
         effectiveDate:
@@ -4830,16 +5095,16 @@ components:
       example:
         totalPaymentAmountCents: 100000
         paymentOrder:
-          drawRequestId: e672af00-d8c4-45a3-885d-f9dfd53fbc1d
-          issuedProductId: 19c574c9-4a37-419c-ac31-606a44ba92f5
-          platformInvoiceId: 87bd9ff8-d2b0-4a5a-866a-e400aab79a38
+          drawRequestId: a911cfc9-b566-4078-9a9f-46da3c9382ad
+          issuedProductId: 848565c0-0eb6-4569-9768-ab7979a2f81a
+          platformInvoiceId: b165ee95-e397-41e3-9a45-0bf3b3561d5b
           feeType: INSUFFICIENT_FUNDS
           totalPaymentAmountCents: 100000
           createdAt: 2022-06-01T03:57:26.115Z
           principalPaymentAmountCents: 80000
           interestPaymentAmountCents: 10000
-          invoiceId: 111f4361-b563-4e92-8e8f-3cff4a6b77ff
-          id: c275ea2d-b1a9-4ad7-a246-fceaac1f81fb
+          invoiceId: d1469381-b104-4c72-a99d-b8e36e11a05c
+          id: 804b6493-bc7c-4135-bb7f-83a6d29050c9
           settledDate: 2024-01-03
           effectiveDate: 2024-01-01
           feePaymentAmountCents: 10000
@@ -4868,16 +5133,16 @@ components:
         paymentSchedule:
         - totalPaymentAmountCents: 100000
           paymentOrder:
-            drawRequestId: e672af00-d8c4-45a3-885d-f9dfd53fbc1d
-            issuedProductId: 19c574c9-4a37-419c-ac31-606a44ba92f5
-            platformInvoiceId: 87bd9ff8-d2b0-4a5a-866a-e400aab79a38
+            drawRequestId: a911cfc9-b566-4078-9a9f-46da3c9382ad
+            issuedProductId: 848565c0-0eb6-4569-9768-ab7979a2f81a
+            platformInvoiceId: b165ee95-e397-41e3-9a45-0bf3b3561d5b
             feeType: INSUFFICIENT_FUNDS
             totalPaymentAmountCents: 100000
             createdAt: 2022-06-01T03:57:26.115Z
             principalPaymentAmountCents: 80000
             interestPaymentAmountCents: 10000
-            invoiceId: 111f4361-b563-4e92-8e8f-3cff4a6b77ff
-            id: c275ea2d-b1a9-4ad7-a246-fceaac1f81fb
+            invoiceId: d1469381-b104-4c72-a99d-b8e36e11a05c
+            id: 804b6493-bc7c-4135-bb7f-83a6d29050c9
             settledDate: 2024-01-03
             effectiveDate: 2024-01-01
             feePaymentAmountCents: 10000
@@ -4887,16 +5152,16 @@ components:
           effectiveDate: 2024-01-01
         - totalPaymentAmountCents: 100000
           paymentOrder:
-            drawRequestId: e672af00-d8c4-45a3-885d-f9dfd53fbc1d
-            issuedProductId: 19c574c9-4a37-419c-ac31-606a44ba92f5
-            platformInvoiceId: 87bd9ff8-d2b0-4a5a-866a-e400aab79a38
+            drawRequestId: a911cfc9-b566-4078-9a9f-46da3c9382ad
+            issuedProductId: 848565c0-0eb6-4569-9768-ab7979a2f81a
+            platformInvoiceId: b165ee95-e397-41e3-9a45-0bf3b3561d5b
             feeType: INSUFFICIENT_FUNDS
             totalPaymentAmountCents: 100000
             createdAt: 2022-06-01T03:57:26.115Z
             principalPaymentAmountCents: 80000
             interestPaymentAmountCents: 10000
-            invoiceId: 111f4361-b563-4e92-8e8f-3cff4a6b77ff
-            id: c275ea2d-b1a9-4ad7-a246-fceaac1f81fb
+            invoiceId: d1469381-b104-4c72-a99d-b8e36e11a05c
+            id: 804b6493-bc7c-4135-bb7f-83a6d29050c9
             settledDate: 2024-01-03
             effectiveDate: 2024-01-01
             feePaymentAmountCents: 10000
@@ -4932,7 +5197,7 @@ components:
         createdAt: 2022-06-01T03:57:26.115Z
         amountCents: 1000000
         feePercentage: 5
-        issuedProductId: 94390121-4f8e-453b-b242-93c102bc9512
+        issuedProductId: 670f86fb-8460-49e1-915b-3a8c3fb2bf93
         disbursementAmountCents: 960000
         id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
         feeAmountCents: 40000
@@ -4947,7 +5212,7 @@ components:
           type: string
         issuedProductId:
           description: The UUID representing the issued product in Kanmon.
-          example: 94390121-4f8e-453b-b242-93c102bc9512
+          example: 670f86fb-8460-49e1-915b-3a8c3fb2bf93
           type: string
         amountCents:
           description: The total draw request amount - in cents.
@@ -5029,7 +5294,7 @@ components:
         - createdAt: 2022-06-01T03:57:26.115Z
           amountCents: 1000000
           feePercentage: 5
-          issuedProductId: 94390121-4f8e-453b-b242-93c102bc9512
+          issuedProductId: 670f86fb-8460-49e1-915b-3a8c3fb2bf93
           disbursementAmountCents: 960000
           id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           feeAmountCents: 40000
@@ -5040,7 +5305,7 @@ components:
         - createdAt: 2022-06-01T03:57:26.115Z
           amountCents: 1000000
           feePercentage: 5
-          issuedProductId: 94390121-4f8e-453b-b242-93c102bc9512
+          issuedProductId: 670f86fb-8460-49e1-915b-3a8c3fb2bf93
           disbursementAmountCents: 960000
           id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           feeAmountCents: 40000
@@ -5092,11 +5357,11 @@ components:
       type: string
     BusinessDocument:
       example:
-        originalFileName: 6e8e0e44-72c1-4463-a2a0-6791358fe39c
+        originalFileName: 57e2add7-1413-4185-bb34-0812ac8ada00
         createdAt: 2022-06-01T03:57:26.115Z
         platformBusinessId: "12345"
         documentType: null
-        businessId: 6d7561f2-c359-4703-95e8-a86646935643
+        businessId: b46d2f28-a19d-4036-91d8-163e0dbc06e1
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
@@ -5111,13 +5376,13 @@ components:
           type: string
         businessId:
           description: The UUID representing the business in Kanmon.
-          example: 6d7561f2-c359-4703-95e8-a86646935643
+          example: b46d2f28-a19d-4036-91d8-163e0dbc06e1
           type: string
         documentType:
           $ref: '#/components/schemas/BusinessDocumentType'
         originalFileName:
           description: The file’s original file name.
-          example: 6e8e0e44-72c1-4463-a2a0-6791358fe39c
+          example: 57e2add7-1413-4185-bb34-0812ac8ada00
           type: string
         createdAt:
           description: Creation UTC ISO 8601 timestamp of the business document.
@@ -5139,18 +5404,18 @@ components:
     CreateBusinessDocumentsResponse:
       example:
         documents:
-        - originalFileName: 6e8e0e44-72c1-4463-a2a0-6791358fe39c
+        - originalFileName: 57e2add7-1413-4185-bb34-0812ac8ada00
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           documentType: null
-          businessId: 6d7561f2-c359-4703-95e8-a86646935643
+          businessId: b46d2f28-a19d-4036-91d8-163e0dbc06e1
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           updatedAt: 2022-06-01T03:57:26.115Z
-        - originalFileName: 6e8e0e44-72c1-4463-a2a0-6791358fe39c
+        - originalFileName: 57e2add7-1413-4185-bb34-0812ac8ada00
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           documentType: null
-          businessId: 6d7561f2-c359-4703-95e8-a86646935643
+          businessId: b46d2f28-a19d-4036-91d8-163e0dbc06e1
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           updatedAt: 2022-06-01T03:57:26.115Z
       properties:
@@ -5161,6 +5426,134 @@ components:
           type: array
       required:
       - documents
+      type: object
+    IntegratedMcaReceivable:
+      example:
+        createdAt: 2022-06-01T03:57:26.115Z
+        issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        chargeAmountCents: 1000000
+        transactionTime: 2022-06-01T03:57:26.115Z
+        transactionId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        repaymentAmountCents: 100000
+        updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        id:
+          description: Kanmon’s unique ID for the integrated MCA receivable.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        issuedProductId:
+          description: The unique identifier for the issued product in Kanmon′s system.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        chargeAmountCents:
+          description: The charge amount - in cents.
+          example: 1000000
+          type: number
+        repaymentAmountCents:
+          description: The repayment amount - in cents. It should be the minimum between
+            (repayment percentage * charge amount) or remaining balance.
+          example: 100000
+          type: number
+        transactionId:
+          description: Your platform’s unique ID for the transaction.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        transactionTime:
+          description: Creation UTC ISO 8601 timestamp of the transaction.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the receivable.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the receivable.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - chargeAmountCents
+      - createdAt
+      - id
+      - issuedProductId
+      - repaymentAmountCents
+      - transactionId
+      - transactionTime
+      - updatedAt
+      type: object
+    GetIntegratedMcaReceivablesResponse:
+      example:
+        pagination: ""
+        integratedMcaReceivables:
+        - createdAt: 2022-06-01T03:57:26.115Z
+          issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          chargeAmountCents: 1000000
+          transactionTime: 2022-06-01T03:57:26.115Z
+          transactionId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          repaymentAmountCents: 100000
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - createdAt: 2022-06-01T03:57:26.115Z
+          issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          chargeAmountCents: 1000000
+          transactionTime: 2022-06-01T03:57:26.115Z
+          transactionId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          repaymentAmountCents: 100000
+          updatedAt: 2022-06-01T03:57:26.115Z
+      properties:
+        integratedMcaReceivables:
+          description: The integrated MCA receivables that were created.
+          items:
+            $ref: '#/components/schemas/IntegratedMcaReceivable'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - integratedMcaReceivables
+      - pagination
+      type: object
+    CreateIntegratedMcaReceivableBody:
+      example:
+        issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        chargeAmountCents: 1000000
+        transactionTime: 2022-06-01T03:57:26.115Z
+        transactionId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        repaymentAmountCents: 100000
+      properties:
+        issuedProductId:
+          description: The unique identifier for the issued product in Kanmon′s system.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        chargeAmountCents:
+          description: The charge amount - in cents.
+          example: 1000000
+          type: number
+        repaymentAmountCents:
+          description: |2
+
+              <p>The repayment amount - in cents. It should be the lesser of:
+                <br/>
+                ( repayment percentage &times; charge amount ) or remaining balance
+              </p>
+          example: 100000
+          type: number
+        transactionId:
+          description: Your platform’s unique ID for the transaction.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        transactionTime:
+          description: Creation UTC ISO 8601 timestamp of the transaction.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - chargeAmountCents
+      - issuedProductId
+      - repaymentAmountCents
+      - transactionId
+      - transactionTime
       type: object
     SessionInvoice:
       example:
@@ -5844,6 +6237,90 @@ components:
       - message
       - timestamp
       type: object
+    IncorrectProductTypeException:
+      example:
+        errorCode: IncorrectProductTypeException
+        message: Internal Server Error
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - IncorrectProductTypeException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    IntegratedMcaReceivableAlreadyExistsException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - IntegratedMcaReceivableAlreadyExistsException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    NoRemainingBalanceException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - NoRemainingBalanceException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    IncorrectRepaymentAmountException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - IncorrectRepaymentAmountException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Internal Server Error
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
     createUser_409_response:
       oneOf:
       - $ref: '#/components/schemas/PrimaryBusinessOwnerAlreadyExistsForBusinessException'
@@ -5857,6 +6334,15 @@ components:
       oneOf:
       - $ref: '#/components/schemas/InvoiceNotFoundException'
       - $ref: '#/components/schemas/BusinessNotFoundException'
+    createIntegratedMcaReceivable_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/BadRequestException'
+      - $ref: '#/components/schemas/NoRemainingBalanceException'
+      - $ref: '#/components/schemas/IncorrectRepaymentAmountException'
+    createIntegratedMcaReceivable_409_response:
+      oneOf:
+      - $ref: '#/components/schemas/IncorrectProductTypeException'
+      - $ref: '#/components/schemas/IntegratedMcaReceivableAlreadyExistsException'
     createEmbeddedSession_409_response:
       oneOf:
       - $ref: '#/components/schemas/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException'
@@ -5909,6 +6395,7 @@ components:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
       - $ref: '#/components/schemas/InvoiceFinancingOfferTerms'
       - $ref: '#/components/schemas/McaOfferTerms'
+      - $ref: '#/components/schemas/IntegratedMcaOfferTerms'
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
@@ -5917,28 +6404,30 @@ components:
           TERM_LOAN: '#/components/schemas/TermLoanServicingData'
           INVOICE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
           MCA: '#/components/schemas/McaServicingData'
+          INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
       - $ref: '#/components/schemas/InvoiceFinancingServicingData'
       - $ref: '#/components/schemas/McaServicingData'
+      - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
     PaymentScheduleItem_paymentOrder:
       allOf:
       - $ref: '#/components/schemas/PaymentOrder'
       description: The payment order for this schedule item
       example:
-        drawRequestId: e672af00-d8c4-45a3-885d-f9dfd53fbc1d
-        issuedProductId: 19c574c9-4a37-419c-ac31-606a44ba92f5
-        platformInvoiceId: 87bd9ff8-d2b0-4a5a-866a-e400aab79a38
+        drawRequestId: a911cfc9-b566-4078-9a9f-46da3c9382ad
+        issuedProductId: 848565c0-0eb6-4569-9768-ab7979a2f81a
+        platformInvoiceId: b165ee95-e397-41e3-9a45-0bf3b3561d5b
         feeType: INSUFFICIENT_FUNDS
         totalPaymentAmountCents: 100000
         createdAt: 2022-06-01T03:57:26.115Z
         principalPaymentAmountCents: 80000
         interestPaymentAmountCents: 10000
-        invoiceId: 111f4361-b563-4e92-8e8f-3cff4a6b77ff
-        id: c275ea2d-b1a9-4ad7-a246-fceaac1f81fb
+        invoiceId: d1469381-b104-4c72-a99d-b8e36e11a05c
+        id: 804b6493-bc7c-4135-bb7f-83a6d29050c9
         settledDate: 2024-01-03
         effectiveDate: 2024-01-01
         feePaymentAmountCents: 10000

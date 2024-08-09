@@ -14,14 +14,15 @@
 
 
 /**
- * The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`
+ * The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.
  * @export
  */
 export const ProductType = {
     InvoiceFinancing: 'INVOICE_FINANCING',
     TermLoan: 'TERM_LOAN',
     Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT'
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type ProductType = typeof ProductType[keyof typeof ProductType];
 

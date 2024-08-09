@@ -42,6 +42,7 @@ export interface GetIssuedProductByIdRequest {
 }
 
 export interface GetIssuedProductsRequest {
+    offerIds?: string;
     ids?: string;
     platformBusinessIds?: string;
     businessIds?: string;
@@ -98,6 +99,10 @@ export class IssuedProductsApi extends runtime.BaseAPI {
      */
     async getIssuedProductsRaw(requestParameters: GetIssuedProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIssuedProductsResponse>> {
         const queryParameters: any = {};
+
+        if (requestParameters['offerIds'] != null) {
+            queryParameters['offerIds'] = requestParameters['offerIds'];
+        }
 
         if (requestParameters['ids'] != null) {
             queryParameters['ids'] = requestParameters['ids'];

@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { IntegratedMcaOfferTerms } from './IntegratedMcaOfferTerms';
+import {
+    instanceOfIntegratedMcaOfferTerms,
+    IntegratedMcaOfferTermsFromJSON,
+    IntegratedMcaOfferTermsFromJSONTyped,
+    IntegratedMcaOfferTermsToJSON,
+} from './IntegratedMcaOfferTerms';
 import type { InvoiceFinancingOfferTerms } from './InvoiceFinancingOfferTerms';
 import {
     instanceOfInvoiceFinancingOfferTerms,
@@ -46,7 +53,7 @@ import {
  * Terms of the offer.
  * @export
  */
-export type OfferTerms = InvoiceFinancingOfferTerms | LineOfCreditOfferTerms | McaOfferTerms | TermLoanOfferTerms;
+export type OfferTerms = IntegratedMcaOfferTerms | InvoiceFinancingOfferTerms | LineOfCreditOfferTerms | McaOfferTerms | TermLoanOfferTerms;
 
 export function OfferTermsFromJSON(json: any): OfferTerms {
     return OfferTermsFromJSONTyped(json, false);
@@ -56,7 +63,7 @@ export function OfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     if (json == null) {
         return json;
     }
-    return InvoiceFinancingOfferTermsFromJSONTyped(json, true) || LineOfCreditOfferTermsFromJSONTyped(json, true) || McaOfferTermsFromJSONTyped(json, true) || TermLoanOfferTermsFromJSONTyped(json, true);
+    return IntegratedMcaOfferTermsFromJSONTyped(json, true) || InvoiceFinancingOfferTermsFromJSONTyped(json, true) || LineOfCreditOfferTermsFromJSONTyped(json, true) || McaOfferTermsFromJSONTyped(json, true) || TermLoanOfferTermsFromJSONTyped(json, true);
 }
 
 export function OfferTermsToJSON(value?: OfferTerms | null): any {
@@ -64,6 +71,9 @@ export function OfferTermsToJSON(value?: OfferTerms | null): any {
         return value;
     }
 
+    if (instanceOfIntegratedMcaOfferTerms(value)) {
+        return IntegratedMcaOfferTermsToJSON(value as IntegratedMcaOfferTerms);
+    }
     if (instanceOfInvoiceFinancingOfferTerms(value)) {
         return InvoiceFinancingOfferTermsToJSON(value as InvoiceFinancingOfferTerms);
     }

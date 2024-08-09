@@ -48,16 +48,16 @@ import java.util.Set;
 import com.kanmon.client.JSON;
 
 /**
- * McaOfferTerms
+ * IntegratedMcaServicingData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
-public class McaOfferTerms {
+public class IntegratedMcaServicingData {
   /**
-   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaOfferTerms&#x60;.
+   * Gets or Sets productType
    */
   @JsonAdapter(ProductTypeEnum.Adapter.class)
   public enum ProductTypeEnum {
-    MCA("MCA");
+    INTEGRATED_MCA("INTEGRATED_MCA");
 
     private String value;
 
@@ -118,84 +118,24 @@ public class McaOfferTerms {
   @SerializedName(SERIALIZED_NAME_FEE_FACTOR)
   private BigDecimal feeFactor;
 
-  /**
-   * The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.
-   */
-  @JsonAdapter(RepaymentFrequencyEnum.Adapter.class)
-  public enum RepaymentFrequencyEnum {
-    DAILY("DAILY"),
-    
-    WEEKLY("WEEKLY"),
-    
-    BIWEEKLY("BIWEEKLY"),
-    
-    MONTHLY("MONTHLY");
-
-    private String value;
-
-    RepaymentFrequencyEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static RepaymentFrequencyEnum fromValue(String value) {
-      for (RepaymentFrequencyEnum b : RepaymentFrequencyEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<RepaymentFrequencyEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final RepaymentFrequencyEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public RepaymentFrequencyEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return RepaymentFrequencyEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      RepaymentFrequencyEnum.fromValue(value);
-    }
-  }
-
-  public static final String SERIALIZED_NAME_REPAYMENT_FREQUENCY = "repaymentFrequency";
-  @SerializedName(SERIALIZED_NAME_REPAYMENT_FREQUENCY)
-  private RepaymentFrequencyEnum repaymentFrequency;
-
   public static final String SERIALIZED_NAME_TOTAL_REPAYMENT_CENTS = "totalRepaymentCents";
   @SerializedName(SERIALIZED_NAME_TOTAL_REPAYMENT_CENTS)
   private BigDecimal totalRepaymentCents;
 
-  public static final String SERIALIZED_NAME_MAX_ADVANCE_AMOUNT_CENTS = "maxAdvanceAmountCents";
-  @SerializedName(SERIALIZED_NAME_MAX_ADVANCE_AMOUNT_CENTS)
-  private BigDecimal maxAdvanceAmountCents;
+  public static final String SERIALIZED_NAME_ADVANCE_BALANCE_CENTS = "advanceBalanceCents";
+  @SerializedName(SERIALIZED_NAME_ADVANCE_BALANCE_CENTS)
+  private BigDecimal advanceBalanceCents;
 
-  public McaOfferTerms() {
+  public IntegratedMcaServicingData() {
   }
 
-  public McaOfferTerms productType(ProductTypeEnum productType) {
+  public IntegratedMcaServicingData productType(ProductTypeEnum productType) {
     this.productType = productType;
     return this;
   }
 
    /**
-   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaOfferTerms&#x60;.
+   * Get productType
    * @return productType
   **/
   @javax.annotation.Nonnull
@@ -208,7 +148,7 @@ public class McaOfferTerms {
   }
 
 
-  public McaOfferTerms advanceAmountCents(BigDecimal advanceAmountCents) {
+  public IntegratedMcaServicingData advanceAmountCents(BigDecimal advanceAmountCents) {
     this.advanceAmountCents = advanceAmountCents;
     return this;
   }
@@ -227,7 +167,7 @@ public class McaOfferTerms {
   }
 
 
-  public McaOfferTerms repaymentPercentage(BigDecimal repaymentPercentage) {
+  public IntegratedMcaServicingData repaymentPercentage(BigDecimal repaymentPercentage) {
     this.repaymentPercentage = repaymentPercentage;
     return this;
   }
@@ -246,7 +186,7 @@ public class McaOfferTerms {
   }
 
 
-  public McaOfferTerms feeFactor(BigDecimal feeFactor) {
+  public IntegratedMcaServicingData feeFactor(BigDecimal feeFactor) {
     this.feeFactor = feeFactor;
     return this;
   }
@@ -265,26 +205,7 @@ public class McaOfferTerms {
   }
 
 
-  public McaOfferTerms repaymentFrequency(RepaymentFrequencyEnum repaymentFrequency) {
-    this.repaymentFrequency = repaymentFrequency;
-    return this;
-  }
-
-   /**
-   * The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.
-   * @return repaymentFrequency
-  **/
-  @javax.annotation.Nonnull
-  public RepaymentFrequencyEnum getRepaymentFrequency() {
-    return repaymentFrequency;
-  }
-
-  public void setRepaymentFrequency(RepaymentFrequencyEnum repaymentFrequency) {
-    this.repaymentFrequency = repaymentFrequency;
-  }
-
-
-  public McaOfferTerms totalRepaymentCents(BigDecimal totalRepaymentCents) {
+  public IntegratedMcaServicingData totalRepaymentCents(BigDecimal totalRepaymentCents) {
     this.totalRepaymentCents = totalRepaymentCents;
     return this;
   }
@@ -303,22 +224,22 @@ public class McaOfferTerms {
   }
 
 
-  public McaOfferTerms maxAdvanceAmountCents(BigDecimal maxAdvanceAmountCents) {
-    this.maxAdvanceAmountCents = maxAdvanceAmountCents;
+  public IntegratedMcaServicingData advanceBalanceCents(BigDecimal advanceBalanceCents) {
+    this.advanceBalanceCents = advanceBalanceCents;
     return this;
   }
 
    /**
-   * The maximum loan amount - in cents.
-   * @return maxAdvanceAmountCents
+   * The total repayment amount less the amount repaid - in cents.
+   * @return advanceBalanceCents
   **/
   @javax.annotation.Nonnull
-  public BigDecimal getMaxAdvanceAmountCents() {
-    return maxAdvanceAmountCents;
+  public BigDecimal getAdvanceBalanceCents() {
+    return advanceBalanceCents;
   }
 
-  public void setMaxAdvanceAmountCents(BigDecimal maxAdvanceAmountCents) {
-    this.maxAdvanceAmountCents = maxAdvanceAmountCents;
+  public void setAdvanceBalanceCents(BigDecimal advanceBalanceCents) {
+    this.advanceBalanceCents = advanceBalanceCents;
   }
 
 
@@ -331,32 +252,30 @@ public class McaOfferTerms {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    McaOfferTerms mcaOfferTerms = (McaOfferTerms) o;
-    return Objects.equals(this.productType, mcaOfferTerms.productType) &&
-        Objects.equals(this.advanceAmountCents, mcaOfferTerms.advanceAmountCents) &&
-        Objects.equals(this.repaymentPercentage, mcaOfferTerms.repaymentPercentage) &&
-        Objects.equals(this.feeFactor, mcaOfferTerms.feeFactor) &&
-        Objects.equals(this.repaymentFrequency, mcaOfferTerms.repaymentFrequency) &&
-        Objects.equals(this.totalRepaymentCents, mcaOfferTerms.totalRepaymentCents) &&
-        Objects.equals(this.maxAdvanceAmountCents, mcaOfferTerms.maxAdvanceAmountCents);
+    IntegratedMcaServicingData integratedMcaServicingData = (IntegratedMcaServicingData) o;
+    return Objects.equals(this.productType, integratedMcaServicingData.productType) &&
+        Objects.equals(this.advanceAmountCents, integratedMcaServicingData.advanceAmountCents) &&
+        Objects.equals(this.repaymentPercentage, integratedMcaServicingData.repaymentPercentage) &&
+        Objects.equals(this.feeFactor, integratedMcaServicingData.feeFactor) &&
+        Objects.equals(this.totalRepaymentCents, integratedMcaServicingData.totalRepaymentCents) &&
+        Objects.equals(this.advanceBalanceCents, integratedMcaServicingData.advanceBalanceCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, repaymentFrequency, totalRepaymentCents, maxAdvanceAmountCents);
+    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, advanceBalanceCents);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class McaOfferTerms {\n");
+    sb.append("class IntegratedMcaServicingData {\n");
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
     sb.append("    advanceAmountCents: ").append(toIndentedString(advanceAmountCents)).append("\n");
     sb.append("    repaymentPercentage: ").append(toIndentedString(repaymentPercentage)).append("\n");
     sb.append("    feeFactor: ").append(toIndentedString(feeFactor)).append("\n");
-    sb.append("    repaymentFrequency: ").append(toIndentedString(repaymentFrequency)).append("\n");
     sb.append("    totalRepaymentCents: ").append(toIndentedString(totalRepaymentCents)).append("\n");
-    sb.append("    maxAdvanceAmountCents: ").append(toIndentedString(maxAdvanceAmountCents)).append("\n");
+    sb.append("    advanceBalanceCents: ").append(toIndentedString(advanceBalanceCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -383,9 +302,8 @@ public class McaOfferTerms {
     openapiFields.add("advanceAmountCents");
     openapiFields.add("repaymentPercentage");
     openapiFields.add("feeFactor");
-    openapiFields.add("repaymentFrequency");
     openapiFields.add("totalRepaymentCents");
-    openapiFields.add("maxAdvanceAmountCents");
+    openapiFields.add("advanceBalanceCents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -393,34 +311,33 @@ public class McaOfferTerms {
     openapiRequiredFields.add("advanceAmountCents");
     openapiRequiredFields.add("repaymentPercentage");
     openapiRequiredFields.add("feeFactor");
-    openapiRequiredFields.add("repaymentFrequency");
     openapiRequiredFields.add("totalRepaymentCents");
-    openapiRequiredFields.add("maxAdvanceAmountCents");
+    openapiRequiredFields.add("advanceBalanceCents");
   }
 
  /**
   * Validates the JSON Element and throws an exception if issues found
   *
   * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to McaOfferTerms
+  * @throws IOException if the JSON Element is invalid with respect to IntegratedMcaServicingData
   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!McaOfferTerms.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in McaOfferTerms is not found in the empty JSON string", McaOfferTerms.openapiRequiredFields.toString()));
+        if (!IntegratedMcaServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in IntegratedMcaServicingData is not found in the empty JSON string", IntegratedMcaServicingData.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!McaOfferTerms.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `McaOfferTerms` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!IntegratedMcaServicingData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IntegratedMcaServicingData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : McaOfferTerms.openapiRequiredFields) {
+      for (String requiredField : IntegratedMcaServicingData.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -431,33 +348,28 @@ public class McaOfferTerms {
       }
       // validate the required field `productType`
       ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
-      if (!jsonObj.get("repaymentFrequency").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `repaymentFrequency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("repaymentFrequency").toString()));
-      }
-      // validate the required field `repaymentFrequency`
-      RepaymentFrequencyEnum.validateJsonElement(jsonObj.get("repaymentFrequency"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!McaOfferTerms.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'McaOfferTerms' and its subtypes
+       if (!IntegratedMcaServicingData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'IntegratedMcaServicingData' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<McaOfferTerms> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(McaOfferTerms.class));
+       final TypeAdapter<IntegratedMcaServicingData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(IntegratedMcaServicingData.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<McaOfferTerms>() {
+       return (TypeAdapter<T>) new TypeAdapter<IntegratedMcaServicingData>() {
            @Override
-           public void write(JsonWriter out, McaOfferTerms value) throws IOException {
+           public void write(JsonWriter out, IntegratedMcaServicingData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public McaOfferTerms read(JsonReader in) throws IOException {
+           public IntegratedMcaServicingData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -468,18 +380,18 @@ public class McaOfferTerms {
   }
 
  /**
-  * Create an instance of McaOfferTerms given an JSON string
+  * Create an instance of IntegratedMcaServicingData given an JSON string
   *
   * @param jsonString JSON string
-  * @return An instance of McaOfferTerms
-  * @throws IOException if the JSON string is invalid with respect to McaOfferTerms
+  * @return An instance of IntegratedMcaServicingData
+  * @throws IOException if the JSON string is invalid with respect to IntegratedMcaServicingData
   */
-  public static McaOfferTerms fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, McaOfferTerms.class);
+  public static IntegratedMcaServicingData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, IntegratedMcaServicingData.class);
   }
 
  /**
-  * Convert an instance of McaOfferTerms to an JSON string
+  * Convert an instance of IntegratedMcaServicingData to an JSON string
   *
   * @return JSON string
   */
