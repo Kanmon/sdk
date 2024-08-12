@@ -5,6 +5,7 @@ src/apis/ConnectTokensApi.ts
 src/apis/DocumentsApi.ts
 src/apis/DrawRequestsApi.ts
 src/apis/EmbeddedSessionsApi.ts
+src/apis/IntegratedMCAReceivablesApi.ts
 src/apis/InvoicesApi.ts
 src/apis/IssuedProductsApi.ts
 src/apis/OffersApi.ts
@@ -37,6 +38,9 @@ src/models/CreateBusinessDocumentsResponse.ts
 src/models/CreateBusinessRequestBody.ts
 src/models/CreateConnectTokenRequestBody.ts
 src/models/CreateEmbeddedSession409Response.ts
+src/models/CreateIntegratedMcaReceivable400Response.ts
+src/models/CreateIntegratedMcaReceivable409Response.ts
+src/models/CreateIntegratedMcaReceivableBody.ts
 src/models/CreateSessionTokenRequestBody.ts
 src/models/CreateSessionTokenRequestBodyData.ts
 src/models/CreateUser409Response.ts
@@ -52,6 +56,7 @@ src/models/GetActivityLogsResponse.ts
 src/models/GetBusinessBankAccountsResponse.ts
 src/models/GetBusinessesResponse.ts
 src/models/GetDrawRequestsResponse.ts
+src/models/GetIntegratedMcaReceivablesResponse.ts
 src/models/GetInvoice404Response.ts
 src/models/GetInvoicesResponse.ts
 src/models/GetIssuedProductsResponse.ts
@@ -59,6 +64,12 @@ src/models/GetOffersResponse.ts
 src/models/GetPaymentScheduleResponse.ts
 src/models/GetPrequalificationsResponse.ts
 src/models/GetUsersResponse.ts
+src/models/IncorrectProductTypeException.ts
+src/models/IncorrectRepaymentAmountException.ts
+src/models/IntegratedMcaOfferTerms.ts
+src/models/IntegratedMcaReceivable.ts
+src/models/IntegratedMcaReceivableAlreadyExistsException.ts
+src/models/IntegratedMcaServicingData.ts
 src/models/InternalServerErrorException.ts
 src/models/InvalidInvoiceDueDateException.ts
 src/models/Invoice.ts
@@ -83,6 +94,7 @@ src/models/McaServicingData.ts
 src/models/MergeUsersRequestBody.ts
 src/models/MergeUsersResponseBody.ts
 src/models/MultipleDurationInvoiceRepaymentWindow.ts
+src/models/NoRemainingBalanceException.ts
 src/models/Offer.ts
 src/models/OfferAlreadySelectedException.ts
 src/models/OfferNotFoundException.ts

@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.IntegratedMcaOfferTerms;
 import com.kanmon.client.model.InvoiceFinancingOfferTerms;
 import com.kanmon.client.model.InvoicePaymentPlan;
 import com.kanmon.client.model.LineOfCreditOfferTerms;
@@ -80,6 +81,7 @@ public class OfferTerms extends AbstractOpenApiSchema {
             final TypeAdapter<TermLoanOfferTerms> adapterTermLoanOfferTerms = gson.getDelegateAdapter(this, TypeToken.get(TermLoanOfferTerms.class));
             final TypeAdapter<InvoiceFinancingOfferTerms> adapterInvoiceFinancingOfferTerms = gson.getDelegateAdapter(this, TypeToken.get(InvoiceFinancingOfferTerms.class));
             final TypeAdapter<McaOfferTerms> adapterMcaOfferTerms = gson.getDelegateAdapter(this, TypeToken.get(McaOfferTerms.class));
+            final TypeAdapter<IntegratedMcaOfferTerms> adapterIntegratedMcaOfferTerms = gson.getDelegateAdapter(this, TypeToken.get(IntegratedMcaOfferTerms.class));
             final TypeAdapter<LineOfCreditOfferTerms> adapterLineOfCreditOfferTerms = gson.getDelegateAdapter(this, TypeToken.get(LineOfCreditOfferTerms.class));
 
             return (TypeAdapter<T>) new TypeAdapter<OfferTerms>() {
@@ -108,13 +110,19 @@ public class OfferTerms extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
+                    // check if the actual instance is of the type `IntegratedMcaOfferTerms`
+                    if (value.getActualInstance() instanceof IntegratedMcaOfferTerms) {
+                        JsonElement element = adapterIntegratedMcaOfferTerms.toJsonTree((IntegratedMcaOfferTerms)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
                     // check if the actual instance is of the type `LineOfCreditOfferTerms`
                     if (value.getActualInstance() instanceof LineOfCreditOfferTerms) {
                         JsonElement element = adapterLineOfCreditOfferTerms.toJsonTree((LineOfCreditOfferTerms)value.getActualInstance());
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: IntegratedMcaOfferTerms, InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms");
                 }
 
                 @Override
@@ -162,6 +170,18 @@ public class OfferTerms extends AbstractOpenApiSchema {
                         errorMessages.add(String.format("Deserialization for McaOfferTerms failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'McaOfferTerms'", e);
                     }
+                    // deserialize IntegratedMcaOfferTerms
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        IntegratedMcaOfferTerms.validateJsonElement(jsonElement);
+                        actualAdapter = adapterIntegratedMcaOfferTerms;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'IntegratedMcaOfferTerms'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for IntegratedMcaOfferTerms failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'IntegratedMcaOfferTerms'", e);
+                    }
                     // deserialize LineOfCreditOfferTerms
                     try {
                         // validate the JSON object to see if any exception is thrown
@@ -194,6 +214,11 @@ public class OfferTerms extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
+    public OfferTerms(IntegratedMcaOfferTerms o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
     public OfferTerms(InvoiceFinancingOfferTerms o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
@@ -218,6 +243,7 @@ public class OfferTerms extends AbstractOpenApiSchema {
         schemas.put("TermLoanOfferTerms", TermLoanOfferTerms.class);
         schemas.put("InvoiceFinancingOfferTerms", InvoiceFinancingOfferTerms.class);
         schemas.put("McaOfferTerms", McaOfferTerms.class);
+        schemas.put("IntegratedMcaOfferTerms", IntegratedMcaOfferTerms.class);
         schemas.put("LineOfCreditOfferTerms", LineOfCreditOfferTerms.class);
     }
 
@@ -229,7 +255,7 @@ public class OfferTerms extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms
+     * IntegratedMcaOfferTerms, InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -250,19 +276,24 @@ public class OfferTerms extends AbstractOpenApiSchema {
             return;
         }
 
+        if (instance instanceof IntegratedMcaOfferTerms) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof LineOfCreditOfferTerms) {
             super.setActualInstance(instance);
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms");
+        throw new RuntimeException("Invalid instance type. Must be IntegratedMcaOfferTerms, InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms
+     * IntegratedMcaOfferTerms, InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms
      *
-     * @return The actual instance (InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms)
+     * @return The actual instance (IntegratedMcaOfferTerms, InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -299,6 +330,16 @@ public class OfferTerms extends AbstractOpenApiSchema {
      */
     public McaOfferTerms getMcaOfferTerms() throws ClassCastException {
         return (McaOfferTerms)super.getActualInstance();
+    }
+    /**
+     * Get the actual instance of `IntegratedMcaOfferTerms`. If the actual instance is not `IntegratedMcaOfferTerms`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `IntegratedMcaOfferTerms`
+     * @throws ClassCastException if the instance is not `IntegratedMcaOfferTerms`
+     */
+    public IntegratedMcaOfferTerms getIntegratedMcaOfferTerms() throws ClassCastException {
+        return (IntegratedMcaOfferTerms)super.getActualInstance();
     }
     /**
      * Get the actual instance of `LineOfCreditOfferTerms`. If the actual instance is not `LineOfCreditOfferTerms`,
@@ -345,6 +386,14 @@ public class OfferTerms extends AbstractOpenApiSchema {
             errorMessages.add(String.format("Deserialization for McaOfferTerms failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
+        // validate the json string with IntegratedMcaOfferTerms
+        try {
+            IntegratedMcaOfferTerms.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for IntegratedMcaOfferTerms failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with LineOfCreditOfferTerms
         try {
             LineOfCreditOfferTerms.validateJsonElement(jsonElement);
@@ -354,7 +403,7 @@ public class OfferTerms extends AbstractOpenApiSchema {
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for OfferTerms with oneOf schemas: InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for OfferTerms with oneOf schemas: IntegratedMcaOfferTerms, InvoiceFinancingOfferTerms, LineOfCreditOfferTerms, McaOfferTerms, TermLoanOfferTerms. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

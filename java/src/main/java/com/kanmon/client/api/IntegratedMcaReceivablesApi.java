@@ -29,10 +29,13 @@ import java.io.IOException;
 
 import com.kanmon.client.model.BadRequestException;
 import java.math.BigDecimal;
+import com.kanmon.client.model.CreateIntegratedMcaReceivable400Response;
+import com.kanmon.client.model.CreateIntegratedMcaReceivable409Response;
+import com.kanmon.client.model.CreateIntegratedMcaReceivableBody;
 import com.kanmon.client.model.ForbiddenException;
-import com.kanmon.client.model.GetIssuedProductsResponse;
+import com.kanmon.client.model.GetIntegratedMcaReceivablesResponse;
+import com.kanmon.client.model.IntegratedMcaReceivable;
 import com.kanmon.client.model.InternalServerErrorException;
-import com.kanmon.client.model.IssuedProduct;
 import com.kanmon.client.model.IssuedProductNotFoundException;
 
 import java.lang.reflect.Type;
@@ -41,16 +44,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class IssuedProductsApi {
+public class IntegratedMcaReceivablesApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public IssuedProductsApi() {
+    public IntegratedMcaReceivablesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public IssuedProductsApi(ApiClient apiClient) {
+    public IntegratedMcaReceivablesApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 
@@ -79,22 +82,23 @@ public class IssuedProductsApi {
     }
 
     /**
-     * Build call for getIssuedProductById
-     * @param id The Kanmon issued product UUID. (required)
+     * Build call for createIntegratedMcaReceivable
+     * @param createIntegratedMcaReceivableBody  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException, NoRemainingBalanceException, IncorrectRepaymentAmountException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIssuedProductByIdCall(String id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call createIntegratedMcaReceivableCall(CreateIntegratedMcaReceivableBody createIntegratedMcaReceivableBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -108,11 +112,10 @@ public class IssuedProductsApi {
             basePath = null;
         }
 
-        Object localVarPostBody = null;
+        Object localVarPostBody = createIntegratedMcaReceivableBody;
 
         // create path and map variables
-        String localVarPath = "/api/platform/v2/issued-products/{id}"
-            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+        String localVarPath = "/api/platform/v2/integrated-mca-receivables";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -129,6 +132,7 @@ public class IssuedProductsApi {
         }
 
         final String[] localVarContentTypes = {
+            "application/json"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
@@ -136,93 +140,95 @@ public class IssuedProductsApi {
         }
 
         String[] localVarAuthNames = new String[] { "Authorization" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getIssuedProductByIdValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling getIssuedProductById(Async)");
+    private okhttp3.Call createIntegratedMcaReceivableValidateBeforeCall(CreateIntegratedMcaReceivableBody createIntegratedMcaReceivableBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'createIntegratedMcaReceivableBody' is set
+        if (createIntegratedMcaReceivableBody == null) {
+            throw new ApiException("Missing the required parameter 'createIntegratedMcaReceivableBody' when calling createIntegratedMcaReceivable(Async)");
         }
 
-        return getIssuedProductByIdCall(id, _callback);
+        return createIntegratedMcaReceivableCall(createIntegratedMcaReceivableBody, _callback);
 
     }
 
     /**
-     * Fetch an issued product
+     * Create an integrated MCA receivable
      * 
-     * @param id The Kanmon issued product UUID. (required)
-     * @return IssuedProduct
+     * @param createIntegratedMcaReceivableBody  (required)
+     * @return IntegratedMcaReceivable
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException, NoRemainingBalanceException, IncorrectRepaymentAmountException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public IssuedProduct getIssuedProductById(String id) throws ApiException {
-        ApiResponse<IssuedProduct> localVarResp = getIssuedProductByIdWithHttpInfo(id);
+    public IntegratedMcaReceivable createIntegratedMcaReceivable(CreateIntegratedMcaReceivableBody createIntegratedMcaReceivableBody) throws ApiException {
+        ApiResponse<IntegratedMcaReceivable> localVarResp = createIntegratedMcaReceivableWithHttpInfo(createIntegratedMcaReceivableBody);
         return localVarResp.getData();
     }
 
     /**
-     * Fetch an issued product
+     * Create an integrated MCA receivable
      * 
-     * @param id The Kanmon issued product UUID. (required)
-     * @return ApiResponse&lt;IssuedProduct&gt;
+     * @param createIntegratedMcaReceivableBody  (required)
+     * @return ApiResponse&lt;IntegratedMcaReceivable&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException, NoRemainingBalanceException, IncorrectRepaymentAmountException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<IssuedProduct> getIssuedProductByIdWithHttpInfo(String id) throws ApiException {
-        okhttp3.Call localVarCall = getIssuedProductByIdValidateBeforeCall(id, null);
-        Type localVarReturnType = new TypeToken<IssuedProduct>(){}.getType();
+    public ApiResponse<IntegratedMcaReceivable> createIntegratedMcaReceivableWithHttpInfo(CreateIntegratedMcaReceivableBody createIntegratedMcaReceivableBody) throws ApiException {
+        okhttp3.Call localVarCall = createIntegratedMcaReceivableValidateBeforeCall(createIntegratedMcaReceivableBody, null);
+        Type localVarReturnType = new TypeToken<IntegratedMcaReceivable>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Fetch an issued product (asynchronously)
+     * Create an integrated MCA receivable (asynchronously)
      * 
-     * @param id The Kanmon issued product UUID. (required)
+     * @param createIntegratedMcaReceivableBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      <table summary="Response Details" border="1">
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException, NoRemainingBalanceException, IncorrectRepaymentAmountException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIssuedProductByIdAsync(String id, final ApiCallback<IssuedProduct> _callback) throws ApiException {
+    public okhttp3.Call createIntegratedMcaReceivableAsync(CreateIntegratedMcaReceivableBody createIntegratedMcaReceivableBody, final ApiCallback<IntegratedMcaReceivable> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getIssuedProductByIdValidateBeforeCall(id, _callback);
-        Type localVarReturnType = new TypeToken<IssuedProduct>(){}.getType();
+        okhttp3.Call localVarCall = createIntegratedMcaReceivableValidateBeforeCall(createIntegratedMcaReceivableBody, _callback);
+        Type localVarReturnType = new TypeToken<IntegratedMcaReceivable>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
-     * Build call for getIssuedProducts
-     * @param offerIds A comma delimited list of Kanmon’s unique IDs for offers. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * Build call for getIntegratedMcaReceivablesByIssuedProductId
+     * @param ids A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon unique IDs for issued product. (optional)
+     * @param transactionIds A comma delimited list of your platform’s unique IDs for transaction. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
@@ -239,7 +245,7 @@ public class IssuedProductsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIssuedProductsCall(String offerIds, String ids, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getIntegratedMcaReceivablesByIssuedProductIdCall(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -256,7 +262,7 @@ public class IssuedProductsApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/platform/v2/issued-products";
+        String localVarPath = "/api/platform/v2/integrated-mca-receivables";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -264,20 +270,16 @@ public class IssuedProductsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (offerIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offerIds", offerIds));
-        }
-
         if (ids != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("ids", ids));
         }
 
-        if (platformBusinessIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBusinessIds", platformBusinessIds));
+        if (issuedProductIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("issuedProductIds", issuedProductIds));
         }
 
-        if (businessIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
+        if (transactionIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("transactionIds", transactionIds));
         }
 
         if (offset != null) {
@@ -316,23 +318,22 @@ public class IssuedProductsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getIssuedProductsValidateBeforeCall(String offerIds, String ids, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getIssuedProductsCall(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+    private okhttp3.Call getIntegratedMcaReceivablesByIssuedProductIdValidateBeforeCall(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getIntegratedMcaReceivablesByIssuedProductIdCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, _callback);
 
     }
 
     /**
-     * Fetch issued products
+     * Fetch integrated MCA receivables
      * 
-     * @param offerIds A comma delimited list of Kanmon’s unique IDs for offers. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon unique IDs for issued product. (optional)
+     * @param transactionIds A comma delimited list of your platform’s unique IDs for transaction. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
      * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return GetIssuedProductsResponse
+     * @return GetIntegratedMcaReceivablesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -343,23 +344,22 @@ public class IssuedProductsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public GetIssuedProductsResponse getIssuedProducts(String offerIds, String ids, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetIssuedProductsResponse> localVarResp = getIssuedProductsWithHttpInfo(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+    public GetIntegratedMcaReceivablesResponse getIntegratedMcaReceivablesByIssuedProductId(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetIntegratedMcaReceivablesResponse> localVarResp = getIntegratedMcaReceivablesByIssuedProductIdWithHttpInfo(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd);
         return localVarResp.getData();
     }
 
     /**
-     * Fetch issued products
+     * Fetch integrated MCA receivables
      * 
-     * @param offerIds A comma delimited list of Kanmon’s unique IDs for offers. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon unique IDs for issued product. (optional)
+     * @param transactionIds A comma delimited list of your platform’s unique IDs for transaction. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
      * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return ApiResponse&lt;GetIssuedProductsResponse&gt;
+     * @return ApiResponse&lt;GetIntegratedMcaReceivablesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -370,19 +370,18 @@ public class IssuedProductsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetIssuedProductsResponse> getIssuedProductsWithHttpInfo(String offerIds, String ids, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getIssuedProductsValidateBeforeCall(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, null);
-        Type localVarReturnType = new TypeToken<GetIssuedProductsResponse>(){}.getType();
+    public ApiResponse<GetIntegratedMcaReceivablesResponse> getIntegratedMcaReceivablesByIssuedProductIdWithHttpInfo(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getIntegratedMcaReceivablesByIssuedProductIdValidateBeforeCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, null);
+        Type localVarReturnType = new TypeToken<GetIntegratedMcaReceivablesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Fetch issued products (asynchronously)
+     * Fetch integrated MCA receivables (asynchronously)
      * 
-     * @param offerIds A comma delimited list of Kanmon’s unique IDs for offers. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon unique IDs for issued product. (optional)
+     * @param transactionIds A comma delimited list of your platform’s unique IDs for transaction. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
@@ -399,10 +398,10 @@ public class IssuedProductsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIssuedProductsAsync(String offerIds, String ids, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetIssuedProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call getIntegratedMcaReceivablesByIssuedProductIdAsync(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetIntegratedMcaReceivablesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getIssuedProductsValidateBeforeCall(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
-        Type localVarReturnType = new TypeToken<GetIssuedProductsResponse>(){}.getType();
+        okhttp3.Call localVarCall = getIntegratedMcaReceivablesByIssuedProductIdValidateBeforeCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+        Type localVarReturnType = new TypeToken<GetIntegratedMcaReceivablesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

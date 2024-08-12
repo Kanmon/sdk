@@ -16,93 +16,75 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface McaOfferTerms
+ * @interface IntegratedMcaServicingData
  */
-export interface McaOfferTerms {
+export interface IntegratedMcaServicingData {
     /**
-     * The type of product being offered. Always `MCA` for `McaOfferTerms`.
+     * 
      * @type {string}
-     * @memberof McaOfferTerms
+     * @memberof IntegratedMcaServicingData
      */
-    productType: McaOfferTermsProductTypeEnum;
+    productType: IntegratedMcaServicingDataProductTypeEnum;
     /**
      * The loan amount - in cents.
      * @type {number}
-     * @memberof McaOfferTerms
+     * @memberof IntegratedMcaServicingData
      */
     advanceAmountCents: number;
     /**
      * The repayment percentage for calculating repayment amounts. E.g. a value of a `20` means 20%. If a business has $100 of income over a repayment period, the repayment amount would be $20.
      * @type {number}
-     * @memberof McaOfferTerms
+     * @memberof IntegratedMcaServicingData
      */
     repaymentPercentage: number;
     /**
      * The fee percentage charged as the borrowing cost of the loan. E.g. a value of `1.3` means a 30% fee.
      * @type {number}
-     * @memberof McaOfferTerms
+     * @memberof IntegratedMcaServicingData
      */
     feeFactor: number;
     /**
-     * The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.
-     * @type {string}
-     * @memberof McaOfferTerms
-     */
-    repaymentFrequency: McaOfferTermsRepaymentFrequencyEnum;
-    /**
      * The total repayment amount in cents required to settle and close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the repayment amount equates to $13,000.
      * @type {number}
-     * @memberof McaOfferTerms
+     * @memberof IntegratedMcaServicingData
      */
     totalRepaymentCents: number;
     /**
-     * The maximum loan amount - in cents.
+     * The total repayment amount less the amount repaid - in cents.
      * @type {number}
-     * @memberof McaOfferTerms
+     * @memberof IntegratedMcaServicingData
      */
-    maxAdvanceAmountCents: number;
+    advanceBalanceCents: number;
 }
 
 
 /**
  * @export
  */
-export const McaOfferTermsProductTypeEnum = {
-    Mca: 'MCA'
+export const IntegratedMcaServicingDataProductTypeEnum = {
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
-export type McaOfferTermsProductTypeEnum = typeof McaOfferTermsProductTypeEnum[keyof typeof McaOfferTermsProductTypeEnum];
-
-/**
- * @export
- */
-export const McaOfferTermsRepaymentFrequencyEnum = {
-    Daily: 'DAILY',
-    Weekly: 'WEEKLY',
-    Biweekly: 'BIWEEKLY',
-    Monthly: 'MONTHLY'
-} as const;
-export type McaOfferTermsRepaymentFrequencyEnum = typeof McaOfferTermsRepaymentFrequencyEnum[keyof typeof McaOfferTermsRepaymentFrequencyEnum];
+export type IntegratedMcaServicingDataProductTypeEnum = typeof IntegratedMcaServicingDataProductTypeEnum[keyof typeof IntegratedMcaServicingDataProductTypeEnum];
 
 
 /**
- * Check if a given object implements the McaOfferTerms interface.
+ * Check if a given object implements the IntegratedMcaServicingData interface.
  */
-export function instanceOfMcaOfferTerms(value: object): boolean {
+export function instanceOfIntegratedMcaServicingData(value: object): boolean {
     if (!('productType' in value)) return false;
     if (!('advanceAmountCents' in value)) return false;
     if (!('repaymentPercentage' in value)) return false;
     if (!('feeFactor' in value)) return false;
-    if (!('repaymentFrequency' in value)) return false;
     if (!('totalRepaymentCents' in value)) return false;
-    if (!('maxAdvanceAmountCents' in value)) return false;
+    if (!('advanceBalanceCents' in value)) return false;
     return true;
 }
 
-export function McaOfferTermsFromJSON(json: any): McaOfferTerms {
-    return McaOfferTermsFromJSONTyped(json, false);
+export function IntegratedMcaServicingDataFromJSON(json: any): IntegratedMcaServicingData {
+    return IntegratedMcaServicingDataFromJSONTyped(json, false);
 }
 
-export function McaOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean): McaOfferTerms {
+export function IntegratedMcaServicingDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): IntegratedMcaServicingData {
     if (json == null) {
         return json;
     }
@@ -112,13 +94,12 @@ export function McaOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boole
         'advanceAmountCents': json['advanceAmountCents'],
         'repaymentPercentage': json['repaymentPercentage'],
         'feeFactor': json['feeFactor'],
-        'repaymentFrequency': json['repaymentFrequency'],
         'totalRepaymentCents': json['totalRepaymentCents'],
-        'maxAdvanceAmountCents': json['maxAdvanceAmountCents'],
+        'advanceBalanceCents': json['advanceBalanceCents'],
     };
 }
 
-export function McaOfferTermsToJSON(value?: McaOfferTerms | null): any {
+export function IntegratedMcaServicingDataToJSON(value?: IntegratedMcaServicingData | null): any {
     if (value == null) {
         return value;
     }
@@ -128,9 +109,8 @@ export function McaOfferTermsToJSON(value?: McaOfferTerms | null): any {
         'advanceAmountCents': value['advanceAmountCents'],
         'repaymentPercentage': value['repaymentPercentage'],
         'feeFactor': value['feeFactor'],
-        'repaymentFrequency': value['repaymentFrequency'],
         'totalRepaymentCents': value['totalRepaymentCents'],
-        'maxAdvanceAmountCents': value['maxAdvanceAmountCents'],
+        'advanceBalanceCents': value['advanceBalanceCents'],
     };
 }
 

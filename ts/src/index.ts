@@ -12,6 +12,7 @@ import {
   OffersApi,
   PaymentsApi,
   PrequalificationsApi,
+  IntegratedMCAReceivablesApi,
 } from "./openapi/src";
 
 export * from "./openapi/src";
@@ -39,6 +40,7 @@ export class KanmonPlatformApi {
   public readonly offers: OffersApi;
   public readonly payments: PaymentsApi;
   public readonly prequalifications: PrequalificationsApi;
+  public readonly integratedMCAReceivables: IntegratedMCAReceivablesApi;
 
   constructor(apiToken: string, env?: keyof typeof serverEnvToBasePath) {
     const basePath = serverEnvToBasePath[env || "production"];
@@ -61,5 +63,6 @@ export class KanmonPlatformApi {
     this.offers = new OffersApi(this._configuration);
     this.payments = new PaymentsApi(this._configuration);
     this.prequalifications = new PrequalificationsApi(this._configuration);
+    this.integratedMCAReceivables = new IntegratedMCAReceivablesApi(this._configuration);
   }
 }

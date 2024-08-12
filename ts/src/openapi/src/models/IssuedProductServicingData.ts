@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { IntegratedMcaServicingData } from './IntegratedMcaServicingData';
+import {
+    instanceOfIntegratedMcaServicingData,
+    IntegratedMcaServicingDataFromJSON,
+    IntegratedMcaServicingDataFromJSONTyped,
+    IntegratedMcaServicingDataToJSON,
+} from './IntegratedMcaServicingData';
 import type { InvoiceFinancingServicingData } from './InvoiceFinancingServicingData';
 import {
     instanceOfInvoiceFinancingServicingData,
@@ -46,7 +53,7 @@ import {
  * The data needed to service this specific type of issued product
  * @export
  */
-export type IssuedProductServicingData = { productType: 'INVOICE_FINANCING' } & InvoiceFinancingServicingData | { productType: 'LINE_OF_CREDIT' } & LineOfCreditServicingData | { productType: 'MCA' } & McaServicingData | { productType: 'TERM_LOAN' } & TermLoanServicingData;
+export type IssuedProductServicingData = { productType: 'INTEGRATED_MCA' } & IntegratedMcaServicingData | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingServicingData | { productType: 'LINE_OF_CREDIT' } & LineOfCreditServicingData | { productType: 'MCA' } & McaServicingData | { productType: 'TERM_LOAN' } & TermLoanServicingData;
 
 export function IssuedProductServicingDataFromJSON(json: any): IssuedProductServicingData {
     return IssuedProductServicingDataFromJSONTyped(json, false);
@@ -57,6 +64,8 @@ export function IssuedProductServicingDataFromJSONTyped(json: any, ignoreDiscrim
         return json;
     }
     switch (json['productType']) {
+        case 'INTEGRATED_MCA':
+            return Object.assign({}, IntegratedMcaServicingDataFromJSONTyped(json, true), { productType: 'INTEGRATED_MCA' });
         case 'INVOICE_FINANCING':
             return Object.assign({}, InvoiceFinancingServicingDataFromJSONTyped(json, true), { productType: 'INVOICE_FINANCING' });
         case 'LINE_OF_CREDIT':
@@ -75,6 +84,8 @@ export function IssuedProductServicingDataToJSON(value?: IssuedProductServicingD
         return value;
     }
     switch (value['productType']) {
+        case 'INTEGRATED_MCA':
+            return IntegratedMcaServicingDataToJSON(value);
         case 'INVOICE_FINANCING':
             return InvoiceFinancingServicingDataToJSON(value);
         case 'LINE_OF_CREDIT':

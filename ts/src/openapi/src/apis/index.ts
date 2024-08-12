@@ -6,6 +6,7 @@ export * from './ConnectTokensApi';
 export * from './DocumentsApi';
 export * from './DrawRequestsApi';
 export * from './EmbeddedSessionsApi';
+export * from './IntegratedMCAReceivablesApi';
 export * from './InvoicesApi';
 export * from './IssuedProductsApi';
 export * from './OffersApi';

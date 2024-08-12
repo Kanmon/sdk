@@ -30,6 +30,7 @@ src/main/java/com/kanmon/client/api/ConnectTokensApi.java
 src/main/java/com/kanmon/client/api/DocumentsApi.java
 src/main/java/com/kanmon/client/api/DrawRequestsApi.java
 src/main/java/com/kanmon/client/api/EmbeddedSessionsApi.java
+src/main/java/com/kanmon/client/api/IntegratedMcaReceivablesApi.java
 src/main/java/com/kanmon/client/api/InvoicesApi.java
 src/main/java/com/kanmon/client/api/IssuedProductsApi.java
 src/main/java/com/kanmon/client/api/OffersApi.java
@@ -65,6 +66,9 @@ src/main/java/com/kanmon/client/model/CreateBusinessDocumentsResponse.java
 src/main/java/com/kanmon/client/model/CreateBusinessRequestBody.java
 src/main/java/com/kanmon/client/model/CreateConnectTokenRequestBody.java
 src/main/java/com/kanmon/client/model/CreateEmbeddedSession409Response.java
+src/main/java/com/kanmon/client/model/CreateIntegratedMcaReceivable400Response.java
+src/main/java/com/kanmon/client/model/CreateIntegratedMcaReceivable409Response.java
+src/main/java/com/kanmon/client/model/CreateIntegratedMcaReceivableBody.java
 src/main/java/com/kanmon/client/model/CreateSessionTokenRequestBody.java
 src/main/java/com/kanmon/client/model/CreateSessionTokenRequestBodyData.java
 src/main/java/com/kanmon/client/model/CreateUser409Response.java
@@ -80,6 +84,7 @@ src/main/java/com/kanmon/client/model/GetActivityLogsResponse.java
 src/main/java/com/kanmon/client/model/GetBusinessBankAccountsResponse.java
 src/main/java/com/kanmon/client/model/GetBusinessesResponse.java
 src/main/java/com/kanmon/client/model/GetDrawRequestsResponse.java
+src/main/java/com/kanmon/client/model/GetIntegratedMcaReceivablesResponse.java
 src/main/java/com/kanmon/client/model/GetInvoice404Response.java
 src/main/java/com/kanmon/client/model/GetInvoicesResponse.java
 src/main/java/com/kanmon/client/model/GetIssuedProductsResponse.java
@@ -87,6 +92,12 @@ src/main/java/com/kanmon/client/model/GetOffersResponse.java
 src/main/java/com/kanmon/client/model/GetPaymentScheduleResponse.java
 src/main/java/com/kanmon/client/model/GetPrequalificationsResponse.java
 src/main/java/com/kanmon/client/model/GetUsersResponse.java
+src/main/java/com/kanmon/client/model/IncorrectProductTypeException.java
+src/main/java/com/kanmon/client/model/IncorrectRepaymentAmountException.java
+src/main/java/com/kanmon/client/model/IntegratedMcaOfferTerms.java
+src/main/java/com/kanmon/client/model/IntegratedMcaReceivable.java
+src/main/java/com/kanmon/client/model/IntegratedMcaReceivableAlreadyExistsException.java
+src/main/java/com/kanmon/client/model/IntegratedMcaServicingData.java
 src/main/java/com/kanmon/client/model/InternalServerErrorException.java
 src/main/java/com/kanmon/client/model/InvalidInvoiceDueDateException.java
 src/main/java/com/kanmon/client/model/Invoice.java
@@ -111,6 +122,7 @@ src/main/java/com/kanmon/client/model/McaServicingData.java
 src/main/java/com/kanmon/client/model/MergeUsersRequestBody.java
 src/main/java/com/kanmon/client/model/MergeUsersResponseBody.java
 src/main/java/com/kanmon/client/model/MultipleDurationInvoiceRepaymentWindow.java
+src/main/java/com/kanmon/client/model/NoRemainingBalanceException.java
 src/main/java/com/kanmon/client/model/Offer.java
 src/main/java/com/kanmon/client/model/OfferAlreadySelectedException.java
 src/main/java/com/kanmon/client/model/OfferNotFoundException.java
@@ -145,3 +157,15 @@ src/main/java/com/kanmon/client/model/UserAddress.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
+src/test/java/com/kanmon/client/api/IntegratedMcaReceivablesApiTest.java
+src/test/java/com/kanmon/client/model/CreateIntegratedMcaReceivable400ResponseTest.java
+src/test/java/com/kanmon/client/model/CreateIntegratedMcaReceivable409ResponseTest.java
+src/test/java/com/kanmon/client/model/CreateIntegratedMcaReceivableBodyTest.java
+src/test/java/com/kanmon/client/model/GetIntegratedMcaReceivablesResponseTest.java
+src/test/java/com/kanmon/client/model/IncorrectProductTypeExceptionTest.java
+src/test/java/com/kanmon/client/model/IncorrectRepaymentAmountExceptionTest.java
+src/test/java/com/kanmon/client/model/IntegratedMcaOfferTermsTest.java
+src/test/java/com/kanmon/client/model/IntegratedMcaReceivableAlreadyExistsExceptionTest.java
+src/test/java/com/kanmon/client/model/IntegratedMcaReceivableTest.java
+src/test/java/com/kanmon/client/model/IntegratedMcaServicingDataTest.java
+src/test/java/com/kanmon/client/model/NoRemainingBalanceExceptionTest.java

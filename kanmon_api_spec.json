@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "c327a5b6-9b69-452b-bf56-10bfc4386f7d,c215bfe0-86d1-484a-ad6d-50609b2ee26c",
+            "example": "c325087c-9301-4702-b1c2-ecc2f722b197,850966dd-37b0-4f03-a884-e62fb9af7597",
             "schema":
             {
               "type": "string"
@@ -2531,10 +2531,21 @@
         "parameters":
         [
           {
-            "name": "ids",
+            "name": "offerIds",
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for offers.",
+            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
+            "schema":
+            {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ids",
+            "required": false,
+            "in": "query",
+            "description": "A comma delimited list of Kanmon’s unique IDs for issued products.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
             "schema":
             {
@@ -2871,7 +2882,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "9b8a27e5-5845-4990-9bc6-84c3d0d25e71,dca3a9e5-8e59-4ccc-86fc-1bf821b4040e",
+            "example": "53c5f128-ae50-45d9-b10e-4e7c19e85951,24aca1ed-4e99-4374-aa45-f28428e064fd",
             "schema":
             {
               "type": "string"
@@ -3418,7 +3429,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "ce2522aa-dbe7-4f67-ad30-2fa8ddf6e2e5,5211b9bb-8bfb-4293-be1d-c36f16421b9f",
+            "example": "de8662ac-9547-4f14-9314-8a8b9d3f1a9c,4451cd08-3e48-4bfe-8d8e-2d048c5c1634",
             "schema":
             {
               "type": "string"
@@ -3998,6 +4009,326 @@
         ]
       }
     },
+    "/api/platform/v2/integrated-mca-receivables":
+    {
+      "get":
+      {
+        "operationId": "getIntegratedMcaReceivablesByIssuedProductId",
+        "x-readme":
+        {
+          "code-samples":
+          [
+            {
+              "language": "node",
+              "install": "npm install @kanmon/sdk",
+              "name": "SDK",
+              "code": "\nkanmonApi.integratedMcaReceivable.getIntegratedMcaReceivablesByIssuedProductId({\n  ...params...\n})\n    "
+            }
+          ]
+        },
+        "summary": "Fetch integrated MCA receivables",
+        "parameters":
+        [
+          {
+            "name": "ids",
+            "required": false,
+            "in": "query",
+            "description": "A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable.",
+            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
+            "schema":
+            {
+              "type": "string"
+            }
+          },
+          {
+            "name": "issuedProductIds",
+            "required": false,
+            "in": "query",
+            "description": "A comma delimited list of Kanmon unique IDs for issued product.",
+            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
+            "schema":
+            {
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionIds",
+            "required": false,
+            "in": "query",
+            "description": "A comma delimited list of your platform’s unique IDs for transaction.",
+            "example": "12345,67890",
+            "schema":
+            {
+              "type": "string"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "description": "The number of records to skip when performing pagination. Defaults to `0`.",
+            "example": "0",
+            "schema":
+            {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
+            "example": "100",
+            "schema":
+            {
+              "type": "number"
+            }
+          },
+          {
+            "name": "createdAtStart",
+            "required": false,
+            "in": "query",
+            "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z",
+            "schema":
+            {
+              "type": "string"
+            }
+          },
+          {
+            "name": "createdAtEnd",
+            "required": false,
+            "in": "query",
+            "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z",
+            "schema":
+            {
+              "type": "string"
+            }
+          }
+        ],
+        "responses":
+        {
+          "200":
+          {
+            "description": "",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/GetIntegratedMcaReceivablesResponse"
+                }
+              }
+            }
+          },
+          "400":
+          {
+            "description": "BadRequestException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/BadRequestException"
+                }
+              }
+            }
+          },
+          "403":
+          {
+            "description": "ForbiddenException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/ForbiddenException"
+                }
+              }
+            }
+          },
+          "500":
+          {
+            "description": "InternalServerErrorException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
+          }
+        },
+        "tags":
+        [
+          "Integrated MCA Receivables"
+        ],
+        "security":
+        [
+          {
+            "Authorization":
+            []
+          }
+        ]
+      },
+      "post":
+      {
+        "operationId": "createIntegratedMcaReceivable",
+        "x-readme":
+        {
+          "code-samples":
+          [
+            {
+              "language": "node",
+              "install": "npm install @kanmon/sdk",
+              "name": "SDK",
+              "code": "\nkanmonApi.integratedMcaReceivable.createIntegratedMcaReceivable({\n  ...params...\n})\n    "
+            }
+          ]
+        },
+        "summary": "Create an integrated MCA receivable",
+        "parameters":
+        [],
+        "requestBody":
+        {
+          "required": true,
+          "content":
+          {
+            "application/json":
+            {
+              "schema":
+              {
+                "$ref": "#/components/schemas/CreateIntegratedMcaReceivableBody"
+              }
+            }
+          }
+        },
+        "responses":
+        {
+          "201":
+          {
+            "description": "",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/IntegratedMcaReceivable"
+                }
+              }
+            }
+          },
+          "400":
+          {
+            "description": "BadRequestException, NoRemainingBalanceException, IncorrectRepaymentAmountException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "oneOf":
+                  [
+                    {
+                      "$ref": "#/components/schemas/BadRequestException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/NoRemainingBalanceException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IncorrectRepaymentAmountException"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403":
+          {
+            "description": "ForbiddenException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/ForbiddenException"
+                }
+              }
+            }
+          },
+          "404":
+          {
+            "description": "IssuedProductNotFoundException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/IssuedProductNotFoundException"
+                }
+              }
+            }
+          },
+          "409":
+          {
+            "description": "IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "oneOf":
+                  [
+                    {
+                      "$ref": "#/components/schemas/IncorrectProductTypeException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IntegratedMcaReceivableAlreadyExistsException"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500":
+          {
+            "description": "InternalServerErrorException",
+            "content":
+            {
+              "application/json":
+              {
+                "schema":
+                {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
+          }
+        },
+        "tags":
+        [
+          "Integrated MCA Receivables"
+        ],
+        "security":
+        [
+          {
+            "Authorization":
+            []
+          }
+        ]
+      }
+    },
     "/api/platform/v2/embedded-session":
     {
       "post":
@@ -4187,13 +4518,14 @@
       "ProductType":
       {
         "type": "string",
-        "description": "The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`",
+        "description": "The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.",
         "enum":
         [
           "INVOICE_FINANCING",
           "TERM_LOAN",
           "MCA",
-          "LINE_OF_CREDIT"
+          "LINE_OF_CREDIT",
+          "INTEGRATED_MCA"
         ]
       },
       "BusinessPrequalification":
@@ -4211,20 +4543,20 @@
           {
             "type": "string",
             "description": "The UUID representing your platform in Kanmon.",
-            "example": "bface0fd-546f-4e96-9e31-e18d72326e3d"
+            "example": "9ab16afc-e47d-4e18-aeb1-e1cceac2561f"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
             "nullable": true,
-            "example": "36896dab-83dd-4988-99a0-2aca40936d15"
+            "example": "0b72d514-90e5-4bbc-83b2-ad6c2fb5612b"
           },
           "platformBusinessId":
           {
             "type": "string",
             "description": "Your platform’s unique ID for the business.",
-            "example": "af17f6b3-588c-47e4-96c7-a0497667e542"
+            "example": "76965a38-51fb-4875-8d5f-e78b3ac6f91d"
           },
           "isPrequalified":
           {
@@ -5293,7 +5625,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon to merge users from. Either `sourcePlatformBusinessId` or `sourceBusinessId` is required.",
-            "example": "50f37384-df37-421a-80f5-c2af1addc587"
+            "example": "7943588a-1370-4cff-950b-ecff4513cdba"
           },
           "targetPlatformBusinessId":
           {
@@ -5305,7 +5637,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon to merge users to. Either `targetPlatformBusinessId` or `targetBusinessId` is required.",
-            "example": "b3d2566a-d261-41cd-84fc-d48716e6d8b8"
+            "example": "25b1a4c2-26ab-4ec8-b9ac-ba2214ca34d4"
           }
         }
       },
@@ -6042,6 +6374,12 @@
             "type": "number",
             "description": "The total repayment amount in cents required to settle and close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the repayment amount equates to $13,000.",
             "example": 1300000
+          },
+          "maxAdvanceAmountCents":
+          {
+            "type": "number",
+            "description": "The maximum loan amount - in cents.",
+            "example": 1000000
           }
         },
         "required":
@@ -6051,7 +6389,8 @@
           "repaymentPercentage",
           "feeFactor",
           "repaymentFrequency",
-          "totalRepaymentCents"
+          "totalRepaymentCents",
+          "maxAdvanceAmountCents"
         ]
       },
       "LineOfCreditOfferTerms":
@@ -6103,6 +6442,60 @@
           "repaymentDurationMonths"
         ]
       },
+      "IntegratedMcaOfferTerms":
+      {
+        "type": "object",
+        "properties":
+        {
+          "productType":
+          {
+            "type": "string",
+            "enum":
+            [
+              "INTEGRATED_MCA"
+            ]
+          },
+          "advanceAmountCents":
+          {
+            "type": "number",
+            "description": "The loan amount - in cents.",
+            "example": 1000000
+          },
+          "repaymentPercentage":
+          {
+            "type": "number",
+            "description": "The repayment percentage for calculating repayment amounts. E.g. a value of a `20` means 20%. If a business has $100 of income over a repayment period, the repayment amount would be $20.",
+            "example": 20
+          },
+          "feeFactor":
+          {
+            "type": "number",
+            "description": "The fee percentage charged as the borrowing cost of the loan. E.g. a value of `1.3` means a 30% fee.",
+            "example": 1.3
+          },
+          "totalRepaymentCents":
+          {
+            "type": "number",
+            "description": "The total repayment amount in cents required to settle and close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the repayment amount equates to $13,000.",
+            "example": 1300000
+          },
+          "maxAdvanceAmountCents":
+          {
+            "type": "number",
+            "description": "The maximum loan amount - in cents.",
+            "example": 1000000
+          }
+        },
+        "required":
+        [
+          "productType",
+          "advanceAmountCents",
+          "repaymentPercentage",
+          "feeFactor",
+          "totalRepaymentCents",
+          "maxAdvanceAmountCents"
+        ]
+      },
       "Offer":
       {
         "type": "object",
@@ -6112,13 +6505,13 @@
           {
             "type": "string",
             "description": "A unique id representing the offer object.",
-            "example": "bb78a80b-0de6-4516-b2aa-3f15a99ee0b7"
+            "example": "f4c2b11b-2046-4454-90bd-aeb5870e0fba"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "44feaffe-d474-4061-b381-077a44df08e9"
+            "example": "be15626e-8533-48d7-805d-c91b8524acad"
           },
           "platformBusinessId":
           {
@@ -6139,6 +6532,9 @@
               },
               {
                 "$ref": "#/components/schemas/McaOfferTerms"
+              },
+              {
+                "$ref": "#/components/schemas/IntegratedMcaOfferTerms"
               },
               {
                 "$ref": "#/components/schemas/LineOfCreditOfferTerms"
@@ -6435,6 +6831,60 @@
           "advanceBalanceCents"
         ]
       },
+      "IntegratedMcaServicingData":
+      {
+        "type": "object",
+        "properties":
+        {
+          "productType":
+          {
+            "type": "string",
+            "enum":
+            [
+              "INTEGRATED_MCA"
+            ]
+          },
+          "advanceAmountCents":
+          {
+            "type": "number",
+            "description": "The loan amount - in cents.",
+            "example": 1000000
+          },
+          "repaymentPercentage":
+          {
+            "type": "number",
+            "description": "The repayment percentage for calculating repayment amounts. E.g. a value of a `20` means 20%. If a business has $100 of income over a repayment period, the repayment amount would be $20.",
+            "example": 20
+          },
+          "feeFactor":
+          {
+            "type": "number",
+            "description": "The fee percentage charged as the borrowing cost of the loan. E.g. a value of `1.3` means a 30% fee.",
+            "example": 1.3
+          },
+          "totalRepaymentCents":
+          {
+            "type": "number",
+            "description": "The total repayment amount in cents required to settle and close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the repayment amount equates to $13,000.",
+            "example": 1300000
+          },
+          "advanceBalanceCents":
+          {
+            "type": "number",
+            "description": "The total repayment amount less the amount repaid - in cents.",
+            "example": 1100000
+          }
+        },
+        "required":
+        [
+          "productType",
+          "advanceAmountCents",
+          "repaymentPercentage",
+          "feeFactor",
+          "totalRepaymentCents",
+          "advanceBalanceCents"
+        ]
+      },
       "LineOfCreditServicingData":
       {
         "type": "object",
@@ -6500,19 +6950,19 @@
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "416daad3-0d6b-469b-a6c2-fccd503fe1b3"
+            "example": "ed83778c-5d25-4e86-a52c-7ada554f8b22"
           },
           "offerId":
           {
             "type": "string",
             "description": "The UUID representing the offer tied to this issued product in Kanmon.",
-            "example": "540ec331-145e-4089-aba2-62e49a594b60"
+            "example": "8cc8b888-2b87-4e7e-931a-672cb2b445e4"
           },
           "businessId":
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "49bfc1e4-cc83-46f9-b303-41b64353478c"
+            "example": "3d175a5a-f225-498b-ac3c-899b523a64b6"
           },
           "platformBusinessId":
           {
@@ -6550,6 +7000,9 @@
                 "$ref": "#/components/schemas/McaServicingData"
               },
               {
+                "$ref": "#/components/schemas/IntegratedMcaServicingData"
+              },
+              {
                 "$ref": "#/components/schemas/LineOfCreditServicingData"
               }
             ],
@@ -6561,6 +7014,7 @@
                 "TERM_LOAN": "#/components/schemas/TermLoanServicingData",
                 "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingServicingData",
                 "MCA": "#/components/schemas/McaServicingData",
+                "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaServicingData",
                 "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditServicingData"
               }
             },
@@ -6974,33 +7428,33 @@
           {
             "type": "string",
             "description": "The UUID representing the payment order in Kanmon.",
-            "example": "c275ea2d-b1a9-4ad7-a246-fceaac1f81fb"
+            "example": "804b6493-bc7c-4135-bb7f-83a6d29050c9"
           },
           "issuedProductId":
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "19c574c9-4a37-419c-ac31-606a44ba92f5"
+            "example": "848565c0-0eb6-4569-9768-ab7979a2f81a"
           },
           "drawRequestId":
           {
             "type": "string",
             "description": "The UUID representing the draw request in Kanmon. (only present for Line of Credit).",
-            "example": "e672af00-d8c4-45a3-885d-f9dfd53fbc1d",
+            "example": "a911cfc9-b566-4078-9a9f-46da3c9382ad",
             "nullable": true
           },
           "invoiceId":
           {
             "type": "string",
             "description": "The UUID representing the invoice in Kanmon. (only present for Invoice Financing).",
-            "example": "111f4361-b563-4e92-8e8f-3cff4a6b77ff",
+            "example": "d1469381-b104-4c72-a99d-b8e36e11a05c",
             "nullable": true
           },
           "platformInvoiceId":
           {
             "type": "string",
             "description": "Your platform’s unique ID for the invoice. (only present for Invoice Financing).",
-            "example": "87bd9ff8-d2b0-4a5a-866a-e400aab79a38",
+            "example": "b165ee95-e397-41e3-9a45-0bf3b3561d5b",
             "nullable": true
           },
           "effectiveDate":
@@ -7233,7 +7687,7 @@
           {
             "type": "string",
             "description": "The UUID representing the issued product in Kanmon.",
-            "example": "94390121-4f8e-453b-b242-93c102bc9512"
+            "example": "670f86fb-8460-49e1-915b-3a8c3fb2bf93"
           },
           "amountCents":
           {
@@ -7433,7 +7887,7 @@
           {
             "type": "string",
             "description": "The UUID representing the business in Kanmon.",
-            "example": "6d7561f2-c359-4703-95e8-a86646935643"
+            "example": "b46d2f28-a19d-4036-91d8-163e0dbc06e1"
           },
           "documentType":
           {
@@ -7443,7 +7897,7 @@
           {
             "type": "string",
             "description": "The file’s original file name.",
-            "example": "6e8e0e44-72c1-4463-a2a0-6791358fe39c"
+            "example": "57e2add7-1413-4185-bb34-0812ac8ada00"
           },
           "createdAt":
           {
@@ -7487,6 +7941,148 @@
         "required":
         [
           "documents"
+        ]
+      },
+      "IntegratedMcaReceivable":
+      {
+        "type": "object",
+        "properties":
+        {
+          "id":
+          {
+            "type": "string",
+            "description": "Kanmon’s unique ID for the integrated MCA receivable.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "issuedProductId":
+          {
+            "type": "string",
+            "description": "The unique identifier for the issued product in Kanmon′s system.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "chargeAmountCents":
+          {
+            "type": "number",
+            "description": "The charge amount - in cents.",
+            "example": 1000000
+          },
+          "repaymentAmountCents":
+          {
+            "type": "number",
+            "description": "The repayment amount - in cents. It should be the minimum between (repayment percentage * charge amount) or remaining balance.",
+            "example": 100000
+          },
+          "transactionId":
+          {
+            "type": "string",
+            "description": "Your platform’s unique ID for the transaction.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "transactionTime":
+          {
+            "type": "string",
+            "description": "Creation UTC ISO 8601 timestamp of the transaction.",
+            "example": "2022-06-01T03:57:26.115Z"
+          },
+          "createdAt":
+          {
+            "type": "string",
+            "description": "Creation UTC ISO 8601 timestamp of the receivable.",
+            "example": "2022-06-01T03:57:26.115Z"
+          },
+          "updatedAt":
+          {
+            "type": "string",
+            "description": "Last updated UTC ISO 8601 timestamp of the receivable.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required":
+        [
+          "id",
+          "issuedProductId",
+          "chargeAmountCents",
+          "repaymentAmountCents",
+          "transactionId",
+          "transactionTime",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "GetIntegratedMcaReceivablesResponse":
+      {
+        "type": "object",
+        "properties":
+        {
+          "integratedMcaReceivables":
+          {
+            "description": "The integrated MCA receivables that were created.",
+            "type": "array",
+            "items":
+            {
+              "$ref": "#/components/schemas/IntegratedMcaReceivable"
+            }
+          },
+          "pagination":
+          {
+            "description": "Pagination metadata.",
+            "allOf":
+            [
+              {
+                "$ref": "#/components/schemas/PaginationResult"
+              }
+            ]
+          }
+        },
+        "required":
+        [
+          "integratedMcaReceivables",
+          "pagination"
+        ]
+      },
+      "CreateIntegratedMcaReceivableBody":
+      {
+        "type": "object",
+        "properties":
+        {
+          "issuedProductId":
+          {
+            "type": "string",
+            "description": "The unique identifier for the issued product in Kanmon′s system.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "chargeAmountCents":
+          {
+            "type": "number",
+            "description": "The charge amount - in cents.",
+            "example": 1000000
+          },
+          "repaymentAmountCents":
+          {
+            "type": "number",
+            "description": "\n  <p>The repayment amount - in cents. It should be the lesser of:\n    <br/>\n    ( repayment percentage &times; charge amount ) or remaining balance\n  </p>\n",
+            "example": 100000
+          },
+          "transactionId":
+          {
+            "type": "string",
+            "description": "Your platform’s unique ID for the transaction.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "transactionTime":
+          {
+            "type": "string",
+            "description": "Creation UTC ISO 8601 timestamp of the transaction.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required":
+        [
+          "issuedProductId",
+          "chargeAmountCents",
+          "repaymentAmountCents",
+          "transactionId",
+          "transactionTime"
         ]
       },
       "SessionInvoice":
@@ -8388,6 +8984,142 @@
             "enum":
             [
               "BusinessPlaidBankAccountNotFoundException"
+            ],
+            "description": "Safe for programmatic use."
+          },
+          "message":
+          {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Internal Server Error"
+          },
+          "timestamp":
+          {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required":
+        [
+          "errorCode",
+          "message",
+          "timestamp"
+        ]
+      },
+      "IncorrectProductTypeException":
+      {
+        "type": "object",
+        "properties":
+        {
+          "errorCode":
+          {
+            "type": "string",
+            "enum":
+            [
+              "IncorrectProductTypeException"
+            ],
+            "description": "Safe for programmatic use."
+          },
+          "message":
+          {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Internal Server Error"
+          },
+          "timestamp":
+          {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required":
+        [
+          "errorCode",
+          "message",
+          "timestamp"
+        ]
+      },
+      "IntegratedMcaReceivableAlreadyExistsException":
+      {
+        "type": "object",
+        "properties":
+        {
+          "errorCode":
+          {
+            "type": "string",
+            "enum":
+            [
+              "IntegratedMcaReceivableAlreadyExistsException"
+            ],
+            "description": "Safe for programmatic use."
+          },
+          "message":
+          {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Internal Server Error"
+          },
+          "timestamp":
+          {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required":
+        [
+          "errorCode",
+          "message",
+          "timestamp"
+        ]
+      },
+      "NoRemainingBalanceException":
+      {
+        "type": "object",
+        "properties":
+        {
+          "errorCode":
+          {
+            "type": "string",
+            "enum":
+            [
+              "NoRemainingBalanceException"
+            ],
+            "description": "Safe for programmatic use."
+          },
+          "message":
+          {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Internal Server Error"
+          },
+          "timestamp":
+          {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required":
+        [
+          "errorCode",
+          "message",
+          "timestamp"
+        ]
+      },
+      "IncorrectRepaymentAmountException":
+      {
+        "type": "object",
+        "properties":
+        {
+          "errorCode":
+          {
+            "type": "string",
+            "enum":
+            [
+              "IncorrectRepaymentAmountException"
             ],
             "description": "Safe for programmatic use."
           },

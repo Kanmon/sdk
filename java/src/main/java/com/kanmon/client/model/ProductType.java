@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * The product that the business is prequalified for. This will be null if &#x60;isPrequalified&#x60; is false. Values can be &#x60;INVOICE_FINANCING&#x60;, &#x60;TERM_LOAN&#x60;, &#x60;MCA&#x60;, &#x60;LINE_OF_CREDIT&#x60;
+ * The product that the business is prequalified for. This will be null if &#x60;isPrequalified&#x60; is false. Values can be &#x60;INVOICE_FINANCING&#x60;, &#x60;TERM_LOAN&#x60;, &#x60;MCA&#x60;, &#x60;LINE_OF_CREDIT&#x60;, &#x60;INTEGRATED_MCA&#x60;.
  */
 @JsonAdapter(ProductType.Adapter.class)
 public enum ProductType {
@@ -35,7 +35,9 @@ public enum ProductType {
   
   MCA("MCA"),
   
-  LINE_OF_CREDIT("LINE_OF_CREDIT");
+  LINE_OF_CREDIT("LINE_OF_CREDIT"),
+  
+  INTEGRATED_MCA("INTEGRATED_MCA");
 
   private String value;
 
