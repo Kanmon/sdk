@@ -25,19 +25,19 @@ public class KanmonPlatformApi {
     }
 
     private ApiClient apiClient;
-    private ConnectTokensApi connectTokensApi;
-    private BusinessesApi businessesApi;
-    private UsersApi usersApi;
-    private BankAccountsApi bankAccountsApi;
-    private DocumentsApi documentsApi;
-    private DrawRequestsApi drawRequestsApi;
-    private EmbeddedSessionsApi embeddedSessionsApi;
-    private InvoicesApi invoicesApi;
-    private IssuedProductsApi issuedProductsApi;
-    private OffersApi offersApi;
-    private PaymentsApi paymentsApi;
-    private PrequalificationsApi prequalificationsApi;
-    private IntegratedMcaReceivablesApi integratedMcaReceivablesApi;
+    private ConnectTokensApi connectTokens;
+    private BusinessesApi businesses;
+    private UsersApi users;
+    private BankAccountsApi bankAccounts;
+    private DocumentsApi documents;
+    private DrawRequestsApi drawRequests;
+    private EmbeddedSessionsApi embeddedSessions;
+    private InvoicesApi invoices;
+    private IssuedProductsApi issuedProducts;
+    private OffersApi offers;
+    private PaymentsApi payments;
+    private PrequalificationsApi prequalifications;
+    private IntegratedMcaReceivablesApi integratedMcaReceivables;
     private Gson gson;
 
     public KanmonPlatformApi(String apiToken) {
@@ -49,72 +49,72 @@ public class KanmonPlatformApi {
         this.apiClient.setBasePath(environment.getUrl());
         this.apiClient.setApiKey("ApiKey " + apiToken);
 
-        this.connectTokensApi = new ConnectTokensApi(this.apiClient);
-        this.businessesApi = new BusinessesApi(this.apiClient);
-        this.usersApi = new UsersApi(this.apiClient);
-        this.bankAccountsApi = new BankAccountsApi(this.apiClient);
-        this.documentsApi = new DocumentsApi(this.apiClient);
-        this.drawRequestsApi = new DrawRequestsApi(this.apiClient);
-        this.embeddedSessionsApi = new EmbeddedSessionsApi(this.apiClient);
-        this.invoicesApi = new InvoicesApi(this.apiClient);
-        this.issuedProductsApi = new IssuedProductsApi(this.apiClient);
-        this.offersApi = new OffersApi(this.apiClient);
-        this.paymentsApi = new PaymentsApi(this.apiClient);
-        this.prequalificationsApi = new PrequalificationsApi(this.apiClient);
-        this.integratedMcaReceivablesApi = new IntegratedMcaReceivablesApi(this.apiClient);
+        this.connectTokens = new ConnectTokensApi(this.apiClient);
+        this.businesses = new BusinessesApi(this.apiClient);
+        this.users = new UsersApi(this.apiClient);
+        this.bankAccounts = new BankAccountsApi(this.apiClient);
+        this.documents = new DocumentsApi(this.apiClient);
+        this.drawRequests = new DrawRequestsApi(this.apiClient);
+        this.embeddedSessions = new EmbeddedSessionsApi(this.apiClient);
+        this.invoices = new InvoicesApi(this.apiClient);
+        this.issuedProducts = new IssuedProductsApi(this.apiClient);
+        this.offers = new OffersApi(this.apiClient);
+        this.payments = new PaymentsApi(this.apiClient);
+        this.prequalifications = new PrequalificationsApi(this.apiClient);
+        this.integratedMcaReceivables = new IntegratedMcaReceivablesApi(this.apiClient);
         gson = new Gson();
     }
 
-    public ConnectTokensApi getConnectTokensApi() {
-        return connectTokensApi;
+    public ConnectTokensApi getConnectTokens() {
+        return connectTokens;
     }
 
-    public BusinessesApi getBusinessesApi() {
-        return businessesApi;
+    public BusinessesApi getBusinesses() {
+        return businesses;
     }
 
-    public UsersApi getUsersApi() {
-        return usersApi;
+    public UsersApi getUsers() {
+        return users;
     }
 
-    public BankAccountsApi getBankAccountsApi() {
-        return bankAccountsApi;
+    public BankAccountsApi getBankAccounts() {
+        return bankAccounts;
     }
 
-    public DocumentsApi getDocumentsApi() {
-        return documentsApi;
+    public DocumentsApi getDocuments() {
+        return documents;
     }
 
-    public DrawRequestsApi getDrawRequestsApi() {
-        return drawRequestsApi;
+    public DrawRequestsApi getDrawRequests() {
+        return drawRequests;
     }
 
-    public EmbeddedSessionsApi getEmbeddedSessionsApi() {
-        return embeddedSessionsApi;
+    public EmbeddedSessionsApi getEmbeddedSessions() {
+        return embeddedSessions;
     }
 
-    public InvoicesApi getInvoicesApi() {
-        return invoicesApi;
+    public InvoicesApi getInvoices() {
+        return invoices;
     }
 
-    public IssuedProductsApi getIssuedProductsApi() {
-        return issuedProductsApi;
+    public IssuedProductsApi getIssuedProducts() {
+        return issuedProducts;
     }
 
-    public OffersApi getOffersApi() {
-        return offersApi;
+    public OffersApi getOffers() {
+        return offers;
     }
 
-    public PaymentsApi getPaymentsApi() {
-        return paymentsApi;
+    public PaymentsApi getPayments() {
+        return payments;
     }
 
-    public PrequalificationsApi getPrequalificationsApi() {
-        return prequalificationsApi;
+    public PrequalificationsApi getPrequalifications() {
+        return prequalifications;
     }
 
-    public IntegratedMcaReceivablesApi getIntegratedMcaReceivablesApi() {
-        return integratedMcaReceivablesApi;
+    public IntegratedMcaReceivablesApi getIntegratedMcaReceivables() {
+        return integratedMcaReceivables;
     }
 
     public KanmonApiException getKanmonException(ApiException apiException) {
