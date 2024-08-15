@@ -68,7 +68,11 @@ export interface McaOfferTerms {
  * @export
  */
 export const McaOfferTermsProductTypeEnum = {
-    Mca: 'MCA'
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type McaOfferTermsProductTypeEnum = typeof McaOfferTermsProductTypeEnum[keyof typeof McaOfferTermsProductTypeEnum];
 

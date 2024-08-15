@@ -62,7 +62,11 @@ export interface LineOfCreditServicingData {
  * @export
  */
 export const LineOfCreditServicingDataProductTypeEnum = {
-    LineOfCredit: 'LINE_OF_CREDIT'
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type LineOfCreditServicingDataProductTypeEnum = typeof LineOfCreditServicingDataProductTypeEnum[keyof typeof LineOfCreditServicingDataProductTypeEnum];
 

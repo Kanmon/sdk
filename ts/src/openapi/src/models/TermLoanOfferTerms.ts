@@ -62,7 +62,11 @@ export interface TermLoanOfferTerms {
  * @export
  */
 export const TermLoanOfferTermsProductTypeEnum = {
-    TermLoan: 'TERM_LOAN'
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type TermLoanOfferTermsProductTypeEnum = typeof TermLoanOfferTermsProductTypeEnum[keyof typeof TermLoanOfferTermsProductTypeEnum];
 

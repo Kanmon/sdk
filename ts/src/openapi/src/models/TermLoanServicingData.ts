@@ -68,7 +68,11 @@ export interface TermLoanServicingData {
  * @export
  */
 export const TermLoanServicingDataProductTypeEnum = {
-    TermLoan: 'TERM_LOAN'
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type TermLoanServicingDataProductTypeEnum = typeof TermLoanServicingDataProductTypeEnum[keyof typeof TermLoanServicingDataProductTypeEnum];
 

@@ -51,7 +51,11 @@ export interface InvoiceFinancingOfferTerms {
  * @export
  */
 export const InvoiceFinancingOfferTermsProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING'
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type InvoiceFinancingOfferTermsProductTypeEnum = typeof InvoiceFinancingOfferTermsProductTypeEnum[keyof typeof InvoiceFinancingOfferTermsProductTypeEnum];
 
