@@ -74,7 +74,11 @@ export interface McaServicingData {
  * @export
  */
 export const McaServicingDataProductTypeEnum = {
-    Mca: 'MCA'
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
+    IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type McaServicingDataProductTypeEnum = typeof McaServicingDataProductTypeEnum[keyof typeof McaServicingDataProductTypeEnum];
 

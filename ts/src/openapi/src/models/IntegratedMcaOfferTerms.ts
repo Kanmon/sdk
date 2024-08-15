@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface IntegratedMcaOfferTerms {
     /**
-     * 
+     * The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaOfferTerms`.
      * @type {string}
      * @memberof IntegratedMcaOfferTerms
      */
@@ -62,6 +62,10 @@ export interface IntegratedMcaOfferTerms {
  * @export
  */
 export const IntegratedMcaOfferTermsProductTypeEnum = {
+    InvoiceFinancing: 'INVOICE_FINANCING',
+    TermLoan: 'TERM_LOAN',
+    Mca: 'MCA',
+    LineOfCredit: 'LINE_OF_CREDIT',
     IntegratedMca: 'INTEGRATED_MCA'
 } as const;
 export type IntegratedMcaOfferTermsProductTypeEnum = typeof IntegratedMcaOfferTermsProductTypeEnum[keyof typeof IntegratedMcaOfferTermsProductTypeEnum];

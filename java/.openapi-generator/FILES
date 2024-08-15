@@ -141,7 +141,6 @@ src/main/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsForAnotherIs
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsForBusinessException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerNotFoundException.java
-src/main/java/com/kanmon/client/model/ProductType.java
 src/main/java/com/kanmon/client/model/SessionInvoice.java
 src/main/java/com/kanmon/client/model/SessionInvoiceWithInvoiceFile.java
 src/main/java/com/kanmon/client/model/SomeOffersHaveExpiredException.java
@@ -157,15 +156,3 @@ src/main/java/com/kanmon/client/model/UserAddress.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/api/IntegratedMcaReceivablesApiTest.java
-src/test/java/com/kanmon/client/model/CreateIntegratedMcaReceivable400ResponseTest.java
-src/test/java/com/kanmon/client/model/CreateIntegratedMcaReceivable409ResponseTest.java
-src/test/java/com/kanmon/client/model/CreateIntegratedMcaReceivableBodyTest.java
-src/test/java/com/kanmon/client/model/GetIntegratedMcaReceivablesResponseTest.java
-src/test/java/com/kanmon/client/model/IncorrectProductTypeExceptionTest.java
-src/test/java/com/kanmon/client/model/IncorrectRepaymentAmountExceptionTest.java
-src/test/java/com/kanmon/client/model/IntegratedMcaOfferTermsTest.java
-src/test/java/com/kanmon/client/model/IntegratedMcaReceivableAlreadyExistsExceptionTest.java
-src/test/java/com/kanmon/client/model/IntegratedMcaReceivableTest.java
-src/test/java/com/kanmon/client/model/IntegratedMcaServicingDataTest.java
-src/test/java/com/kanmon/client/model/NoRemainingBalanceExceptionTest.java

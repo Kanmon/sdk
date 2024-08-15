@@ -57,7 +57,15 @@ public class LineOfCreditServicingData {
    */
   @JsonAdapter(ProductTypeEnum.Adapter.class)
   public enum ProductTypeEnum {
-    LINE_OF_CREDIT("LINE_OF_CREDIT");
+    INVOICE_FINANCING("INVOICE_FINANCING"),
+    
+    TERM_LOAN("TERM_LOAN"),
+    
+    MCA("MCA"),
+    
+    LINE_OF_CREDIT("LINE_OF_CREDIT"),
+    
+    INTEGRATED_MCA("INTEGRATED_MCA");
 
     private String value;
 

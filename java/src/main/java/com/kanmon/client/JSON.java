@@ -78,25 +78,6 @@ public class JSON {
                                 getDiscriminatorValue(readElement, "component"));
                     }
           })
-                .registerTypeSelector(com.kanmon.client.model.IssuedProductServicingData.class, new TypeSelector<com.kanmon.client.model.IssuedProductServicingData>() {
-                    @Override
-                    public Class<? extends com.kanmon.client.model.IssuedProductServicingData> getClassForElement(JsonElement readElement) {
-                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaServicingData.class);
-                        classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingServicingData.class);
-                        classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditServicingData.class);
-                        classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaServicingData.class);
-                        classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanServicingData.class);
-                        classByDiscriminatorValue.put("IntegratedMcaServicingData", com.kanmon.client.model.IntegratedMcaServicingData.class);
-                        classByDiscriminatorValue.put("InvoiceFinancingServicingData", com.kanmon.client.model.InvoiceFinancingServicingData.class);
-                        classByDiscriminatorValue.put("LineOfCreditServicingData", com.kanmon.client.model.LineOfCreditServicingData.class);
-                        classByDiscriminatorValue.put("McaServicingData", com.kanmon.client.model.McaServicingData.class);
-                        classByDiscriminatorValue.put("TermLoanServicingData", com.kanmon.client.model.TermLoanServicingData.class);
-                        classByDiscriminatorValue.put("IssuedProduct_servicingData", com.kanmon.client.model.IssuedProductServicingData.class);
-                        return getClassByDiscriminator(classByDiscriminatorValue,
-                                getDiscriminatorValue(readElement, "productType"));
-                    }
-          })
         ;
         GsonBuilder builder = fireBuilder.createGsonBuilder();
         return builder;

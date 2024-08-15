@@ -53,10 +53,18 @@ import com.kanmon.client.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
 public class IntegratedMcaServicingData {
   /**
-   * Gets or Sets productType
+   * The type of product being offered. Always &#x60;INTEGRATED_MCA&#x60; for &#x60;IntegratedMcaServicingData&#x60;.
    */
   @JsonAdapter(ProductTypeEnum.Adapter.class)
   public enum ProductTypeEnum {
+    INVOICE_FINANCING("INVOICE_FINANCING"),
+    
+    TERM_LOAN("TERM_LOAN"),
+    
+    MCA("MCA"),
+    
+    LINE_OF_CREDIT("LINE_OF_CREDIT"),
+    
     INTEGRATED_MCA("INTEGRATED_MCA");
 
     private String value;
@@ -135,7 +143,7 @@ public class IntegratedMcaServicingData {
   }
 
    /**
-   * Get productType
+   * The type of product being offered. Always &#x60;INTEGRATED_MCA&#x60; for &#x60;IntegratedMcaServicingData&#x60;.
    * @return productType
   **/
   @javax.annotation.Nonnull
