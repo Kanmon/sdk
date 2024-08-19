@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "d9644b11-c3ac-480d-b9da-d02d5b866433,f7e87272-10e0-4e32-99cc-a07a910722e9",
+            "example": "45bb4d09-f2cc-45fb-9ed1-bbeda875ae5b,97cd2c58-ff5d-4478-b9d7-2ba02934aaf1",
             "schema":
             {
               "type": "string"
@@ -2882,7 +2882,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "d4fd36d8-d49e-48e3-bf4f-2ea7bda4d7d3,0ae52150-306a-4196-af5a-ac7421d3368e",
+            "example": "2c06268c-553e-496f-92ce-f0565cb7ee21,d35982c5-5070-4e66-b3e5-626f7a762a47",
             "schema":
             {
               "type": "string"
@@ -3429,7 +3429,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "62cc8de7-2d02-47e2-b709-4e0204c63844,f29f7fe2-e3fc-406f-ba07-7a49530875b3",
+            "example": "f678cfa8-f8b4-4253-9110-ad79810a5130,f5137379-c881-46c7-ab50-ae640388593c",
             "schema":
             {
               "type": "string"
@@ -4518,7 +4518,6 @@
       "ProductType":
       {
         "type": "string",
-        "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.",
         "enum":
         [
           "INVOICE_FINANCING",
