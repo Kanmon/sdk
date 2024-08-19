@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.
  * @export
  */
 export const ProductType = {

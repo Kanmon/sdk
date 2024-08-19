@@ -558,7 +558,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "d75be212-b1ff-4934-a56a-2ba54f142242,98e56112-9f55-45c3-9e5a-67c6b3f768d8"
+        example: "d9644b11-c3ac-480d-b9da-d02d5b866433,f7e87272-10e0-4e32-99cc-a07a910722e9"
         explode: true
         in: query
         name: businessIds
@@ -1557,7 +1557,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "58f760ed-ee4e-4933-85ab-f49f60569809,63571629-9a2f-4879-9a1b-4cfd9e6d15e7"
+        example: "d4fd36d8-d49e-48e3-bf4f-2ea7bda4d7d3,0ae52150-306a-4196-af5a-ac7421d3368e"
         explode: true
         in: query
         name: businessIds
@@ -1924,7 +1924,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "f154a193-2d8a-464d-8b7b-c35e9a0804f1,e54ae42c-d23d-4e41-acee-856a199bc491"
+        example: "62cc8de7-2d02-47e2-b709-4e0204c63844,f29f7fe2-e3fc-406f-ba07-7a49530875b3"
         explode: true
         in: query
         name: drawRequestIds
@@ -2511,10 +2511,20 @@ paths:
       - application/json
 components:
   schemas:
+    ProductType:
+      description: The type of product being offered. Always `LINE_OF_CREDIT` for
+        `LineOfCreditServicingData`.
+      enum:
+      - INVOICE_FINANCING
+      - TERM_LOAN
+      - MCA
+      - LINE_OF_CREDIT
+      - INTEGRATED_MCA
+      type: string
     BusinessPrequalification:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
-        product: TERM_LOAN
+        product: null
         platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         isPrequalified: true
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2523,18 +2533,7 @@ components:
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         product:
-          description: "The product that the business is prequalified for. This will\
-            \ be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`,\
-            \ `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`."
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: TERM_LOAN
-          nullable: true
-          type: string
+          $ref: '#/components/schemas/ProductType'
         platformId:
           description: The UUID representing your platform in Kanmon.
           example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2599,7 +2598,7 @@ components:
         pagination: ""
         prequalifications:
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: TERM_LOAN
+          product: null
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2607,7 +2606,7 @@ components:
           prequalifiedAmountCents: 1000000
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: TERM_LOAN
+          product: null
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -3940,18 +3939,10 @@ components:
         durationMonths: 6
         feePercentage: 3
         interestRatePercentage: 10
-        productType: TERM_LOAN
+        productType: null
       properties:
         productType:
-          description: The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: TERM_LOAN
-          type: string
+          $ref: '#/components/schemas/ProductType'
         maxLoanAmountCents:
           description: The maximum loan amount - in cents.
           example: 1000000
@@ -4072,16 +4063,7 @@ components:
     InvoiceFinancingOfferTerms:
       properties:
         productType:
-          description: The type of product being offered. Always `INVOICE_FINANCING`
-            for `InvoiceFinancingOfferTerms`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: INVOICE_FINANCING
-          type: string
+          $ref: '#/components/schemas/ProductType'
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4099,15 +4081,7 @@ components:
     McaOfferTerms:
       properties:
         productType:
-          description: The type of product being offered. Always `MCA` for `McaOfferTerms`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: MCA
-          type: string
+          $ref: '#/components/schemas/ProductType'
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4155,16 +4129,7 @@ components:
     LineOfCreditOfferTerms:
       properties:
         productType:
-          description: The type of product being offered. Always `LINE_OF_CREDIT`
-            for `LineOfCreditOfferTerms`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: LINE_OF_CREDIT
-          type: string
+          $ref: '#/components/schemas/ProductType'
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4193,16 +4158,7 @@ components:
     IntegratedMcaOfferTerms:
       properties:
         productType:
-          description: The type of product being offered. Always `INTEGRATED_MCA`
-            for `IntegratedMcaOfferTerms`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: INTEGRATED_MCA
-          type: string
+          $ref: '#/components/schemas/ProductType'
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4247,7 +4203,7 @@ components:
           durationMonths: 6
           feePercentage: 3
           interestRatePercentage: 10
-          productType: TERM_LOAN
+          productType: null
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         selectedAt: 2023-12-15T03:57:26.115Z
@@ -4333,7 +4289,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: TERM_LOAN
+            productType: null
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4347,7 +4303,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: TERM_LOAN
+            productType: null
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4374,19 +4330,11 @@ components:
         monthlyPaymentCents: 100000
         nextPaymentDate: 2023-12-15
         originationFeeCents: 100000
-        productType: TERM_LOAN
+        productType: null
         principalBalanceCents: 1000000
       properties:
         productType:
-          description: The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: TERM_LOAN
-          type: string
+          $ref: '#/components/schemas/ProductType'
         loanAmountCents:
           description: The total loan amount - in cents.
           example: 1000000
@@ -4424,16 +4372,7 @@ components:
     InvoiceFinancingServicingData:
       properties:
         productType:
-          description: The type of product being offered. Always `INVOICE_FINANCING`
-            for `InvoiceFinancingServicingData`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: INVOICE_FINANCING
-          type: string
+          $ref: '#/components/schemas/ProductType'
         totalLimitCents:
           description: The total limit allowed - in cents.
           type: number
@@ -4455,15 +4394,7 @@ components:
     McaServicingData:
       properties:
         productType:
-          description: The type of product being offered. Always `MCA` for `McaServicingData`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: MCA
-          type: string
+          $ref: '#/components/schemas/ProductType'
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4517,16 +4448,7 @@ components:
     IntegratedMcaServicingData:
       properties:
         productType:
-          description: The type of product being offered. Always `INTEGRATED_MCA`
-            for `IntegratedMcaServicingData`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: INTEGRATED_MCA
-          type: string
+          $ref: '#/components/schemas/ProductType'
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4563,16 +4485,7 @@ components:
     LineOfCreditServicingData:
       properties:
         productType:
-          description: The type of product being offered. Always `LINE_OF_CREDIT`
-            for `LineOfCreditServicingData`.
-          enum:
-          - INVOICE_FINANCING
-          - TERM_LOAN
-          - MCA
-          - LINE_OF_CREDIT
-          - INTEGRATED_MCA
-          example: LINE_OF_CREDIT
-          type: string
+          $ref: '#/components/schemas/ProductType'
         totalLimitCents:
           description: The total credit limit - in cents.
           example: 1000000
@@ -4614,7 +4527,7 @@ components:
           monthlyPaymentCents: 100000
           nextPaymentDate: 2023-12-15
           originationFeeCents: 100000
-          productType: TERM_LOAN
+          productType: null
           principalBalanceCents: 1000000
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         loanStatus: CURRENT
@@ -4707,7 +4620,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: TERM_LOAN
+            productType: null
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -4722,7 +4635,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: TERM_LOAN
+            productType: null
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT

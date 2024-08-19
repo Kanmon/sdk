@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { mapValues } from '../runtime';
  */
 export interface McaServicingData {
     /**
-     * The type of product being offered. Always `MCA` for `McaServicingData`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof McaServicingData
      */
-    productType: McaServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -73,18 +80,6 @@ export interface McaServicingData {
 /**
  * @export
  */
-export const McaServicingDataProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type McaServicingDataProductTypeEnum = typeof McaServicingDataProductTypeEnum[keyof typeof McaServicingDataProductTypeEnum];
-
-/**
- * @export
- */
 export const McaServicingDataRepaymentFrequencyEnum = {
     Daily: 'DAILY',
     Weekly: 'WEEKLY',
@@ -119,7 +114,7 @@ export function McaServicingDataFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'advanceAmountCents': json['advanceAmountCents'],
         'repaymentPercentage': json['repaymentPercentage'],
         'feeFactor': json['feeFactor'],
@@ -136,7 +131,7 @@ export function McaServicingDataToJSON(value?: McaServicingData | null): any {
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'advanceAmountCents': value['advanceAmountCents'],
         'repaymentPercentage': value['repaymentPercentage'],
         'feeFactor': value['feeFactor'],

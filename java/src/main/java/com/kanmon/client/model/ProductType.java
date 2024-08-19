@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets ProductType
+ * The type of product being offered. Always &#x60;LINE_OF_CREDIT&#x60; for &#x60;LineOfCreditServicingData&#x60;.
  */
 @JsonAdapter(ProductType.Adapter.class)
 public enum ProductType {
