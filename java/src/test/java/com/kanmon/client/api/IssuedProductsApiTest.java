@@ -56,6 +56,7 @@ public class IssuedProductsApiTest {
      */
     @Test
     public void getIssuedProductsTest() throws ApiException {
+        String offerIds = null;
         String ids = null;
         String platformBusinessIds = null;
         String businessIds = null;
@@ -63,7 +64,7 @@ public class IssuedProductsApiTest {
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        GetIssuedProductsResponse response = api.getIssuedProducts(ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        GetIssuedProductsResponse response = api.getIssuedProducts(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

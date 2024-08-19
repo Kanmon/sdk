@@ -157,3 +157,4 @@ src/main/java/com/kanmon/client/model/UserAddress.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
+src/test/java/com/kanmon/client/api/IssuedProductsApiTest.java
