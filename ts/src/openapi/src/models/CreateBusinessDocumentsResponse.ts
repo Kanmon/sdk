@@ -37,8 +37,8 @@ export interface CreateBusinessDocumentsResponse {
 /**
  * Check if a given object implements the CreateBusinessDocumentsResponse interface.
  */
-export function instanceOfCreateBusinessDocumentsResponse(value: object): boolean {
-    if (!('documents' in value)) return false;
+export function instanceOfCreateBusinessDocumentsResponse(value: object): value is CreateBusinessDocumentsResponse {
+    if (!('documents' in value) || value['documents'] === undefined) return false;
     return true;
 }
 

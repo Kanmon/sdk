@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * MergeUsersResponseBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class MergeUsersResponseBody {
   public static final String SERIALIZED_NAME_MERGED_USERS = "mergedUsers";
   @SerializedName(SERIALIZED_NAME_MERGED_USERS)
@@ -74,10 +73,10 @@ public class MergeUsersResponseBody {
     return this;
   }
 
-   /**
+  /**
    * An array of users that were merged into the target business.
    * @return mergedUsers
-  **/
+   */
   @javax.annotation.Nonnull
   public List<User> getMergedUsers() {
     return mergedUsers;
@@ -140,12 +139,12 @@ public class MergeUsersResponseBody {
     openapiRequiredFields.add("mergedUsers");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MergeUsersResponseBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MergeUsersResponseBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MergeUsersResponseBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -209,22 +208,22 @@ public class MergeUsersResponseBody {
     }
   }
 
- /**
-  * Create an instance of MergeUsersResponseBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MergeUsersResponseBody
-  * @throws IOException if the JSON string is invalid with respect to MergeUsersResponseBody
-  */
+  /**
+   * Create an instance of MergeUsersResponseBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MergeUsersResponseBody
+   * @throws IOException if the JSON string is invalid with respect to MergeUsersResponseBody
+   */
   public static MergeUsersResponseBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MergeUsersResponseBody.class);
   }
 
- /**
-  * Convert an instance of MergeUsersResponseBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MergeUsersResponseBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

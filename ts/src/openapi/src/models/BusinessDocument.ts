@@ -70,17 +70,19 @@ export interface BusinessDocument {
     updatedAt: string;
 }
 
+
+
 /**
  * Check if a given object implements the BusinessDocument interface.
  */
-export function instanceOfBusinessDocument(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('documentType' in value)) return false;
-    if (!('originalFileName' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfBusinessDocument(value: object): value is BusinessDocument {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('documentType' in value) || value['documentType'] === undefined) return false;
+    if (!('originalFileName' in value) || value['originalFileName'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

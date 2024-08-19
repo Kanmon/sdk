@@ -18,17 +18,24 @@
  * @export
  */
 export const ProductType = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA'
 } as const;
 export type ProductType = typeof ProductType[keyof typeof ProductType];
 
 
 export function instanceOfProductType(value: any): boolean {
-    return Object.values(ProductType).includes(value);
+    for (const key in ProductType) {
+        if (Object.prototype.hasOwnProperty.call(ProductType, key)) {
+            if (ProductType[key as keyof typeof ProductType] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export function ProductTypeFromJSON(json: any): ProductType {

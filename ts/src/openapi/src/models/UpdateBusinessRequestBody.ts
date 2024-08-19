@@ -73,7 +73,7 @@ export interface UpdateBusinessRequestBody {
 /**
  * Check if a given object implements the UpdateBusinessRequestBody interface.
  */
-export function instanceOfUpdateBusinessRequestBody(value: object): boolean {
+export function instanceOfUpdateBusinessRequestBody(value: object): value is UpdateBusinessRequestBody {
     return true;
 }
 

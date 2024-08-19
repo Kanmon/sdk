@@ -558,7 +558,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "45bb4d09-f2cc-45fb-9ed1-bbeda875ae5b,97cd2c58-ff5d-4478-b9d7-2ba02934aaf1"
+        example: "814690a2-57ec-49f5-a310-3f932c997f90,441fc036-6309-4a11-a26c-a6776471ea9f"
         explode: true
         in: query
         name: businessIds
@@ -1557,7 +1557,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "2c06268c-553e-496f-92ce-f0565cb7ee21,d35982c5-5070-4e66-b3e5-626f7a762a47"
+        example: "1348287b-b4a5-4e92-bcb5-9b8d1fa9486e,74ccb8fc-6a69-41df-b6a9-9a4d2827ed89"
         explode: true
         in: query
         name: businessIds
@@ -1924,7 +1924,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "f678cfa8-f8b4-4253-9110-ad79810a5130,f5137379-c881-46c7-ab50-ae640388593c"
+        example: "1b30378c-4c1c-4575-990e-4dc0e0e9cc87,a158c620-b37f-4c6b-9580-9615d94183d0"
         explode: true
         in: query
         name: drawRequestIds
@@ -2522,7 +2522,7 @@ components:
     BusinessPrequalification:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
-        product: null
+        product: INVOICE_FINANCING
         platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         isPrequalified: true
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2596,7 +2596,7 @@ components:
         pagination: ""
         prequalifications:
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: null
+          product: INVOICE_FINANCING
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2604,7 +2604,7 @@ components:
           prequalifiedAmountCents: 1000000
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: null
+          product: INVOICE_FINANCING
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2871,7 +2871,17 @@ components:
           nullable: true
           type: object
         address:
-          $ref: '#/components/schemas/Business_address'
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The business’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          nullable: true
         ein:
           description: "The business’s EIN. Only digits, no formatting."
           example: "123456789"
@@ -3260,7 +3270,17 @@ components:
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         address:
-          $ref: '#/components/schemas/User_address'
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The user’s address. The address is optional. If you provide\
+            \ the address, you need to provide all the required fields in the address."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          nullable: true
         email:
           description: The user’s email.
           example: user@gmail.com
@@ -3690,7 +3710,7 @@ components:
             repaymentFeeAmountCents: 2000
             repaymentPrincipalAmountCents: 98000
             repaymentDate: 2020-11-11
-        status: null
+        status: INVOICE_CREATED
       properties:
         id:
           description: Kanmon’s unique ID for the invoice.
@@ -3728,7 +3748,18 @@ components:
           nullable: true
           type: string
         payorAddress:
-          $ref: '#/components/schemas/Invoice_payorAddress'
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The address of the payor. The address is optional. If you\
+            \ provide the address, you need to provide all the required fields in\
+            \ the address."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+          nullable: true
         payorType:
           description: '`INDIVIDUAL` if the payor is a person and `BUSINESS` if the
             payor is a company.'
@@ -3880,7 +3911,7 @@ components:
               repaymentFeeAmountCents: 2000
               repaymentPrincipalAmountCents: 98000
               repaymentDate: 2020-11-11
-          status: null
+          status: INVOICE_CREATED
         - advanceRatePercentage: 100
           payorEmail: user@gmail.com
           payorType: BUSINESS
@@ -3915,7 +3946,7 @@ components:
               repaymentFeeAmountCents: 2000
               repaymentPrincipalAmountCents: 98000
               repaymentDate: 2020-11-11
-          status: null
+          status: INVOICE_CREATED
       properties:
         invoices:
           description: Array of invoices.
@@ -3937,7 +3968,7 @@ components:
         durationMonths: 6
         feePercentage: 3
         interestRatePercentage: 10
-        productType: null
+        productType: INVOICE_FINANCING
       properties:
         productType:
           $ref: '#/components/schemas/ProductType'
@@ -4201,7 +4232,7 @@ components:
           durationMonths: 6
           feePercentage: 3
           interestRatePercentage: 10
-          productType: null
+          productType: INVOICE_FINANCING
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         selectedAt: 2023-12-15T03:57:26.115Z
@@ -4287,7 +4318,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: null
+            productType: INVOICE_FINANCING
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4301,7 +4332,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: null
+            productType: INVOICE_FINANCING
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4328,7 +4359,7 @@ components:
         monthlyPaymentCents: 100000
         nextPaymentDate: 2023-12-15
         originationFeeCents: 100000
-        productType: null
+        productType: INVOICE_FINANCING
         principalBalanceCents: 1000000
       properties:
         productType:
@@ -4525,7 +4556,7 @@ components:
           monthlyPaymentCents: 100000
           nextPaymentDate: 2023-12-15
           originationFeeCents: 100000
-          productType: null
+          productType: INVOICE_FINANCING
           principalBalanceCents: 1000000
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         loanStatus: CURRENT
@@ -4618,7 +4649,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: null
+            productType: INVOICE_FINANCING
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -4633,7 +4664,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: null
+            productType: INVOICE_FINANCING
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -4922,7 +4953,7 @@ components:
         effectiveDate: 2024-01-01
         feePaymentAmountCents: 10000
         direction: DISBURSEMENT
-        status: null
+        status: FAILED
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         id:
@@ -5051,23 +5082,7 @@ components:
     PaymentScheduleItem:
       example:
         totalPaymentAmountCents: 100000
-        paymentOrder:
-          drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-          issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-          platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-          feeType: INSUFFICIENT_FUNDS
-          totalPaymentAmountCents: 100000
-          createdAt: 2022-06-01T03:57:26.115Z
-          principalPaymentAmountCents: 80000
-          interestPaymentAmountCents: 10000
-          invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-          settledDate: 2024-01-03
-          effectiveDate: 2024-01-01
-          feePaymentAmountCents: 10000
-          direction: DISBURSEMENT
-          status: null
-          updatedAt: 2022-06-01T03:57:26.115Z
+        paymentOrder: ""
         effectiveDate: 2024-01-01
       properties:
         effectiveDate:
@@ -5079,7 +5094,10 @@ components:
           example: 100000
           type: number
         paymentOrder:
-          $ref: '#/components/schemas/PaymentScheduleItem_paymentOrder'
+          allOf:
+          - $ref: '#/components/schemas/PaymentOrder'
+          description: The payment order for this schedule item
+          nullable: true
       required:
       - effectiveDate
       - totalPaymentAmountCents
@@ -5089,42 +5107,10 @@ components:
         pagination: ""
         paymentSchedule:
         - totalPaymentAmountCents: 100000
-          paymentOrder:
-            drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            feeType: INSUFFICIENT_FUNDS
-            totalPaymentAmountCents: 100000
-            createdAt: 2022-06-01T03:57:26.115Z
-            principalPaymentAmountCents: 80000
-            interestPaymentAmountCents: 10000
-            invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            settledDate: 2024-01-03
-            effectiveDate: 2024-01-01
-            feePaymentAmountCents: 10000
-            direction: DISBURSEMENT
-            status: null
-            updatedAt: 2022-06-01T03:57:26.115Z
+          paymentOrder: ""
           effectiveDate: 2024-01-01
         - totalPaymentAmountCents: 100000
-          paymentOrder:
-            drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            feeType: INSUFFICIENT_FUNDS
-            totalPaymentAmountCents: 100000
-            createdAt: 2022-06-01T03:57:26.115Z
-            principalPaymentAmountCents: 80000
-            interestPaymentAmountCents: 10000
-            invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-            settledDate: 2024-01-03
-            effectiveDate: 2024-01-01
-            feePaymentAmountCents: 10000
-            direction: DISBURSEMENT
-            status: null
-            updatedAt: 2022-06-01T03:57:26.115Z
+          paymentOrder: ""
           effectiveDate: 2024-01-01
       properties:
         paymentSchedule:
@@ -5160,7 +5146,7 @@ components:
         feeAmountCents: 40000
         interestRatePercentage: 10
         repaymentDurationMonths: 6
-        status: null
+        status: DRAW_REQUEST_CREATED
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         id:
@@ -5257,7 +5243,7 @@ components:
           feeAmountCents: 40000
           interestRatePercentage: 10
           repaymentDurationMonths: 6
-          status: null
+          status: DRAW_REQUEST_CREATED
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
           amountCents: 1000000
@@ -5268,7 +5254,7 @@ components:
           feeAmountCents: 40000
           interestRatePercentage: 10
           repaymentDurationMonths: 6
-          status: null
+          status: DRAW_REQUEST_CREATED
           updatedAt: 2022-06-01T03:57:26.115Z
         pagination: ""
       properties:
@@ -5317,7 +5303,7 @@ components:
         originalFileName: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         createdAt: 2022-06-01T03:57:26.115Z
         platformBusinessId: "12345"
-        documentType: null
+        documentType: INVOICE
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         updatedAt: 2022-06-01T03:57:26.115Z
@@ -5364,14 +5350,14 @@ components:
         - originalFileName: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
-          documentType: null
+          documentType: INVOICE
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           updatedAt: 2022-06-01T03:57:26.115Z
         - originalFileName: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
-          documentType: null
+          documentType: INVOICE
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           updatedAt: 2022-06-01T03:57:26.115Z
@@ -6304,42 +6290,6 @@ components:
       oneOf:
       - $ref: '#/components/schemas/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException'
       - $ref: '#/components/schemas/BusinessHasNoInvoiceFinancingProductException'
-    Business_address:
-      allOf:
-      - $ref: '#/components/schemas/Address'
-      description: "The business’s address. The address is optional. If you provide\
-        \ the address, you need to provide all the required fields in the address."
-      example:
-        city: San Mateo
-        state: CA
-        country: USA
-        zipcode: "94401"
-        addressLineOne: 123 Main Street
-      nullable: true
-    User_address:
-      allOf:
-      - $ref: '#/components/schemas/Address'
-      description: "The user’s address. The address is optional. If you provide the\
-        \ address, you need to provide all the required fields in the address."
-      example:
-        city: San Mateo
-        state: CA
-        country: USA
-        zipcode: "94401"
-        addressLineOne: 123 Main Street
-      nullable: true
-    Invoice_payorAddress:
-      allOf:
-      - $ref: '#/components/schemas/Address'
-      description: "The address of the payor. The address is optional. If you provide\
-        \ the address, you need to provide all the required fields in the address."
-      example:
-        city: San Mateo
-        state: CA
-        country: USA
-        zipcode: "94401"
-        addressLineOne: 123 Main Street
-      nullable: true
     InvoicePaymentPlan_repaymentWindow:
       description: The repayment window
       oneOf:
@@ -6348,6 +6298,14 @@ components:
       - $ref: '#/components/schemas/MultipleDurationInvoiceRepaymentWindow'
     Offer_terms:
       description: Terms of the offer.
+      discriminator:
+        mapping:
+          TERM_LOAN: '#/components/schemas/TermLoanOfferTerms'
+          INVOICE_FINANCING: '#/components/schemas/InvoiceFinancingOfferTerms'
+          MCA: '#/components/schemas/McaOfferTerms'
+          INTEGRATED_MCA: '#/components/schemas/IntegratedMcaOfferTerms'
+          LINE_OF_CREDIT: '#/components/schemas/LineOfCreditOfferTerms'
+        propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
       - $ref: '#/components/schemas/InvoiceFinancingOfferTerms'
@@ -6356,34 +6314,20 @@ components:
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
+      discriminator:
+        mapping:
+          TERM_LOAN: '#/components/schemas/TermLoanServicingData'
+          INVOICE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
+          MCA: '#/components/schemas/McaServicingData'
+          INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
+          LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
+        propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
       - $ref: '#/components/schemas/InvoiceFinancingServicingData'
       - $ref: '#/components/schemas/McaServicingData'
       - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
-    PaymentScheduleItem_paymentOrder:
-      allOf:
-      - $ref: '#/components/schemas/PaymentOrder'
-      description: The payment order for this schedule item
-      example:
-        drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-        issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-        platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-        feeType: INSUFFICIENT_FUNDS
-        totalPaymentAmountCents: 100000
-        createdAt: 2022-06-01T03:57:26.115Z
-        principalPaymentAmountCents: 80000
-        interestPaymentAmountCents: 10000
-        invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-        id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
-        settledDate: 2024-01-03
-        effectiveDate: 2024-01-01
-        feePaymentAmountCents: 10000
-        direction: DISBURSEMENT
-        status: null
-        updatedAt: 2022-06-01T03:57:26.115Z
-      nullable: true
     CreateSessionTokenRequestBody_data:
       description: This will differ depending on which `component` is used.
       discriminator:

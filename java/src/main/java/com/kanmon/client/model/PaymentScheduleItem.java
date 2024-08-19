@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.PaymentScheduleItemPaymentOrder;
+import com.kanmon.client.model.PaymentOrder;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentScheduleItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class PaymentScheduleItem {
   public static final String SERIALIZED_NAME_EFFECTIVE_DATE = "effectiveDate";
   @SerializedName(SERIALIZED_NAME_EFFECTIVE_DATE)
@@ -64,7 +63,7 @@ public class PaymentScheduleItem {
 
   public static final String SERIALIZED_NAME_PAYMENT_ORDER = "paymentOrder";
   @SerializedName(SERIALIZED_NAME_PAYMENT_ORDER)
-  private PaymentScheduleItemPaymentOrder paymentOrder;
+  private PaymentOrder paymentOrder;
 
   public PaymentScheduleItem() {
   }
@@ -74,10 +73,10 @@ public class PaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The effective UTC ISO 8601 date that the payment will process.
    * @return effectiveDate
-  **/
+   */
   @javax.annotation.Nonnull
   public String getEffectiveDate() {
     return effectiveDate;
@@ -93,10 +92,10 @@ public class PaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The total payment amount - in cents.
    * @return totalPaymentAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalPaymentAmountCents() {
     return totalPaymentAmountCents;
@@ -107,21 +106,21 @@ public class PaymentScheduleItem {
   }
 
 
-  public PaymentScheduleItem paymentOrder(PaymentScheduleItemPaymentOrder paymentOrder) {
+  public PaymentScheduleItem paymentOrder(PaymentOrder paymentOrder) {
     this.paymentOrder = paymentOrder;
     return this;
   }
 
-   /**
-   * Get paymentOrder
+  /**
+   * The payment order for this schedule item
    * @return paymentOrder
-  **/
+   */
   @javax.annotation.Nullable
-  public PaymentScheduleItemPaymentOrder getPaymentOrder() {
+  public PaymentOrder getPaymentOrder() {
     return paymentOrder;
   }
 
-  public void setPaymentOrder(PaymentScheduleItemPaymentOrder paymentOrder) {
+  public void setPaymentOrder(PaymentOrder paymentOrder) {
     this.paymentOrder = paymentOrder;
   }
 
@@ -196,12 +195,12 @@ public class PaymentScheduleItem {
     openapiRequiredFields.add("totalPaymentAmountCents");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaymentScheduleItem
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaymentScheduleItem
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaymentScheduleItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -229,7 +228,7 @@ public class PaymentScheduleItem {
       }
       // validate the optional field `paymentOrder`
       if (jsonObj.get("paymentOrder") != null && !jsonObj.get("paymentOrder").isJsonNull()) {
-        PaymentScheduleItemPaymentOrder.validateJsonElement(jsonObj.get("paymentOrder"));
+        PaymentOrder.validateJsonElement(jsonObj.get("paymentOrder"));
       }
   }
 
@@ -262,22 +261,22 @@ public class PaymentScheduleItem {
     }
   }
 
- /**
-  * Create an instance of PaymentScheduleItem given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaymentScheduleItem
-  * @throws IOException if the JSON string is invalid with respect to PaymentScheduleItem
-  */
+  /**
+   * Create an instance of PaymentScheduleItem given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaymentScheduleItem
+   * @throws IOException if the JSON string is invalid with respect to PaymentScheduleItem
+   */
   public static PaymentScheduleItem fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaymentScheduleItem.class);
   }
 
- /**
-  * Convert an instance of PaymentScheduleItem to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaymentScheduleItem to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

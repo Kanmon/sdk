@@ -97,7 +97,7 @@ export interface PaymentOrder {
      * @type {string}
      * @memberof PaymentOrder
      */
-    feeType?: PaymentOrderFeeTypeEnum;
+    feeType?: PaymentOrderFeeTypeEnum | null;
     /**
      * The direction of the payment.
      * @type {string}
@@ -129,10 +129,10 @@ export interface PaymentOrder {
  * @export
  */
 export const PaymentOrderFeeTypeEnum = {
-    LatePayment: 'LATE_PAYMENT',
-    InsufficientFunds: 'INSUFFICIENT_FUNDS',
-    TransactionFee: 'TRANSACTION_FEE',
-    Maintenance: 'MAINTENANCE'
+    LATE_PAYMENT: 'LATE_PAYMENT',
+    INSUFFICIENT_FUNDS: 'INSUFFICIENT_FUNDS',
+    TRANSACTION_FEE: 'TRANSACTION_FEE',
+    MAINTENANCE: 'MAINTENANCE'
 } as const;
 export type PaymentOrderFeeTypeEnum = typeof PaymentOrderFeeTypeEnum[keyof typeof PaymentOrderFeeTypeEnum];
 
@@ -140,8 +140,8 @@ export type PaymentOrderFeeTypeEnum = typeof PaymentOrderFeeTypeEnum[keyof typeo
  * @export
  */
 export const PaymentOrderDirectionEnum = {
-    Disbursement: 'DISBURSEMENT',
-    Repayment: 'REPAYMENT'
+    DISBURSEMENT: 'DISBURSEMENT',
+    REPAYMENT: 'REPAYMENT'
 } as const;
 export type PaymentOrderDirectionEnum = typeof PaymentOrderDirectionEnum[keyof typeof PaymentOrderDirectionEnum];
 
@@ -149,22 +149,22 @@ export type PaymentOrderDirectionEnum = typeof PaymentOrderDirectionEnum[keyof t
 /**
  * Check if a given object implements the PaymentOrder interface.
  */
-export function instanceOfPaymentOrder(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('issuedProductId' in value)) return false;
-    if (!('drawRequestId' in value)) return false;
-    if (!('invoiceId' in value)) return false;
-    if (!('platformInvoiceId' in value)) return false;
-    if (!('effectiveDate' in value)) return false;
-    if (!('settledDate' in value)) return false;
-    if (!('totalPaymentAmountCents' in value)) return false;
-    if (!('principalPaymentAmountCents' in value)) return false;
-    if (!('interestPaymentAmountCents' in value)) return false;
-    if (!('feePaymentAmountCents' in value)) return false;
-    if (!('direction' in value)) return false;
-    if (!('status' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfPaymentOrder(value: object): value is PaymentOrder {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
+    if (!('drawRequestId' in value) || value['drawRequestId'] === undefined) return false;
+    if (!('invoiceId' in value) || value['invoiceId'] === undefined) return false;
+    if (!('platformInvoiceId' in value) || value['platformInvoiceId'] === undefined) return false;
+    if (!('effectiveDate' in value) || value['effectiveDate'] === undefined) return false;
+    if (!('settledDate' in value) || value['settledDate'] === undefined) return false;
+    if (!('totalPaymentAmountCents' in value) || value['totalPaymentAmountCents'] === undefined) return false;
+    if (!('principalPaymentAmountCents' in value) || value['principalPaymentAmountCents'] === undefined) return false;
+    if (!('interestPaymentAmountCents' in value) || value['interestPaymentAmountCents'] === undefined) return false;
+    if (!('feePaymentAmountCents' in value) || value['feePaymentAmountCents'] === undefined) return false;
+    if (!('direction' in value) || value['direction'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PaginationResult } from './PaginationResult';
-import {
-    PaginationResultFromJSON,
-    PaginationResultFromJSONTyped,
-    PaginationResultToJSON,
-} from './PaginationResult';
 import type { PaymentScheduleItem } from './PaymentScheduleItem';
 import {
     PaymentScheduleItemFromJSON,
     PaymentScheduleItemFromJSONTyped,
     PaymentScheduleItemToJSON,
 } from './PaymentScheduleItem';
+import type { PaginationResult } from './PaginationResult';
+import {
+    PaginationResultFromJSON,
+    PaginationResultFromJSONTyped,
+    PaginationResultToJSON,
+} from './PaginationResult';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface GetPaymentScheduleResponse {
 /**
  * Check if a given object implements the GetPaymentScheduleResponse interface.
  */
-export function instanceOfGetPaymentScheduleResponse(value: object): boolean {
-    if (!('paymentSchedule' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetPaymentScheduleResponse(value: object): value is GetPaymentScheduleResponse {
+    if (!('paymentSchedule' in value) || value['paymentSchedule'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

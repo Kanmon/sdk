@@ -336,23 +336,23 @@ export class BusinessesApi extends runtime.BaseAPI {
  * @export
  */
 export const GetBusinessIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type GetBusinessIdTypeEnum = typeof GetBusinessIdTypeEnum[keyof typeof GetBusinessIdTypeEnum];
 /**
  * @export
  */
 export const GetBusinessActivityLogIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type GetBusinessActivityLogIdTypeEnum = typeof GetBusinessActivityLogIdTypeEnum[keyof typeof GetBusinessActivityLogIdTypeEnum];
 /**
  * @export
  */
 export const UpdateBusinessIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type UpdateBusinessIdTypeEnum = typeof UpdateBusinessIdTypeEnum[keyof typeof UpdateBusinessIdTypeEnum];

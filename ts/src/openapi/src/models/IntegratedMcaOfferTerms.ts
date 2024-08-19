@@ -64,16 +64,18 @@ export interface IntegratedMcaOfferTerms {
     maxAdvanceAmountCents: number;
 }
 
+
+
 /**
  * Check if a given object implements the IntegratedMcaOfferTerms interface.
  */
-export function instanceOfIntegratedMcaOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('advanceAmountCents' in value)) return false;
-    if (!('repaymentPercentage' in value)) return false;
-    if (!('feeFactor' in value)) return false;
-    if (!('totalRepaymentCents' in value)) return false;
-    if (!('maxAdvanceAmountCents' in value)) return false;
+export function instanceOfIntegratedMcaOfferTerms(value: object): value is IntegratedMcaOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('advanceAmountCents' in value) || value['advanceAmountCents'] === undefined) return false;
+    if (!('repaymentPercentage' in value) || value['repaymentPercentage'] === undefined) return false;
+    if (!('feeFactor' in value) || value['feeFactor'] === undefined) return false;
+    if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
+    if (!('maxAdvanceAmountCents' in value) || value['maxAdvanceAmountCents'] === undefined) return false;
     return true;
 }
 

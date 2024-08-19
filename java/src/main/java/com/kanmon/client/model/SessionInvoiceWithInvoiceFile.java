@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * SessionInvoiceWithInvoiceFile
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class SessionInvoiceWithInvoiceFile {
   public static final String SERIALIZED_NAME_PLATFORM_INVOICE_ID = "platformInvoiceId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_INVOICE_ID)
@@ -169,10 +168,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the invoice.
    * @return platformInvoiceId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPlatformInvoiceId() {
     return platformInvoiceId;
@@ -188,10 +187,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The UUID of the invoice document created in Kanmon.
    * @return documentId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getDocumentId() {
     return documentId;
@@ -207,10 +206,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your &#x60;platformInvoiceId&#x60;.
    * @return platformInvoiceNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformInvoiceNumber() {
     return platformInvoiceNumber;
@@ -226,10 +225,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The invoice amount - in cents. This needs to be greater than or equal to 100.
    * @return invoiceAmountCents
-  **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getInvoiceAmountCents() {
     return invoiceAmountCents;
@@ -245,10 +244,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the &#x60;invoiceIssuedDate&#x60;.
    * @return invoiceDueDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getInvoiceDueDate() {
     return invoiceDueDate;
@@ -264,10 +263,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The date when the payee issued the invoice. ISO 8601 date format.
    * @return invoiceIssuedDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getInvoiceIssuedDate() {
     return invoiceIssuedDate;
@@ -283,10 +282,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The email of the payor.
    * @return payorEmail
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorEmail() {
     return payorEmail;
@@ -302,10 +301,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return payorAddress
-  **/
+   */
   @javax.annotation.Nullable
   public Address getPayorAddress() {
     return payorAddress;
@@ -321,10 +320,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * &#x60;INDIVIDUAL&#x60; if the payor is a person and &#x60;BUSINESS&#x60; if the payor is a company.
    * @return payorType
-  **/
+   */
   @javax.annotation.Nullable
   public PayorTypeEnum getPayorType() {
     return payorType;
@@ -340,10 +339,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The registered name of the payor business when the payor is a business and not an individual.
    * @return payorBusinessName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorBusinessName() {
     return payorBusinessName;
@@ -359,10 +358,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The first name of the payor when the payor is an individual and not a business.
    * @return payorFirstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorFirstName() {
     return payorFirstName;
@@ -378,10 +377,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The middle name of the payor when the payor is an individual and not a business.
    * @return payorMiddleName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorMiddleName() {
     return payorMiddleName;
@@ -397,10 +396,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The last name of the payor when the payor is an individual and not a business.
    * @return payorLastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorLastName() {
     return payorLastName;
@@ -416,10 +415,10 @@ public class SessionInvoiceWithInvoiceFile {
     return this;
   }
 
-   /**
+  /**
    * The description of the goods or services in the invoice.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
@@ -522,12 +521,12 @@ public class SessionInvoiceWithInvoiceFile {
     openapiRequiredFields.add("documentId");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SessionInvoiceWithInvoiceFile
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SessionInvoiceWithInvoiceFile
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SessionInvoiceWithInvoiceFile.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -625,22 +624,22 @@ public class SessionInvoiceWithInvoiceFile {
     }
   }
 
- /**
-  * Create an instance of SessionInvoiceWithInvoiceFile given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SessionInvoiceWithInvoiceFile
-  * @throws IOException if the JSON string is invalid with respect to SessionInvoiceWithInvoiceFile
-  */
+  /**
+   * Create an instance of SessionInvoiceWithInvoiceFile given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SessionInvoiceWithInvoiceFile
+   * @throws IOException if the JSON string is invalid with respect to SessionInvoiceWithInvoiceFile
+   */
   public static SessionInvoiceWithInvoiceFile fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SessionInvoiceWithInvoiceFile.class);
   }
 
- /**
-  * Convert an instance of SessionInvoiceWithInvoiceFile to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SessionInvoiceWithInvoiceFile to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

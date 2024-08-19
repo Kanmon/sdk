@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * TermLoanServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class TermLoanServicingData {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
@@ -89,10 +88,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProductType() {
     return productType;
@@ -108,10 +107,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total loan amount - in cents.
    * @return loanAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getLoanAmountCents() {
     return loanAmountCents;
@@ -127,10 +126,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total origination fee amount - in cents.
    * @return originationFeeCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getOriginationFeeCents() {
     return originationFeeCents;
@@ -146,10 +145,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * The principal remaining on the loan - in cents.
    * @return principalBalanceCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getPrincipalBalanceCents() {
     return principalBalanceCents;
@@ -165,10 +164,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * The monthly payment amount - in cents.
    * @return monthlyPaymentCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getMonthlyPaymentCents() {
     return monthlyPaymentCents;
@@ -184,10 +183,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * The interest rate of the loan. E.g. a value of &#x60;10&#x60; means 10%.
    * @return interestRate
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getInterestRate() {
     return interestRate;
@@ -203,10 +202,10 @@ public class TermLoanServicingData {
     return this;
   }
 
-   /**
+  /**
    * The next scheduled payment date - ISO 8601 date format.
    * @return nextPaymentDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextPaymentDate() {
     return nextPaymentDate;
@@ -293,12 +292,12 @@ public class TermLoanServicingData {
     openapiRequiredFields.add("nextPaymentDate");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to TermLoanServicingData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to TermLoanServicingData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!TermLoanServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -357,22 +356,22 @@ public class TermLoanServicingData {
     }
   }
 
- /**
-  * Create an instance of TermLoanServicingData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of TermLoanServicingData
-  * @throws IOException if the JSON string is invalid with respect to TermLoanServicingData
-  */
+  /**
+   * Create an instance of TermLoanServicingData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of TermLoanServicingData
+   * @throws IOException if the JSON string is invalid with respect to TermLoanServicingData
+   */
   public static TermLoanServicingData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, TermLoanServicingData.class);
   }
 
- /**
-  * Convert an instance of TermLoanServicingData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of TermLoanServicingData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

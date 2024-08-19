@@ -52,10 +52,10 @@ export type BusinessPlaidBankAccountNotFoundExceptionErrorCodeEnum = typeof Busi
 /**
  * Check if a given object implements the BusinessPlaidBankAccountNotFoundException interface.
  */
-export function instanceOfBusinessPlaidBankAccountNotFoundException(value: object): boolean {
-    if (!('errorCode' in value)) return false;
-    if (!('message' in value)) return false;
-    if (!('timestamp' in value)) return false;
+export function instanceOfBusinessPlaidBankAccountNotFoundException(value: object): value is BusinessPlaidBankAccountNotFoundException {
+    if (!('errorCode' in value) || value['errorCode'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
     return true;
 }
 

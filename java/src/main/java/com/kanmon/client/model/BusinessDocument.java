@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * BusinessDocument
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class BusinessDocument {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -88,10 +87,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business document in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -107,10 +106,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the business.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -126,10 +125,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBusinessId() {
     return businessId;
@@ -145,10 +144,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * Get documentType
    * @return documentType
-  **/
+   */
   @javax.annotation.Nonnull
   public BusinessDocumentType getDocumentType() {
     return documentType;
@@ -164,10 +163,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * The file’s original file name.
    * @return originalFileName
-  **/
+   */
   @javax.annotation.Nonnull
   public String getOriginalFileName() {
     return originalFileName;
@@ -183,10 +182,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the business document.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -202,10 +201,10 @@ public class BusinessDocument {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the business document.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -292,12 +291,12 @@ public class BusinessDocument {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BusinessDocument
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BusinessDocument
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BusinessDocument.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -371,22 +370,22 @@ public class BusinessDocument {
     }
   }
 
- /**
-  * Create an instance of BusinessDocument given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BusinessDocument
-  * @throws IOException if the JSON string is invalid with respect to BusinessDocument
-  */
+  /**
+   * Create an instance of BusinessDocument given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BusinessDocument
+   * @throws IOException if the JSON string is invalid with respect to BusinessDocument
+   */
   public static BusinessDocument fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BusinessDocument.class);
   }
 
- /**
-  * Convert an instance of BusinessDocument to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BusinessDocument to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

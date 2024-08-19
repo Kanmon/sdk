@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,7 +48,7 @@ import com.kanmon.client.JSON;
 /**
  * EmbeddedSession
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class EmbeddedSession {
   public static final String SERIALIZED_NAME_SESSION_TOKEN = "sessionToken";
   @SerializedName(SERIALIZED_NAME_SESSION_TOKEN)
@@ -63,10 +62,10 @@ public class EmbeddedSession {
     return this;
   }
 
-   /**
+  /**
    * The session token used to launch an embedded session.
    * @return sessionToken
-  **/
+   */
   @javax.annotation.Nonnull
   public String getSessionToken() {
     return sessionToken;
@@ -129,12 +128,12 @@ public class EmbeddedSession {
     openapiRequiredFields.add("sessionToken");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EmbeddedSession
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EmbeddedSession
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!EmbeddedSession.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -191,22 +190,22 @@ public class EmbeddedSession {
     }
   }
 
- /**
-  * Create an instance of EmbeddedSession given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EmbeddedSession
-  * @throws IOException if the JSON string is invalid with respect to EmbeddedSession
-  */
+  /**
+   * Create an instance of EmbeddedSession given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EmbeddedSession
+   * @throws IOException if the JSON string is invalid with respect to EmbeddedSession
+   */
   public static EmbeddedSession fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EmbeddedSession.class);
   }
 
- /**
-  * Convert an instance of EmbeddedSession to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EmbeddedSession to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

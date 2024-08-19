@@ -81,12 +81,12 @@ export interface IssuedProduct {
  * @export
  */
 export const IssuedProductLoanStatusEnum = {
-    Current: 'CURRENT',
-    Late: 'LATE',
-    FullyPaid: 'FULLY_PAID',
-    Refinanced: 'REFINANCED',
-    Closed: 'CLOSED',
-    Defaulted: 'DEFAULTED'
+    CURRENT: 'CURRENT',
+    LATE: 'LATE',
+    FULLY_PAID: 'FULLY_PAID',
+    REFINANCED: 'REFINANCED',
+    CLOSED: 'CLOSED',
+    DEFAULTED: 'DEFAULTED'
 } as const;
 export type IssuedProductLoanStatusEnum = typeof IssuedProductLoanStatusEnum[keyof typeof IssuedProductLoanStatusEnum];
 
@@ -94,15 +94,15 @@ export type IssuedProductLoanStatusEnum = typeof IssuedProductLoanStatusEnum[key
 /**
  * Check if a given object implements the IssuedProduct interface.
  */
-export function instanceOfIssuedProduct(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('offerId' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('loanStatus' in value)) return false;
-    if (!('servicingData' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfIssuedProduct(value: object): value is IssuedProduct {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('offerId' in value) || value['offerId'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('loanStatus' in value) || value['loanStatus'] === undefined) return false;
+    if (!('servicingData' in value) || value['servicingData'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

@@ -48,11 +48,11 @@ export interface InvoiceRepaymentScheduleItem {
 /**
  * Check if a given object implements the InvoiceRepaymentScheduleItem interface.
  */
-export function instanceOfInvoiceRepaymentScheduleItem(value: object): boolean {
-    if (!('repaymentDate' in value)) return false;
-    if (!('repaymentAmountCents' in value)) return false;
-    if (!('repaymentFeeAmountCents' in value)) return false;
-    if (!('repaymentPrincipalAmountCents' in value)) return false;
+export function instanceOfInvoiceRepaymentScheduleItem(value: object): value is InvoiceRepaymentScheduleItem {
+    if (!('repaymentDate' in value) || value['repaymentDate'] === undefined) return false;
+    if (!('repaymentAmountCents' in value) || value['repaymentAmountCents'] === undefined) return false;
+    if (!('repaymentFeeAmountCents' in value) || value['repaymentFeeAmountCents'] === undefined) return false;
+    if (!('repaymentPrincipalAmountCents' in value) || value['repaymentPrincipalAmountCents'] === undefined) return false;
     return true;
 }
 

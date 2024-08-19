@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceRepaymentScheduleItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoiceRepaymentScheduleItem {
   public static final String SERIALIZED_NAME_REPAYMENT_DATE = "repaymentDate";
   @SerializedName(SERIALIZED_NAME_REPAYMENT_DATE)
@@ -76,10 +75,10 @@ public class InvoiceRepaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The date on which an installment of the invoice is to be repaid - ISO 8601 format.
    * @return repaymentDate
-  **/
+   */
   @javax.annotation.Nonnull
   public String getRepaymentDate() {
     return repaymentDate;
@@ -95,10 +94,10 @@ public class InvoiceRepaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The amount to be paid as installment - in cents.
    * @return repaymentAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentAmountCents() {
     return repaymentAmountCents;
@@ -114,10 +113,10 @@ public class InvoiceRepaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The fee amount to be paid as installment - in cents.
    * @return repaymentFeeAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentFeeAmountCents() {
     return repaymentFeeAmountCents;
@@ -133,10 +132,10 @@ public class InvoiceRepaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The principal amount to be paid as installment - in cents.
    * @return repaymentPrincipalAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentPrincipalAmountCents() {
     return repaymentPrincipalAmountCents;
@@ -211,12 +210,12 @@ public class InvoiceRepaymentScheduleItem {
     openapiRequiredFields.add("repaymentPrincipalAmountCents");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InvoiceRepaymentScheduleItem
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceRepaymentScheduleItem
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InvoiceRepaymentScheduleItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -273,22 +272,22 @@ public class InvoiceRepaymentScheduleItem {
     }
   }
 
- /**
-  * Create an instance of InvoiceRepaymentScheduleItem given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceRepaymentScheduleItem
-  * @throws IOException if the JSON string is invalid with respect to InvoiceRepaymentScheduleItem
-  */
+  /**
+   * Create an instance of InvoiceRepaymentScheduleItem given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceRepaymentScheduleItem
+   * @throws IOException if the JSON string is invalid with respect to InvoiceRepaymentScheduleItem
+   */
   public static InvoiceRepaymentScheduleItem fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceRepaymentScheduleItem.class);
   }
 
- /**
-  * Convert an instance of InvoiceRepaymentScheduleItem to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceRepaymentScheduleItem to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

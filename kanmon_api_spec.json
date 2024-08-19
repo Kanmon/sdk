@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "45bb4d09-f2cc-45fb-9ed1-bbeda875ae5b,97cd2c58-ff5d-4478-b9d7-2ba02934aaf1",
+            "example": "814690a2-57ec-49f5-a310-3f932c997f90,441fc036-6309-4a11-a26c-a6776471ea9f",
             "schema":
             {
               "type": "string"
@@ -2882,7 +2882,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "2c06268c-553e-496f-92ce-f0565cb7ee21,d35982c5-5070-4e66-b3e5-626f7a762a47",
+            "example": "1348287b-b4a5-4e92-bcb5-9b8d1fa9486e,74ccb8fc-6a69-41df-b6a9-9a4d2827ed89",
             "schema":
             {
               "type": "string"
@@ -3429,7 +3429,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "f678cfa8-f8b4-4253-9110-ad79810a5130,f5137379-c881-46c7-ab50-ae640388593c",
+            "example": "1b30378c-4c1c-4575-990e-4dc0e0e9cc87,a158c620-b37f-4c6b-9580-9615d94183d0",
             "schema":
             {
               "type": "string"
@@ -6516,6 +6516,18 @@
                 "$ref": "#/components/schemas/LineOfCreditOfferTerms"
               }
             ],
+            "discriminator":
+            {
+              "propertyName": "productType",
+              "mapping":
+              {
+                "TERM_LOAN": "#/components/schemas/TermLoanOfferTerms",
+                "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingOfferTerms",
+                "MCA": "#/components/schemas/McaOfferTerms",
+                "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaOfferTerms",
+                "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditOfferTerms"
+              }
+            },
             "description": "Terms of the offer."
           },
           "expiredAt":
@@ -6959,6 +6971,18 @@
                 "$ref": "#/components/schemas/LineOfCreditServicingData"
               }
             ],
+            "discriminator":
+            {
+              "propertyName": "productType",
+              "mapping":
+              {
+                "TERM_LOAN": "#/components/schemas/TermLoanServicingData",
+                "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingServicingData",
+                "MCA": "#/components/schemas/McaServicingData",
+                "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaServicingData",
+                "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditServicingData"
+              }
+            },
             "description": "The data needed to service this specific type of issued product"
           },
           "createdAt":

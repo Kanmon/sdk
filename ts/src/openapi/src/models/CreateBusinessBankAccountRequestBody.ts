@@ -74,7 +74,7 @@ export interface CreateBusinessBankAccountRequestBody {
  * @export
  */
 export const CreateBusinessBankAccountRequestBodyAccountTypeEnum = {
-    Checking: 'CHECKING'
+    CHECKING: 'CHECKING'
 } as const;
 export type CreateBusinessBankAccountRequestBodyAccountTypeEnum = typeof CreateBusinessBankAccountRequestBodyAccountTypeEnum[keyof typeof CreateBusinessBankAccountRequestBodyAccountTypeEnum];
 
@@ -82,7 +82,7 @@ export type CreateBusinessBankAccountRequestBodyAccountTypeEnum = typeof CreateB
  * @export
  */
 export const CreateBusinessBankAccountRequestBodyRolesEnum = {
-    Disbursement: 'DISBURSEMENT'
+    DISBURSEMENT: 'DISBURSEMENT'
 } as const;
 export type CreateBusinessBankAccountRequestBodyRolesEnum = typeof CreateBusinessBankAccountRequestBodyRolesEnum[keyof typeof CreateBusinessBankAccountRequestBodyRolesEnum];
 
@@ -90,13 +90,13 @@ export type CreateBusinessBankAccountRequestBodyRolesEnum = typeof CreateBusines
 /**
  * Check if a given object implements the CreateBusinessBankAccountRequestBody interface.
  */
-export function instanceOfCreateBusinessBankAccountRequestBody(value: object): boolean {
-    if (!('platformBankAccountId' in value)) return false;
-    if (!('accountName' in value)) return false;
-    if (!('accountNumber' in value)) return false;
-    if (!('routingNumber' in value)) return false;
-    if (!('accountType' in value)) return false;
-    if (!('roles' in value)) return false;
+export function instanceOfCreateBusinessBankAccountRequestBody(value: object): value is CreateBusinessBankAccountRequestBody {
+    if (!('platformBankAccountId' in value) || value['platformBankAccountId'] === undefined) return false;
+    if (!('accountName' in value) || value['accountName'] === undefined) return false;
+    if (!('accountNumber' in value) || value['accountNumber'] === undefined) return false;
+    if (!('routingNumber' in value) || value['routingNumber'] === undefined) return false;
+    if (!('accountType' in value) || value['accountType'] === undefined) return false;
+    if (!('roles' in value) || value['roles'] === undefined) return false;
     return true;
 }
 

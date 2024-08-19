@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateIntegratedMcaReceivable400Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateIntegratedMcaReceivable400Response.class.getName());
 
@@ -170,17 +170,7 @@ public class CreateIntegratedMcaReceivable400Response extends AbstractOpenApiSch
         super("oneOf", Boolean.FALSE);
     }
 
-    public CreateIntegratedMcaReceivable400Response(BadRequestException o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public CreateIntegratedMcaReceivable400Response(IncorrectRepaymentAmountException o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public CreateIntegratedMcaReceivable400Response(NoRemainingBalanceException o) {
+    public CreateIntegratedMcaReceivable400Response(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

@@ -58,15 +58,17 @@ export interface LineOfCreditOfferTerms {
     repaymentDurationMonths: number;
 }
 
+
+
 /**
  * Check if a given object implements the LineOfCreditOfferTerms interface.
  */
-export function instanceOfLineOfCreditOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('totalLimitCents' in value)) return false;
-    if (!('interestRatePercentage' in value)) return false;
-    if (!('feePercentage' in value)) return false;
-    if (!('repaymentDurationMonths' in value)) return false;
+export function instanceOfLineOfCreditOfferTerms(value: object): value is LineOfCreditOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
+    if (!('interestRatePercentage' in value) || value['interestRatePercentage'] === undefined) return false;
+    if (!('feePercentage' in value) || value['feePercentage'] === undefined) return false;
+    if (!('repaymentDurationMonths' in value) || value['repaymentDurationMonths'] === undefined) return false;
     return true;
 }
 

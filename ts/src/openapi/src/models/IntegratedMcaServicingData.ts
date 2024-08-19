@@ -64,16 +64,18 @@ export interface IntegratedMcaServicingData {
     advanceBalanceCents: number;
 }
 
+
+
 /**
  * Check if a given object implements the IntegratedMcaServicingData interface.
  */
-export function instanceOfIntegratedMcaServicingData(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('advanceAmountCents' in value)) return false;
-    if (!('repaymentPercentage' in value)) return false;
-    if (!('feeFactor' in value)) return false;
-    if (!('totalRepaymentCents' in value)) return false;
-    if (!('advanceBalanceCents' in value)) return false;
+export function instanceOfIntegratedMcaServicingData(value: object): value is IntegratedMcaServicingData {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('advanceAmountCents' in value) || value['advanceAmountCents'] === undefined) return false;
+    if (!('repaymentPercentage' in value) || value['repaymentPercentage'] === undefined) return false;
+    if (!('feeFactor' in value) || value['feeFactor'] === undefined) return false;
+    if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
+    if (!('advanceBalanceCents' in value) || value['advanceBalanceCents'] === undefined) return false;
     return true;
 }
 

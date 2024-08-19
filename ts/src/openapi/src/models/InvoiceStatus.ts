@@ -50,18 +50,25 @@
  * @export
  */
 export const InvoiceStatus = {
-    InvoiceCreated: 'INVOICE_CREATED',
-    InvoiceFunded: 'INVOICE_FUNDED',
-    InvoicePaidInFull: 'INVOICE_PAID_IN_FULL',
-    Rejected: 'REJECTED',
-    Defaulted: 'DEFAULTED',
-    Late: 'LATE'
+    INVOICE_CREATED: 'INVOICE_CREATED',
+    INVOICE_FUNDED: 'INVOICE_FUNDED',
+    INVOICE_PAID_IN_FULL: 'INVOICE_PAID_IN_FULL',
+    REJECTED: 'REJECTED',
+    DEFAULTED: 'DEFAULTED',
+    LATE: 'LATE'
 } as const;
 export type InvoiceStatus = typeof InvoiceStatus[keyof typeof InvoiceStatus];
 
 
 export function instanceOfInvoiceStatus(value: any): boolean {
-    return Object.values(InvoiceStatus).includes(value);
+    for (const key in InvoiceStatus) {
+        if (Object.prototype.hasOwnProperty.call(InvoiceStatus, key)) {
+            if (InvoiceStatus[key as keyof typeof InvoiceStatus] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export function InvoiceStatusFromJSON(json: any): InvoiceStatus {

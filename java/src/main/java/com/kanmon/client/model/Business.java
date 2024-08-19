@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.BusinessAddress;
+import com.kanmon.client.model.Address;
 import java.io.IOException;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * Business
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Business {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -67,7 +66,7 @@ public class Business {
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
-  private BusinessAddress address;
+  private Address address;
 
   public static final String SERIALIZED_NAME_EIN = "ein";
   @SerializedName(SERIALIZED_NAME_EIN)
@@ -101,10 +100,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -120,10 +119,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the business.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -139,10 +138,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * The business’s name.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public Object getName() {
     return name;
@@ -153,21 +152,21 @@ public class Business {
   }
 
 
-  public Business address(BusinessAddress address) {
+  public Business address(Address address) {
     this.address = address;
     return this;
   }
 
-   /**
-   * Get address
+  /**
+   * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
-  **/
+   */
   @javax.annotation.Nullable
-  public BusinessAddress getAddress() {
+  public Address getAddress() {
     return address;
   }
 
-  public void setAddress(BusinessAddress address) {
+  public void setAddress(Address address) {
     this.address = address;
   }
 
@@ -177,10 +176,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * The business’s EIN. Only digits, no formatting.
    * @return ein
-  **/
+   */
   @javax.annotation.Nullable
   public String getEin() {
     return ein;
@@ -196,10 +195,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * The business’s phone number. No formatting characters, country code is optional.
    * @return phoneNumber
-  **/
+   */
   @javax.annotation.Nullable
   public Object getPhoneNumber() {
     return phoneNumber;
@@ -215,10 +214,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * The business’s website.
    * @return website
-  **/
+   */
   @javax.annotation.Nullable
   public Object getWebsite() {
     return website;
@@ -234,10 +233,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * Metadata from your system that you want to associate the business with.
    * @return metadata
-  **/
+   */
   @javax.annotation.Nonnull
   public Object getMetadata() {
     return metadata;
@@ -253,10 +252,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the business.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -272,10 +271,10 @@ public class Business {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the business.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -383,12 +382,12 @@ public class Business {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Business
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Business
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Business.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -419,7 +418,7 @@ public class Business {
       }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
-        BusinessAddress.validateJsonElement(jsonObj.get("address"));
+        Address.validateJsonElement(jsonObj.get("address"));
       }
       if ((jsonObj.get("ein") != null && !jsonObj.get("ein").isJsonNull()) && !jsonObj.get("ein").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ein` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ein").toString()));
@@ -461,22 +460,22 @@ public class Business {
     }
   }
 
- /**
-  * Create an instance of Business given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Business
-  * @throws IOException if the JSON string is invalid with respect to Business
-  */
+  /**
+   * Create an instance of Business given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Business
+   * @throws IOException if the JSON string is invalid with respect to Business
+   */
   public static Business fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Business.class);
   }
 
- /**
-  * Convert an instance of Business to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Business to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * LineOfCreditOfferTerms
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class LineOfCreditOfferTerms {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
@@ -81,10 +80,10 @@ public class LineOfCreditOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProductType() {
     return productType;
@@ -100,10 +99,10 @@ public class LineOfCreditOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The total limit allowed for this offer - in cents.
    * @return totalLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalLimitCents() {
     return totalLimitCents;
@@ -119,10 +118,10 @@ public class LineOfCreditOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The rate of interest on the loan. E.g. a value of &#x60;10&#x60; means 10%.
    * @return interestRatePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getInterestRatePercentage() {
     return interestRatePercentage;
@@ -138,10 +137,10 @@ public class LineOfCreditOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The fee percentage charged as the borrowing cost of the loan. E.g. a value of &#x60;2&#x60; means a 2% fee.
    * @return feePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeePercentage() {
     return feePercentage;
@@ -157,10 +156,10 @@ public class LineOfCreditOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The duration of the repayment for each draw - in months.
    * @return repaymentDurationMonths
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentDurationMonths() {
     return repaymentDurationMonths;
@@ -239,12 +238,12 @@ public class LineOfCreditOfferTerms {
     openapiRequiredFields.add("repaymentDurationMonths");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to LineOfCreditOfferTerms
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to LineOfCreditOfferTerms
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!LineOfCreditOfferTerms.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -300,22 +299,22 @@ public class LineOfCreditOfferTerms {
     }
   }
 
- /**
-  * Create an instance of LineOfCreditOfferTerms given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of LineOfCreditOfferTerms
-  * @throws IOException if the JSON string is invalid with respect to LineOfCreditOfferTerms
-  */
+  /**
+   * Create an instance of LineOfCreditOfferTerms given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of LineOfCreditOfferTerms
+   * @throws IOException if the JSON string is invalid with respect to LineOfCreditOfferTerms
+   */
   public static LineOfCreditOfferTerms fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LineOfCreditOfferTerms.class);
   }
 
- /**
-  * Convert an instance of LineOfCreditOfferTerms to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of LineOfCreditOfferTerms to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

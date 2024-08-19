@@ -70,17 +70,19 @@ export interface TermLoanServicingData {
     nextPaymentDate: string | null;
 }
 
+
+
 /**
  * Check if a given object implements the TermLoanServicingData interface.
  */
-export function instanceOfTermLoanServicingData(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('loanAmountCents' in value)) return false;
-    if (!('originationFeeCents' in value)) return false;
-    if (!('principalBalanceCents' in value)) return false;
-    if (!('monthlyPaymentCents' in value)) return false;
-    if (!('interestRate' in value)) return false;
-    if (!('nextPaymentDate' in value)) return false;
+export function instanceOfTermLoanServicingData(value: object): value is TermLoanServicingData {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('loanAmountCents' in value) || value['loanAmountCents'] === undefined) return false;
+    if (!('originationFeeCents' in value) || value['originationFeeCents'] === undefined) return false;
+    if (!('principalBalanceCents' in value) || value['principalBalanceCents'] === undefined) return false;
+    if (!('monthlyPaymentCents' in value) || value['monthlyPaymentCents'] === undefined) return false;
+    if (!('interestRate' in value) || value['interestRate'] === undefined) return false;
+    if (!('nextPaymentDate' in value) || value['nextPaymentDate'] === undefined) return false;
     return true;
 }
 

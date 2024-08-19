@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { DrawRequest } from './DrawRequest';
-import {
-    DrawRequestFromJSON,
-    DrawRequestFromJSONTyped,
-    DrawRequestToJSON,
-} from './DrawRequest';
 import type { PaginationResult } from './PaginationResult';
 import {
     PaginationResultFromJSON,
     PaginationResultFromJSONTyped,
     PaginationResultToJSON,
 } from './PaginationResult';
+import type { DrawRequest } from './DrawRequest';
+import {
+    DrawRequestFromJSON,
+    DrawRequestFromJSONTyped,
+    DrawRequestToJSON,
+} from './DrawRequest';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface GetDrawRequestsResponse {
 /**
  * Check if a given object implements the GetDrawRequestsResponse interface.
  */
-export function instanceOfGetDrawRequestsResponse(value: object): boolean {
-    if (!('drawRequests' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetDrawRequestsResponse(value: object): value is GetDrawRequestsResponse {
+    if (!('drawRequests' in value) || value['drawRequests'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

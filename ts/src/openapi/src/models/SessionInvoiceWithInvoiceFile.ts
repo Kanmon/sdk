@@ -117,8 +117,8 @@ export interface SessionInvoiceWithInvoiceFile {
  * @export
  */
 export const SessionInvoiceWithInvoiceFilePayorTypeEnum = {
-    Business: 'BUSINESS',
-    Individual: 'INDIVIDUAL'
+    BUSINESS: 'BUSINESS',
+    INDIVIDUAL: 'INDIVIDUAL'
 } as const;
 export type SessionInvoiceWithInvoiceFilePayorTypeEnum = typeof SessionInvoiceWithInvoiceFilePayorTypeEnum[keyof typeof SessionInvoiceWithInvoiceFilePayorTypeEnum];
 
@@ -126,9 +126,9 @@ export type SessionInvoiceWithInvoiceFilePayorTypeEnum = typeof SessionInvoiceWi
 /**
  * Check if a given object implements the SessionInvoiceWithInvoiceFile interface.
  */
-export function instanceOfSessionInvoiceWithInvoiceFile(value: object): boolean {
-    if (!('platformInvoiceId' in value)) return false;
-    if (!('documentId' in value)) return false;
+export function instanceOfSessionInvoiceWithInvoiceFile(value: object): value is SessionInvoiceWithInvoiceFile {
+    if (!('platformInvoiceId' in value) || value['platformInvoiceId'] === undefined) return false;
+    if (!('documentId' in value) || value['documentId'] === undefined) return false;
     return true;
 }
 

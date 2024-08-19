@@ -49,9 +49,9 @@ export interface GetPrequalificationsResponse {
 /**
  * Check if a given object implements the GetPrequalificationsResponse interface.
  */
-export function instanceOfGetPrequalificationsResponse(value: object): boolean {
-    if (!('prequalifications' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetPrequalificationsResponse(value: object): value is GetPrequalificationsResponse {
+    if (!('prequalifications' in value) || value['prequalifications'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * Offer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Offer {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -92,10 +91,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * A unique id representing the offer object.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -111,10 +110,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBusinessId() {
     return businessId;
@@ -130,10 +129,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the business.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -149,10 +148,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * Get terms
    * @return terms
-  **/
+   */
   @javax.annotation.Nonnull
   public OfferTerms getTerms() {
     return terms;
@@ -168,10 +167,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * The ISO 8601 timestamp for when the offer expires.
    * @return expiredAt
-  **/
+   */
   @javax.annotation.Nullable
   public String getExpiredAt() {
     return expiredAt;
@@ -187,10 +186,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * If the offer has been selected by the business, the ISO 8601 timestamp for when it was selected.
    * @return selectedAt
-  **/
+   */
   @javax.annotation.Nullable
   public String getSelectedAt() {
     return selectedAt;
@@ -206,10 +205,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * Creation ISO 8601 timestamp of the offer.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -225,10 +224,10 @@ public class Offer {
     return this;
   }
 
-   /**
+  /**
    * Last updated ISO 8601 timestamp of the offer.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -319,12 +318,12 @@ public class Offer {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Offer
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Offer
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Offer.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -401,22 +400,22 @@ public class Offer {
     }
   }
 
- /**
-  * Create an instance of Offer given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Offer
-  * @throws IOException if the JSON string is invalid with respect to Offer
-  */
+  /**
+   * Create an instance of Offer given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Offer
+   * @throws IOException if the JSON string is invalid with respect to Offer
+   */
   public static Offer fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Offer.class);
   }
 
- /**
-  * Convert an instance of Offer to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Offer to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -52,13 +52,15 @@ export interface InvoiceFinancingOfferTerms {
     pricingPlans: Array<InvoicePaymentPlan>;
 }
 
+
+
 /**
  * Check if a given object implements the InvoiceFinancingOfferTerms interface.
  */
-export function instanceOfInvoiceFinancingOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('totalLimitCents' in value)) return false;
-    if (!('pricingPlans' in value)) return false;
+export function instanceOfInvoiceFinancingOfferTerms(value: object): value is InvoiceFinancingOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
+    if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
     return true;
 }
 

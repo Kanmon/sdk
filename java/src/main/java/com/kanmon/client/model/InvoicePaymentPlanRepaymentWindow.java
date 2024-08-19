@@ -62,7 +62,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(InvoicePaymentPlanRepaymentWindow.class.getName());
 
@@ -172,17 +172,7 @@ public class InvoicePaymentPlanRepaymentWindow extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public InvoicePaymentPlanRepaymentWindow(FixedDateInvoiceRepaymentWindow o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public InvoicePaymentPlanRepaymentWindow(FixedDurationInvoiceRepaymentWindow o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public InvoicePaymentPlanRepaymentWindow(MultipleDurationInvoiceRepaymentWindow o) {
+    public InvoicePaymentPlanRepaymentWindow(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

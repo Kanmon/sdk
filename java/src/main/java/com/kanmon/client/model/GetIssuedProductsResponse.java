@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * GetIssuedProductsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class GetIssuedProductsResponse {
   public static final String SERIALIZED_NAME_ISSUED_PRODUCTS = "issuedProducts";
   @SerializedName(SERIALIZED_NAME_ISSUED_PRODUCTS)
@@ -79,10 +78,10 @@ public class GetIssuedProductsResponse {
     return this;
   }
 
-   /**
+  /**
    * Array of issued products.
    * @return issuedProducts
-  **/
+   */
   @javax.annotation.Nonnull
   public List<IssuedProduct> getIssuedProducts() {
     return issuedProducts;
@@ -98,10 +97,10 @@ public class GetIssuedProductsResponse {
     return this;
   }
 
-   /**
+  /**
    * Pagination metadata.
    * @return pagination
-  **/
+   */
   @javax.annotation.Nonnull
   public PaginationResult getPagination() {
     return pagination;
@@ -168,12 +167,12 @@ public class GetIssuedProductsResponse {
     openapiRequiredFields.add("pagination");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetIssuedProductsResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetIssuedProductsResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetIssuedProductsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -239,22 +238,22 @@ public class GetIssuedProductsResponse {
     }
   }
 
- /**
-  * Create an instance of GetIssuedProductsResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetIssuedProductsResponse
-  * @throws IOException if the JSON string is invalid with respect to GetIssuedProductsResponse
-  */
+  /**
+   * Create an instance of GetIssuedProductsResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetIssuedProductsResponse
+   * @throws IOException if the JSON string is invalid with respect to GetIssuedProductsResponse
+   */
   public static GetIssuedProductsResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetIssuedProductsResponse.class);
   }
 
- /**
-  * Convert an instance of GetIssuedProductsResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetIssuedProductsResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

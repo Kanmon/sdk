@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * McaOfferTerms
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class McaOfferTerms {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
@@ -145,10 +144,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProductType() {
     return productType;
@@ -164,10 +163,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The loan amount - in cents.
    * @return advanceAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAdvanceAmountCents() {
     return advanceAmountCents;
@@ -183,10 +182,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The repayment percentage for calculating repayment amounts. E.g. a value of a &#x60;20&#x60; means 20%. If a business has $100 of income over a repayment period, the repayment amount would be $20.
    * @return repaymentPercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentPercentage() {
     return repaymentPercentage;
@@ -202,10 +201,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The fee percentage charged as the borrowing cost of the loan. E.g. a value of &#x60;1.3&#x60; means a 30% fee.
    * @return feeFactor
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeeFactor() {
     return feeFactor;
@@ -221,10 +220,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.
    * @return repaymentFrequency
-  **/
+   */
   @javax.annotation.Nonnull
   public RepaymentFrequencyEnum getRepaymentFrequency() {
     return repaymentFrequency;
@@ -240,10 +239,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The total repayment amount in cents required to settle and close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the repayment amount equates to $13,000.
    * @return totalRepaymentCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalRepaymentCents() {
     return totalRepaymentCents;
@@ -259,10 +258,10 @@ public class McaOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The maximum loan amount - in cents.
    * @return maxAdvanceAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getMaxAdvanceAmountCents() {
     return maxAdvanceAmountCents;
@@ -349,12 +348,12 @@ public class McaOfferTerms {
     openapiRequiredFields.add("maxAdvanceAmountCents");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to McaOfferTerms
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to McaOfferTerms
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!McaOfferTerms.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -415,22 +414,22 @@ public class McaOfferTerms {
     }
   }
 
- /**
-  * Create an instance of McaOfferTerms given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of McaOfferTerms
-  * @throws IOException if the JSON string is invalid with respect to McaOfferTerms
-  */
+  /**
+   * Create an instance of McaOfferTerms given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of McaOfferTerms
+   * @throws IOException if the JSON string is invalid with respect to McaOfferTerms
+   */
   public static McaOfferTerms fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, McaOfferTerms.class);
   }
 
- /**
-  * Convert an instance of McaOfferTerms to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of McaOfferTerms to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

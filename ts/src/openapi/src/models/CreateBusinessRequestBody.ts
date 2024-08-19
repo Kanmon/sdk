@@ -73,8 +73,8 @@ export interface CreateBusinessRequestBody {
 /**
  * Check if a given object implements the CreateBusinessRequestBody interface.
  */
-export function instanceOfCreateBusinessRequestBody(value: object): boolean {
-    if (!('platformBusinessId' in value)) return false;
+export function instanceOfCreateBusinessRequestBody(value: object): value is CreateBusinessRequestBody {
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
     return true;
 }
 

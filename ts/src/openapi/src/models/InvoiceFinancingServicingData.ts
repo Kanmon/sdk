@@ -58,14 +58,16 @@ export interface InvoiceFinancingServicingData {
     availableLimitCents: number;
 }
 
+
+
 /**
  * Check if a given object implements the InvoiceFinancingServicingData interface.
  */
-export function instanceOfInvoiceFinancingServicingData(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('totalLimitCents' in value)) return false;
-    if (!('pricingPlans' in value)) return false;
-    if (!('availableLimitCents' in value)) return false;
+export function instanceOfInvoiceFinancingServicingData(value: object): value is InvoiceFinancingServicingData {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
+    if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
+    if (!('availableLimitCents' in value) || value['availableLimitCents'] === undefined) return false;
     return true;
 }
 

@@ -49,7 +49,17 @@ export function InvoicePaymentPlanRepaymentWindowFromJSONTyped(json: any, ignore
     if (json == null) {
         return json;
     }
-    return FixedDateInvoiceRepaymentWindowFromJSONTyped(json, true) || FixedDurationInvoiceRepaymentWindowFromJSONTyped(json, true) || MultipleDurationInvoiceRepaymentWindowFromJSONTyped(json, true);
+    if (instanceOfFixedDateInvoiceRepaymentWindow(json)) {
+        return FixedDateInvoiceRepaymentWindowFromJSONTyped(json, true);
+    }
+    if (instanceOfFixedDurationInvoiceRepaymentWindow(json)) {
+        return FixedDurationInvoiceRepaymentWindowFromJSONTyped(json, true);
+    }
+    if (instanceOfMultipleDurationInvoiceRepaymentWindow(json)) {
+        return MultipleDurationInvoiceRepaymentWindowFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function InvoicePaymentPlanRepaymentWindowToJSON(value?: InvoicePaymentPlanRepaymentWindow | null): any {

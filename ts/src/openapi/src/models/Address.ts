@@ -30,7 +30,7 @@ export interface Address {
      * @type {string}
      * @memberof Address
      */
-    addressLineTwo?: string;
+    addressLineTwo?: string | null;
     /**
      * 
      * @type {string}
@@ -62,63 +62,63 @@ export interface Address {
  * @export
  */
 export const AddressStateEnum = {
-    Al: 'AL',
-    Ky: 'KY',
-    Oh: 'OH',
-    Ak: 'AK',
-    La: 'LA',
-    Ok: 'OK',
-    Az: 'AZ',
-    Me: 'ME',
-    Or: 'OR',
-    Ar: 'AR',
-    Md: 'MD',
-    Pa: 'PA',
-    As: 'AS',
-    Ma: 'MA',
-    Pr: 'PR',
-    Ca: 'CA',
-    Mi: 'MI',
-    Ri: 'RI',
-    Co: 'CO',
-    Mn: 'MN',
-    Sc: 'SC',
-    Ct: 'CT',
-    Ms: 'MS',
-    Sd: 'SD',
-    De: 'DE',
-    Mo: 'MO',
-    Tn: 'TN',
-    Dc: 'DC',
-    Mt: 'MT',
-    Tx: 'TX',
-    Fl: 'FL',
-    Ne: 'NE',
-    Tt: 'TT',
-    Ga: 'GA',
-    Nv: 'NV',
-    Ut: 'UT',
-    Gu: 'GU',
-    Nh: 'NH',
-    Vt: 'VT',
-    Hi: 'HI',
-    Nj: 'NJ',
-    Va: 'VA',
-    Id: 'ID',
-    Nm: 'NM',
-    Vi: 'VI',
-    Il: 'IL',
-    Ny: 'NY',
-    Wa: 'WA',
-    In: 'IN',
-    Nc: 'NC',
-    Wv: 'WV',
-    Ia: 'IA',
-    Nd: 'ND',
-    Wi: 'WI',
-    Ks: 'KS',
-    Mp: 'MP',
-    Wy: 'WY'
+    AL: 'AL',
+    KY: 'KY',
+    OH: 'OH',
+    AK: 'AK',
+    LA: 'LA',
+    OK: 'OK',
+    AZ: 'AZ',
+    ME: 'ME',
+    OR: 'OR',
+    AR: 'AR',
+    MD: 'MD',
+    PA: 'PA',
+    AS: 'AS',
+    MA: 'MA',
+    PR: 'PR',
+    CA: 'CA',
+    MI: 'MI',
+    RI: 'RI',
+    CO: 'CO',
+    MN: 'MN',
+    SC: 'SC',
+    CT: 'CT',
+    MS: 'MS',
+    SD: 'SD',
+    DE: 'DE',
+    MO: 'MO',
+    TN: 'TN',
+    DC: 'DC',
+    MT: 'MT',
+    TX: 'TX',
+    FL: 'FL',
+    NE: 'NE',
+    TT: 'TT',
+    GA: 'GA',
+    NV: 'NV',
+    UT: 'UT',
+    GU: 'GU',
+    NH: 'NH',
+    VT: 'VT',
+    HI: 'HI',
+    NJ: 'NJ',
+    VA: 'VA',
+    ID: 'ID',
+    NM: 'NM',
+    VI: 'VI',
+    IL: 'IL',
+    NY: 'NY',
+    WA: 'WA',
+    IN: 'IN',
+    NC: 'NC',
+    WV: 'WV',
+    IA: 'IA',
+    ND: 'ND',
+    WI: 'WI',
+    KS: 'KS',
+    MP: 'MP',
+    WY: 'WY'
 } as const;
 export type AddressStateEnum = typeof AddressStateEnum[keyof typeof AddressStateEnum];
 
@@ -126,12 +126,12 @@ export type AddressStateEnum = typeof AddressStateEnum[keyof typeof AddressState
 /**
  * Check if a given object implements the Address interface.
  */
-export function instanceOfAddress(value: object): boolean {
-    if (!('addressLineOne' in value)) return false;
-    if (!('city' in value)) return false;
-    if (!('state' in value)) return false;
-    if (!('zipcode' in value)) return false;
-    if (!('country' in value)) return false;
+export function instanceOfAddress(value: object): value is Address {
+    if (!('addressLineOne' in value) || value['addressLineOne'] === undefined) return false;
+    if (!('city' in value) || value['city'] === undefined) return false;
+    if (!('state' in value) || value['state'] === undefined) return false;
+    if (!('zipcode' in value) || value['zipcode'] === undefined) return false;
+    if (!('country' in value) || value['country'] === undefined) return false;
     return true;
 }
 

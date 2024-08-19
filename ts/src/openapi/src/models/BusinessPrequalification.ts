@@ -76,18 +76,20 @@ export interface BusinessPrequalification {
     updatedAt: string;
 }
 
+
+
 /**
  * Check if a given object implements the BusinessPrequalification interface.
  */
-export function instanceOfBusinessPrequalification(value: object): boolean {
-    if (!('product' in value)) return false;
-    if (!('platformId' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('isPrequalified' in value)) return false;
-    if (!('prequalifiedAmountCents' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfBusinessPrequalification(value: object): value is BusinessPrequalification {
+    if (!('product' in value) || value['product'] === undefined) return false;
+    if (!('platformId' in value) || value['platformId'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('isPrequalified' in value) || value['isPrequalified'] === undefined) return false;
+    if (!('prequalifiedAmountCents' in value) || value['prequalifiedAmountCents'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

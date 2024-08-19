@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,7 +48,7 @@ import com.kanmon.client.JSON;
 /**
  * ActivityLog
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class ActivityLog {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -87,10 +86,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the activity log item in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -106,10 +105,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBusinessId() {
     return businessId;
@@ -125,10 +124,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique business ID for the user.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -144,10 +143,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * Event details and schema: https://kanmon.dev/docs/webhook-events
    * @return payload
-  **/
+   */
   @javax.annotation.Nonnull
   public Object getPayload() {
     return payload;
@@ -163,10 +162,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * A description of the log event type.
    * @return eventType
-  **/
+   */
   @javax.annotation.Nonnull
   public String getEventType() {
     return eventType;
@@ -182,10 +181,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the business.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -201,10 +200,10 @@ public class ActivityLog {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the business.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -291,12 +290,12 @@ public class ActivityLog {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ActivityLog
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ActivityLog
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ActivityLog.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -368,22 +367,22 @@ public class ActivityLog {
     }
   }
 
- /**
-  * Create an instance of ActivityLog given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ActivityLog
-  * @throws IOException if the JSON string is invalid with respect to ActivityLog
-  */
+  /**
+   * Create an instance of ActivityLog given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ActivityLog
+   * @throws IOException if the JSON string is invalid with respect to ActivityLog
+   */
   public static ActivityLog fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ActivityLog.class);
   }
 
- /**
-  * Convert an instance of ActivityLog to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ActivityLog to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

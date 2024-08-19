@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFinancingServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoiceFinancingServicingData {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
@@ -80,10 +79,10 @@ public class InvoiceFinancingServicingData {
     return this;
   }
 
-   /**
+  /**
    * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProductType() {
     return productType;
@@ -99,10 +98,10 @@ public class InvoiceFinancingServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total limit allowed - in cents.
    * @return totalLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalLimitCents() {
     return totalLimitCents;
@@ -126,10 +125,10 @@ public class InvoiceFinancingServicingData {
     return this;
   }
 
-   /**
+  /**
    * The pricing plans available for this issued product.
    * @return pricingPlans
-  **/
+   */
   @javax.annotation.Nonnull
   public List<InvoicePaymentPlan> getPricingPlans() {
     return pricingPlans;
@@ -145,10 +144,10 @@ public class InvoiceFinancingServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total limit less the amount of balance outstanding - in cents.
    * @return availableLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAvailableLimitCents() {
     return availableLimitCents;
@@ -223,12 +222,12 @@ public class InvoiceFinancingServicingData {
     openapiRequiredFields.add("availableLimitCents");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingServicingData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingServicingData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InvoiceFinancingServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -294,22 +293,22 @@ public class InvoiceFinancingServicingData {
     }
   }
 
- /**
-  * Create an instance of InvoiceFinancingServicingData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceFinancingServicingData
-  * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingServicingData
-  */
+  /**
+   * Create an instance of InvoiceFinancingServicingData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceFinancingServicingData
+   * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingServicingData
+   */
   public static InvoiceFinancingServicingData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceFinancingServicingData.class);
   }
 
- /**
-  * Convert an instance of InvoiceFinancingServicingData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceFinancingServicingData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

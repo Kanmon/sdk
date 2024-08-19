@@ -49,9 +49,9 @@ export interface GetActivityLogsResponse {
 /**
  * Check if a given object implements the GetActivityLogsResponse interface.
  */
-export function instanceOfGetActivityLogsResponse(value: object): boolean {
-    if (!('activityLogs' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetActivityLogsResponse(value: object): value is GetActivityLogsResponse {
+    if (!('activityLogs' in value) || value['activityLogs'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

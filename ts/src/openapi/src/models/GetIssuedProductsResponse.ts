@@ -49,9 +49,9 @@ export interface GetIssuedProductsResponse {
 /**
  * Check if a given object implements the GetIssuedProductsResponse interface.
  */
-export function instanceOfGetIssuedProductsResponse(value: object): boolean {
-    if (!('issuedProducts' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetIssuedProductsResponse(value: object): value is GetIssuedProductsResponse {
+    if (!('issuedProducts' in value) || value['issuedProducts'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

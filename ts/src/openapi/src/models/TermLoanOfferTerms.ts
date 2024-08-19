@@ -64,16 +64,18 @@ export interface TermLoanOfferTerms {
     feePercentage: number;
 }
 
+
+
 /**
  * Check if a given object implements the TermLoanOfferTerms interface.
  */
-export function instanceOfTermLoanOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('maxLoanAmountCents' in value)) return false;
-    if (!('loanAmountCents' in value)) return false;
-    if (!('interestRatePercentage' in value)) return false;
-    if (!('durationMonths' in value)) return false;
-    if (!('feePercentage' in value)) return false;
+export function instanceOfTermLoanOfferTerms(value: object): value is TermLoanOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('maxLoanAmountCents' in value) || value['maxLoanAmountCents'] === undefined) return false;
+    if (!('loanAmountCents' in value) || value['loanAmountCents'] === undefined) return false;
+    if (!('interestRatePercentage' in value) || value['interestRatePercentage'] === undefined) return false;
+    if (!('durationMonths' in value) || value['durationMonths'] === undefined) return false;
+    if (!('feePercentage' in value) || value['feePercentage'] === undefined) return false;
     return true;
 }
 

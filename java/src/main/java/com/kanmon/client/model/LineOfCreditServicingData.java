@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * LineOfCreditServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class LineOfCreditServicingData {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
@@ -85,10 +84,10 @@ public class LineOfCreditServicingData {
     return this;
   }
 
-   /**
+  /**
    * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProductType() {
     return productType;
@@ -104,10 +103,10 @@ public class LineOfCreditServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total credit limit - in cents.
    * @return totalLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalLimitCents() {
     return totalLimitCents;
@@ -123,10 +122,10 @@ public class LineOfCreditServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total limit less the amount of balance outstanding - in cents.
    * @return availableLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAvailableLimitCents() {
     return availableLimitCents;
@@ -142,10 +141,10 @@ public class LineOfCreditServicingData {
     return this;
   }
 
-   /**
+  /**
    * The rate of interest on the loan. E.g. a value of &#x60;10&#x60; means 10%.
    * @return interestRatePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getInterestRatePercentage() {
     return interestRatePercentage;
@@ -161,10 +160,10 @@ public class LineOfCreditServicingData {
     return this;
   }
 
-   /**
+  /**
    * The fee percentage charged as the borrowing cost of the loan. E.g. a value of &#x60;2&#x60; means a 2% fee.
    * @return feePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeePercentage() {
     return feePercentage;
@@ -180,10 +179,10 @@ public class LineOfCreditServicingData {
     return this;
   }
 
-   /**
+  /**
    * The duration of the repayment for each draw - in months.
    * @return repaymentDurationMonths
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentDurationMonths() {
     return repaymentDurationMonths;
@@ -266,12 +265,12 @@ public class LineOfCreditServicingData {
     openapiRequiredFields.add("repaymentDurationMonths");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to LineOfCreditServicingData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to LineOfCreditServicingData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!LineOfCreditServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -327,22 +326,22 @@ public class LineOfCreditServicingData {
     }
   }
 
- /**
-  * Create an instance of LineOfCreditServicingData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of LineOfCreditServicingData
-  * @throws IOException if the JSON string is invalid with respect to LineOfCreditServicingData
-  */
+  /**
+   * Create an instance of LineOfCreditServicingData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of LineOfCreditServicingData
+   * @throws IOException if the JSON string is invalid with respect to LineOfCreditServicingData
+   */
   public static LineOfCreditServicingData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, LineOfCreditServicingData.class);
   }
 
- /**
-  * Convert an instance of LineOfCreditServicingData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of LineOfCreditServicingData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

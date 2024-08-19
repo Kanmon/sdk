@@ -81,10 +81,10 @@ export interface McaServicingData {
  * @export
  */
 export const McaServicingDataRepaymentFrequencyEnum = {
-    Daily: 'DAILY',
-    Weekly: 'WEEKLY',
-    Biweekly: 'BIWEEKLY',
-    Monthly: 'MONTHLY'
+    DAILY: 'DAILY',
+    WEEKLY: 'WEEKLY',
+    BIWEEKLY: 'BIWEEKLY',
+    MONTHLY: 'MONTHLY'
 } as const;
 export type McaServicingDataRepaymentFrequencyEnum = typeof McaServicingDataRepaymentFrequencyEnum[keyof typeof McaServicingDataRepaymentFrequencyEnum];
 
@@ -92,15 +92,15 @@ export type McaServicingDataRepaymentFrequencyEnum = typeof McaServicingDataRepa
 /**
  * Check if a given object implements the McaServicingData interface.
  */
-export function instanceOfMcaServicingData(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('advanceAmountCents' in value)) return false;
-    if (!('repaymentPercentage' in value)) return false;
-    if (!('feeFactor' in value)) return false;
-    if (!('totalRepaymentCents' in value)) return false;
-    if (!('repaymentFrequency' in value)) return false;
-    if (!('nextPaymentDate' in value)) return false;
-    if (!('advanceBalanceCents' in value)) return false;
+export function instanceOfMcaServicingData(value: object): value is McaServicingData {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('advanceAmountCents' in value) || value['advanceAmountCents'] === undefined) return false;
+    if (!('repaymentPercentage' in value) || value['repaymentPercentage'] === undefined) return false;
+    if (!('feeFactor' in value) || value['feeFactor'] === undefined) return false;
+    if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
+    if (!('repaymentFrequency' in value) || value['repaymentFrequency'] === undefined) return false;
+    if (!('nextPaymentDate' in value) || value['nextPaymentDate'] === undefined) return false;
+    if (!('advanceBalanceCents' in value) || value['advanceBalanceCents'] === undefined) return false;
     return true;
 }
 

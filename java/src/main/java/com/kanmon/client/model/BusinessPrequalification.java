@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * BusinessPrequalification
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class BusinessPrequalification {
   public static final String SERIALIZED_NAME_PRODUCT = "product";
   @SerializedName(SERIALIZED_NAME_PRODUCT)
@@ -93,10 +92,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * Get product
    * @return product
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProduct() {
     return product;
@@ -112,10 +111,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing your platform in Kanmon.
    * @return platformId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPlatformId() {
     return platformId;
@@ -131,10 +130,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBusinessId() {
     return businessId;
@@ -150,10 +149,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the business.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -169,10 +168,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * Whether or not the business has been prequalified.
    * @return isPrequalified
-  **/
+   */
   @javax.annotation.Nonnull
   public Boolean getIsPrequalified() {
     return isPrequalified;
@@ -188,10 +187,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * Number describing the prequalification amount of the business in cents.
    * @return prequalifiedAmountCents
-  **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getPrequalifiedAmountCents() {
     return prequalifiedAmountCents;
@@ -207,10 +206,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the prequalification.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -226,10 +225,10 @@ public class BusinessPrequalification {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the prequalification.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -320,12 +319,12 @@ public class BusinessPrequalification {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BusinessPrequalification
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BusinessPrequalification
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BusinessPrequalification.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -396,22 +395,22 @@ public class BusinessPrequalification {
     }
   }
 
- /**
-  * Create an instance of BusinessPrequalification given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BusinessPrequalification
-  * @throws IOException if the JSON string is invalid with respect to BusinessPrequalification
-  */
+  /**
+   * Create an instance of BusinessPrequalification given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BusinessPrequalification
+   * @throws IOException if the JSON string is invalid with respect to BusinessPrequalification
+   */
   public static BusinessPrequalification fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BusinessPrequalification.class);
   }
 
- /**
-  * Convert an instance of BusinessPrequalification to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BusinessPrequalification to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

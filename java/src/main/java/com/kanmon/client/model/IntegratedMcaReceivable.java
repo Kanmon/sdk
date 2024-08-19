@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * IntegratedMcaReceivable
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class IntegratedMcaReceivable {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -92,10 +91,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * Kanmon’s unique ID for the integrated MCA receivable.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -111,10 +110,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * The unique identifier for the issued product in Kanmon′s system.
    * @return issuedProductId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIssuedProductId() {
     return issuedProductId;
@@ -130,10 +129,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * The charge amount - in cents.
    * @return chargeAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getChargeAmountCents() {
     return chargeAmountCents;
@@ -149,10 +148,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * The repayment amount - in cents. It should be the minimum between (repayment percentage * charge amount) or remaining balance.
    * @return repaymentAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentAmountCents() {
     return repaymentAmountCents;
@@ -168,10 +167,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the transaction.
    * @return transactionId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTransactionId() {
     return transactionId;
@@ -187,10 +186,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the transaction.
    * @return transactionTime
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTransactionTime() {
     return transactionTime;
@@ -206,10 +205,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the receivable.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -225,10 +224,10 @@ public class IntegratedMcaReceivable {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the receivable.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -319,12 +318,12 @@ public class IntegratedMcaReceivable {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to IntegratedMcaReceivable
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IntegratedMcaReceivable
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!IntegratedMcaReceivable.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -396,22 +395,22 @@ public class IntegratedMcaReceivable {
     }
   }
 
- /**
-  * Create an instance of IntegratedMcaReceivable given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of IntegratedMcaReceivable
-  * @throws IOException if the JSON string is invalid with respect to IntegratedMcaReceivable
-  */
+  /**
+   * Create an instance of IntegratedMcaReceivable given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IntegratedMcaReceivable
+   * @throws IOException if the JSON string is invalid with respect to IntegratedMcaReceivable
+   */
   public static IntegratedMcaReceivable fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IntegratedMcaReceivable.class);
   }
 
- /**
-  * Convert an instance of IntegratedMcaReceivable to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of IntegratedMcaReceivable to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

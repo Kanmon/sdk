@@ -60,7 +60,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateUser409Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateUser409Response.class.getName());
 
@@ -170,17 +170,7 @@ public class CreateUser409Response extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public CreateUser409Response(PrimaryBusinessOwnerAlreadyExistsForBusinessException o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public CreateUser409Response(UserAlreadyExistsWithEmailException o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public CreateUser409Response(UserAlreadyExistsWithPlatformUserIdException o) {
+    public CreateUser409Response(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

@@ -18,15 +18,22 @@
  * @export
  */
 export const PaymentOrderStatus = {
-    Failed: 'FAILED',
-    Paid: 'PAID',
-    Pending: 'PENDING'
+    FAILED: 'FAILED',
+    PAID: 'PAID',
+    PENDING: 'PENDING'
 } as const;
 export type PaymentOrderStatus = typeof PaymentOrderStatus[keyof typeof PaymentOrderStatus];
 
 
 export function instanceOfPaymentOrderStatus(value: any): boolean {
-    return Object.values(PaymentOrderStatus).includes(value);
+    for (const key in PaymentOrderStatus) {
+        if (Object.prototype.hasOwnProperty.call(PaymentOrderStatus, key)) {
+            if (PaymentOrderStatus[key as keyof typeof PaymentOrderStatus] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export function PaymentOrderStatusFromJSON(json: any): PaymentOrderStatus {

@@ -37,8 +37,8 @@ export interface PaymentPlanRepaymentSchedule {
 /**
  * Check if a given object implements the PaymentPlanRepaymentSchedule interface.
  */
-export function instanceOfPaymentPlanRepaymentSchedule(value: object): boolean {
-    if (!('schedule' in value)) return false;
+export function instanceOfPaymentPlanRepaymentSchedule(value: object): value is PaymentPlanRepaymentSchedule {
+    if (!('schedule' in value) || value['schedule'] === undefined) return false;
     return true;
 }
 

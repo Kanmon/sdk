@@ -42,7 +42,14 @@ export function CreateEmbeddedSession409ResponseFromJSONTyped(json: any, ignoreD
     if (json == null) {
         return json;
     }
-    return BusinessHasNoInvoiceFinancingProductExceptionFromJSONTyped(json, true) || PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductExceptionFromJSONTyped(json, true);
+    if (instanceOfBusinessHasNoInvoiceFinancingProductException(json)) {
+        return BusinessHasNoInvoiceFinancingProductExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfPlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException(json)) {
+        return PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductExceptionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function CreateEmbeddedSession409ResponseToJSON(value?: CreateEmbeddedSession409Response | null): any {

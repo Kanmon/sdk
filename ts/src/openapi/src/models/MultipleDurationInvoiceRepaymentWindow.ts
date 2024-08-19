@@ -45,7 +45,7 @@ export interface MultipleDurationInvoiceRepaymentWindow {
  * @export
  */
 export const MultipleDurationInvoiceRepaymentWindowRepaymentTypeEnum = {
-    MultipleDuration: 'MULTIPLE_DURATION'
+    MULTIPLE_DURATION: 'MULTIPLE_DURATION'
 } as const;
 export type MultipleDurationInvoiceRepaymentWindowRepaymentTypeEnum = typeof MultipleDurationInvoiceRepaymentWindowRepaymentTypeEnum[keyof typeof MultipleDurationInvoiceRepaymentWindowRepaymentTypeEnum];
 
@@ -53,9 +53,9 @@ export type MultipleDurationInvoiceRepaymentWindowRepaymentTypeEnum = typeof Mul
 /**
  * Check if a given object implements the MultipleDurationInvoiceRepaymentWindow interface.
  */
-export function instanceOfMultipleDurationInvoiceRepaymentWindow(value: object): boolean {
-    if (!('repaymentType' in value)) return false;
-    if (!('repaymentSchedule' in value)) return false;
+export function instanceOfMultipleDurationInvoiceRepaymentWindow(value: object): value is MultipleDurationInvoiceRepaymentWindow {
+    if (!('repaymentType' in value) || value['repaymentType'] === undefined) return false;
+    if (!('repaymentSchedule' in value) || value['repaymentSchedule'] === undefined) return false;
     return true;
 }
 

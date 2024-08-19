@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * BusinessBankAccount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class BusinessBankAccount {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -197,10 +196,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business bank account in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -216,10 +215,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the bank account.
    * @return platformBankAccountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPlatformBankAccountId() {
     return platformBankAccountId;
@@ -235,10 +234,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * The business bank account’s name.
    * @return accountName
-  **/
+   */
   @javax.annotation.Nullable
   public String getAccountName() {
     return accountName;
@@ -254,10 +253,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * The business’s bank account number. Only digits, no formatting.
    * @return accountNumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountNumber() {
     return accountNumber;
@@ -273,10 +272,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * The business’s bank routing number. Only digits, no formatting.
    * @return routingNumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getRoutingNumber() {
     return routingNumber;
@@ -292,10 +291,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * The bank account’s type. Currently, we only support checking accounts. We may support others in the future.
    * @return accountType
-  **/
+   */
   @javax.annotation.Nonnull
   public AccountTypeEnum getAccountType() {
     return accountType;
@@ -319,10 +318,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * The bank account’s roles. Currently, we only support disbursement bank role.
    * @return roles
-  **/
+   */
   @javax.annotation.Nonnull
   public List<RolesEnum> getRoles() {
     return roles;
@@ -338,10 +337,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the business.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -357,10 +356,10 @@ public class BusinessBankAccount {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the business.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -455,12 +454,12 @@ public class BusinessBankAccount {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to BusinessBankAccount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to BusinessBankAccount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!BusinessBankAccount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -546,22 +545,22 @@ public class BusinessBankAccount {
     }
   }
 
- /**
-  * Create an instance of BusinessBankAccount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of BusinessBankAccount
-  * @throws IOException if the JSON string is invalid with respect to BusinessBankAccount
-  */
+  /**
+   * Create an instance of BusinessBankAccount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of BusinessBankAccount
+   * @throws IOException if the JSON string is invalid with respect to BusinessBankAccount
+   */
   public static BusinessBankAccount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, BusinessBankAccount.class);
   }
 
- /**
-  * Convert an instance of BusinessBankAccount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of BusinessBankAccount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

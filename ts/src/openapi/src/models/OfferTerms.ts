@@ -53,7 +53,7 @@ import {
  * Terms of the offer.
  * @export
  */
-export type OfferTerms = IntegratedMcaOfferTerms | InvoiceFinancingOfferTerms | LineOfCreditOfferTerms | McaOfferTerms | TermLoanOfferTerms;
+export type OfferTerms = { productType: 'INTEGRATED_MCA' } & IntegratedMcaOfferTerms | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingOfferTerms | { productType: 'LINE_OF_CREDIT' } & LineOfCreditOfferTerms | { productType: 'MCA' } & McaOfferTerms | { productType: 'TERM_LOAN' } & TermLoanOfferTerms;
 
 export function OfferTermsFromJSON(json: any): OfferTerms {
     return OfferTermsFromJSONTyped(json, false);
@@ -63,30 +63,40 @@ export function OfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     if (json == null) {
         return json;
     }
-    return IntegratedMcaOfferTermsFromJSONTyped(json, true) || InvoiceFinancingOfferTermsFromJSONTyped(json, true) || LineOfCreditOfferTermsFromJSONTyped(json, true) || McaOfferTermsFromJSONTyped(json, true) || TermLoanOfferTermsFromJSONTyped(json, true);
+    switch (json['productType']) {
+        case 'INTEGRATED_MCA':
+            return Object.assign({}, IntegratedMcaOfferTermsFromJSONTyped(json, true), { productType: 'INTEGRATED_MCA' } as const);
+        case 'INVOICE_FINANCING':
+            return Object.assign({}, InvoiceFinancingOfferTermsFromJSONTyped(json, true), { productType: 'INVOICE_FINANCING' } as const);
+        case 'LINE_OF_CREDIT':
+            return Object.assign({}, LineOfCreditOfferTermsFromJSONTyped(json, true), { productType: 'LINE_OF_CREDIT' } as const);
+        case 'MCA':
+            return Object.assign({}, McaOfferTermsFromJSONTyped(json, true), { productType: 'MCA' } as const);
+        case 'TERM_LOAN':
+            return Object.assign({}, TermLoanOfferTermsFromJSONTyped(json, true), { productType: 'TERM_LOAN' } as const);
+        default:
+            throw new Error(`No variant of OfferTerms exists with 'productType=${json['productType']}'`);
+    }
 }
 
 export function OfferTermsToJSON(value?: OfferTerms | null): any {
     if (value == null) {
         return value;
     }
-
-    if (instanceOfIntegratedMcaOfferTerms(value)) {
-        return IntegratedMcaOfferTermsToJSON(value as IntegratedMcaOfferTerms);
-    }
-    if (instanceOfInvoiceFinancingOfferTerms(value)) {
-        return InvoiceFinancingOfferTermsToJSON(value as InvoiceFinancingOfferTerms);
-    }
-    if (instanceOfLineOfCreditOfferTerms(value)) {
-        return LineOfCreditOfferTermsToJSON(value as LineOfCreditOfferTerms);
-    }
-    if (instanceOfMcaOfferTerms(value)) {
-        return McaOfferTermsToJSON(value as McaOfferTerms);
-    }
-    if (instanceOfTermLoanOfferTerms(value)) {
-        return TermLoanOfferTermsToJSON(value as TermLoanOfferTerms);
+    switch (value['productType']) {
+        case 'INTEGRATED_MCA':
+            return IntegratedMcaOfferTermsToJSON(value);
+        case 'INVOICE_FINANCING':
+            return InvoiceFinancingOfferTermsToJSON(value);
+        case 'LINE_OF_CREDIT':
+            return LineOfCreditOfferTermsToJSON(value);
+        case 'MCA':
+            return McaOfferTermsToJSON(value);
+        case 'TERM_LOAN':
+            return TermLoanOfferTermsToJSON(value);
+        default:
+            throw new Error(`No variant of OfferTerms exists with 'productType=${value['productType']}'`);
     }
 
-    return {};
 }
 

@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFinancingOfferTerms
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoiceFinancingOfferTerms {
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
@@ -76,10 +75,10 @@ public class InvoiceFinancingOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
   public ProductType getProductType() {
     return productType;
@@ -95,10 +94,10 @@ public class InvoiceFinancingOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The total limit allowed for this offer - in cents.
    * @return totalLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalLimitCents() {
     return totalLimitCents;
@@ -122,10 +121,10 @@ public class InvoiceFinancingOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The pricing plans available for this offer.
    * @return pricingPlans
-  **/
+   */
   @javax.annotation.Nonnull
   public List<InvoicePaymentPlan> getPricingPlans() {
     return pricingPlans;
@@ -196,12 +195,12 @@ public class InvoiceFinancingOfferTerms {
     openapiRequiredFields.add("pricingPlans");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingOfferTerms
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingOfferTerms
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InvoiceFinancingOfferTerms.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -267,22 +266,22 @@ public class InvoiceFinancingOfferTerms {
     }
   }
 
- /**
-  * Create an instance of InvoiceFinancingOfferTerms given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceFinancingOfferTerms
-  * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingOfferTerms
-  */
+  /**
+   * Create an instance of InvoiceFinancingOfferTerms given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceFinancingOfferTerms
+   * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingOfferTerms
+   */
   public static InvoiceFinancingOfferTerms fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceFinancingOfferTerms.class);
   }
 
- /**
-  * Convert an instance of InvoiceFinancingOfferTerms to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceFinancingOfferTerms to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

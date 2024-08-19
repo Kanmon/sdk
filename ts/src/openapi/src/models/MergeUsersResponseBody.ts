@@ -37,8 +37,8 @@ export interface MergeUsersResponseBody {
 /**
  * Check if a given object implements the MergeUsersResponseBody interface.
  */
-export function instanceOfMergeUsersResponseBody(value: object): boolean {
-    if (!('mergedUsers' in value)) return false;
+export function instanceOfMergeUsersResponseBody(value: object): value is MergeUsersResponseBody {
+    if (!('mergedUsers' in value) || value['mergedUsers'] === undefined) return false;
     return true;
 }
 

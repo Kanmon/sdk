@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * PaginationResult
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class PaginationResult {
   public static final String SERIALIZED_NAME_LIMIT = "limit";
   @SerializedName(SERIALIZED_NAME_LIMIT)
@@ -72,10 +71,10 @@ public class PaginationResult {
     return this;
   }
 
-   /**
+  /**
    * The number of records to limit when performing pagination.
    * @return limit
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getLimit() {
     return limit;
@@ -91,10 +90,10 @@ public class PaginationResult {
     return this;
   }
 
-   /**
+  /**
    * The number of records to skip when performing pagination.
    * @return offset
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getOffset() {
     return offset;
@@ -110,10 +109,10 @@ public class PaginationResult {
     return this;
   }
 
-   /**
+  /**
    * The total number of records that matched the query.
    * @return totalCount
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalCount() {
     return totalCount;
@@ -184,12 +183,12 @@ public class PaginationResult {
     openapiRequiredFields.add("totalCount");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaginationResult
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaginationResult
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaginationResult.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -243,22 +242,22 @@ public class PaginationResult {
     }
   }
 
- /**
-  * Create an instance of PaginationResult given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaginationResult
-  * @throws IOException if the JSON string is invalid with respect to PaginationResult
-  */
+  /**
+   * Create an instance of PaginationResult given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaginationResult
+   * @throws IOException if the JSON string is invalid with respect to PaginationResult
+   */
   public static PaginationResult fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaginationResult.class);
   }
 
- /**
-  * Convert an instance of PaginationResult to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaginationResult to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

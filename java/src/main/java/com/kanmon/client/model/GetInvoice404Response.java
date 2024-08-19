@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class GetInvoice404Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(GetInvoice404Response.class.getName());
 
@@ -150,12 +150,7 @@ public class GetInvoice404Response extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public GetInvoice404Response(BusinessNotFoundException o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public GetInvoice404Response(InvoiceNotFoundException o) {
+    public GetInvoice404Response(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

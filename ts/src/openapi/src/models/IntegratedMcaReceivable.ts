@@ -72,15 +72,15 @@ export interface IntegratedMcaReceivable {
 /**
  * Check if a given object implements the IntegratedMcaReceivable interface.
  */
-export function instanceOfIntegratedMcaReceivable(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('issuedProductId' in value)) return false;
-    if (!('chargeAmountCents' in value)) return false;
-    if (!('repaymentAmountCents' in value)) return false;
-    if (!('transactionId' in value)) return false;
-    if (!('transactionTime' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfIntegratedMcaReceivable(value: object): value is IntegratedMcaReceivable {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
+    if (!('chargeAmountCents' in value) || value['chargeAmountCents'] === undefined) return false;
+    if (!('repaymentAmountCents' in value) || value['repaymentAmountCents'] === undefined) return false;
+    if (!('transactionId' in value) || value['transactionId'] === undefined) return false;
+    if (!('transactionTime' in value) || value['transactionTime'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

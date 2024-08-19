@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * GetOffersResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class GetOffersResponse {
   public static final String SERIALIZED_NAME_OFFERS = "offers";
   @SerializedName(SERIALIZED_NAME_OFFERS)
@@ -79,10 +78,10 @@ public class GetOffersResponse {
     return this;
   }
 
-   /**
+  /**
    * Array of offers.
    * @return offers
-  **/
+   */
   @javax.annotation.Nonnull
   public List<Offer> getOffers() {
     return offers;
@@ -98,10 +97,10 @@ public class GetOffersResponse {
     return this;
   }
 
-   /**
+  /**
    * Pagination metadata.
    * @return pagination
-  **/
+   */
   @javax.annotation.Nonnull
   public PaginationResult getPagination() {
     return pagination;
@@ -168,12 +167,12 @@ public class GetOffersResponse {
     openapiRequiredFields.add("pagination");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOffersResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOffersResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOffersResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -239,22 +238,22 @@ public class GetOffersResponse {
     }
   }
 
- /**
-  * Create an instance of GetOffersResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOffersResponse
-  * @throws IOException if the JSON string is invalid with respect to GetOffersResponse
-  */
+  /**
+   * Create an instance of GetOffersResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOffersResponse
+   * @throws IOException if the JSON string is invalid with respect to GetOffersResponse
+   */
   public static GetOffersResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOffersResponse.class);
   }
 
- /**
-  * Convert an instance of GetOffersResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOffersResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

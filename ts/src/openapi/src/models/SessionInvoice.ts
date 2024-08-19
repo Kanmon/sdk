@@ -111,8 +111,8 @@ export interface SessionInvoice {
  * @export
  */
 export const SessionInvoicePayorTypeEnum = {
-    Business: 'BUSINESS',
-    Individual: 'INDIVIDUAL'
+    BUSINESS: 'BUSINESS',
+    INDIVIDUAL: 'INDIVIDUAL'
 } as const;
 export type SessionInvoicePayorTypeEnum = typeof SessionInvoicePayorTypeEnum[keyof typeof SessionInvoicePayorTypeEnum];
 
@@ -120,14 +120,14 @@ export type SessionInvoicePayorTypeEnum = typeof SessionInvoicePayorTypeEnum[key
 /**
  * Check if a given object implements the SessionInvoice interface.
  */
-export function instanceOfSessionInvoice(value: object): boolean {
-    if (!('platformInvoiceId' in value)) return false;
-    if (!('platformInvoiceNumber' in value)) return false;
-    if (!('invoiceAmountCents' in value)) return false;
-    if (!('invoiceDueDate' in value)) return false;
-    if (!('invoiceIssuedDate' in value)) return false;
-    if (!('payorType' in value)) return false;
-    if (!('description' in value)) return false;
+export function instanceOfSessionInvoice(value: object): value is SessionInvoice {
+    if (!('platformInvoiceId' in value) || value['platformInvoiceId'] === undefined) return false;
+    if (!('platformInvoiceNumber' in value) || value['platformInvoiceNumber'] === undefined) return false;
+    if (!('invoiceAmountCents' in value) || value['invoiceAmountCents'] === undefined) return false;
+    if (!('invoiceDueDate' in value) || value['invoiceDueDate'] === undefined) return false;
+    if (!('invoiceIssuedDate' in value) || value['invoiceIssuedDate'] === undefined) return false;
+    if (!('payorType' in value) || value['payorType'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
     return true;
 }
 

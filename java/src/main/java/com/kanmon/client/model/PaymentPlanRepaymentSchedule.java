@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentPlanRepaymentSchedule
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class PaymentPlanRepaymentSchedule {
   public static final String SERIALIZED_NAME_SCHEDULE = "schedule";
   @SerializedName(SERIALIZED_NAME_SCHEDULE)
@@ -74,10 +73,10 @@ public class PaymentPlanRepaymentSchedule {
     return this;
   }
 
-   /**
+  /**
    * An array of repayment schedule items that represents how the invoice will be paid back over multiple repayments.
    * @return schedule
-  **/
+   */
   @javax.annotation.Nonnull
   public List<PaymentPlanRepaymentScheduleItem> getSchedule() {
     return schedule;
@@ -140,12 +139,12 @@ public class PaymentPlanRepaymentSchedule {
     openapiRequiredFields.add("schedule");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaymentPlanRepaymentSchedule
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaymentPlanRepaymentSchedule
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaymentPlanRepaymentSchedule.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -209,22 +208,22 @@ public class PaymentPlanRepaymentSchedule {
     }
   }
 
- /**
-  * Create an instance of PaymentPlanRepaymentSchedule given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaymentPlanRepaymentSchedule
-  * @throws IOException if the JSON string is invalid with respect to PaymentPlanRepaymentSchedule
-  */
+  /**
+   * Create an instance of PaymentPlanRepaymentSchedule given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaymentPlanRepaymentSchedule
+   * @throws IOException if the JSON string is invalid with respect to PaymentPlanRepaymentSchedule
+   */
   public static PaymentPlanRepaymentSchedule fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaymentPlanRepaymentSchedule.class);
   }
 
- /**
-  * Convert an instance of PaymentPlanRepaymentSchedule to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaymentPlanRepaymentSchedule to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

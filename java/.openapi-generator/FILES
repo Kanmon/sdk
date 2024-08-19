@@ -49,7 +49,6 @@ src/main/java/com/kanmon/client/model/BankAccountAlreadyExistException.java
 src/main/java/com/kanmon/client/model/BankAccountNotFoundException.java
 src/main/java/com/kanmon/client/model/BankStatementsInvalidException.java
 src/main/java/com/kanmon/client/model/Business.java
-src/main/java/com/kanmon/client/model/BusinessAddress.java
 src/main/java/com/kanmon/client/model/BusinessAlreadyExistsException.java
 src/main/java/com/kanmon/client/model/BusinessBankAccount.java
 src/main/java/com/kanmon/client/model/BusinessDocument.java
@@ -108,7 +107,6 @@ src/main/java/com/kanmon/client/model/InvoiceFlowWithInvoiceFileSessionTokenData
 src/main/java/com/kanmon/client/model/InvoiceNotFoundException.java
 src/main/java/com/kanmon/client/model/InvoicePaymentPlan.java
 src/main/java/com/kanmon/client/model/InvoicePaymentPlanRepaymentWindow.java
-src/main/java/com/kanmon/client/model/InvoicePayorAddress.java
 src/main/java/com/kanmon/client/model/InvoiceRepaymentSchedule.java
 src/main/java/com/kanmon/client/model/InvoiceRepaymentScheduleItem.java
 src/main/java/com/kanmon/client/model/InvoiceStatus.java
@@ -135,7 +133,6 @@ src/main/java/com/kanmon/client/model/PaymentOrderStatus.java
 src/main/java/com/kanmon/client/model/PaymentPlanRepaymentSchedule.java
 src/main/java/com/kanmon/client/model/PaymentPlanRepaymentScheduleItem.java
 src/main/java/com/kanmon/client/model/PaymentScheduleItem.java
-src/main/java/com/kanmon/client/model/PaymentScheduleItemPaymentOrder.java
 src/main/java/com/kanmon/client/model/PlaidAssetReportsInvalidException.java
 src/main/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsForBusinessException.java
@@ -153,8 +150,6 @@ src/main/java/com/kanmon/client/model/UpdateBusinessRequestBody.java
 src/main/java/com/kanmon/client/model/UpdateUser409Response.java
 src/main/java/com/kanmon/client/model/UpdateUserRequestBody.java
 src/main/java/com/kanmon/client/model/User.java
-src/main/java/com/kanmon/client/model/UserAddress.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/api/IssuedProductsApiTest.java

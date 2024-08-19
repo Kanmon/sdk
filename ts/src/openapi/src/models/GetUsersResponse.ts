@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PaginationResult } from './PaginationResult';
-import {
-    PaginationResultFromJSON,
-    PaginationResultFromJSONTyped,
-    PaginationResultToJSON,
-} from './PaginationResult';
 import type { User } from './User';
 import {
     UserFromJSON,
     UserFromJSONTyped,
     UserToJSON,
 } from './User';
+import type { PaginationResult } from './PaginationResult';
+import {
+    PaginationResultFromJSON,
+    PaginationResultFromJSONTyped,
+    PaginationResultToJSON,
+} from './PaginationResult';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface GetUsersResponse {
 /**
  * Check if a given object implements the GetUsersResponse interface.
  */
-export function instanceOfGetUsersResponse(value: object): boolean {
-    if (!('users' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetUsersResponse(value: object): value is GetUsersResponse {
+    if (!('users' in value) || value['users'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

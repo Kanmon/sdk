@@ -30,8 +30,8 @@ export interface EmbeddedSession {
 /**
  * Check if a given object implements the EmbeddedSession interface.
  */
-export function instanceOfEmbeddedSession(value: object): boolean {
-    if (!('sessionToken' in value)) return false;
+export function instanceOfEmbeddedSession(value: object): value is EmbeddedSession {
+    if (!('sessionToken' in value) || value['sessionToken'] === undefined) return false;
     return true;
 }
 

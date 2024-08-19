@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentOrder
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class PaymentOrder {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -234,10 +233,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the payment order in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -253,10 +252,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the issued product in Kanmon.
    * @return issuedProductId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIssuedProductId() {
     return issuedProductId;
@@ -272,10 +271,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the draw request in Kanmon. (only present for Line of Credit).
    * @return drawRequestId
-  **/
+   */
   @javax.annotation.Nullable
   public String getDrawRequestId() {
     return drawRequestId;
@@ -291,10 +290,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the invoice in Kanmon. (only present for Invoice Financing).
    * @return invoiceId
-  **/
+   */
   @javax.annotation.Nullable
   public String getInvoiceId() {
     return invoiceId;
@@ -310,10 +309,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the invoice. (only present for Invoice Financing).
    * @return platformInvoiceId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformInvoiceId() {
     return platformInvoiceId;
@@ -329,10 +328,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The effective UTC ISO 8601 date that the payment will process.
    * @return effectiveDate
-  **/
+   */
   @javax.annotation.Nonnull
   public String getEffectiveDate() {
     return effectiveDate;
@@ -348,10 +347,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The UTC ISO 8601 date that the payment was settled.
    * @return settledDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getSettledDate() {
     return settledDate;
@@ -367,10 +366,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The total payment amount - in cents.
    * @return totalPaymentAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalPaymentAmountCents() {
     return totalPaymentAmountCents;
@@ -386,10 +385,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The principal payment amount - in cents. (null for disbursements).
    * @return principalPaymentAmountCents
-  **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getPrincipalPaymentAmountCents() {
     return principalPaymentAmountCents;
@@ -405,10 +404,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The interest payment amount - in cents. (null for disbursements).
    * @return interestPaymentAmountCents
-  **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getInterestPaymentAmountCents() {
     return interestPaymentAmountCents;
@@ -424,10 +423,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The fee payment amount - in cents. (null for disbursements).
    * @return feePaymentAmountCents
-  **/
+   */
   @javax.annotation.Nullable
   public BigDecimal getFeePaymentAmountCents() {
     return feePaymentAmountCents;
@@ -443,10 +442,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The type of the fee that was charged. (only present when &#x60;feePaymentAmountCents&#x60; is not 0 or null).
    * @return feeType
-  **/
+   */
   @javax.annotation.Nullable
   public FeeTypeEnum getFeeType() {
     return feeType;
@@ -462,10 +461,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * The direction of the payment.
    * @return direction
-  **/
+   */
   @javax.annotation.Nonnull
   public DirectionEnum getDirection() {
     return direction;
@@ -481,10 +480,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
   public PaymentOrderStatus getStatus() {
     return status;
@@ -500,10 +499,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the payment order.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -519,10 +518,10 @@ public class PaymentOrder {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the payment order.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -655,12 +654,12 @@ public class PaymentOrder {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaymentOrder
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaymentOrder
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaymentOrder.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -755,22 +754,22 @@ public class PaymentOrder {
     }
   }
 
- /**
-  * Create an instance of PaymentOrder given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaymentOrder
-  * @throws IOException if the JSON string is invalid with respect to PaymentOrder
-  */
+  /**
+   * Create an instance of PaymentOrder given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaymentOrder
+   * @throws IOException if the JSON string is invalid with respect to PaymentOrder
+   */
   public static PaymentOrder fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaymentOrder.class);
   }
 
- /**
-  * Convert an instance of PaymentOrder to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaymentOrder to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

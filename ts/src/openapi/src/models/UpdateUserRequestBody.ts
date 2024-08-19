@@ -69,8 +69,8 @@ export interface UpdateUserRequestBody {
  * @export
  */
 export const UpdateUserRequestBodyRolesEnum = {
-    Operator: 'OPERATOR',
-    PrimaryOwner: 'PRIMARY_OWNER'
+    OPERATOR: 'OPERATOR',
+    PRIMARY_OWNER: 'PRIMARY_OWNER'
 } as const;
 export type UpdateUserRequestBodyRolesEnum = typeof UpdateUserRequestBodyRolesEnum[keyof typeof UpdateUserRequestBodyRolesEnum];
 
@@ -78,7 +78,7 @@ export type UpdateUserRequestBodyRolesEnum = typeof UpdateUserRequestBodyRolesEn
 /**
  * Check if a given object implements the UpdateUserRequestBody interface.
  */
-export function instanceOfUpdateUserRequestBody(value: object): boolean {
+export function instanceOfUpdateUserRequestBody(value: object): value is UpdateUserRequestBody {
     return true;
 }
 

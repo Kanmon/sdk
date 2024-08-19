@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoicePaymentPlan
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoicePaymentPlan {
   public static final String SERIALIZED_NAME_ADVANCE_RATE_PERCENTAGE = "advanceRatePercentage";
   @SerializedName(SERIALIZED_NAME_ADVANCE_RATE_PERCENTAGE)
@@ -73,10 +72,10 @@ public class InvoicePaymentPlan {
     return this;
   }
 
-   /**
+  /**
    * The percentage of the invoice that is allowed for advances. E.g. a value of &#x60;80&#x60; would mean that $800 would be advanced on a $1,000 invoice.
    * @return advanceRatePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAdvanceRatePercentage() {
     return advanceRatePercentage;
@@ -92,10 +91,10 @@ public class InvoicePaymentPlan {
     return this;
   }
 
-   /**
+  /**
    * The percentage of the transaction that is charged as a fee. E.g. a value of &#x60;5&#x60; means 5%.
    * @return transactionFeePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTransactionFeePercentage() {
     return transactionFeePercentage;
@@ -111,10 +110,10 @@ public class InvoicePaymentPlan {
     return this;
   }
 
-   /**
+  /**
    * Get repaymentWindow
    * @return repaymentWindow
-  **/
+   */
   @javax.annotation.Nonnull
   public InvoicePaymentPlanRepaymentWindow getRepaymentWindow() {
     return repaymentWindow;
@@ -185,12 +184,12 @@ public class InvoicePaymentPlan {
     openapiRequiredFields.add("repaymentWindow");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InvoicePaymentPlan
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoicePaymentPlan
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InvoicePaymentPlan.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -246,22 +245,22 @@ public class InvoicePaymentPlan {
     }
   }
 
- /**
-  * Create an instance of InvoicePaymentPlan given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoicePaymentPlan
-  * @throws IOException if the JSON string is invalid with respect to InvoicePaymentPlan
-  */
+  /**
+   * Create an instance of InvoicePaymentPlan given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoicePaymentPlan
+   * @throws IOException if the JSON string is invalid with respect to InvoicePaymentPlan
+   */
   public static InvoicePaymentPlan fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoicePaymentPlan.class);
   }
 
- /**
-  * Convert an instance of InvoicePaymentPlan to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoicePaymentPlan to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

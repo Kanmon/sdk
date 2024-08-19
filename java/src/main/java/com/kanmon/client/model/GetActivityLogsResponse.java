@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * GetActivityLogsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class GetActivityLogsResponse {
   public static final String SERIALIZED_NAME_ACTIVITY_LOGS = "activityLogs";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_LOGS)
@@ -79,10 +78,10 @@ public class GetActivityLogsResponse {
     return this;
   }
 
-   /**
+  /**
    * An array of activity logs.
    * @return activityLogs
-  **/
+   */
   @javax.annotation.Nonnull
   public List<ActivityLog> getActivityLogs() {
     return activityLogs;
@@ -98,10 +97,10 @@ public class GetActivityLogsResponse {
     return this;
   }
 
-   /**
+  /**
    * Pagination metadata.
    * @return pagination
-  **/
+   */
   @javax.annotation.Nonnull
   public PaginationResult getPagination() {
     return pagination;
@@ -168,12 +167,12 @@ public class GetActivityLogsResponse {
     openapiRequiredFields.add("pagination");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetActivityLogsResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetActivityLogsResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetActivityLogsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -239,22 +238,22 @@ public class GetActivityLogsResponse {
     }
   }
 
- /**
-  * Create an instance of GetActivityLogsResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetActivityLogsResponse
-  * @throws IOException if the JSON string is invalid with respect to GetActivityLogsResponse
-  */
+  /**
+   * Create an instance of GetActivityLogsResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetActivityLogsResponse
+   * @throws IOException if the JSON string is invalid with respect to GetActivityLogsResponse
+   */
   public static GetActivityLogsResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetActivityLogsResponse.class);
   }
 
- /**
-  * Convert an instance of GetActivityLogsResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetActivityLogsResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

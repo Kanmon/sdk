@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * FixedDurationInvoiceRepaymentWindow
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class FixedDurationInvoiceRepaymentWindow {
   /**
    * Gets or Sets repaymentType
@@ -118,10 +117,10 @@ public class FixedDurationInvoiceRepaymentWindow {
     return this;
   }
 
-   /**
+  /**
    * Get repaymentType
    * @return repaymentType
-  **/
+   */
   @javax.annotation.Nonnull
   public RepaymentTypeEnum getRepaymentType() {
     return repaymentType;
@@ -137,10 +136,10 @@ public class FixedDurationInvoiceRepaymentWindow {
     return this;
   }
 
-   /**
+  /**
    * This amount of days after which the repayment duration is due.
    * @return repaymentDurationDays
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentDurationDays() {
     return repaymentDurationDays;
@@ -207,12 +206,12 @@ public class FixedDurationInvoiceRepaymentWindow {
     openapiRequiredFields.add("repaymentDurationDays");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to FixedDurationInvoiceRepaymentWindow
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to FixedDurationInvoiceRepaymentWindow
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!FixedDurationInvoiceRepaymentWindow.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -271,22 +270,22 @@ public class FixedDurationInvoiceRepaymentWindow {
     }
   }
 
- /**
-  * Create an instance of FixedDurationInvoiceRepaymentWindow given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of FixedDurationInvoiceRepaymentWindow
-  * @throws IOException if the JSON string is invalid with respect to FixedDurationInvoiceRepaymentWindow
-  */
+  /**
+   * Create an instance of FixedDurationInvoiceRepaymentWindow given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of FixedDurationInvoiceRepaymentWindow
+   * @throws IOException if the JSON string is invalid with respect to FixedDurationInvoiceRepaymentWindow
+   */
   public static FixedDurationInvoiceRepaymentWindow fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, FixedDurationInvoiceRepaymentWindow.class);
   }
 
- /**
-  * Convert an instance of FixedDurationInvoiceRepaymentWindow to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of FixedDurationInvoiceRepaymentWindow to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
