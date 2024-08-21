@@ -53,7 +53,7 @@ import {
  * The data needed to service this specific type of issued product
  * @export
  */
-export type IssuedProductServicingData = IntegratedMcaServicingData | InvoiceFinancingServicingData | LineOfCreditServicingData | McaServicingData | TermLoanServicingData;
+export type IssuedProductServicingData = { productType: 'INTEGRATED_MCA' } & IntegratedMcaServicingData | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingServicingData | { productType: 'LINE_OF_CREDIT' } & LineOfCreditServicingData | { productType: 'MCA' } & McaServicingData | { productType: 'TERM_LOAN' } & TermLoanServicingData;
 
 export function IssuedProductServicingDataFromJSON(json: any): IssuedProductServicingData {
     return IssuedProductServicingDataFromJSONTyped(json, false);
@@ -63,30 +63,40 @@ export function IssuedProductServicingDataFromJSONTyped(json: any, ignoreDiscrim
     if (json == null) {
         return json;
     }
-    return IntegratedMcaServicingDataFromJSONTyped(json, true) || InvoiceFinancingServicingDataFromJSONTyped(json, true) || LineOfCreditServicingDataFromJSONTyped(json, true) || McaServicingDataFromJSONTyped(json, true) || TermLoanServicingDataFromJSONTyped(json, true);
+    switch (json['productType']) {
+        case 'INTEGRATED_MCA':
+            return Object.assign({}, IntegratedMcaServicingDataFromJSONTyped(json, true), { productType: 'INTEGRATED_MCA' } as const);
+        case 'INVOICE_FINANCING':
+            return Object.assign({}, InvoiceFinancingServicingDataFromJSONTyped(json, true), { productType: 'INVOICE_FINANCING' } as const);
+        case 'LINE_OF_CREDIT':
+            return Object.assign({}, LineOfCreditServicingDataFromJSONTyped(json, true), { productType: 'LINE_OF_CREDIT' } as const);
+        case 'MCA':
+            return Object.assign({}, McaServicingDataFromJSONTyped(json, true), { productType: 'MCA' } as const);
+        case 'TERM_LOAN':
+            return Object.assign({}, TermLoanServicingDataFromJSONTyped(json, true), { productType: 'TERM_LOAN' } as const);
+        default:
+            throw new Error(`No variant of IssuedProductServicingData exists with 'productType=${json['productType']}'`);
+    }
 }
 
 export function IssuedProductServicingDataToJSON(value?: IssuedProductServicingData | null): any {
     if (value == null) {
         return value;
     }
-
-    if (instanceOfIntegratedMcaServicingData(value)) {
-        return IntegratedMcaServicingDataToJSON(value as IntegratedMcaServicingData);
-    }
-    if (instanceOfInvoiceFinancingServicingData(value)) {
-        return InvoiceFinancingServicingDataToJSON(value as InvoiceFinancingServicingData);
-    }
-    if (instanceOfLineOfCreditServicingData(value)) {
-        return LineOfCreditServicingDataToJSON(value as LineOfCreditServicingData);
-    }
-    if (instanceOfMcaServicingData(value)) {
-        return McaServicingDataToJSON(value as McaServicingData);
-    }
-    if (instanceOfTermLoanServicingData(value)) {
-        return TermLoanServicingDataToJSON(value as TermLoanServicingData);
+    switch (value['productType']) {
+        case 'INTEGRATED_MCA':
+            return IntegratedMcaServicingDataToJSON(value);
+        case 'INVOICE_FINANCING':
+            return InvoiceFinancingServicingDataToJSON(value);
+        case 'LINE_OF_CREDIT':
+            return LineOfCreditServicingDataToJSON(value);
+        case 'MCA':
+            return McaServicingDataToJSON(value);
+        case 'TERM_LOAN':
+            return TermLoanServicingDataToJSON(value);
+        default:
+            throw new Error(`No variant of IssuedProductServicingData exists with 'productType=${value['productType']}'`);
     }
 
-    return {};
 }
 

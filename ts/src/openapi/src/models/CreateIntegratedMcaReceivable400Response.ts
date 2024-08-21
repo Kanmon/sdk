@@ -49,7 +49,17 @@ export function CreateIntegratedMcaReceivable400ResponseFromJSONTyped(json: any,
     if (json == null) {
         return json;
     }
-    return BadRequestExceptionFromJSONTyped(json, true) || IncorrectRepaymentAmountExceptionFromJSONTyped(json, true) || NoRemainingBalanceExceptionFromJSONTyped(json, true);
+    if (instanceOfBadRequestException(json)) {
+        return BadRequestExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfIncorrectRepaymentAmountException(json)) {
+        return IncorrectRepaymentAmountExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfNoRemainingBalanceException(json)) {
+        return NoRemainingBalanceExceptionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function CreateIntegratedMcaReceivable400ResponseToJSON(value?: CreateIntegratedMcaReceivable400Response | null): any {

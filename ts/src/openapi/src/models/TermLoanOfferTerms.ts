@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { mapValues } from '../runtime';
  */
 export interface TermLoanOfferTerms {
     /**
-     * The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof TermLoanOfferTerms
      */
-    productType: TermLoanOfferTermsProductTypeEnum;
+    productType: ProductType;
     /**
      * The maximum loan amount - in cents.
      * @type {number}
@@ -58,29 +65,17 @@ export interface TermLoanOfferTerms {
 }
 
 
-/**
- * @export
- */
-export const TermLoanOfferTermsProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type TermLoanOfferTermsProductTypeEnum = typeof TermLoanOfferTermsProductTypeEnum[keyof typeof TermLoanOfferTermsProductTypeEnum];
-
 
 /**
  * Check if a given object implements the TermLoanOfferTerms interface.
  */
-export function instanceOfTermLoanOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('maxLoanAmountCents' in value)) return false;
-    if (!('loanAmountCents' in value)) return false;
-    if (!('interestRatePercentage' in value)) return false;
-    if (!('durationMonths' in value)) return false;
-    if (!('feePercentage' in value)) return false;
+export function instanceOfTermLoanOfferTerms(value: object): value is TermLoanOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('maxLoanAmountCents' in value) || value['maxLoanAmountCents'] === undefined) return false;
+    if (!('loanAmountCents' in value) || value['loanAmountCents'] === undefined) return false;
+    if (!('interestRatePercentage' in value) || value['interestRatePercentage'] === undefined) return false;
+    if (!('durationMonths' in value) || value['durationMonths'] === undefined) return false;
+    if (!('feePercentage' in value) || value['feePercentage'] === undefined) return false;
     return true;
 }
 
@@ -94,7 +89,7 @@ export function TermLoanOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'maxLoanAmountCents': json['maxLoanAmountCents'],
         'loanAmountCents': json['loanAmountCents'],
         'interestRatePercentage': json['interestRatePercentage'],
@@ -109,7 +104,7 @@ export function TermLoanOfferTermsToJSON(value?: TermLoanOfferTerms | null): any
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'maxLoanAmountCents': value['maxLoanAmountCents'],
         'loanAmountCents': value['loanAmountCents'],
         'interestRatePercentage': value['interestRatePercentage'],

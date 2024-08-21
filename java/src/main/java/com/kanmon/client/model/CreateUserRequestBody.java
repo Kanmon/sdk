@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * CreateUserRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateUserRequestBody {
   public static final String SERIALIZED_NAME_PLATFORM_USER_ID = "platformUserId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_USER_ID)
@@ -150,10 +149,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the user.
    * @return platformUserId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPlatformUserId() {
     return platformUserId;
@@ -169,10 +168,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique business ID for the business. Either &#x60;platformBusinessId&#x60; or &#x60;businessId&#x60; is required.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -188,10 +187,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the user’s business in Kanmon. Either &#x60;platformBusinessId&#x60; or &#x60;businessId&#x60; is required.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBusinessId() {
     return businessId;
@@ -207,10 +206,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s email.
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
@@ -226,10 +225,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s first name.
    * @return firstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstName() {
     return firstName;
@@ -245,10 +244,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s last name.
    * @return lastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastName() {
     return lastName;
@@ -264,10 +263,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
-  **/
+   */
   @javax.annotation.Nullable
   public Address getAddress() {
     return address;
@@ -291,10 +290,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. &lt;br/&gt;This means the user can complete onboarding, receive offers, choose to accept offers, &lt;br/&gt;sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on &lt;br/&gt;behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. &lt;br/&gt;Secondary owners are beneficial owners of a business, like primary owners, and Kanmon &lt;br/&gt;must perform KYC checks for these users. Kanmon will handle creating and managing &lt;br/&gt;these users for KYC purposes through a separate process. &lt;br/&gt;
    * @return roles
-  **/
+   */
   @javax.annotation.Nullable
   public List<RolesEnum> getRoles() {
     return roles;
@@ -310,10 +309,10 @@ public class CreateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Metadata from your system that you want to associate the user with.
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
   public Object getMetadata() {
     return metadata;
@@ -400,12 +399,12 @@ public class CreateUserRequestBody {
     openapiRequiredFields.add("platformUserId");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateUserRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateUserRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateUserRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -485,22 +484,22 @@ public class CreateUserRequestBody {
     }
   }
 
- /**
-  * Create an instance of CreateUserRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateUserRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreateUserRequestBody
-  */
+  /**
+   * Create an instance of CreateUserRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateUserRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreateUserRequestBody
+   */
   public static CreateUserRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateUserRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreateUserRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateUserRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

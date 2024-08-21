@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "7.5.0",
+    "version": "7.8.0",
     "generators": {
       "typescript": {
         "inputSpec": "#{cwd}/kanmon_api_spec.json",
@@ -13,7 +13,8 @@
           "supportsES6": true,
           "useObjectParameters": true,
           "platform": "node",
-          "legacyDiscriminatorBehavior": true
+          "legacyDiscriminatorBehavior": true,
+          "enumPropertyNaming": "original"
         },
         "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-ts-generator-ignore"
       },

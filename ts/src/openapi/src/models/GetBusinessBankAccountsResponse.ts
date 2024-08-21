@@ -49,9 +49,9 @@ export interface GetBusinessBankAccountsResponse {
 /**
  * Check if a given object implements the GetBusinessBankAccountsResponse interface.
  */
-export function instanceOfGetBusinessBankAccountsResponse(value: object): boolean {
-    if (!('bankAccounts' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetBusinessBankAccountsResponse(value: object): value is GetBusinessBankAccountsResponse {
+    if (!('bankAccounts' in value) || value['bankAccounts'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

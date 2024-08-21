@@ -49,9 +49,9 @@ export interface GetOffersResponse {
 /**
  * Check if a given object implements the GetOffersResponse interface.
  */
-export function instanceOfGetOffersResponse(value: object): boolean {
-    if (!('offers' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetOffersResponse(value: object): value is GetOffersResponse {
+    if (!('offers' in value) || value['offers'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

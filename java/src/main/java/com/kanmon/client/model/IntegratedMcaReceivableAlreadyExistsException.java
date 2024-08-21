@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,14 +48,14 @@ import com.kanmon.client.JSON;
 /**
  * IntegratedMcaReceivableAlreadyExistsException
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class IntegratedMcaReceivableAlreadyExistsException {
   /**
    * Safe for programmatic use.
    */
   @JsonAdapter(ErrorCodeEnum.Adapter.class)
   public enum ErrorCodeEnum {
-    INTEGRATEDMCARECEIVABLEALREADYEXISTSEXCEPTION("IntegratedMcaReceivableAlreadyExistsException");
+    INTEGRATED_MCA_RECEIVABLE_ALREADY_EXISTS_EXCEPTION("IntegratedMcaReceivableAlreadyExistsException");
 
     private String value;
 
@@ -121,10 +120,10 @@ public class IntegratedMcaReceivableAlreadyExistsException {
     return this;
   }
 
-   /**
+  /**
    * Safe for programmatic use.
    * @return errorCode
-  **/
+   */
   @javax.annotation.Nonnull
   public ErrorCodeEnum getErrorCode() {
     return errorCode;
@@ -140,10 +139,10 @@ public class IntegratedMcaReceivableAlreadyExistsException {
     return this;
   }
 
-   /**
+  /**
    * The human readable description of the error.
    * @return message
-  **/
+   */
   @javax.annotation.Nonnull
   public String getMessage() {
     return message;
@@ -159,10 +158,10 @@ public class IntegratedMcaReceivableAlreadyExistsException {
     return this;
   }
 
-   /**
+  /**
    * When the error occurred - ISO 8601 format.
    * @return timestamp
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTimestamp() {
     return timestamp;
@@ -233,12 +232,12 @@ public class IntegratedMcaReceivableAlreadyExistsException {
     openapiRequiredFields.add("timestamp");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to IntegratedMcaReceivableAlreadyExistsException
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IntegratedMcaReceivableAlreadyExistsException
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!IntegratedMcaReceivableAlreadyExistsException.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -303,22 +302,22 @@ public class IntegratedMcaReceivableAlreadyExistsException {
     }
   }
 
- /**
-  * Create an instance of IntegratedMcaReceivableAlreadyExistsException given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of IntegratedMcaReceivableAlreadyExistsException
-  * @throws IOException if the JSON string is invalid with respect to IntegratedMcaReceivableAlreadyExistsException
-  */
+  /**
+   * Create an instance of IntegratedMcaReceivableAlreadyExistsException given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IntegratedMcaReceivableAlreadyExistsException
+   * @throws IOException if the JSON string is invalid with respect to IntegratedMcaReceivableAlreadyExistsException
+   */
   public static IntegratedMcaReceivableAlreadyExistsException fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IntegratedMcaReceivableAlreadyExistsException.class);
   }
 
- /**
-  * Convert an instance of IntegratedMcaReceivableAlreadyExistsException to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of IntegratedMcaReceivableAlreadyExistsException to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

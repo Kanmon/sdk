@@ -38,7 +38,7 @@ export interface FixedDurationInvoiceRepaymentWindow {
  * @export
  */
 export const FixedDurationInvoiceRepaymentWindowRepaymentTypeEnum = {
-    FixedDuration: 'FIXED_DURATION'
+    FIXED_DURATION: 'FIXED_DURATION'
 } as const;
 export type FixedDurationInvoiceRepaymentWindowRepaymentTypeEnum = typeof FixedDurationInvoiceRepaymentWindowRepaymentTypeEnum[keyof typeof FixedDurationInvoiceRepaymentWindowRepaymentTypeEnum];
 
@@ -46,9 +46,9 @@ export type FixedDurationInvoiceRepaymentWindowRepaymentTypeEnum = typeof FixedD
 /**
  * Check if a given object implements the FixedDurationInvoiceRepaymentWindow interface.
  */
-export function instanceOfFixedDurationInvoiceRepaymentWindow(value: object): boolean {
-    if (!('repaymentType' in value)) return false;
-    if (!('repaymentDurationDays' in value)) return false;
+export function instanceOfFixedDurationInvoiceRepaymentWindow(value: object): value is FixedDurationInvoiceRepaymentWindow {
+    if (!('repaymentType' in value) || value['repaymentType'] === undefined) return false;
+    if (!('repaymentDurationDays' in value) || value['repaymentDurationDays'] === undefined) return false;
     return true;
 }
 

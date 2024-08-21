@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,7 +48,7 @@ import com.kanmon.client.JSON;
 /**
  * UpdateBusinessAccountRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class UpdateBusinessAccountRequestBody {
   public static final String SERIALIZED_NAME_PLATFORM_BANK_ACCOUNT_ID = "platformBankAccountId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_BANK_ACCOUNT_ID)
@@ -75,10 +74,10 @@ public class UpdateBusinessAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the bank account.
    * @return platformBankAccountId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBankAccountId() {
     return platformBankAccountId;
@@ -94,10 +93,10 @@ public class UpdateBusinessAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business defined bank account name.
    * @return accountName
-  **/
+   */
   @javax.annotation.Nullable
   public String getAccountName() {
     return accountName;
@@ -113,10 +112,10 @@ public class UpdateBusinessAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s bank account number. Only digits, no formatting.
    * @return accountNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getAccountNumber() {
     return accountNumber;
@@ -132,10 +131,10 @@ public class UpdateBusinessAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s bank routing number. Should be a 9 digits number, no formatting.
    * @return routingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getRoutingNumber() {
     return routingNumber;
@@ -206,12 +205,12 @@ public class UpdateBusinessAccountRequestBody {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UpdateBusinessAccountRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateBusinessAccountRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UpdateBusinessAccountRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -270,22 +269,22 @@ public class UpdateBusinessAccountRequestBody {
     }
   }
 
- /**
-  * Create an instance of UpdateBusinessAccountRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateBusinessAccountRequestBody
-  * @throws IOException if the JSON string is invalid with respect to UpdateBusinessAccountRequestBody
-  */
+  /**
+   * Create an instance of UpdateBusinessAccountRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateBusinessAccountRequestBody
+   * @throws IOException if the JSON string is invalid with respect to UpdateBusinessAccountRequestBody
+   */
   public static UpdateBusinessAccountRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateBusinessAccountRequestBody.class);
   }
 
- /**
-  * Convert an instance of UpdateBusinessAccountRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateBusinessAccountRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

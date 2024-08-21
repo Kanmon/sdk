@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * MultipleDurationInvoiceRepaymentWindow
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class MultipleDurationInvoiceRepaymentWindow {
   /**
    * Gets or Sets repaymentType
@@ -118,10 +117,10 @@ public class MultipleDurationInvoiceRepaymentWindow {
     return this;
   }
 
-   /**
+  /**
    * Get repaymentType
    * @return repaymentType
-  **/
+   */
   @javax.annotation.Nonnull
   public RepaymentTypeEnum getRepaymentType() {
     return repaymentType;
@@ -137,10 +136,10 @@ public class MultipleDurationInvoiceRepaymentWindow {
     return this;
   }
 
-   /**
+  /**
    * Get repaymentSchedule
    * @return repaymentSchedule
-  **/
+   */
   @javax.annotation.Nonnull
   public PaymentPlanRepaymentSchedule getRepaymentSchedule() {
     return repaymentSchedule;
@@ -207,12 +206,12 @@ public class MultipleDurationInvoiceRepaymentWindow {
     openapiRequiredFields.add("repaymentSchedule");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MultipleDurationInvoiceRepaymentWindow
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MultipleDurationInvoiceRepaymentWindow
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MultipleDurationInvoiceRepaymentWindow.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -273,22 +272,22 @@ public class MultipleDurationInvoiceRepaymentWindow {
     }
   }
 
- /**
-  * Create an instance of MultipleDurationInvoiceRepaymentWindow given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MultipleDurationInvoiceRepaymentWindow
-  * @throws IOException if the JSON string is invalid with respect to MultipleDurationInvoiceRepaymentWindow
-  */
+  /**
+   * Create an instance of MultipleDurationInvoiceRepaymentWindow given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MultipleDurationInvoiceRepaymentWindow
+   * @throws IOException if the JSON string is invalid with respect to MultipleDurationInvoiceRepaymentWindow
+   */
   public static MultipleDurationInvoiceRepaymentWindow fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MultipleDurationInvoiceRepaymentWindow.class);
   }
 
- /**
-  * Convert an instance of MultipleDurationInvoiceRepaymentWindow to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MultipleDurationInvoiceRepaymentWindow to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

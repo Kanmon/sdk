@@ -59,7 +59,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateIntegratedMcaReceivable409Response extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateIntegratedMcaReceivable409Response.class.getName());
 
@@ -150,12 +150,7 @@ public class CreateIntegratedMcaReceivable409Response extends AbstractOpenApiSch
         super("oneOf", Boolean.FALSE);
     }
 
-    public CreateIntegratedMcaReceivable409Response(IncorrectProductTypeException o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public CreateIntegratedMcaReceivable409Response(IntegratedMcaReceivableAlreadyExistsException o) {
+    public CreateIntegratedMcaReceivable409Response(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

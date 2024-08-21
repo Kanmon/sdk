@@ -87,8 +87,8 @@ export interface CreateUserRequestBody {
  * @export
  */
 export const CreateUserRequestBodyRolesEnum = {
-    PrimaryOwner: 'PRIMARY_OWNER',
-    Operator: 'OPERATOR'
+    PRIMARY_OWNER: 'PRIMARY_OWNER',
+    OPERATOR: 'OPERATOR'
 } as const;
 export type CreateUserRequestBodyRolesEnum = typeof CreateUserRequestBodyRolesEnum[keyof typeof CreateUserRequestBodyRolesEnum];
 
@@ -96,8 +96,8 @@ export type CreateUserRequestBodyRolesEnum = typeof CreateUserRequestBodyRolesEn
 /**
  * Check if a given object implements the CreateUserRequestBody interface.
  */
-export function instanceOfCreateUserRequestBody(value: object): boolean {
-    if (!('platformUserId' in value)) return false;
+export function instanceOfCreateUserRequestBody(value: object): value is CreateUserRequestBody {
+    if (!('platformUserId' in value) || value['platformUserId'] === undefined) return false;
     return true;
 }
 

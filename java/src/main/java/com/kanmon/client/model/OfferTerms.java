@@ -24,6 +24,7 @@ import com.kanmon.client.model.InvoiceFinancingOfferTerms;
 import com.kanmon.client.model.InvoicePaymentPlan;
 import com.kanmon.client.model.LineOfCreditOfferTerms;
 import com.kanmon.client.model.McaOfferTerms;
+import com.kanmon.client.model.ProductType;
 import com.kanmon.client.model.TermLoanOfferTerms;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -66,7 +67,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class OfferTerms extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(OfferTerms.class.getName());
 
@@ -214,27 +215,7 @@ public class OfferTerms extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public OfferTerms(IntegratedMcaOfferTerms o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public OfferTerms(InvoiceFinancingOfferTerms o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public OfferTerms(LineOfCreditOfferTerms o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public OfferTerms(McaOfferTerms o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public OfferTerms(TermLoanOfferTerms o) {
+    public OfferTerms(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

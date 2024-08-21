@@ -49,10 +49,10 @@ export interface InvoicePaymentPlan {
 /**
  * Check if a given object implements the InvoicePaymentPlan interface.
  */
-export function instanceOfInvoicePaymentPlan(value: object): boolean {
-    if (!('advanceRatePercentage' in value)) return false;
-    if (!('transactionFeePercentage' in value)) return false;
-    if (!('repaymentWindow' in value)) return false;
+export function instanceOfInvoicePaymentPlan(value: object): value is InvoicePaymentPlan {
+    if (!('advanceRatePercentage' in value) || value['advanceRatePercentage'] === undefined) return false;
+    if (!('transactionFeePercentage' in value) || value['transactionFeePercentage'] === undefined) return false;
+    if (!('repaymentWindow' in value) || value['repaymentWindow'] === undefined) return false;
     return true;
 }
 

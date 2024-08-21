@@ -49,9 +49,9 @@ export interface GetIntegratedMcaReceivablesResponse {
 /**
  * Check if a given object implements the GetIntegratedMcaReceivablesResponse interface.
  */
-export function instanceOfGetIntegratedMcaReceivablesResponse(value: object): boolean {
-    if (!('integratedMcaReceivables' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetIntegratedMcaReceivablesResponse(value: object): value is GetIntegratedMcaReceivablesResponse {
+    if (!('integratedMcaReceivables' in value) || value['integratedMcaReceivables'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

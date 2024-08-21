@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { mapValues } from '../runtime';
  */
 export interface BusinessPrequalification {
     /**
-     * The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof BusinessPrequalification
      */
-    product: BusinessPrequalificationProductEnum | null;
+    product: ProductType;
     /**
      * The UUID representing your platform in Kanmon.
      * @type {string}
@@ -70,31 +77,19 @@ export interface BusinessPrequalification {
 }
 
 
-/**
- * @export
- */
-export const BusinessPrequalificationProductEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type BusinessPrequalificationProductEnum = typeof BusinessPrequalificationProductEnum[keyof typeof BusinessPrequalificationProductEnum];
-
 
 /**
  * Check if a given object implements the BusinessPrequalification interface.
  */
-export function instanceOfBusinessPrequalification(value: object): boolean {
-    if (!('product' in value)) return false;
-    if (!('platformId' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('isPrequalified' in value)) return false;
-    if (!('prequalifiedAmountCents' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfBusinessPrequalification(value: object): value is BusinessPrequalification {
+    if (!('product' in value) || value['product'] === undefined) return false;
+    if (!('platformId' in value) || value['platformId'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('isPrequalified' in value) || value['isPrequalified'] === undefined) return false;
+    if (!('prequalifiedAmountCents' in value) || value['prequalifiedAmountCents'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 
@@ -108,7 +103,7 @@ export function BusinessPrequalificationFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'product': json['product'],
+        'product': ProductTypeFromJSON(json['product']),
         'platformId': json['platformId'],
         'businessId': json['businessId'],
         'platformBusinessId': json['platformBusinessId'],
@@ -125,7 +120,7 @@ export function BusinessPrequalificationToJSON(value?: BusinessPrequalification 
     }
     return {
         
-        'product': value['product'],
+        'product': ProductTypeToJSON(value['product']),
         'platformId': value['platformId'],
         'businessId': value['businessId'],
         'platformBusinessId': value['platformBusinessId'],

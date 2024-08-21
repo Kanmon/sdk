@@ -13,18 +13,18 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Business } from './Business';
-import {
-    BusinessFromJSON,
-    BusinessFromJSONTyped,
-    BusinessToJSON,
-} from './Business';
 import type { PaginationResult } from './PaginationResult';
 import {
     PaginationResultFromJSON,
     PaginationResultFromJSONTyped,
     PaginationResultToJSON,
 } from './PaginationResult';
+import type { Business } from './Business';
+import {
+    BusinessFromJSON,
+    BusinessFromJSONTyped,
+    BusinessToJSON,
+} from './Business';
 
 /**
  * 
@@ -49,9 +49,9 @@ export interface GetBusinessesResponse {
 /**
  * Check if a given object implements the GetBusinessesResponse interface.
  */
-export function instanceOfGetBusinessesResponse(value: object): boolean {
-    if (!('businesses' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetBusinessesResponse(value: object): value is GetBusinessesResponse {
+    if (!('businesses' in value) || value['businesses'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

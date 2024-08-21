@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * Address
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Address {
   public static final String SERIALIZED_NAME_ADDRESS_LINE_ONE = "addressLineOne";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE_ONE)
@@ -246,10 +245,10 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * Get addressLineOne
    * @return addressLineOne
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAddressLineOne() {
     return addressLineOne;
@@ -265,10 +264,10 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * Get addressLineTwo
    * @return addressLineTwo
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLineTwo() {
     return addressLineTwo;
@@ -284,10 +283,10 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * Get city
    * @return city
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCity() {
     return city;
@@ -303,10 +302,10 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * The 2 character abbreviated state
    * @return state
-  **/
+   */
   @javax.annotation.Nonnull
   public StateEnum getState() {
     return state;
@@ -322,10 +321,10 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * Zip code can be 5 digits, 9 digits, or 5+4 including a hyphen or plus sign, e.g. 90210, 902101234, 90210-1234 or 90210+1234
    * @return zipcode
-  **/
+   */
   @javax.annotation.Nonnull
   public String getZipcode() {
     return zipcode;
@@ -341,10 +340,10 @@ public class Address {
     return this;
   }
 
-   /**
+  /**
    * USA
    * @return country
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCountry() {
     return country;
@@ -437,12 +436,12 @@ public class Address {
     openapiRequiredFields.add("country");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Address
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Address
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Address.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -516,22 +515,22 @@ public class Address {
     }
   }
 
- /**
-  * Create an instance of Address given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Address
-  * @throws IOException if the JSON string is invalid with respect to Address
-  */
+  /**
+   * Create an instance of Address given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Address
+   * @throws IOException if the JSON string is invalid with respect to Address
+   */
   public static Address fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Address.class);
   }
 
- /**
-  * Convert an instance of Address to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Address to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

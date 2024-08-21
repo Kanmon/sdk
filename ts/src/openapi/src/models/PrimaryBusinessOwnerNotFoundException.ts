@@ -52,10 +52,10 @@ export type PrimaryBusinessOwnerNotFoundExceptionErrorCodeEnum = typeof PrimaryB
 /**
  * Check if a given object implements the PrimaryBusinessOwnerNotFoundException interface.
  */
-export function instanceOfPrimaryBusinessOwnerNotFoundException(value: object): boolean {
-    if (!('errorCode' in value)) return false;
-    if (!('message' in value)) return false;
-    if (!('timestamp' in value)) return false;
+export function instanceOfPrimaryBusinessOwnerNotFoundException(value: object): value is PrimaryBusinessOwnerNotFoundException {
+    if (!('errorCode' in value) || value['errorCode'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
     return true;
 }
 

@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * CreateBusinessDocumentsResponse
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateBusinessDocumentsResponse {
   public static final String SERIALIZED_NAME_DOCUMENTS = "documents";
   @SerializedName(SERIALIZED_NAME_DOCUMENTS)
@@ -74,10 +73,10 @@ public class CreateBusinessDocumentsResponse {
     return this;
   }
 
-   /**
+  /**
    * The documents that were uploaded.
    * @return documents
-  **/
+   */
   @javax.annotation.Nonnull
   public List<BusinessDocument> getDocuments() {
     return documents;
@@ -140,12 +139,12 @@ public class CreateBusinessDocumentsResponse {
     openapiRequiredFields.add("documents");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateBusinessDocumentsResponse
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateBusinessDocumentsResponse
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateBusinessDocumentsResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -209,22 +208,22 @@ public class CreateBusinessDocumentsResponse {
     }
   }
 
- /**
-  * Create an instance of CreateBusinessDocumentsResponse given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateBusinessDocumentsResponse
-  * @throws IOException if the JSON string is invalid with respect to CreateBusinessDocumentsResponse
-  */
+  /**
+   * Create an instance of CreateBusinessDocumentsResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateBusinessDocumentsResponse
+   * @throws IOException if the JSON string is invalid with respect to CreateBusinessDocumentsResponse
+   */
   public static CreateBusinessDocumentsResponse fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateBusinessDocumentsResponse.class);
   }
 
- /**
-  * Convert an instance of CreateBusinessDocumentsResponse to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateBusinessDocumentsResponse to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

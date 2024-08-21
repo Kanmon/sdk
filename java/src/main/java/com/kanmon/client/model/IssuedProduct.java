@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * IssuedProduct
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class IssuedProduct {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -152,10 +151,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the issued product in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -171,10 +170,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the offer tied to this issued product in Kanmon.
    * @return offerId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getOfferId() {
     return offerId;
@@ -190,10 +189,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBusinessId() {
     return businessId;
@@ -209,10 +208,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the business.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -228,10 +227,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * The current status of the loan.
    * @return loanStatus
-  **/
+   */
   @javax.annotation.Nonnull
   public LoanStatusEnum getLoanStatus() {
     return loanStatus;
@@ -247,10 +246,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * Get servicingData
    * @return servicingData
-  **/
+   */
   @javax.annotation.Nonnull
   public IssuedProductServicingData getServicingData() {
     return servicingData;
@@ -266,10 +265,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the prequalification.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -285,10 +284,10 @@ public class IssuedProduct {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the prequalification.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -379,12 +378,12 @@ public class IssuedProduct {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to IssuedProduct
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IssuedProduct
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!IssuedProduct.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -463,22 +462,22 @@ public class IssuedProduct {
     }
   }
 
- /**
-  * Create an instance of IssuedProduct given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of IssuedProduct
-  * @throws IOException if the JSON string is invalid with respect to IssuedProduct
-  */
+  /**
+   * Create an instance of IssuedProduct given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IssuedProduct
+   * @throws IOException if the JSON string is invalid with respect to IssuedProduct
+   */
   public static IssuedProduct fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, IssuedProduct.class);
   }
 
- /**
-  * Convert an instance of IssuedProduct to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of IssuedProduct to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * CreateIntegratedMcaReceivableBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateIntegratedMcaReceivableBody {
   public static final String SERIALIZED_NAME_ISSUED_PRODUCT_ID = "issuedProductId";
   @SerializedName(SERIALIZED_NAME_ISSUED_PRODUCT_ID)
@@ -80,10 +79,10 @@ public class CreateIntegratedMcaReceivableBody {
     return this;
   }
 
-   /**
+  /**
    * The unique identifier for the issued product in Kanmon′s system.
    * @return issuedProductId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIssuedProductId() {
     return issuedProductId;
@@ -99,10 +98,10 @@ public class CreateIntegratedMcaReceivableBody {
     return this;
   }
 
-   /**
+  /**
    * The charge amount - in cents.
    * @return chargeAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getChargeAmountCents() {
     return chargeAmountCents;
@@ -118,10 +117,10 @@ public class CreateIntegratedMcaReceivableBody {
     return this;
   }
 
-   /**
+  /**
    *    &lt;p&gt;The repayment amount - in cents. It should be the lesser of:     &lt;br/&gt;     ( repayment percentage &amp;times; charge amount ) or remaining balance   &lt;/p&gt; 
    * @return repaymentAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentAmountCents() {
     return repaymentAmountCents;
@@ -137,10 +136,10 @@ public class CreateIntegratedMcaReceivableBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the transaction.
    * @return transactionId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTransactionId() {
     return transactionId;
@@ -156,10 +155,10 @@ public class CreateIntegratedMcaReceivableBody {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the transaction.
    * @return transactionTime
-  **/
+   */
   @javax.annotation.Nonnull
   public String getTransactionTime() {
     return transactionTime;
@@ -238,12 +237,12 @@ public class CreateIntegratedMcaReceivableBody {
     openapiRequiredFields.add("transactionTime");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateIntegratedMcaReceivableBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateIntegratedMcaReceivableBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateIntegratedMcaReceivableBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -306,22 +305,22 @@ public class CreateIntegratedMcaReceivableBody {
     }
   }
 
- /**
-  * Create an instance of CreateIntegratedMcaReceivableBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateIntegratedMcaReceivableBody
-  * @throws IOException if the JSON string is invalid with respect to CreateIntegratedMcaReceivableBody
-  */
+  /**
+   * Create an instance of CreateIntegratedMcaReceivableBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateIntegratedMcaReceivableBody
+   * @throws IOException if the JSON string is invalid with respect to CreateIntegratedMcaReceivableBody
+   */
   public static CreateIntegratedMcaReceivableBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateIntegratedMcaReceivableBody.class);
   }
 
- /**
-  * Convert an instance of CreateIntegratedMcaReceivableBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateIntegratedMcaReceivableBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

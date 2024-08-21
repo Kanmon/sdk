@@ -24,6 +24,7 @@ import com.kanmon.client.model.InvoiceFinancingServicingData;
 import com.kanmon.client.model.InvoicePaymentPlan;
 import com.kanmon.client.model.LineOfCreditServicingData;
 import com.kanmon.client.model.McaServicingData;
+import com.kanmon.client.model.ProductType;
 import com.kanmon.client.model.TermLoanServicingData;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -66,7 +67,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class IssuedProductServicingData extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(IssuedProductServicingData.class.getName());
 
@@ -214,27 +215,7 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public IssuedProductServicingData(IntegratedMcaServicingData o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public IssuedProductServicingData(InvoiceFinancingServicingData o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public IssuedProductServicingData(LineOfCreditServicingData o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public IssuedProductServicingData(McaServicingData o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public IssuedProductServicingData(TermLoanServicingData o) {
+    public IssuedProductServicingData(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFlowWithInvoiceFileSessionTokenData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoiceFlowWithInvoiceFileSessionTokenData {
   /**
    * Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;
@@ -120,10 +119,10 @@ public class InvoiceFlowWithInvoiceFileSessionTokenData {
     return this;
   }
 
-   /**
+  /**
    * Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;
    * @return component
-  **/
+   */
   @javax.annotation.Nonnull
   public ComponentEnum getComponent() {
     return component;
@@ -147,10 +146,10 @@ public class InvoiceFlowWithInvoiceFileSessionTokenData {
     return this;
   }
 
-   /**
+  /**
    * Details about the list of invoices which are to be created.
    * @return invoices
-  **/
+   */
   @javax.annotation.Nonnull
   public List<SessionInvoiceWithInvoiceFile> getInvoices() {
     return invoices;
@@ -217,12 +216,12 @@ public class InvoiceFlowWithInvoiceFileSessionTokenData {
     openapiRequiredFields.add("invoices");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InvoiceFlowWithInvoiceFileSessionTokenData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceFlowWithInvoiceFileSessionTokenData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InvoiceFlowWithInvoiceFileSessionTokenData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -291,22 +290,22 @@ public class InvoiceFlowWithInvoiceFileSessionTokenData {
     }
   }
 
- /**
-  * Create an instance of InvoiceFlowWithInvoiceFileSessionTokenData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceFlowWithInvoiceFileSessionTokenData
-  * @throws IOException if the JSON string is invalid with respect to InvoiceFlowWithInvoiceFileSessionTokenData
-  */
+  /**
+   * Create an instance of InvoiceFlowWithInvoiceFileSessionTokenData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceFlowWithInvoiceFileSessionTokenData
+   * @throws IOException if the JSON string is invalid with respect to InvoiceFlowWithInvoiceFileSessionTokenData
+   */
   public static InvoiceFlowWithInvoiceFileSessionTokenData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceFlowWithInvoiceFileSessionTokenData.class);
   }
 
- /**
-  * Convert an instance of InvoiceFlowWithInvoiceFileSessionTokenData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceFlowWithInvoiceFileSessionTokenData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -36,7 +36,7 @@ export interface CreateConnectTokenRequestBody {
 /**
  * Check if a given object implements the CreateConnectTokenRequestBody interface.
  */
-export function instanceOfCreateConnectTokenRequestBody(value: object): boolean {
+export function instanceOfCreateConnectTokenRequestBody(value: object): value is CreateConnectTokenRequestBody {
     return true;
 }
 

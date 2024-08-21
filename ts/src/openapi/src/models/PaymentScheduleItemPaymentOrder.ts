@@ -129,10 +129,10 @@ export interface PaymentScheduleItemPaymentOrder {
  * @export
  */
 export const PaymentScheduleItemPaymentOrderFeeTypeEnum = {
-    LatePayment: 'LATE_PAYMENT',
-    InsufficientFunds: 'INSUFFICIENT_FUNDS',
-    TransactionFee: 'TRANSACTION_FEE',
-    Maintenance: 'MAINTENANCE'
+    LATE_PAYMENT: 'LATE_PAYMENT',
+    INSUFFICIENT_FUNDS: 'INSUFFICIENT_FUNDS',
+    TRANSACTION_FEE: 'TRANSACTION_FEE',
+    MAINTENANCE: 'MAINTENANCE'
 } as const;
 export type PaymentScheduleItemPaymentOrderFeeTypeEnum = typeof PaymentScheduleItemPaymentOrderFeeTypeEnum[keyof typeof PaymentScheduleItemPaymentOrderFeeTypeEnum];
 
@@ -140,8 +140,8 @@ export type PaymentScheduleItemPaymentOrderFeeTypeEnum = typeof PaymentScheduleI
  * @export
  */
 export const PaymentScheduleItemPaymentOrderDirectionEnum = {
-    Disbursement: 'DISBURSEMENT',
-    Repayment: 'REPAYMENT'
+    DISBURSEMENT: 'DISBURSEMENT',
+    REPAYMENT: 'REPAYMENT'
 } as const;
 export type PaymentScheduleItemPaymentOrderDirectionEnum = typeof PaymentScheduleItemPaymentOrderDirectionEnum[keyof typeof PaymentScheduleItemPaymentOrderDirectionEnum];
 

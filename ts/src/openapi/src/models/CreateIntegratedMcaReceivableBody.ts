@@ -59,12 +59,12 @@ export interface CreateIntegratedMcaReceivableBody {
 /**
  * Check if a given object implements the CreateIntegratedMcaReceivableBody interface.
  */
-export function instanceOfCreateIntegratedMcaReceivableBody(value: object): boolean {
-    if (!('issuedProductId' in value)) return false;
-    if (!('chargeAmountCents' in value)) return false;
-    if (!('repaymentAmountCents' in value)) return false;
-    if (!('transactionId' in value)) return false;
-    if (!('transactionTime' in value)) return false;
+export function instanceOfCreateIntegratedMcaReceivableBody(value: object): value is CreateIntegratedMcaReceivableBody {
+    if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
+    if (!('chargeAmountCents' in value) || value['chargeAmountCents'] === undefined) return false;
+    if (!('repaymentAmountCents' in value) || value['repaymentAmountCents'] === undefined) return false;
+    if (!('transactionId' in value) || value['transactionId'] === undefined) return false;
+    if (!('transactionTime' in value) || value['transactionTime'] === undefined) return false;
     return true;
 }
 

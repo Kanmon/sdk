@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { mapValues } from '../runtime';
  */
 export interface IntegratedMcaOfferTerms {
     /**
-     * The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaOfferTerms`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof IntegratedMcaOfferTerms
      */
-    productType: IntegratedMcaOfferTermsProductTypeEnum;
+    productType: ProductType;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -58,29 +65,17 @@ export interface IntegratedMcaOfferTerms {
 }
 
 
-/**
- * @export
- */
-export const IntegratedMcaOfferTermsProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type IntegratedMcaOfferTermsProductTypeEnum = typeof IntegratedMcaOfferTermsProductTypeEnum[keyof typeof IntegratedMcaOfferTermsProductTypeEnum];
-
 
 /**
  * Check if a given object implements the IntegratedMcaOfferTerms interface.
  */
-export function instanceOfIntegratedMcaOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('advanceAmountCents' in value)) return false;
-    if (!('repaymentPercentage' in value)) return false;
-    if (!('feeFactor' in value)) return false;
-    if (!('totalRepaymentCents' in value)) return false;
-    if (!('maxAdvanceAmountCents' in value)) return false;
+export function instanceOfIntegratedMcaOfferTerms(value: object): value is IntegratedMcaOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('advanceAmountCents' in value) || value['advanceAmountCents'] === undefined) return false;
+    if (!('repaymentPercentage' in value) || value['repaymentPercentage'] === undefined) return false;
+    if (!('feeFactor' in value) || value['feeFactor'] === undefined) return false;
+    if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
+    if (!('maxAdvanceAmountCents' in value) || value['maxAdvanceAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -94,7 +89,7 @@ export function IntegratedMcaOfferTermsFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'advanceAmountCents': json['advanceAmountCents'],
         'repaymentPercentage': json['repaymentPercentage'],
         'feeFactor': json['feeFactor'],
@@ -109,7 +104,7 @@ export function IntegratedMcaOfferTermsToJSON(value?: IntegratedMcaOfferTerms | 
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'advanceAmountCents': value['advanceAmountCents'],
         'repaymentPercentage': value['repaymentPercentage'],
         'feeFactor': value['feeFactor'],

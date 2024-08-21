@@ -44,9 +44,9 @@ export function CreateSessionTokenRequestBodyDataFromJSONTyped(json: any, ignore
     }
     switch (json['component']) {
         case 'SESSION_INVOICE_FLOW':
-            return Object.assign({}, InvoiceFlowSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW' });
+            return Object.assign({}, InvoiceFlowSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW' } as const);
         case 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE':
-            return Object.assign({}, InvoiceFlowWithInvoiceFileSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE' });
+            return Object.assign({}, InvoiceFlowWithInvoiceFileSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE' } as const);
         default:
             throw new Error(`No variant of CreateSessionTokenRequestBodyData exists with 'component=${json['component']}'`);
     }

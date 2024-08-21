@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "d75be212-b1ff-4934-a56a-2ba54f142242,98e56112-9f55-45c3-9e5a-67c6b3f768d8",
+            "example": "814690a2-57ec-49f5-a310-3f932c997f90,441fc036-6309-4a11-a26c-a6776471ea9f",
             "schema":
             {
               "type": "string"
@@ -2882,7 +2882,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "58f760ed-ee4e-4933-85ab-f49f60569809,63571629-9a2f-4879-9a1b-4cfd9e6d15e7",
+            "example": "1348287b-b4a5-4e92-bcb5-9b8d1fa9486e,74ccb8fc-6a69-41df-b6a9-9a4d2827ed89",
             "schema":
             {
               "type": "string"
@@ -3429,7 +3429,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "f154a193-2d8a-464d-8b7b-c35e9a0804f1,e54ae42c-d23d-4e41-acee-856a199bc491",
+            "example": "1b30378c-4c1c-4575-990e-4dc0e0e9cc87,a158c620-b37f-4c6b-9580-9615d94183d0",
             "schema":
             {
               "type": "string"
@@ -4515,6 +4515,18 @@
     },
     "schemas":
     {
+      "ProductType":
+      {
+        "type": "string",
+        "enum":
+        [
+          "INVOICE_FINANCING",
+          "TERM_LOAN",
+          "MCA",
+          "LINE_OF_CREDIT",
+          "INTEGRATED_MCA"
+        ]
+      },
       "BusinessPrequalification":
       {
         "type": "object",
@@ -4522,18 +4534,9 @@
         {
           "product":
           {
-            "type": "string",
-            "description": "The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.",
             "example": "TERM_LOAN",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ],
-            "nullable": true
+            "nullable": true,
+            "$ref": "#/components/schemas/ProductType"
           },
           "platformId":
           {
@@ -6071,17 +6074,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.",
             "example": "TERM_LOAN",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "maxLoanAmountCents":
           {
@@ -6292,17 +6286,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.",
             "example": "INVOICE_FINANCING",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents":
           {
@@ -6334,17 +6319,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `MCA` for `McaOfferTerms`.",
             "example": "MCA",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents":
           {
@@ -6408,17 +6384,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditOfferTerms`.",
             "example": "LINE_OF_CREDIT",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents":
           {
@@ -6461,17 +6428,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaOfferTerms`.",
             "example": "INTEGRATED_MCA",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents":
           {
@@ -6558,6 +6516,18 @@
                 "$ref": "#/components/schemas/LineOfCreditOfferTerms"
               }
             ],
+            "discriminator":
+            {
+              "propertyName": "productType",
+              "mapping":
+              {
+                "TERM_LOAN": "#/components/schemas/TermLoanOfferTerms",
+                "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingOfferTerms",
+                "MCA": "#/components/schemas/McaOfferTerms",
+                "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaOfferTerms",
+                "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditOfferTerms"
+              }
+            },
             "description": "Terms of the offer."
           },
           "expiredAt":
@@ -6671,17 +6641,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.",
             "example": "TERM_LOAN",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "loanAmountCents":
           {
@@ -6739,17 +6700,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingServicingData`.",
             "example": "INVOICE_FINANCING",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents":
           {
@@ -6786,17 +6738,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `MCA` for `McaServicingData`.",
             "example": "MCA",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents":
           {
@@ -6868,17 +6811,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaServicingData`.",
             "example": "INTEGRATED_MCA",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents":
           {
@@ -6928,17 +6862,8 @@
         {
           "productType":
           {
-            "type": "string",
-            "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.",
             "example": "LINE_OF_CREDIT",
-            "enum":
-            [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents":
           {
@@ -7046,6 +6971,18 @@
                 "$ref": "#/components/schemas/LineOfCreditServicingData"
               }
             ],
+            "discriminator":
+            {
+              "propertyName": "productType",
+              "mapping":
+              {
+                "TERM_LOAN": "#/components/schemas/TermLoanServicingData",
+                "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingServicingData",
+                "MCA": "#/components/schemas/McaServicingData",
+                "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaServicingData",
+                "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditServicingData"
+              }
+            },
             "description": "The data needed to service this specific type of issued product"
           },
           "createdAt":

@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PaymentScheduleItemPaymentOrder } from './PaymentScheduleItemPaymentOrder';
+import type { PaymentOrder } from './PaymentOrder';
 import {
-    PaymentScheduleItemPaymentOrderFromJSON,
-    PaymentScheduleItemPaymentOrderFromJSONTyped,
-    PaymentScheduleItemPaymentOrderToJSON,
-} from './PaymentScheduleItemPaymentOrder';
+    PaymentOrderFromJSON,
+    PaymentOrderFromJSONTyped,
+    PaymentOrderToJSON,
+} from './PaymentOrder';
 
 /**
  * 
@@ -39,19 +39,19 @@ export interface PaymentScheduleItem {
      */
     totalPaymentAmountCents: number;
     /**
-     * 
-     * @type {PaymentScheduleItemPaymentOrder}
+     * The payment order for this schedule item
+     * @type {PaymentOrder}
      * @memberof PaymentScheduleItem
      */
-    paymentOrder?: PaymentScheduleItemPaymentOrder;
+    paymentOrder?: PaymentOrder | null;
 }
 
 /**
  * Check if a given object implements the PaymentScheduleItem interface.
  */
-export function instanceOfPaymentScheduleItem(value: object): boolean {
-    if (!('effectiveDate' in value)) return false;
-    if (!('totalPaymentAmountCents' in value)) return false;
+export function instanceOfPaymentScheduleItem(value: object): value is PaymentScheduleItem {
+    if (!('effectiveDate' in value) || value['effectiveDate'] === undefined) return false;
+    if (!('totalPaymentAmountCents' in value) || value['totalPaymentAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -67,7 +67,7 @@ export function PaymentScheduleItemFromJSONTyped(json: any, ignoreDiscriminator:
         
         'effectiveDate': json['effectiveDate'],
         'totalPaymentAmountCents': json['totalPaymentAmountCents'],
-        'paymentOrder': json['paymentOrder'] == null ? undefined : PaymentScheduleItemPaymentOrderFromJSON(json['paymentOrder']),
+        'paymentOrder': json['paymentOrder'] == null ? undefined : PaymentOrderFromJSON(json['paymentOrder']),
     };
 }
 
@@ -79,7 +79,7 @@ export function PaymentScheduleItemToJSON(value?: PaymentScheduleItem | null): a
         
         'effectiveDate': value['effectiveDate'],
         'totalPaymentAmountCents': value['totalPaymentAmountCents'],
-        'paymentOrder': PaymentScheduleItemPaymentOrderToJSON(value['paymentOrder']),
+        'paymentOrder': PaymentOrderToJSON(value['paymentOrder']),
     };
 }
 

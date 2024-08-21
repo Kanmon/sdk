@@ -52,10 +52,10 @@ export type BankAccountNotFoundExceptionErrorCodeEnum = typeof BankAccountNotFou
 /**
  * Check if a given object implements the BankAccountNotFoundException interface.
  */
-export function instanceOfBankAccountNotFoundException(value: object): boolean {
-    if (!('errorCode' in value)) return false;
-    if (!('message' in value)) return false;
-    if (!('timestamp' in value)) return false;
+export function instanceOfBankAccountNotFoundException(value: object): value is BankAccountNotFoundException {
+    if (!('errorCode' in value) || value['errorCode'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
     return true;
 }
 

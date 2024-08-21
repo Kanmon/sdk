@@ -48,7 +48,7 @@ export interface MergeUsersRequestBody {
 /**
  * Check if a given object implements the MergeUsersRequestBody interface.
  */
-export function instanceOfMergeUsersRequestBody(value: object): boolean {
+export function instanceOfMergeUsersRequestBody(value: object): value is MergeUsersRequestBody {
     return true;
 }
 

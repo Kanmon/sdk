@@ -338,15 +338,15 @@ export class UsersApi extends runtime.BaseAPI {
  * @export
  */
 export const GetUserIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type GetUserIdTypeEnum = typeof GetUserIdTypeEnum[keyof typeof GetUserIdTypeEnum];
 /**
  * @export
  */
 export const UpdateUserIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type UpdateUserIdTypeEnum = typeof UpdateUserIdTypeEnum[keyof typeof UpdateUserIdTypeEnum];

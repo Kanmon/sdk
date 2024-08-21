@@ -172,7 +172,7 @@ export class InvoicesApi extends runtime.BaseAPI {
  * @export
  */
 export const GetInvoiceIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type GetInvoiceIdTypeEnum = typeof GetInvoiceIdTypeEnum[keyof typeof GetInvoiceIdTypeEnum];

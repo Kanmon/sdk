@@ -42,7 +42,14 @@ export function GetInvoice404ResponseFromJSONTyped(json: any, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    return BusinessNotFoundExceptionFromJSONTyped(json, true) || InvoiceNotFoundExceptionFromJSONTyped(json, true);
+    if (instanceOfBusinessNotFoundException(json)) {
+        return BusinessNotFoundExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfInvoiceNotFoundException(json)) {
+        return InvoiceNotFoundExceptionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function GetInvoice404ResponseToJSON(value?: GetInvoice404Response | null): any {

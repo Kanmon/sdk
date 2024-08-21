@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * CreateSessionTokenRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateSessionTokenRequestBody {
   public static final String SERIALIZED_NAME_BUSINESS_ID = "businessId";
   @SerializedName(SERIALIZED_NAME_BUSINESS_ID)
@@ -72,10 +71,10 @@ public class CreateSessionTokenRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The unique identifier for business in our system. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBusinessId() {
     return businessId;
@@ -91,10 +90,10 @@ public class CreateSessionTokenRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The unique identifier for business in your platform. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -110,10 +109,10 @@ public class CreateSessionTokenRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Get data
    * @return data
-  **/
+   */
   @javax.annotation.Nonnull
   public CreateSessionTokenRequestBodyData getData() {
     return data;
@@ -182,12 +181,12 @@ public class CreateSessionTokenRequestBody {
     openapiRequiredFields.add("data");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateSessionTokenRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateSessionTokenRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateSessionTokenRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -249,22 +248,22 @@ public class CreateSessionTokenRequestBody {
     }
   }
 
- /**
-  * Create an instance of CreateSessionTokenRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateSessionTokenRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreateSessionTokenRequestBody
-  */
+  /**
+   * Create an instance of CreateSessionTokenRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateSessionTokenRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreateSessionTokenRequestBody
+   */
   public static CreateSessionTokenRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateSessionTokenRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreateSessionTokenRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateSessionTokenRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

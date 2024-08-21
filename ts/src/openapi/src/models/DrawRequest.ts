@@ -94,21 +94,23 @@ export interface DrawRequest {
     updatedAt: string;
 }
 
+
+
 /**
  * Check if a given object implements the DrawRequest interface.
  */
-export function instanceOfDrawRequest(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('issuedProductId' in value)) return false;
-    if (!('amountCents' in value)) return false;
-    if (!('disbursementAmountCents' in value)) return false;
-    if (!('feeAmountCents' in value)) return false;
-    if (!('status' in value)) return false;
-    if (!('interestRatePercentage' in value)) return false;
-    if (!('feePercentage' in value)) return false;
-    if (!('repaymentDurationMonths' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfDrawRequest(value: object): value is DrawRequest {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
+    if (!('amountCents' in value) || value['amountCents'] === undefined) return false;
+    if (!('disbursementAmountCents' in value) || value['disbursementAmountCents'] === undefined) return false;
+    if (!('feeAmountCents' in value) || value['feeAmountCents'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('interestRatePercentage' in value) || value['interestRatePercentage'] === undefined) return false;
+    if (!('feePercentage' in value) || value['feePercentage'] === undefined) return false;
+    if (!('repaymentDurationMonths' in value) || value['repaymentDurationMonths'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

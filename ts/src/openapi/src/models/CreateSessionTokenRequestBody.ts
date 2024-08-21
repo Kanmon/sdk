@@ -49,8 +49,8 @@ export interface CreateSessionTokenRequestBody {
 /**
  * Check if a given object implements the CreateSessionTokenRequestBody interface.
  */
-export function instanceOfCreateSessionTokenRequestBody(value: object): boolean {
-    if (!('data' in value)) return false;
+export function instanceOfCreateSessionTokenRequestBody(value: object): value is CreateSessionTokenRequestBody {
+    if (!('data' in value) || value['data'] === undefined) return false;
     return true;
 }
 

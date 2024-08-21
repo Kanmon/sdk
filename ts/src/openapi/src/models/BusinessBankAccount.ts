@@ -80,7 +80,7 @@ export interface BusinessBankAccount {
  * @export
  */
 export const BusinessBankAccountAccountTypeEnum = {
-    Checking: 'CHECKING'
+    CHECKING: 'CHECKING'
 } as const;
 export type BusinessBankAccountAccountTypeEnum = typeof BusinessBankAccountAccountTypeEnum[keyof typeof BusinessBankAccountAccountTypeEnum];
 
@@ -88,7 +88,7 @@ export type BusinessBankAccountAccountTypeEnum = typeof BusinessBankAccountAccou
  * @export
  */
 export const BusinessBankAccountRolesEnum = {
-    Disbursement: 'DISBURSEMENT'
+    DISBURSEMENT: 'DISBURSEMENT'
 } as const;
 export type BusinessBankAccountRolesEnum = typeof BusinessBankAccountRolesEnum[keyof typeof BusinessBankAccountRolesEnum];
 
@@ -96,16 +96,16 @@ export type BusinessBankAccountRolesEnum = typeof BusinessBankAccountRolesEnum[k
 /**
  * Check if a given object implements the BusinessBankAccount interface.
  */
-export function instanceOfBusinessBankAccount(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('platformBankAccountId' in value)) return false;
-    if (!('accountName' in value)) return false;
-    if (!('accountNumber' in value)) return false;
-    if (!('routingNumber' in value)) return false;
-    if (!('accountType' in value)) return false;
-    if (!('roles' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfBusinessBankAccount(value: object): value is BusinessBankAccount {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('platformBankAccountId' in value) || value['platformBankAccountId'] === undefined) return false;
+    if (!('accountName' in value) || value['accountName'] === undefined) return false;
+    if (!('accountNumber' in value) || value['accountNumber'] === undefined) return false;
+    if (!('routingNumber' in value) || value['routingNumber'] === undefined) return false;
+    if (!('accountType' in value) || value['accountType'] === undefined) return false;
+    if (!('roles' in value) || value['roles'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

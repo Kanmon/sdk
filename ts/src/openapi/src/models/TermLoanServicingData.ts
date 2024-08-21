@@ -13,6 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
+
 /**
  * 
  * @export
@@ -20,11 +27,11 @@ import { mapValues } from '../runtime';
  */
 export interface TermLoanServicingData {
     /**
-     * The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof TermLoanServicingData
      */
-    productType: TermLoanServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The total loan amount - in cents.
      * @type {number}
@@ -64,30 +71,18 @@ export interface TermLoanServicingData {
 }
 
 
-/**
- * @export
- */
-export const TermLoanServicingDataProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type TermLoanServicingDataProductTypeEnum = typeof TermLoanServicingDataProductTypeEnum[keyof typeof TermLoanServicingDataProductTypeEnum];
-
 
 /**
  * Check if a given object implements the TermLoanServicingData interface.
  */
-export function instanceOfTermLoanServicingData(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('loanAmountCents' in value)) return false;
-    if (!('originationFeeCents' in value)) return false;
-    if (!('principalBalanceCents' in value)) return false;
-    if (!('monthlyPaymentCents' in value)) return false;
-    if (!('interestRate' in value)) return false;
-    if (!('nextPaymentDate' in value)) return false;
+export function instanceOfTermLoanServicingData(value: object): value is TermLoanServicingData {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('loanAmountCents' in value) || value['loanAmountCents'] === undefined) return false;
+    if (!('originationFeeCents' in value) || value['originationFeeCents'] === undefined) return false;
+    if (!('principalBalanceCents' in value) || value['principalBalanceCents'] === undefined) return false;
+    if (!('monthlyPaymentCents' in value) || value['monthlyPaymentCents'] === undefined) return false;
+    if (!('interestRate' in value) || value['interestRate'] === undefined) return false;
+    if (!('nextPaymentDate' in value) || value['nextPaymentDate'] === undefined) return false;
     return true;
 }
 
@@ -101,7 +96,7 @@ export function TermLoanServicingDataFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'loanAmountCents': json['loanAmountCents'],
         'originationFeeCents': json['originationFeeCents'],
         'principalBalanceCents': json['principalBalanceCents'],
@@ -117,7 +112,7 @@ export function TermLoanServicingDataToJSON(value?: TermLoanServicingData | null
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'loanAmountCents': value['loanAmountCents'],
         'originationFeeCents': value['originationFeeCents'],
         'principalBalanceCents': value['principalBalanceCents'],

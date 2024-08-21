@@ -45,7 +45,7 @@ export interface InvoiceFlowSessionTokenData {
  * @export
  */
 export const InvoiceFlowSessionTokenDataComponentEnum = {
-    SessionInvoiceFlow: 'SESSION_INVOICE_FLOW'
+    SESSION_INVOICE_FLOW: 'SESSION_INVOICE_FLOW'
 } as const;
 export type InvoiceFlowSessionTokenDataComponentEnum = typeof InvoiceFlowSessionTokenDataComponentEnum[keyof typeof InvoiceFlowSessionTokenDataComponentEnum];
 
@@ -53,9 +53,9 @@ export type InvoiceFlowSessionTokenDataComponentEnum = typeof InvoiceFlowSession
 /**
  * Check if a given object implements the InvoiceFlowSessionTokenData interface.
  */
-export function instanceOfInvoiceFlowSessionTokenData(value: object): boolean {
-    if (!('component' in value)) return false;
-    if (!('invoices' in value)) return false;
+export function instanceOfInvoiceFlowSessionTokenData(value: object): value is InvoiceFlowSessionTokenData {
+    if (!('component' in value) || value['component'] === undefined) return false;
+    if (!('invoices' in value) || value['invoices'] === undefined) return false;
     return true;
 }
 

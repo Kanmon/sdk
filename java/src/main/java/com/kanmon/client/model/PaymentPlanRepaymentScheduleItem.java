@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * PaymentPlanRepaymentScheduleItem
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class PaymentPlanRepaymentScheduleItem {
   public static final String SERIALIZED_NAME_REPAYMENT_DURATION_DAYS = "repaymentDurationDays";
   @SerializedName(SERIALIZED_NAME_REPAYMENT_DURATION_DAYS)
@@ -68,10 +67,10 @@ public class PaymentPlanRepaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * This amount of days after which the repayment duration is due.
    * @return repaymentDurationDays
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentDurationDays() {
     return repaymentDurationDays;
@@ -87,10 +86,10 @@ public class PaymentPlanRepaymentScheduleItem {
     return this;
   }
 
-   /**
+  /**
    * The percentage of the payment that is due for this repayment. E.g. a value of &#x60;50&#x60; means 50%.
    * @return repaymentPercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentPercentage() {
     return repaymentPercentage;
@@ -157,12 +156,12 @@ public class PaymentPlanRepaymentScheduleItem {
     openapiRequiredFields.add("repaymentPercentage");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to PaymentPlanRepaymentScheduleItem
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PaymentPlanRepaymentScheduleItem
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!PaymentPlanRepaymentScheduleItem.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -216,22 +215,22 @@ public class PaymentPlanRepaymentScheduleItem {
     }
   }
 
- /**
-  * Create an instance of PaymentPlanRepaymentScheduleItem given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of PaymentPlanRepaymentScheduleItem
-  * @throws IOException if the JSON string is invalid with respect to PaymentPlanRepaymentScheduleItem
-  */
+  /**
+   * Create an instance of PaymentPlanRepaymentScheduleItem given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PaymentPlanRepaymentScheduleItem
+   * @throws IOException if the JSON string is invalid with respect to PaymentPlanRepaymentScheduleItem
+   */
   public static PaymentPlanRepaymentScheduleItem fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, PaymentPlanRepaymentScheduleItem.class);
   }
 
- /**
-  * Convert an instance of PaymentPlanRepaymentScheduleItem to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of PaymentPlanRepaymentScheduleItem to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

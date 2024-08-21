@@ -21,7 +21,6 @@ src/models/BankAccountAlreadyExistException.ts
 src/models/BankAccountNotFoundException.ts
 src/models/BankStatementsInvalidException.ts
 src/models/Business.ts
-src/models/BusinessAddress.ts
 src/models/BusinessAlreadyExistsException.ts
 src/models/BusinessBankAccount.ts
 src/models/BusinessDocument.ts
@@ -80,7 +79,6 @@ src/models/InvoiceFlowWithInvoiceFileSessionTokenData.ts
 src/models/InvoiceNotFoundException.ts
 src/models/InvoicePaymentPlan.ts
 src/models/InvoicePaymentPlanRepaymentWindow.ts
-src/models/InvoicePayorAddress.ts
 src/models/InvoiceRepaymentSchedule.ts
 src/models/InvoiceRepaymentScheduleItem.ts
 src/models/InvoiceStatus.ts
@@ -107,12 +105,12 @@ src/models/PaymentOrderStatus.ts
 src/models/PaymentPlanRepaymentSchedule.ts
 src/models/PaymentPlanRepaymentScheduleItem.ts
 src/models/PaymentScheduleItem.ts
-src/models/PaymentScheduleItemPaymentOrder.ts
 src/models/PlaidAssetReportsInvalidException.ts
 src/models/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsForBusinessException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsWithEmailException.ts
 src/models/PrimaryBusinessOwnerNotFoundException.ts
+src/models/ProductType.ts
 src/models/SessionInvoice.ts
 src/models/SessionInvoiceWithInvoiceFile.ts
 src/models/SomeOffersHaveExpiredException.ts
@@ -124,7 +122,6 @@ src/models/UpdateBusinessRequestBody.ts
 src/models/UpdateUser409Response.ts
 src/models/UpdateUserRequestBody.ts
 src/models/User.ts
-src/models/UserAddress.ts
 src/models/UserAlreadyExistsWithEmailException.ts
 src/models/UserAlreadyExistsWithPlatformUserIdException.ts
 src/models/UserNotFoundException.ts

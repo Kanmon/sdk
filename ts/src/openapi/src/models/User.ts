@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserAddress } from './UserAddress';
+import type { Address } from './Address';
 import {
-    UserAddressFromJSON,
-    UserAddressFromJSONTyped,
-    UserAddressToJSON,
-} from './UserAddress';
+    AddressFromJSON,
+    AddressFromJSONTyped,
+    AddressToJSON,
+} from './Address';
 
 /**
  * 
@@ -51,11 +51,11 @@ export interface User {
      */
     businessId: string;
     /**
-     * 
-     * @type {UserAddress}
+     * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+     * @type {Address}
      * @memberof User
      */
-    address: UserAddress | null;
+    address: Address | null;
     /**
      * The user’s email.
      * @type {string}
@@ -67,13 +67,13 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    firstName?: string;
+    firstName?: string | null;
     /**
      * The user’s last name.
      * @type {string}
      * @memberof User
      */
-    lastName?: string;
+    lastName?: string | null;
     /**
      * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>
      * @type {Array<string>}
@@ -105,8 +105,8 @@ export interface User {
  * @export
  */
 export const UserRolesEnum = {
-    PrimaryOwner: 'PRIMARY_OWNER',
-    Operator: 'OPERATOR'
+    PRIMARY_OWNER: 'PRIMARY_OWNER',
+    OPERATOR: 'OPERATOR'
 } as const;
 export type UserRolesEnum = typeof UserRolesEnum[keyof typeof UserRolesEnum];
 
@@ -114,15 +114,15 @@ export type UserRolesEnum = typeof UserRolesEnum[keyof typeof UserRolesEnum];
 /**
  * Check if a given object implements the User interface.
  */
-export function instanceOfUser(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('address' in value)) return false;
-    if (!('email' in value)) return false;
-    if (!('metadata' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfUser(value: object): value is User {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('metadata' in value) || value['metadata'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 
@@ -140,7 +140,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'platformUserId': json['platformUserId'] == null ? undefined : json['platformUserId'],
         'platformBusinessId': json['platformBusinessId'],
         'businessId': json['businessId'],
-        'address': UserAddressFromJSON(json['address']),
+        'address': AddressFromJSON(json['address']),
         'email': json['email'],
         'firstName': json['firstName'] == null ? undefined : json['firstName'],
         'lastName': json['lastName'] == null ? undefined : json['lastName'],
@@ -161,7 +161,7 @@ export function UserToJSON(value?: User | null): any {
         'platformUserId': value['platformUserId'],
         'platformBusinessId': value['platformBusinessId'],
         'businessId': value['businessId'],
-        'address': UserAddressToJSON(value['address']),
+        'address': AddressToJSON(value['address']),
         'email': value['email'],
         'firstName': value['firstName'],
         'lastName': value['lastName'],

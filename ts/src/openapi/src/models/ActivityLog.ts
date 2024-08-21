@@ -66,14 +66,14 @@ export interface ActivityLog {
 /**
  * Check if a given object implements the ActivityLog interface.
  */
-export function instanceOfActivityLog(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('payload' in value)) return false;
-    if (!('eventType' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfActivityLog(value: object): value is ActivityLog {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('payload' in value) || value['payload'] === undefined) return false;
+    if (!('eventType' in value) || value['eventType'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

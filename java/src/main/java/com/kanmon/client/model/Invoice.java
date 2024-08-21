@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.InvoicePayorAddress;
+import com.kanmon.client.model.Address;
 import com.kanmon.client.model.InvoiceRepaymentSchedule;
 import com.kanmon.client.model.InvoiceStatus;
 import java.io.IOException;
@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,7 +53,7 @@ import com.kanmon.client.JSON;
 /**
  * Invoice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class Invoice {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -86,7 +85,7 @@ public class Invoice {
 
   public static final String SERIALIZED_NAME_PAYOR_ADDRESS = "payorAddress";
   @SerializedName(SERIALIZED_NAME_PAYOR_ADDRESS)
-  private InvoicePayorAddress payorAddress;
+  private Address payorAddress;
 
   /**
    * &#x60;INDIVIDUAL&#x60; if the payor is a person and &#x60;BUSINESS&#x60; if the payor is a company.
@@ -216,10 +215,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * Kanmon’s unique ID for the invoice.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -235,10 +234,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the invoice.
    * @return platformInvoiceId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformInvoiceId() {
     return platformInvoiceId;
@@ -254,10 +253,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your &#x60;platformInvoiceId&#x60;.
    * @return platformInvoiceNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformInvoiceNumber() {
     return platformInvoiceNumber;
@@ -273,10 +272,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The invoice amount - in cents.
    * @return invoiceAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getInvoiceAmountCents() {
     return invoiceAmountCents;
@@ -292,10 +291,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The date when the invoice will be paid by the payor. ISO 8601 date format.
    * @return invoiceDueDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getInvoiceDueDate() {
     return invoiceDueDate;
@@ -311,10 +310,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The date when the payee issued the invoice. ISO 8601 date format.
    * @return invoiceIssuedDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getInvoiceIssuedDate() {
     return invoiceIssuedDate;
@@ -330,10 +329,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The email of the payor.
    * @return payorEmail
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorEmail() {
     return payorEmail;
@@ -344,21 +343,21 @@ public class Invoice {
   }
 
 
-  public Invoice payorAddress(InvoicePayorAddress payorAddress) {
+  public Invoice payorAddress(Address payorAddress) {
     this.payorAddress = payorAddress;
     return this;
   }
 
-   /**
-   * Get payorAddress
+  /**
+   * The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return payorAddress
-  **/
+   */
   @javax.annotation.Nullable
-  public InvoicePayorAddress getPayorAddress() {
+  public Address getPayorAddress() {
     return payorAddress;
   }
 
-  public void setPayorAddress(InvoicePayorAddress payorAddress) {
+  public void setPayorAddress(Address payorAddress) {
     this.payorAddress = payorAddress;
   }
 
@@ -368,10 +367,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * &#x60;INDIVIDUAL&#x60; if the payor is a person and &#x60;BUSINESS&#x60; if the payor is a company.
    * @return payorType
-  **/
+   */
   @javax.annotation.Nullable
   public PayorTypeEnum getPayorType() {
     return payorType;
@@ -387,10 +386,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The registered name of the payor business when the payor is a business and not an individual.
    * @return payorBusinessName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorBusinessName() {
     return payorBusinessName;
@@ -406,10 +405,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The first name of the payor when the payor is an individual and not a business.
    * @return payorFirstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorFirstName() {
     return payorFirstName;
@@ -425,10 +424,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The middle name of the payor when the payor is an individual and not a business.
    * @return payorMiddleName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorMiddleName() {
     return payorMiddleName;
@@ -444,10 +443,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The last name of the payor when the payor is an individual and not a business.
    * @return payorLastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayorLastName() {
     return payorLastName;
@@ -463,10 +462,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
   public InvoiceStatus getStatus() {
     return status;
@@ -482,10 +481,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The unique identifier for the issued product in Kanmon′s system.
    * @return issuedProductId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIssuedProductId() {
     return issuedProductId;
@@ -501,10 +500,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The total fee amount - in cents.
    * @return feeAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeeAmountCents() {
     return feeAmountCents;
@@ -520,10 +519,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The total principal amount - in cents.
    * @return principalAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getPrincipalAmountCents() {
     return principalAmountCents;
@@ -539,10 +538,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The amount after fees the business will receive - in cents.
    * @return invoiceAdvanceAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getInvoiceAdvanceAmountCents() {
     return invoiceAdvanceAmountCents;
@@ -558,10 +557,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The total amount that the business will repay - in cents.
    * @return repaymentAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentAmountCents() {
     return repaymentAmountCents;
@@ -577,10 +576,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The invoice repayment schedule.
    * @return repaymentSchedule
-  **/
+   */
   @javax.annotation.Nonnull
   public InvoiceRepaymentSchedule getRepaymentSchedule() {
     return repaymentSchedule;
@@ -596,10 +595,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The percentage of the invoice that is allowed for advances. E.g. a value of &#x60;80&#x60; would mean that $800 would be advanced on a $1,000 invoice.
    * @return advanceRatePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAdvanceRatePercentage() {
     return advanceRatePercentage;
@@ -615,10 +614,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The percentage of the transaction that is charged as a fee. E.g. a value of &#x60;5&#x60; means 5%.
    * @return transactionFeePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTransactionFeePercentage() {
     return transactionFeePercentage;
@@ -634,10 +633,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * The portion of the invoice amount that the business requests to be financed - in cents.
    * @return amountRequestedForFinancingCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAmountRequestedForFinancingCents() {
     return amountRequestedForFinancingCents;
@@ -653,10 +652,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the invoice.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -672,10 +671,10 @@ public class Invoice {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the invoice.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -843,12 +842,12 @@ public class Invoice {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to Invoice
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Invoice
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!Invoice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -891,7 +890,7 @@ public class Invoice {
       }
       // validate the optional field `payorAddress`
       if (jsonObj.get("payorAddress") != null && !jsonObj.get("payorAddress").isJsonNull()) {
-        InvoicePayorAddress.validateJsonElement(jsonObj.get("payorAddress"));
+        Address.validateJsonElement(jsonObj.get("payorAddress"));
       }
       if ((jsonObj.get("payorType") != null && !jsonObj.get("payorType").isJsonNull()) && !jsonObj.get("payorType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorType").toString()));
@@ -956,22 +955,22 @@ public class Invoice {
     }
   }
 
- /**
-  * Create an instance of Invoice given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of Invoice
-  * @throws IOException if the JSON string is invalid with respect to Invoice
-  */
+  /**
+   * Create an instance of Invoice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Invoice
+   * @throws IOException if the JSON string is invalid with respect to Invoice
+   */
   public static Invoice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, Invoice.class);
   }
 
- /**
-  * Convert an instance of Invoice to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of Invoice to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

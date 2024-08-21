@@ -288,15 +288,15 @@ export class BankAccountsApi extends runtime.BaseAPI {
  * @export
  */
 export const GetBusinessBankAccountIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type GetBusinessBankAccountIdTypeEnum = typeof GetBusinessBankAccountIdTypeEnum[keyof typeof GetBusinessBankAccountIdTypeEnum];
 /**
  * @export
  */
 export const UpdateBusinessBankAccountIdTypeEnum = {
-    Kanmon: 'KANMON',
-    Platform: 'PLATFORM'
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
 } as const;
 export type UpdateBusinessBankAccountIdTypeEnum = typeof UpdateBusinessBankAccountIdTypeEnum[keyof typeof UpdateBusinessBankAccountIdTypeEnum];

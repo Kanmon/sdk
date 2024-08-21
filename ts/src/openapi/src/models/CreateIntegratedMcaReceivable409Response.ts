@@ -42,7 +42,14 @@ export function CreateIntegratedMcaReceivable409ResponseFromJSONTyped(json: any,
     if (json == null) {
         return json;
     }
-    return IncorrectProductTypeExceptionFromJSONTyped(json, true) || IntegratedMcaReceivableAlreadyExistsExceptionFromJSONTyped(json, true);
+    if (instanceOfIncorrectProductTypeException(json)) {
+        return IncorrectProductTypeExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfIntegratedMcaReceivableAlreadyExistsException(json)) {
+        return IntegratedMcaReceivableAlreadyExistsExceptionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function CreateIntegratedMcaReceivable409ResponseToJSON(value?: CreateIntegratedMcaReceivable409Response | null): any {

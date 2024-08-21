@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.InvoicePaymentPlan;
+import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -41,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,69 +53,11 @@ import com.kanmon.client.JSON;
 /**
  * InvoiceFinancingOfferTerms
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoiceFinancingOfferTerms {
-  /**
-   * The type of product being offered. Always &#x60;INVOICE_FINANCING&#x60; for &#x60;InvoiceFinancingOfferTerms&#x60;.
-   */
-  @JsonAdapter(ProductTypeEnum.Adapter.class)
-  public enum ProductTypeEnum {
-    INVOICE_FINANCING("INVOICE_FINANCING"),
-    
-    TERM_LOAN("TERM_LOAN"),
-    
-    MCA("MCA"),
-    
-    LINE_OF_CREDIT("LINE_OF_CREDIT"),
-    
-    INTEGRATED_MCA("INTEGRATED_MCA");
-
-    private String value;
-
-    ProductTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ProductTypeEnum fromValue(String value) {
-      for (ProductTypeEnum b : ProductTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ProductTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ProductTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ProductTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ProductTypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      ProductTypeEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private ProductTypeEnum productType;
+  private ProductType productType;
 
   public static final String SERIALIZED_NAME_TOTAL_LIMIT_CENTS = "totalLimitCents";
   @SerializedName(SERIALIZED_NAME_TOTAL_LIMIT_CENTS)
@@ -128,21 +70,21 @@ public class InvoiceFinancingOfferTerms {
   public InvoiceFinancingOfferTerms() {
   }
 
-  public InvoiceFinancingOfferTerms productType(ProductTypeEnum productType) {
+  public InvoiceFinancingOfferTerms productType(ProductType productType) {
     this.productType = productType;
     return this;
   }
 
-   /**
-   * The type of product being offered. Always &#x60;INVOICE_FINANCING&#x60; for &#x60;InvoiceFinancingOfferTerms&#x60;.
+  /**
+   * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
-  public ProductTypeEnum getProductType() {
+  public ProductType getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductTypeEnum productType) {
+  public void setProductType(ProductType productType) {
     this.productType = productType;
   }
 
@@ -152,10 +94,10 @@ public class InvoiceFinancingOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The total limit allowed for this offer - in cents.
    * @return totalLimitCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalLimitCents() {
     return totalLimitCents;
@@ -179,10 +121,10 @@ public class InvoiceFinancingOfferTerms {
     return this;
   }
 
-   /**
+  /**
    * The pricing plans available for this offer.
    * @return pricingPlans
-  **/
+   */
   @javax.annotation.Nonnull
   public List<InvoicePaymentPlan> getPricingPlans() {
     return pricingPlans;
@@ -253,12 +195,12 @@ public class InvoiceFinancingOfferTerms {
     openapiRequiredFields.add("pricingPlans");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingOfferTerms
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingOfferTerms
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InvoiceFinancingOfferTerms.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -281,11 +223,8 @@ public class InvoiceFinancingOfferTerms {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("productType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
-      }
       // validate the required field `productType`
-      ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
+      ProductType.validateJsonElement(jsonObj.get("productType"));
       // ensure the json data is an array
       if (!jsonObj.get("pricingPlans").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `pricingPlans` to be an array in the JSON string but got `%s`", jsonObj.get("pricingPlans").toString()));
@@ -327,22 +266,22 @@ public class InvoiceFinancingOfferTerms {
     }
   }
 
- /**
-  * Create an instance of InvoiceFinancingOfferTerms given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InvoiceFinancingOfferTerms
-  * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingOfferTerms
-  */
+  /**
+   * Create an instance of InvoiceFinancingOfferTerms given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InvoiceFinancingOfferTerms
+   * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingOfferTerms
+   */
   public static InvoiceFinancingOfferTerms fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InvoiceFinancingOfferTerms.class);
   }
 
- /**
-  * Convert an instance of InvoiceFinancingOfferTerms to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InvoiceFinancingOfferTerms to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

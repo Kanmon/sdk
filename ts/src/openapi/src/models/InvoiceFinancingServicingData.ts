@@ -19,6 +19,12 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
 
 /**
  * 
@@ -27,11 +33,11 @@ import {
  */
 export interface InvoiceFinancingServicingData {
     /**
-     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingServicingData`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof InvoiceFinancingServicingData
      */
-    productType: InvoiceFinancingServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The total limit allowed - in cents.
      * @type {number}
@@ -53,27 +59,15 @@ export interface InvoiceFinancingServicingData {
 }
 
 
-/**
- * @export
- */
-export const InvoiceFinancingServicingDataProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type InvoiceFinancingServicingDataProductTypeEnum = typeof InvoiceFinancingServicingDataProductTypeEnum[keyof typeof InvoiceFinancingServicingDataProductTypeEnum];
-
 
 /**
  * Check if a given object implements the InvoiceFinancingServicingData interface.
  */
-export function instanceOfInvoiceFinancingServicingData(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('totalLimitCents' in value)) return false;
-    if (!('pricingPlans' in value)) return false;
-    if (!('availableLimitCents' in value)) return false;
+export function instanceOfInvoiceFinancingServicingData(value: object): value is InvoiceFinancingServicingData {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
+    if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
+    if (!('availableLimitCents' in value) || value['availableLimitCents'] === undefined) return false;
     return true;
 }
 
@@ -87,7 +81,7 @@ export function InvoiceFinancingServicingDataFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
         'availableLimitCents': json['availableLimitCents'],
@@ -100,7 +94,7 @@ export function InvoiceFinancingServicingDataToJSON(value?: InvoiceFinancingServ
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
         'availableLimitCents': value['availableLimitCents'],

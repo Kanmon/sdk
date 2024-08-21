@@ -49,9 +49,9 @@ export interface GetInvoicesResponse {
 /**
  * Check if a given object implements the GetInvoicesResponse interface.
  */
-export function instanceOfGetInvoicesResponse(value: object): boolean {
-    if (!('invoices' in value)) return false;
-    if (!('pagination' in value)) return false;
+export function instanceOfGetInvoicesResponse(value: object): value is GetInvoicesResponse {
+    if (!('invoices' in value) || value['invoices'] === undefined) return false;
+    if (!('pagination' in value) || value['pagination'] === undefined) return false;
     return true;
 }
 

@@ -171,7 +171,7 @@ export class PaymentsApi extends runtime.BaseAPI {
  * @export
  */
 export const GetPaymentScheduleForAIssuedProductDirectionEnum = {
-    Disbursement: 'DISBURSEMENT',
-    Repayment: 'REPAYMENT'
+    DISBURSEMENT: 'DISBURSEMENT',
+    REPAYMENT: 'REPAYMENT'
 } as const;
 export type GetPaymentScheduleForAIssuedProductDirectionEnum = typeof GetPaymentScheduleForAIssuedProductDirectionEnum[keyof typeof GetPaymentScheduleForAIssuedProductDirectionEnum];

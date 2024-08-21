@@ -18,13 +18,20 @@
  * @export
  */
 export const BusinessDocumentType = {
-    Invoice: 'INVOICE'
+    INVOICE: 'INVOICE'
 } as const;
 export type BusinessDocumentType = typeof BusinessDocumentType[keyof typeof BusinessDocumentType];
 
 
 export function instanceOfBusinessDocumentType(value: any): boolean {
-    return Object.values(BusinessDocumentType).includes(value);
+    for (const key in BusinessDocumentType) {
+        if (Object.prototype.hasOwnProperty.call(BusinessDocumentType, key)) {
+            if (BusinessDocumentType[key as keyof typeof BusinessDocumentType] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export function BusinessDocumentTypeFromJSON(json: any): BusinessDocumentType {

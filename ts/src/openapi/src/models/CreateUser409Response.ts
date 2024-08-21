@@ -49,7 +49,17 @@ export function CreateUser409ResponseFromJSONTyped(json: any, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    return PrimaryBusinessOwnerAlreadyExistsForBusinessExceptionFromJSONTyped(json, true) || UserAlreadyExistsWithEmailExceptionFromJSONTyped(json, true) || UserAlreadyExistsWithPlatformUserIdExceptionFromJSONTyped(json, true);
+    if (instanceOfPrimaryBusinessOwnerAlreadyExistsForBusinessException(json)) {
+        return PrimaryBusinessOwnerAlreadyExistsForBusinessExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfUserAlreadyExistsWithEmailException(json)) {
+        return UserAlreadyExistsWithEmailExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfUserAlreadyExistsWithPlatformUserIdException(json)) {
+        return UserAlreadyExistsWithPlatformUserIdExceptionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function CreateUser409ResponseToJSON(value?: CreateUser409Response | null): any {

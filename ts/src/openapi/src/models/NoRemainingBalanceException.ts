@@ -52,10 +52,10 @@ export type NoRemainingBalanceExceptionErrorCodeEnum = typeof NoRemainingBalance
 /**
  * Check if a given object implements the NoRemainingBalanceException interface.
  */
-export function instanceOfNoRemainingBalanceException(value: object): boolean {
-    if (!('errorCode' in value)) return false;
-    if (!('message' in value)) return false;
-    if (!('timestamp' in value)) return false;
+export function instanceOfNoRemainingBalanceException(value: object): value is NoRemainingBalanceException {
+    if (!('errorCode' in value) || value['errorCode'] === undefined) return false;
+    if (!('message' in value) || value['message'] === undefined) return false;
+    if (!('timestamp' in value) || value['timestamp'] === undefined) return false;
     return true;
 }
 

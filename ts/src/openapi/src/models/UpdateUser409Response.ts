@@ -42,7 +42,14 @@ export function UpdateUser409ResponseFromJSONTyped(json: any, ignoreDiscriminato
     if (json == null) {
         return json;
     }
-    return PrimaryBusinessOwnerAlreadyExistsForBusinessExceptionFromJSONTyped(json, true) || UserAlreadyExistsWithEmailExceptionFromJSONTyped(json, true);
+    if (instanceOfPrimaryBusinessOwnerAlreadyExistsForBusinessException(json)) {
+        return PrimaryBusinessOwnerAlreadyExistsForBusinessExceptionFromJSONTyped(json, true);
+    }
+    if (instanceOfUserAlreadyExistsWithEmailException(json)) {
+        return UserAlreadyExistsWithEmailExceptionFromJSONTyped(json, true);
+    }
+
+    return {} as any;
 }
 
 export function UpdateUser409ResponseToJSON(value?: UpdateUser409Response | null): any {

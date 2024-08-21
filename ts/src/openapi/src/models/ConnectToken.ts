@@ -30,8 +30,8 @@ export interface ConnectToken {
 /**
  * Check if a given object implements the ConnectToken interface.
  */
-export function instanceOfConnectToken(value: object): boolean {
-    if (!('connectToken' in value)) return false;
+export function instanceOfConnectToken(value: object): value is ConnectToken {
+    if (!('connectToken' in value) || value['connectToken'] === undefined) return false;
     return true;
 }
 

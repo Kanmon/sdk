@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +49,7 @@ import com.kanmon.client.JSON;
 /**
  * UpdateBusinessRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class UpdateBusinessRequestBody {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
@@ -88,10 +87,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s name.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
@@ -107,10 +106,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the business.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -126,10 +125,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
-  **/
+   */
   @javax.annotation.Nullable
   public Address getAddress() {
     return address;
@@ -145,10 +144,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s EIN. Only digits, no formatting.
    * @return ein
-  **/
+   */
   @javax.annotation.Nullable
   public String getEin() {
     return ein;
@@ -164,10 +163,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s phone number. No formatting characters, country code is optional.
    * @return phoneNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPhoneNumber() {
     return phoneNumber;
@@ -183,10 +182,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s website.
    * @return website
-  **/
+   */
   @javax.annotation.Nullable
   public String getWebsite() {
     return website;
@@ -202,10 +201,10 @@ public class UpdateBusinessRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Metadata from your system that you want to associate the business with.
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
   public Object getMetadata() {
     return metadata;
@@ -285,12 +284,12 @@ public class UpdateBusinessRequestBody {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UpdateBusinessRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateBusinessRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UpdateBusinessRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -356,22 +355,22 @@ public class UpdateBusinessRequestBody {
     }
   }
 
- /**
-  * Create an instance of UpdateBusinessRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateBusinessRequestBody
-  * @throws IOException if the JSON string is invalid with respect to UpdateBusinessRequestBody
-  */
+  /**
+   * Create an instance of UpdateBusinessRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateBusinessRequestBody
+   * @throws IOException if the JSON string is invalid with respect to UpdateBusinessRequestBody
+   */
   public static UpdateBusinessRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateBusinessRequestBody.class);
   }
 
- /**
-  * Convert an instance of UpdateBusinessRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateBusinessRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,7 +48,7 @@ import com.kanmon.client.JSON;
 /**
  * CreateConnectTokenRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateConnectTokenRequestBody {
   public static final String SERIALIZED_NAME_USER_ID = "userId";
   @SerializedName(SERIALIZED_NAME_USER_ID)
@@ -67,10 +66,10 @@ public class CreateConnectTokenRequestBody {
     return this;
   }
 
-   /**
+  /**
    * UUID representing the user in Kanmon. Either &#x60;userId&#x60; or &#x60;platformUserId&#x60; is required.
    * @return userId
-  **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
@@ -86,10 +85,10 @@ public class CreateConnectTokenRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the user. Either &#x60;userId&#x60; or &#x60;platformUserId&#x60; is required.
    * @return platformUserId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformUserId() {
     return platformUserId;
@@ -154,12 +153,12 @@ public class CreateConnectTokenRequestBody {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateConnectTokenRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateConnectTokenRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateConnectTokenRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -212,22 +211,22 @@ public class CreateConnectTokenRequestBody {
     }
   }
 
- /**
-  * Create an instance of CreateConnectTokenRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateConnectTokenRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreateConnectTokenRequestBody
-  */
+  /**
+   * Create an instance of CreateConnectTokenRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateConnectTokenRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreateConnectTokenRequestBody
+   */
   public static CreateConnectTokenRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateConnectTokenRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreateConnectTokenRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateConnectTokenRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

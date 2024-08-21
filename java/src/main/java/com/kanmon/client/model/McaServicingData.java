@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -38,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,69 +50,11 @@ import com.kanmon.client.JSON;
 /**
  * McaServicingData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class McaServicingData {
-  /**
-   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaServicingData&#x60;.
-   */
-  @JsonAdapter(ProductTypeEnum.Adapter.class)
-  public enum ProductTypeEnum {
-    INVOICE_FINANCING("INVOICE_FINANCING"),
-    
-    TERM_LOAN("TERM_LOAN"),
-    
-    MCA("MCA"),
-    
-    LINE_OF_CREDIT("LINE_OF_CREDIT"),
-    
-    INTEGRATED_MCA("INTEGRATED_MCA");
-
-    private String value;
-
-    ProductTypeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ProductTypeEnum fromValue(String value) {
-      for (ProductTypeEnum b : ProductTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ProductTypeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ProductTypeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ProductTypeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ProductTypeEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      ProductTypeEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private ProductTypeEnum productType;
+  private ProductType productType;
 
   public static final String SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS = "advanceAmountCents";
   @SerializedName(SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS)
@@ -201,21 +143,21 @@ public class McaServicingData {
   public McaServicingData() {
   }
 
-  public McaServicingData productType(ProductTypeEnum productType) {
+  public McaServicingData productType(ProductType productType) {
     this.productType = productType;
     return this;
   }
 
-   /**
-   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaServicingData&#x60;.
+  /**
+   * Get productType
    * @return productType
-  **/
+   */
   @javax.annotation.Nonnull
-  public ProductTypeEnum getProductType() {
+  public ProductType getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductTypeEnum productType) {
+  public void setProductType(ProductType productType) {
     this.productType = productType;
   }
 
@@ -225,10 +167,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The loan amount - in cents.
    * @return advanceAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAdvanceAmountCents() {
     return advanceAmountCents;
@@ -244,10 +186,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The repayment percentage for calculating repayment amounts. E.g. a value of a &#x60;20&#x60; means 20%. If a business has $100 of income over a repayment period, the repayment amount would be $20.
    * @return repaymentPercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentPercentage() {
     return repaymentPercentage;
@@ -263,10 +205,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The fee percentage charged as the borrowing cost of the loan. E.g. a value of &#x60;1.3&#x60; means a 30% fee.
    * @return feeFactor
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeeFactor() {
     return feeFactor;
@@ -282,10 +224,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total repayment amount in cents required to settle and close the debt. E.g. for a $10,000 loan with a fee factor of 1.3, the repayment amount equates to $13,000.
    * @return totalRepaymentCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getTotalRepaymentCents() {
     return totalRepaymentCents;
@@ -301,10 +243,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.
    * @return repaymentFrequency
-  **/
+   */
   @javax.annotation.Nonnull
   public RepaymentFrequencyEnum getRepaymentFrequency() {
     return repaymentFrequency;
@@ -320,10 +262,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The next scheduled payment date - ISO 8601 date format.
    * @return nextPaymentDate
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextPaymentDate() {
     return nextPaymentDate;
@@ -339,10 +281,10 @@ public class McaServicingData {
     return this;
   }
 
-   /**
+  /**
    * The total repayment amount less the amount repaid - in cents.
    * @return advanceBalanceCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAdvanceBalanceCents() {
     return advanceBalanceCents;
@@ -433,12 +375,12 @@ public class McaServicingData {
     openapiRequiredFields.add("advanceBalanceCents");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to McaServicingData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to McaServicingData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!McaServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -461,11 +403,8 @@ public class McaServicingData {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("productType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
-      }
       // validate the required field `productType`
-      ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
+      ProductType.validateJsonElement(jsonObj.get("productType"));
       if (!jsonObj.get("repaymentFrequency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `repaymentFrequency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("repaymentFrequency").toString()));
       }
@@ -505,22 +444,22 @@ public class McaServicingData {
     }
   }
 
- /**
-  * Create an instance of McaServicingData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of McaServicingData
-  * @throws IOException if the JSON string is invalid with respect to McaServicingData
-  */
+  /**
+   * Create an instance of McaServicingData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of McaServicingData
+   * @throws IOException if the JSON string is invalid with respect to McaServicingData
+   */
   public static McaServicingData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, McaServicingData.class);
   }
 
- /**
-  * Convert an instance of McaServicingData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of McaServicingData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

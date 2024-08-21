@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,7 +51,7 @@ import com.kanmon.client.JSON;
 /**
  * UpdateUserRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class UpdateUserRequestBody {
   public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
@@ -138,10 +137,10 @@ public class UpdateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s first name.
    * @return firstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstName() {
     return firstName;
@@ -157,10 +156,10 @@ public class UpdateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s last name.
    * @return lastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastName() {
     return lastName;
@@ -176,10 +175,10 @@ public class UpdateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
-  **/
+   */
   @javax.annotation.Nullable
   public Address getAddress() {
     return address;
@@ -195,10 +194,10 @@ public class UpdateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s email.
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
@@ -222,10 +221,10 @@ public class UpdateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. &lt;br/&gt;This means the user can complete onboarding, receive offers, choose to accept offers, &lt;br/&gt;sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on &lt;br/&gt;behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. &lt;br/&gt;Secondary owners are beneficial owners of a business, like primary owners, and Kanmon &lt;br/&gt;must perform KYC checks for these users. Kanmon will handle creating and managing &lt;br/&gt;these users for KYC purposes through a separate process. &lt;br/&gt;
    * @return roles
-  **/
+   */
   @javax.annotation.Nullable
   public List<RolesEnum> getRoles() {
     return roles;
@@ -241,10 +240,10 @@ public class UpdateUserRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Metadata from your system that you want to associate the user with.
    * @return metadata
-  **/
+   */
   @javax.annotation.Nullable
   public Object getMetadata() {
     return metadata;
@@ -321,12 +320,12 @@ public class UpdateUserRequestBody {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UpdateUserRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateUserRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UpdateUserRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -390,22 +389,22 @@ public class UpdateUserRequestBody {
     }
   }
 
- /**
-  * Create an instance of UpdateUserRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateUserRequestBody
-  * @throws IOException if the JSON string is invalid with respect to UpdateUserRequestBody
-  */
+  /**
+   * Create an instance of UpdateUserRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateUserRequestBody
+   * @throws IOException if the JSON string is invalid with respect to UpdateUserRequestBody
+   */
   public static UpdateUserRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateUserRequestBody.class);
   }
 
- /**
-  * Convert an instance of UpdateUserRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateUserRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * DrawRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class DrawRequest {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -105,10 +104,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * Kanmon’s unique ID for the draw request.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -124,10 +123,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the issued product in Kanmon.
    * @return issuedProductId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getIssuedProductId() {
     return issuedProductId;
@@ -143,10 +142,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The total draw request amount - in cents.
    * @return amountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getAmountCents() {
     return amountCents;
@@ -162,10 +161,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The total draw request amount, less the fees - in cents. This is the amount disbursed to the business if the draw request is approved.
    * @return disbursementAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getDisbursementAmountCents() {
     return disbursementAmountCents;
@@ -181,10 +180,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The fee amount - in cents.
    * @return feeAmountCents
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeeAmountCents() {
     return feeAmountCents;
@@ -200,10 +199,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * Get status
    * @return status
-  **/
+   */
   @javax.annotation.Nonnull
   public DrawRequestState getStatus() {
     return status;
@@ -219,10 +218,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The interest rate for the draw request. E.g. a value of &#x60;10&#x60; means 10%.
    * @return interestRatePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getInterestRatePercentage() {
     return interestRatePercentage;
@@ -238,10 +237,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The fee percentage charged as the borrowing cost of the draw request. E.g. a value of &#x60;2&#x60; means a 2% fee.
    * @return feePercentage
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getFeePercentage() {
     return feePercentage;
@@ -257,10 +256,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * The duration of the repayment for the draw request - in months.
    * @return repaymentDurationMonths
-  **/
+   */
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentDurationMonths() {
     return repaymentDurationMonths;
@@ -276,10 +275,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the draw request.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -295,10 +294,10 @@ public class DrawRequest {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the draw request.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -401,12 +400,12 @@ public class DrawRequest {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to DrawRequest
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DrawRequest
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!DrawRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -474,22 +473,22 @@ public class DrawRequest {
     }
   }
 
- /**
-  * Create an instance of DrawRequest given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of DrawRequest
-  * @throws IOException if the JSON string is invalid with respect to DrawRequest
-  */
+  /**
+   * Create an instance of DrawRequest given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DrawRequest
+   * @throws IOException if the JSON string is invalid with respect to DrawRequest
+   */
   public static DrawRequest fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, DrawRequest.class);
   }
 
- /**
-  * Convert an instance of DrawRequest to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of DrawRequest to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

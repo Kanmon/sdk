@@ -13,12 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
-import type { InvoicePayorAddress } from './InvoicePayorAddress';
+import type { Address } from './Address';
 import {
-    InvoicePayorAddressFromJSON,
-    InvoicePayorAddressFromJSONTyped,
-    InvoicePayorAddressToJSON,
-} from './InvoicePayorAddress';
+    AddressFromJSON,
+    AddressFromJSONTyped,
+    AddressToJSON,
+} from './Address';
 import type { InvoiceRepaymentSchedule } from './InvoiceRepaymentSchedule';
 import {
     InvoiceRepaymentScheduleFromJSON,
@@ -81,17 +81,17 @@ export interface Invoice {
      */
     payorEmail: string | null;
     /**
-     * 
-     * @type {InvoicePayorAddress}
+     * The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+     * @type {Address}
      * @memberof Invoice
      */
-    payorAddress?: InvoicePayorAddress;
+    payorAddress?: Address | null;
     /**
      * `INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company.
      * @type {string}
      * @memberof Invoice
      */
-    payorType?: InvoicePayorTypeEnum;
+    payorType?: InvoicePayorTypeEnum | null;
     /**
      * The registered name of the payor business when the payor is a business and not an individual.
      * @type {string}
@@ -195,8 +195,8 @@ export interface Invoice {
  * @export
  */
 export const InvoicePayorTypeEnum = {
-    Business: 'BUSINESS',
-    Individual: 'INDIVIDUAL'
+    BUSINESS: 'BUSINESS',
+    INDIVIDUAL: 'INDIVIDUAL'
 } as const;
 export type InvoicePayorTypeEnum = typeof InvoicePayorTypeEnum[keyof typeof InvoicePayorTypeEnum];
 
@@ -204,30 +204,30 @@ export type InvoicePayorTypeEnum = typeof InvoicePayorTypeEnum[keyof typeof Invo
 /**
  * Check if a given object implements the Invoice interface.
  */
-export function instanceOfInvoice(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('platformInvoiceId' in value)) return false;
-    if (!('platformInvoiceNumber' in value)) return false;
-    if (!('invoiceAmountCents' in value)) return false;
-    if (!('invoiceDueDate' in value)) return false;
-    if (!('invoiceIssuedDate' in value)) return false;
-    if (!('payorEmail' in value)) return false;
-    if (!('payorBusinessName' in value)) return false;
-    if (!('payorFirstName' in value)) return false;
-    if (!('payorMiddleName' in value)) return false;
-    if (!('payorLastName' in value)) return false;
-    if (!('status' in value)) return false;
-    if (!('issuedProductId' in value)) return false;
-    if (!('feeAmountCents' in value)) return false;
-    if (!('principalAmountCents' in value)) return false;
-    if (!('invoiceAdvanceAmountCents' in value)) return false;
-    if (!('repaymentAmountCents' in value)) return false;
-    if (!('repaymentSchedule' in value)) return false;
-    if (!('advanceRatePercentage' in value)) return false;
-    if (!('transactionFeePercentage' in value)) return false;
-    if (!('amountRequestedForFinancingCents' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfInvoice(value: object): value is Invoice {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('platformInvoiceId' in value) || value['platformInvoiceId'] === undefined) return false;
+    if (!('platformInvoiceNumber' in value) || value['platformInvoiceNumber'] === undefined) return false;
+    if (!('invoiceAmountCents' in value) || value['invoiceAmountCents'] === undefined) return false;
+    if (!('invoiceDueDate' in value) || value['invoiceDueDate'] === undefined) return false;
+    if (!('invoiceIssuedDate' in value) || value['invoiceIssuedDate'] === undefined) return false;
+    if (!('payorEmail' in value) || value['payorEmail'] === undefined) return false;
+    if (!('payorBusinessName' in value) || value['payorBusinessName'] === undefined) return false;
+    if (!('payorFirstName' in value) || value['payorFirstName'] === undefined) return false;
+    if (!('payorMiddleName' in value) || value['payorMiddleName'] === undefined) return false;
+    if (!('payorLastName' in value) || value['payorLastName'] === undefined) return false;
+    if (!('status' in value) || value['status'] === undefined) return false;
+    if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
+    if (!('feeAmountCents' in value) || value['feeAmountCents'] === undefined) return false;
+    if (!('principalAmountCents' in value) || value['principalAmountCents'] === undefined) return false;
+    if (!('invoiceAdvanceAmountCents' in value) || value['invoiceAdvanceAmountCents'] === undefined) return false;
+    if (!('repaymentAmountCents' in value) || value['repaymentAmountCents'] === undefined) return false;
+    if (!('repaymentSchedule' in value) || value['repaymentSchedule'] === undefined) return false;
+    if (!('advanceRatePercentage' in value) || value['advanceRatePercentage'] === undefined) return false;
+    if (!('transactionFeePercentage' in value) || value['transactionFeePercentage'] === undefined) return false;
+    if (!('amountRequestedForFinancingCents' in value) || value['amountRequestedForFinancingCents'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 
@@ -248,7 +248,7 @@ export function InvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): I
         'invoiceDueDate': json['invoiceDueDate'],
         'invoiceIssuedDate': json['invoiceIssuedDate'],
         'payorEmail': json['payorEmail'],
-        'payorAddress': json['payorAddress'] == null ? undefined : InvoicePayorAddressFromJSON(json['payorAddress']),
+        'payorAddress': json['payorAddress'] == null ? undefined : AddressFromJSON(json['payorAddress']),
         'payorType': json['payorType'] == null ? undefined : json['payorType'],
         'payorBusinessName': json['payorBusinessName'],
         'payorFirstName': json['payorFirstName'],
@@ -282,7 +282,7 @@ export function InvoiceToJSON(value?: Invoice | null): any {
         'invoiceDueDate': value['invoiceDueDate'],
         'invoiceIssuedDate': value['invoiceIssuedDate'],
         'payorEmail': value['payorEmail'],
-        'payorAddress': InvoicePayorAddressToJSON(value['payorAddress']),
+        'payorAddress': AddressToJSON(value['payorAddress']),
         'payorType': value['payorType'],
         'payorBusinessName': value['payorBusinessName'],
         'payorFirstName': value['payorFirstName'],

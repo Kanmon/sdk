@@ -79,15 +79,15 @@ export interface Offer {
 /**
  * Check if a given object implements the Offer interface.
  */
-export function instanceOfOffer(value: object): boolean {
-    if (!('id' in value)) return false;
-    if (!('businessId' in value)) return false;
-    if (!('platformBusinessId' in value)) return false;
-    if (!('terms' in value)) return false;
-    if (!('expiredAt' in value)) return false;
-    if (!('selectedAt' in value)) return false;
-    if (!('createdAt' in value)) return false;
-    if (!('updatedAt' in value)) return false;
+export function instanceOfOffer(value: object): value is Offer {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
+    if (!('terms' in value) || value['terms'] === undefined) return false;
+    if (!('expiredAt' in value) || value['expiredAt'] === undefined) return false;
+    if (!('selectedAt' in value) || value['selectedAt'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 

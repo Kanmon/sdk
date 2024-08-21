@@ -19,6 +19,12 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
 
 /**
  * 
@@ -27,11 +33,11 @@ import {
  */
 export interface InvoiceFinancingOfferTerms {
     /**
-     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof InvoiceFinancingOfferTerms
      */
-    productType: InvoiceFinancingOfferTermsProductTypeEnum;
+    productType: ProductType;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
@@ -47,26 +53,14 @@ export interface InvoiceFinancingOfferTerms {
 }
 
 
-/**
- * @export
- */
-export const InvoiceFinancingOfferTermsProductTypeEnum = {
-    InvoiceFinancing: 'INVOICE_FINANCING',
-    TermLoan: 'TERM_LOAN',
-    Mca: 'MCA',
-    LineOfCredit: 'LINE_OF_CREDIT',
-    IntegratedMca: 'INTEGRATED_MCA'
-} as const;
-export type InvoiceFinancingOfferTermsProductTypeEnum = typeof InvoiceFinancingOfferTermsProductTypeEnum[keyof typeof InvoiceFinancingOfferTermsProductTypeEnum];
-
 
 /**
  * Check if a given object implements the InvoiceFinancingOfferTerms interface.
  */
-export function instanceOfInvoiceFinancingOfferTerms(value: object): boolean {
-    if (!('productType' in value)) return false;
-    if (!('totalLimitCents' in value)) return false;
-    if (!('pricingPlans' in value)) return false;
+export function instanceOfInvoiceFinancingOfferTerms(value: object): value is InvoiceFinancingOfferTerms {
+    if (!('productType' in value) || value['productType'] === undefined) return false;
+    if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
+    if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
     return true;
 }
 
@@ -80,7 +74,7 @@ export function InvoiceFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
     };
@@ -92,7 +86,7 @@ export function InvoiceFinancingOfferTermsToJSON(value?: InvoiceFinancingOfferTe
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
     };

@@ -19,7 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.UserAddress;
+import com.kanmon.client.model.Address;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,7 +52,7 @@ import com.kanmon.client.JSON;
 /**
  * User
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class User {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -73,7 +72,7 @@ public class User {
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
-  private UserAddress address;
+  private Address address;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
@@ -163,10 +162,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the user in Kanmon.
    * @return id
-  **/
+   */
   @javax.annotation.Nonnull
   public String getId() {
     return id;
@@ -182,10 +181,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the user.
    * @return platformUserId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformUserId() {
     return platformUserId;
@@ -201,10 +200,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique business ID for the user.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -220,10 +219,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the user’s business in Kanmon.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getBusinessId() {
     return businessId;
@@ -234,21 +233,21 @@ public class User {
   }
 
 
-  public User address(UserAddress address) {
+  public User address(Address address) {
     this.address = address;
     return this;
   }
 
-   /**
-   * Get address
+  /**
+   * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
    * @return address
-  **/
+   */
   @javax.annotation.Nullable
-  public UserAddress getAddress() {
+  public Address getAddress() {
     return address;
   }
 
-  public void setAddress(UserAddress address) {
+  public void setAddress(Address address) {
     this.address = address;
   }
 
@@ -258,10 +257,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * The user’s email.
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
@@ -277,10 +276,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * The user’s first name.
    * @return firstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstName() {
     return firstName;
@@ -296,10 +295,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * The user’s last name.
    * @return lastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastName() {
     return lastName;
@@ -323,10 +322,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. &lt;br/&gt;This means the user can complete onboarding, receive offers, choose to accept offers, &lt;br/&gt;sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on &lt;br/&gt;behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. &lt;br/&gt;Secondary owners are beneficial owners of a business, like primary owners, and Kanmon &lt;br/&gt;must perform KYC checks for these users. Kanmon will handle creating and managing &lt;br/&gt;these users for KYC purposes through a separate process. &lt;br/&gt;
    * @return roles
-  **/
+   */
   @javax.annotation.Nullable
   public List<RolesEnum> getRoles() {
     return roles;
@@ -342,10 +341,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * Metadata from your system that you want to associate the user with.
    * @return metadata
-  **/
+   */
   @javax.annotation.Nonnull
   public Object getMetadata() {
     return metadata;
@@ -361,10 +360,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * Creation UTC ISO 8601 timestamp of the user.
    * @return createdAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getCreatedAt() {
     return createdAt;
@@ -380,10 +379,10 @@ public class User {
     return this;
   }
 
-   /**
+  /**
    * Last updated UTC ISO 8601 timestamp of the user.
    * @return updatedAt
-  **/
+   */
   @javax.annotation.Nonnull
   public String getUpdatedAt() {
     return updatedAt;
@@ -497,12 +496,12 @@ public class User {
     openapiRequiredFields.add("updatedAt");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to User
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to User
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!User.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -538,7 +537,7 @@ public class User {
         throw new IllegalArgumentException(String.format("Expected the field `businessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("businessId").toString()));
       }
       // validate the required field `address`
-      UserAddress.validateJsonElement(jsonObj.get("address"));
+      Address.validateJsonElement(jsonObj.get("address"));
       if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
       }
@@ -589,22 +588,22 @@ public class User {
     }
   }
 
- /**
-  * Create an instance of User given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of User
-  * @throws IOException if the JSON string is invalid with respect to User
-  */
+  /**
+   * Create an instance of User given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of User
+   * @throws IOException if the JSON string is invalid with respect to User
+   */
   public static User fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, User.class);
   }
 
- /**
-  * Convert an instance of User to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of User to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

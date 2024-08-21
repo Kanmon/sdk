@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,7 +48,7 @@ import com.kanmon.client.JSON;
 /**
  * MergeUsersRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class MergeUsersRequestBody {
   public static final String SERIALIZED_NAME_SOURCE_PLATFORM_BUSINESS_ID = "sourcePlatformBusinessId";
   @SerializedName(SERIALIZED_NAME_SOURCE_PLATFORM_BUSINESS_ID)
@@ -75,10 +74,10 @@ public class MergeUsersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique business ID for the business to merge users from. Either &#x60;sourcePlatformBusinessId&#x60; or &#x60;sourceBusinessId&#x60; is required.
    * @return sourcePlatformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSourcePlatformBusinessId() {
     return sourcePlatformBusinessId;
@@ -94,10 +93,10 @@ public class MergeUsersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon to merge users from. Either &#x60;sourcePlatformBusinessId&#x60; or &#x60;sourceBusinessId&#x60; is required.
    * @return sourceBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSourceBusinessId() {
     return sourceBusinessId;
@@ -113,10 +112,10 @@ public class MergeUsersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique business ID for the business to merge users to. Either &#x60;targetPlatformBusinessId&#x60; or &#x60;targetBusinessId&#x60; is required.
    * @return targetPlatformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getTargetPlatformBusinessId() {
     return targetPlatformBusinessId;
@@ -132,10 +131,10 @@ public class MergeUsersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the business in Kanmon to merge users to. Either &#x60;targetPlatformBusinessId&#x60; or &#x60;targetBusinessId&#x60; is required.
    * @return targetBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getTargetBusinessId() {
     return targetBusinessId;
@@ -206,12 +205,12 @@ public class MergeUsersRequestBody {
     openapiRequiredFields = new HashSet<String>();
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to MergeUsersRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to MergeUsersRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!MergeUsersRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -270,22 +269,22 @@ public class MergeUsersRequestBody {
     }
   }
 
- /**
-  * Create an instance of MergeUsersRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of MergeUsersRequestBody
-  * @throws IOException if the JSON string is invalid with respect to MergeUsersRequestBody
-  */
+  /**
+   * Create an instance of MergeUsersRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of MergeUsersRequestBody
+   * @throws IOException if the JSON string is invalid with respect to MergeUsersRequestBody
+   */
   public static MergeUsersRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, MergeUsersRequestBody.class);
   }
 
- /**
-  * Convert an instance of MergeUsersRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of MergeUsersRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

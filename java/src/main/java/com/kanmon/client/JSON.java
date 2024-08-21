@@ -13,11 +13,11 @@
 
 package com.kanmon.client;
 
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.google.gson.JsonElement;
@@ -31,16 +31,14 @@ import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 /*
  * A JSON utility class
@@ -57,11 +55,6 @@ public class JSON {
     private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
     private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
 
-    private static final StdDateFormat sdf = new StdDateFormat()
-        .withTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
-        .withColonInTimeZone(true);
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
         GsonFireBuilder fireBuilder = new GsonFireBuilder()
@@ -76,6 +69,44 @@ public class JSON {
                         classByDiscriminatorValue.put("CreateSessionTokenRequestBody_data", com.kanmon.client.model.CreateSessionTokenRequestBodyData.class);
                         return getClassByDiscriminator(classByDiscriminatorValue,
                                 getDiscriminatorValue(readElement, "component"));
+                    }
+          })
+                .registerTypeSelector(com.kanmon.client.model.IssuedProductServicingData.class, new TypeSelector<com.kanmon.client.model.IssuedProductServicingData>() {
+                    @Override
+                    public Class<? extends com.kanmon.client.model.IssuedProductServicingData> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaServicingData.class);
+                        classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingServicingData.class);
+                        classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditServicingData.class);
+                        classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaServicingData.class);
+                        classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanServicingData.class);
+                        classByDiscriminatorValue.put("IntegratedMcaServicingData", com.kanmon.client.model.IntegratedMcaServicingData.class);
+                        classByDiscriminatorValue.put("InvoiceFinancingServicingData", com.kanmon.client.model.InvoiceFinancingServicingData.class);
+                        classByDiscriminatorValue.put("LineOfCreditServicingData", com.kanmon.client.model.LineOfCreditServicingData.class);
+                        classByDiscriminatorValue.put("McaServicingData", com.kanmon.client.model.McaServicingData.class);
+                        classByDiscriminatorValue.put("TermLoanServicingData", com.kanmon.client.model.TermLoanServicingData.class);
+                        classByDiscriminatorValue.put("IssuedProduct_servicingData", com.kanmon.client.model.IssuedProductServicingData.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "productType"));
+                    }
+          })
+                .registerTypeSelector(com.kanmon.client.model.OfferTerms.class, new TypeSelector<com.kanmon.client.model.OfferTerms>() {
+                    @Override
+                    public Class<? extends com.kanmon.client.model.OfferTerms> getClassForElement(JsonElement readElement) {
+                        Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
+                        classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaOfferTerms.class);
+                        classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
+                        classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditOfferTerms.class);
+                        classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaOfferTerms.class);
+                        classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanOfferTerms.class);
+                        classByDiscriminatorValue.put("IntegratedMcaOfferTerms", com.kanmon.client.model.IntegratedMcaOfferTerms.class);
+                        classByDiscriminatorValue.put("InvoiceFinancingOfferTerms", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
+                        classByDiscriminatorValue.put("LineOfCreditOfferTerms", com.kanmon.client.model.LineOfCreditOfferTerms.class);
+                        classByDiscriminatorValue.put("McaOfferTerms", com.kanmon.client.model.McaOfferTerms.class);
+                        classByDiscriminatorValue.put("TermLoanOfferTerms", com.kanmon.client.model.TermLoanOfferTerms.class);
+                        classByDiscriminatorValue.put("Offer_terms", com.kanmon.client.model.OfferTerms.class);
+                        return getClassByDiscriminator(classByDiscriminatorValue,
+                                getDiscriminatorValue(readElement, "productType"));
                     }
           })
         ;
@@ -120,7 +151,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BankAccountNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BankStatementsInvalidException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.Business.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessAlreadyExistsException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessBankAccount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessDocument.CustomTypeAdapterFactory());
@@ -177,7 +207,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlan.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlanRepaymentWindow.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePayorAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceRepaymentSchedule.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceRepaymentScheduleItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IssuedProduct.CustomTypeAdapterFactory());
@@ -202,7 +231,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PaymentPlanRepaymentSchedule.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PaymentPlanRepaymentScheduleItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PaymentScheduleItem.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PaymentScheduleItemPaymentOrder.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PlaidAssetReportsInvalidException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PrimaryBusinessOwnerAlreadyExistsForBusinessException.CustomTypeAdapterFactory());
@@ -219,7 +247,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UpdateUser409Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UpdateUserRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.User.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UserAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UserAlreadyExistsWithEmailException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UserAlreadyExistsWithPlatformUserIdException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UserNotFoundException.CustomTypeAdapterFactory());
@@ -455,7 +482,7 @@ public class JSON {
                         if (dateFormat != null) {
                             return new java.sql.Date(dateFormat.parse(date).getTime());
                         }
-                        return new java.sql.Date(sdf.parse(date).getTime());
+                        return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
                     } catch (ParseException e) {
                         throw new JsonParseException(e);
                     }
@@ -465,7 +492,7 @@ public class JSON {
 
     /**
      * Gson TypeAdapter for java.util.Date type
-     * If the dateFormat is null, DateTimeFormatter will be used.
+     * If the dateFormat is null, ISO8601Utils will be used.
      */
     public static class DateTypeAdapter extends TypeAdapter<Date> {
 
@@ -490,7 +517,7 @@ public class JSON {
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
                 } else {
-                    value = date.toInstant().atOffset(ZoneOffset.UTC).format(dtf);
+                    value = ISO8601Utils.format(date, true);
                 }
                 out.value(value);
             }
@@ -509,7 +536,7 @@ public class JSON {
                             if (dateFormat != null) {
                                 return dateFormat.parse(date);
                             }
-                            return sdf.parse(date);
+                            return ISO8601Utils.parse(date, new ParsePosition(0));
                         } catch (ParseException e) {
                             throw new JsonParseException(e);
                         }

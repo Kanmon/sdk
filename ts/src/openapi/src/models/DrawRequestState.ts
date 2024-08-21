@@ -18,17 +18,24 @@
  * @export
  */
 export const DrawRequestState = {
-    DrawRequestCreated: 'DRAW_REQUEST_CREATED',
-    DrawRequestFunded: 'DRAW_REQUEST_FUNDED',
-    DrawRequestPaidInFull: 'DRAW_REQUEST_PAID_IN_FULL',
-    Rejected: 'REJECTED',
-    Defaulted: 'DEFAULTED'
+    DRAW_REQUEST_CREATED: 'DRAW_REQUEST_CREATED',
+    DRAW_REQUEST_FUNDED: 'DRAW_REQUEST_FUNDED',
+    DRAW_REQUEST_PAID_IN_FULL: 'DRAW_REQUEST_PAID_IN_FULL',
+    REJECTED: 'REJECTED',
+    DEFAULTED: 'DEFAULTED'
 } as const;
 export type DrawRequestState = typeof DrawRequestState[keyof typeof DrawRequestState];
 
 
 export function instanceOfDrawRequestState(value: any): boolean {
-    return Object.values(DrawRequestState).includes(value);
+    for (const key in DrawRequestState) {
+        if (Object.prototype.hasOwnProperty.call(DrawRequestState, key)) {
+            if (DrawRequestState[key as keyof typeof DrawRequestState] === value) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 export function DrawRequestStateFromJSON(json: any): DrawRequestState {

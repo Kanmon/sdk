@@ -62,7 +62,7 @@ import com.google.gson.JsonParseException;
 
 import com.kanmon.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
     private static final Logger log = Logger.getLogger(CreateSessionTokenRequestBodyData.class.getName());
 
@@ -153,12 +153,7 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
         super("oneOf", Boolean.FALSE);
     }
 
-    public CreateSessionTokenRequestBodyData(InvoiceFlowSessionTokenData o) {
-        super("oneOf", Boolean.FALSE);
-        setActualInstance(o);
-    }
-
-    public CreateSessionTokenRequestBodyData(InvoiceFlowWithInvoiceFileSessionTokenData o) {
+    public CreateSessionTokenRequestBodyData(Object o) {
         super("oneOf", Boolean.FALSE);
         setActualInstance(o);
     }

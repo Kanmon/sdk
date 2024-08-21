@@ -42,10 +42,10 @@ export interface PaginationResult {
 /**
  * Check if a given object implements the PaginationResult interface.
  */
-export function instanceOfPaginationResult(value: object): boolean {
-    if (!('limit' in value)) return false;
-    if (!('offset' in value)) return false;
-    if (!('totalCount' in value)) return false;
+export function instanceOfPaginationResult(value: object): value is PaginationResult {
+    if (!('limit' in value) || value['limit'] === undefined) return false;
+    if (!('offset' in value) || value['offset'] === undefined) return false;
+    if (!('totalCount' in value) || value['totalCount'] === undefined) return false;
     return true;
 }
 

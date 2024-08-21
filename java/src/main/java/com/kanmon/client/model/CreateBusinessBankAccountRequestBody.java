@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,7 +50,7 @@ import com.kanmon.client.JSON;
 /**
  * CreateBusinessBankAccountRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.5.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class CreateBusinessBankAccountRequestBody {
   public static final String SERIALIZED_NAME_PLATFORM_BUSINESS_ID = "platformBusinessId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_BUSINESS_ID)
@@ -193,10 +192,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique business ID for the business. Either &#x60;platformBusinessId&#x60; or &#x60;businessId&#x60; is required.
    * @return platformBusinessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformBusinessId() {
     return platformBusinessId;
@@ -212,10 +211,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The UUID representing the user’s business in Kanmon. Either &#x60;platformBusinessId&#x60; or &#x60;businessId&#x60; is required.
    * @return businessId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBusinessId() {
     return businessId;
@@ -231,10 +230,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Your platform’s unique ID for the bank account.
    * @return platformBankAccountId
-  **/
+   */
   @javax.annotation.Nonnull
   public String getPlatformBankAccountId() {
     return platformBankAccountId;
@@ -250,10 +249,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business defined bank account name.
    * @return accountName
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountName() {
     return accountName;
@@ -269,10 +268,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s bank account number. Only digits, no formatting.
    * @return accountNumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getAccountNumber() {
     return accountNumber;
@@ -288,10 +287,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The business’s bank routing number. Should be a 9 digits number, no formatting.
    * @return routingNumber
-  **/
+   */
   @javax.annotation.Nonnull
   public String getRoutingNumber() {
     return routingNumber;
@@ -307,10 +306,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The bank account’s type. Currently, we only support checking accounts. We may support others in the future.
    * @return accountType
-  **/
+   */
   @javax.annotation.Nonnull
   public AccountTypeEnum getAccountType() {
     return accountType;
@@ -334,10 +333,10 @@ public class CreateBusinessBankAccountRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The bank account’s roles. Currently, we only support creating disbursement bank account. We may support others in the future.
    * @return roles
-  **/
+   */
   @javax.annotation.Nonnull
   public List<RolesEnum> getRoles() {
     return roles;
@@ -426,12 +425,12 @@ public class CreateBusinessBankAccountRequestBody {
     openapiRequiredFields.add("roles");
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateBusinessBankAccountRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateBusinessBankAccountRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateBusinessBankAccountRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
@@ -514,22 +513,22 @@ public class CreateBusinessBankAccountRequestBody {
     }
   }
 
- /**
-  * Create an instance of CreateBusinessBankAccountRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateBusinessBankAccountRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreateBusinessBankAccountRequestBody
-  */
+  /**
+   * Create an instance of CreateBusinessBankAccountRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateBusinessBankAccountRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreateBusinessBankAccountRequestBody
+   */
   public static CreateBusinessBankAccountRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateBusinessBankAccountRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreateBusinessBankAccountRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateBusinessBankAccountRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
