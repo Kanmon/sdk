@@ -41,13 +41,13 @@ public class PrequalificationsApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getPrequalifiedBusinessesTest() throws ApiException {
+    public void getAllPrequalifiedBusinessesTest() throws ApiException {
         String platformBusinessIds = null;
         BigDecimal offset = null;
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        GetPrequalificationsResponse response = api.getPrequalifiedBusinesses(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
+        GetPrequalificationsResponse response = api.getAllPrequalifiedBusinesses(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

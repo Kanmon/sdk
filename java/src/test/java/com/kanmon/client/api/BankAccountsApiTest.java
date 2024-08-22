@@ -56,6 +56,27 @@ public class BankAccountsApiTest {
     }
 
     /**
+     * Fetch business bank accounts
+     *
+     * Please contact Kanmon to enable access to bank account APIs.
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getAllBusinessBankAccountsTest() throws ApiException {
+        String ids = null;
+        String platformBankAccountIds = null;
+        String platformBusinessIds = null;
+        String businessIds = null;
+        BigDecimal offset = null;
+        BigDecimal limit = null;
+        String createdAtStart = null;
+        String createdAtEnd = null;
+        GetBusinessBankAccountsResponse response = api.getAllBusinessBankAccounts(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        // TODO: test validations
+    }
+
+    /**
      * Fetch a business bank account
      *
      * Please contact Kanmon to enable access to bank account APIs.
@@ -67,27 +88,6 @@ public class BankAccountsApiTest {
         String id = null;
         String idType = null;
         BusinessBankAccount response = api.getBusinessBankAccount(id, idType);
-        // TODO: test validations
-    }
-
-    /**
-     * Fetch business bank accounts
-     *
-     * Please contact Kanmon to enable access to bank account APIs.
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getBusinessBankAccountsTest() throws ApiException {
-        String ids = null;
-        String platformBankAccountIds = null;
-        String platformBusinessIds = null;
-        String businessIds = null;
-        BigDecimal offset = null;
-        BigDecimal limit = null;
-        String createdAtStart = null;
-        String createdAtEnd = null;
-        GetBusinessBankAccountsResponse response = api.getBusinessBankAccounts(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

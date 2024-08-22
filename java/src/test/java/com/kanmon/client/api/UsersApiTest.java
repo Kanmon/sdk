@@ -58,6 +58,25 @@ public class UsersApiTest {
     }
 
     /**
+     * Fetch users
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getAllUsersTest() throws ApiException {
+        String ids = null;
+        String platformUserIds = null;
+        String platformBusinessIds = null;
+        String businessIds = null;
+        BigDecimal offset = null;
+        BigDecimal limit = null;
+        String createdAtStart = null;
+        String createdAtEnd = null;
+        GetUsersResponse response = api.getAllUsers(ids, platformUserIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        // TODO: test validations
+    }
+
+    /**
      * Fetch a user
      *
      * @throws ApiException if the Api call fails
@@ -67,25 +86,6 @@ public class UsersApiTest {
         String id = null;
         String idType = null;
         User response = api.getUser(id, idType);
-        // TODO: test validations
-    }
-
-    /**
-     * Fetch users
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getUsersTest() throws ApiException {
-        String ids = null;
-        String platformUserIds = null;
-        String platformBusinessIds = null;
-        String businessIds = null;
-        BigDecimal offset = null;
-        BigDecimal limit = null;
-        String createdAtStart = null;
-        String createdAtEnd = null;
-        GetUsersResponse response = api.getUsers(ids, platformUserIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

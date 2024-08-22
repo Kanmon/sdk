@@ -38,24 +38,12 @@ public class DrawRequestsApiTest {
     private final DrawRequestsApi api = new DrawRequestsApi();
 
     /**
-     * Fetch a draw request
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getDrawRequestTest() throws ApiException {
-        String id = null;
-        DrawRequest response = api.getDrawRequest(id);
-        // TODO: test validations
-    }
-
-    /**
      * Fetch draw requests
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getDrawRequestsTest() throws ApiException {
+    public void getAllDrawRequestsTest() throws ApiException {
         String statuses = null;
         String ids = null;
         String platformBusinessIds = null;
@@ -64,7 +52,19 @@ public class DrawRequestsApiTest {
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        GetDrawRequestsResponse response = api.getDrawRequests(statuses, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        GetDrawRequestsResponse response = api.getAllDrawRequests(statuses, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        // TODO: test validations
+    }
+
+    /**
+     * Fetch a draw request
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getDrawRequestTest() throws ApiException {
+        String id = null;
+        DrawRequest response = api.getDrawRequest(id);
         // TODO: test validations
     }
 
