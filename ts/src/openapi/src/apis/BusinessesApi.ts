@@ -53,6 +53,15 @@ export interface CreateBusinessRequest {
     createBusinessRequestBody: CreateBusinessRequestBody;
 }
 
+export interface GetAllBusinessesRequest {
+    ids?: string;
+    platformBusinessIds?: string;
+    offset?: number;
+    limit?: number;
+    createdAtStart?: string;
+    createdAtEnd?: string;
+}
+
 export interface GetBusinessRequest {
     id: any;
     idType?: GetBusinessIdTypeEnum;
@@ -61,15 +70,6 @@ export interface GetBusinessRequest {
 export interface GetBusinessActivityLogRequest {
     id: any;
     idType?: GetBusinessActivityLogIdTypeEnum;
-    offset?: number;
-    limit?: number;
-    createdAtStart?: string;
-    createdAtEnd?: string;
-}
-
-export interface GetBusinessesRequest {
-    ids?: string;
-    platformBusinessIds?: string;
     offset?: number;
     limit?: number;
     createdAtStart?: string;
@@ -124,6 +124,60 @@ export class BusinessesApi extends runtime.BaseAPI {
      */
     async createBusiness(requestParameters: CreateBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Business> {
         const response = await this.createBusinessRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch businesses
+     */
+    async getAllBusinessesRaw(requestParameters: GetAllBusinessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBusinessesResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['platformBusinessIds'] != null) {
+            queryParameters['platformBusinessIds'] = requestParameters['platformBusinessIds'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['createdAtStart'] != null) {
+            queryParameters['createdAtStart'] = requestParameters['createdAtStart'];
+        }
+
+        if (requestParameters['createdAtEnd'] != null) {
+            queryParameters['createdAtEnd'] = requestParameters['createdAtEnd'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/businesses`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetBusinessesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch businesses
+     */
+    async getAllBusinesses(requestParameters: GetAllBusinessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBusinessesResponse> {
+        const response = await this.getAllBusinessesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -222,60 +276,6 @@ export class BusinessesApi extends runtime.BaseAPI {
      */
     async getBusinessActivityLog(requestParameters: GetBusinessActivityLogRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetActivityLogsResponse> {
         const response = await this.getBusinessActivityLogRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Fetch businesses
-     */
-    async getBusinessesRaw(requestParameters: GetBusinessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBusinessesResponse>> {
-        const queryParameters: any = {};
-
-        if (requestParameters['ids'] != null) {
-            queryParameters['ids'] = requestParameters['ids'];
-        }
-
-        if (requestParameters['platformBusinessIds'] != null) {
-            queryParameters['platformBusinessIds'] = requestParameters['platformBusinessIds'];
-        }
-
-        if (requestParameters['offset'] != null) {
-            queryParameters['offset'] = requestParameters['offset'];
-        }
-
-        if (requestParameters['limit'] != null) {
-            queryParameters['limit'] = requestParameters['limit'];
-        }
-
-        if (requestParameters['createdAtStart'] != null) {
-            queryParameters['createdAtStart'] = requestParameters['createdAtStart'];
-        }
-
-        if (requestParameters['createdAtEnd'] != null) {
-            queryParameters['createdAtEnd'] = requestParameters['createdAtEnd'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/businesses`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetBusinessesResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Fetch businesses
-     */
-    async getBusinesses(requestParameters: GetBusinessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBusinessesResponse> {
-        const response = await this.getBusinessesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

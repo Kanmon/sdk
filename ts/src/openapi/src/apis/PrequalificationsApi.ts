@@ -31,7 +31,7 @@ import {
     InternalServerErrorExceptionToJSON,
 } from '../models/index';
 
-export interface GetPrequalifiedBusinessesRequest {
+export interface GetAllPrequalifiedBusinessesRequest {
     platformBusinessIds?: string;
     offset?: number;
     limit?: number;
@@ -47,7 +47,7 @@ export class PrequalificationsApi extends runtime.BaseAPI {
     /**
      * Fetch business prequalifications
      */
-    async getPrequalifiedBusinessesRaw(requestParameters: GetPrequalifiedBusinessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPrequalificationsResponse>> {
+    async getAllPrequalifiedBusinessesRaw(requestParameters: GetAllPrequalifiedBusinessesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPrequalificationsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['platformBusinessIds'] != null) {
@@ -89,8 +89,8 @@ export class PrequalificationsApi extends runtime.BaseAPI {
     /**
      * Fetch business prequalifications
      */
-    async getPrequalifiedBusinesses(requestParameters: GetPrequalifiedBusinessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPrequalificationsResponse> {
-        const response = await this.getPrequalifiedBusinessesRaw(requestParameters, initOverrides);
+    async getAllPrequalifiedBusinesses(requestParameters: GetAllPrequalifiedBusinessesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPrequalificationsResponse> {
+        const response = await this.getAllPrequalifiedBusinessesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

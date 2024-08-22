@@ -50,7 +50,7 @@ export interface CreateIntegratedMcaReceivableRequest {
     createIntegratedMcaReceivableBody: CreateIntegratedMcaReceivableBody;
 }
 
-export interface GetIntegratedMcaReceivablesByIssuedProductIdRequest {
+export interface GetAllIntegratedMcaReceivablesRequest {
     ids?: string;
     issuedProductIds?: string;
     transactionIds?: string;
@@ -108,7 +108,7 @@ export class IntegratedMCAReceivablesApi extends runtime.BaseAPI {
     /**
      * Fetch integrated MCA receivables
      */
-    async getIntegratedMcaReceivablesByIssuedProductIdRaw(requestParameters: GetIntegratedMcaReceivablesByIssuedProductIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIntegratedMcaReceivablesResponse>> {
+    async getAllIntegratedMcaReceivablesRaw(requestParameters: GetAllIntegratedMcaReceivablesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIntegratedMcaReceivablesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ids'] != null) {
@@ -158,8 +158,8 @@ export class IntegratedMCAReceivablesApi extends runtime.BaseAPI {
     /**
      * Fetch integrated MCA receivables
      */
-    async getIntegratedMcaReceivablesByIssuedProductId(requestParameters: GetIntegratedMcaReceivablesByIssuedProductIdRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetIntegratedMcaReceivablesResponse> {
-        const response = await this.getIntegratedMcaReceivablesByIssuedProductIdRaw(requestParameters, initOverrides);
+    async getAllIntegratedMcaReceivables(requestParameters: GetAllIntegratedMcaReceivablesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetIntegratedMcaReceivablesResponse> {
+        const response = await this.getAllIntegratedMcaReceivablesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

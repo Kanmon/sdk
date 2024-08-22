@@ -226,6 +226,195 @@ public class BankAccountsApi {
         return localVarCall;
     }
     /**
+     * Build call for getAllBusinessBankAccounts
+     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
+     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
+     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getAllBusinessBankAccountsCall(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/platform/v2/bank-accounts";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (ids != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ids", ids));
+        }
+
+        if (platformBankAccountIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBankAccountIds", platformBankAccountIds));
+        }
+
+        if (platformBusinessIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBusinessIds", platformBusinessIds));
+        }
+
+        if (businessIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (createdAtStart != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtStart", createdAtStart));
+        }
+
+        if (createdAtEnd != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtEnd", createdAtEnd));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "Authorization" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getAllBusinessBankAccountsValidateBeforeCall(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getAllBusinessBankAccountsCall(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+
+    }
+
+    /**
+     * Fetch business bank accounts
+     * Please contact Kanmon to enable access to bank account APIs.
+     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
+     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
+     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @return GetBusinessBankAccountsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetBusinessBankAccountsResponse getAllBusinessBankAccounts(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetBusinessBankAccountsResponse> localVarResp = getAllBusinessBankAccountsWithHttpInfo(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Fetch business bank accounts
+     * Please contact Kanmon to enable access to bank account APIs.
+     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
+     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
+     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @return ApiResponse&lt;GetBusinessBankAccountsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetBusinessBankAccountsResponse> getAllBusinessBankAccountsWithHttpInfo(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getAllBusinessBankAccountsValidateBeforeCall(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, null);
+        Type localVarReturnType = new TypeToken<GetBusinessBankAccountsResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Fetch business bank accounts (asynchronously)
+     * Please contact Kanmon to enable access to bank account APIs.
+     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
+     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
+     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getAllBusinessBankAccountsAsync(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetBusinessBankAccountsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getAllBusinessBankAccountsValidateBeforeCall(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+        Type localVarReturnType = new TypeToken<GetBusinessBankAccountsResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getBusinessBankAccount
      * @param id Either the Kanmon bank account UUID or your platform’s bank account ID, depending on &#x60;idType&#x60;. (required)
      * @param idType Which ID type to query the bank account by. Defaults to &#x60;KANMON&#x60;. Use &#x60;PLATFORM&#x60; if you want to query by your platform’s ID. (optional)
@@ -369,195 +558,6 @@ public class BankAccountsApi {
 
         okhttp3.Call localVarCall = getBusinessBankAccountValidateBeforeCall(id, idType, _callback);
         Type localVarReturnType = new TypeToken<BusinessBankAccount>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getBusinessBankAccounts
-     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
-     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
-     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getBusinessBankAccountsCall(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/platform/v2/bank-accounts";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (ids != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ids", ids));
-        }
-
-        if (platformBankAccountIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBankAccountIds", platformBankAccountIds));
-        }
-
-        if (platformBusinessIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBusinessIds", platformBusinessIds));
-        }
-
-        if (businessIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
-        }
-
-        if (offset != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
-        }
-
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (createdAtStart != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtStart", createdAtStart));
-        }
-
-        if (createdAtEnd != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtEnd", createdAtEnd));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "Authorization" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getBusinessBankAccountsValidateBeforeCall(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getBusinessBankAccountsCall(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
-
-    }
-
-    /**
-     * Fetch business bank accounts
-     * Please contact Kanmon to enable access to bank account APIs.
-     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
-     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
-     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return GetBusinessBankAccountsResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public GetBusinessBankAccountsResponse getBusinessBankAccounts(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetBusinessBankAccountsResponse> localVarResp = getBusinessBankAccountsWithHttpInfo(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Fetch business bank accounts
-     * Please contact Kanmon to enable access to bank account APIs.
-     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
-     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
-     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return ApiResponse&lt;GetBusinessBankAccountsResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GetBusinessBankAccountsResponse> getBusinessBankAccountsWithHttpInfo(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getBusinessBankAccountsValidateBeforeCall(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, null);
-        Type localVarReturnType = new TypeToken<GetBusinessBankAccountsResponse>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Fetch business bank accounts (asynchronously)
-     * Please contact Kanmon to enable access to bank account APIs.
-     * @param ids A comma delimited list of Kanmon’s unique IDs for bank accounts. (optional)
-     * @param platformBankAccountIds A comma delimited list of your platform’s unique IDs for bank accounts. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique business IDs for bannk accounts. (optional)
-     * @param businessIds A comma delimited list of your Kanmon’s unique business IDs for bannk accounts. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getBusinessBankAccountsAsync(String ids, String platformBankAccountIds, String platformBusinessIds, String businessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetBusinessBankAccountsResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getBusinessBankAccountsValidateBeforeCall(ids, platformBankAccountIds, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
-        Type localVarReturnType = new TypeToken<GetBusinessBankAccountsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

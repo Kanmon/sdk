@@ -37,11 +37,7 @@ import {
     InternalServerErrorExceptionToJSON,
 } from '../models/index';
 
-export interface GetDrawRequestRequest {
-    id: string;
-}
-
-export interface GetDrawRequestsRequest {
+export interface GetAllDrawRequestsRequest {
     statuses?: string;
     ids?: string;
     platformBusinessIds?: string;
@@ -52,52 +48,19 @@ export interface GetDrawRequestsRequest {
     createdAtEnd?: string;
 }
 
+export interface GetDrawRequestRequest {
+    id: string;
+}
+
 /**
  * 
  */
 export class DrawRequestsApi extends runtime.BaseAPI {
 
     /**
-     * Fetch a draw request
-     */
-    async getDrawRequestRaw(requestParameters: GetDrawRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DrawRequest>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling getDrawRequest().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/draw-requests/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => DrawRequestFromJSON(jsonValue));
-    }
-
-    /**
-     * Fetch a draw request
-     */
-    async getDrawRequest(requestParameters: GetDrawRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DrawRequest> {
-        const response = await this.getDrawRequestRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Fetch draw requests
      */
-    async getDrawRequestsRaw(requestParameters: GetDrawRequestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDrawRequestsResponse>> {
+    async getAllDrawRequestsRaw(requestParameters: GetAllDrawRequestsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDrawRequestsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['statuses'] != null) {
@@ -151,8 +114,45 @@ export class DrawRequestsApi extends runtime.BaseAPI {
     /**
      * Fetch draw requests
      */
-    async getDrawRequests(requestParameters: GetDrawRequestsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetDrawRequestsResponse> {
-        const response = await this.getDrawRequestsRaw(requestParameters, initOverrides);
+    async getAllDrawRequests(requestParameters: GetAllDrawRequestsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetDrawRequestsResponse> {
+        const response = await this.getAllDrawRequestsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch a draw request
+     */
+    async getDrawRequestRaw(requestParameters: GetDrawRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DrawRequest>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getDrawRequest().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/draw-requests/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DrawRequestFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch a draw request
+     */
+    async getDrawRequest(requestParameters: GetDrawRequestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DrawRequest> {
+        const response = await this.getDrawRequestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

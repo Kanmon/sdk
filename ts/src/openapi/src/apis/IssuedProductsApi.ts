@@ -37,11 +37,7 @@ import {
     IssuedProductNotFoundExceptionToJSON,
 } from '../models/index';
 
-export interface GetIssuedProductByIdRequest {
-    id: string;
-}
-
-export interface GetIssuedProductsRequest {
+export interface GetAllIssuedProductsRequest {
     offerIds?: string;
     ids?: string;
     platformBusinessIds?: string;
@@ -52,52 +48,19 @@ export interface GetIssuedProductsRequest {
     createdAtEnd?: string;
 }
 
+export interface GetIssuedProductByIdRequest {
+    id: string;
+}
+
 /**
  * 
  */
 export class IssuedProductsApi extends runtime.BaseAPI {
 
     /**
-     * Fetch an issued product
-     */
-    async getIssuedProductByIdRaw(requestParameters: GetIssuedProductByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IssuedProduct>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling getIssuedProductById().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/issued-products/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => IssuedProductFromJSON(jsonValue));
-    }
-
-    /**
-     * Fetch an issued product
-     */
-    async getIssuedProductById(requestParameters: GetIssuedProductByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IssuedProduct> {
-        const response = await this.getIssuedProductByIdRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Fetch issued products
      */
-    async getIssuedProductsRaw(requestParameters: GetIssuedProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIssuedProductsResponse>> {
+    async getAllIssuedProductsRaw(requestParameters: GetAllIssuedProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIssuedProductsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['offerIds'] != null) {
@@ -151,8 +114,45 @@ export class IssuedProductsApi extends runtime.BaseAPI {
     /**
      * Fetch issued products
      */
-    async getIssuedProducts(requestParameters: GetIssuedProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetIssuedProductsResponse> {
-        const response = await this.getIssuedProductsRaw(requestParameters, initOverrides);
+    async getAllIssuedProducts(requestParameters: GetAllIssuedProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetIssuedProductsResponse> {
+        const response = await this.getAllIssuedProductsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch an issued product
+     */
+    async getIssuedProductByIdRaw(requestParameters: GetIssuedProductByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<IssuedProduct>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getIssuedProductById().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/issued-products/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => IssuedProductFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch an issued product
+     */
+    async getIssuedProductById(requestParameters: GetIssuedProductByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<IssuedProduct> {
+        const response = await this.getIssuedProductByIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

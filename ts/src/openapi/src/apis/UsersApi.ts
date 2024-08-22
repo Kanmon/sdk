@@ -65,12 +65,7 @@ export interface CreateUserRequest {
     createUserRequestBody: CreateUserRequestBody;
 }
 
-export interface GetUserRequest {
-    id: string;
-    idType?: GetUserIdTypeEnum;
-}
-
-export interface GetUsersRequest {
+export interface GetAllUsersRequest {
     ids?: string;
     platformUserIds?: string;
     platformBusinessIds?: string;
@@ -79,6 +74,11 @@ export interface GetUsersRequest {
     limit?: number;
     createdAtStart?: string;
     createdAtEnd?: string;
+}
+
+export interface GetUserRequest {
+    id: string;
+    idType?: GetUserIdTypeEnum;
 }
 
 export interface MergeUserIntoBusinessRequest {
@@ -137,50 +137,9 @@ export class UsersApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch a user
-     */
-    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling getUser().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['idType'] != null) {
-            queryParameters['idType'] = requestParameters['idType'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/users/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
-    }
-
-    /**
-     * Fetch a user
-     */
-    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
-        const response = await this.getUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Fetch users
      */
-    async getUsersRaw(requestParameters: GetUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersResponse>> {
+    async getAllUsersRaw(requestParameters: GetAllUsersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUsersResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ids'] != null) {
@@ -234,8 +193,49 @@ export class UsersApi extends runtime.BaseAPI {
     /**
      * Fetch users
      */
-    async getUsers(requestParameters: GetUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersResponse> {
-        const response = await this.getUsersRaw(requestParameters, initOverrides);
+    async getAllUsers(requestParameters: GetAllUsersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetUsersResponse> {
+        const response = await this.getAllUsersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch a user
+     */
+    async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<User>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['idType'] != null) {
+            queryParameters['idType'] = requestParameters['idType'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/users/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UserFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch a user
+     */
+    async getUser(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<User> {
+        const response = await this.getUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

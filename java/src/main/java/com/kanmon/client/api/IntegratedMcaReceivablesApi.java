@@ -225,7 +225,7 @@ public class IntegratedMcaReceivablesApi {
         return localVarCall;
     }
     /**
-     * Build call for getIntegratedMcaReceivablesByIssuedProductId
+     * Build call for getAllIntegratedMcaReceivables
      * @param ids A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable. (optional)
      * @param issuedProductIds A comma delimited list of Kanmon unique IDs for issued product. (optional)
      * @param transactionIds A comma delimited list of your platform’s unique IDs for transaction. (optional)
@@ -245,7 +245,7 @@ public class IntegratedMcaReceivablesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIntegratedMcaReceivablesByIssuedProductIdCall(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAllIntegratedMcaReceivablesCall(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -318,8 +318,8 @@ public class IntegratedMcaReceivablesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getIntegratedMcaReceivablesByIssuedProductIdValidateBeforeCall(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getIntegratedMcaReceivablesByIssuedProductIdCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+    private okhttp3.Call getAllIntegratedMcaReceivablesValidateBeforeCall(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getAllIntegratedMcaReceivablesCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, _callback);
 
     }
 
@@ -344,8 +344,8 @@ public class IntegratedMcaReceivablesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public GetIntegratedMcaReceivablesResponse getIntegratedMcaReceivablesByIssuedProductId(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetIntegratedMcaReceivablesResponse> localVarResp = getIntegratedMcaReceivablesByIssuedProductIdWithHttpInfo(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd);
+    public GetIntegratedMcaReceivablesResponse getAllIntegratedMcaReceivables(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetIntegratedMcaReceivablesResponse> localVarResp = getAllIntegratedMcaReceivablesWithHttpInfo(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd);
         return localVarResp.getData();
     }
 
@@ -370,8 +370,8 @@ public class IntegratedMcaReceivablesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetIntegratedMcaReceivablesResponse> getIntegratedMcaReceivablesByIssuedProductIdWithHttpInfo(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getIntegratedMcaReceivablesByIssuedProductIdValidateBeforeCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, null);
+    public ApiResponse<GetIntegratedMcaReceivablesResponse> getAllIntegratedMcaReceivablesWithHttpInfo(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getAllIntegratedMcaReceivablesValidateBeforeCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, null);
         Type localVarReturnType = new TypeToken<GetIntegratedMcaReceivablesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -398,9 +398,9 @@ public class IntegratedMcaReceivablesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getIntegratedMcaReceivablesByIssuedProductIdAsync(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetIntegratedMcaReceivablesResponse> _callback) throws ApiException {
+    public okhttp3.Call getAllIntegratedMcaReceivablesAsync(String ids, String issuedProductIds, String transactionIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetIntegratedMcaReceivablesResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getIntegratedMcaReceivablesByIssuedProductIdValidateBeforeCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+        okhttp3.Call localVarCall = getAllIntegratedMcaReceivablesValidateBeforeCall(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd, _callback);
         Type localVarReturnType = new TypeToken<GetIntegratedMcaReceivablesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

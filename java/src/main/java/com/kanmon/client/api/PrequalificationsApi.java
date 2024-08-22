@@ -77,7 +77,7 @@ public class PrequalificationsApi {
     }
 
     /**
-     * Build call for getPrequalifiedBusinesses
+     * Build call for getAllPrequalifiedBusinesses
      * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
@@ -95,7 +95,7 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPrequalifiedBusinessesCall(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getAllPrequalifiedBusinessesCall(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -160,8 +160,8 @@ public class PrequalificationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPrequalifiedBusinessesValidateBeforeCall(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getPrequalifiedBusinessesCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+    private okhttp3.Call getAllPrequalifiedBusinessesValidateBeforeCall(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getAllPrequalifiedBusinessesCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
 
     }
 
@@ -184,8 +184,8 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public GetPrequalificationsResponse getPrequalifiedBusinesses(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetPrequalificationsResponse> localVarResp = getPrequalifiedBusinessesWithHttpInfo(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
+    public GetPrequalificationsResponse getAllPrequalifiedBusinesses(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetPrequalificationsResponse> localVarResp = getAllPrequalifiedBusinessesWithHttpInfo(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
         return localVarResp.getData();
     }
 
@@ -208,8 +208,8 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPrequalificationsResponse> getPrequalifiedBusinessesWithHttpInfo(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getPrequalifiedBusinessesValidateBeforeCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, null);
+    public ApiResponse<GetPrequalificationsResponse> getAllPrequalifiedBusinessesWithHttpInfo(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getAllPrequalifiedBusinessesValidateBeforeCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, null);
         Type localVarReturnType = new TypeToken<GetPrequalificationsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -234,9 +234,9 @@ public class PrequalificationsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPrequalifiedBusinessesAsync(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPrequalificationsResponse> _callback) throws ApiException {
+    public okhttp3.Call getAllPrequalifiedBusinessesAsync(String platformBusinessIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPrequalificationsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPrequalifiedBusinessesValidateBeforeCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+        okhttp3.Call localVarCall = getAllPrequalifiedBusinessesValidateBeforeCall(platformBusinessIds, offset, limit, createdAtStart, createdAtEnd, _callback);
         Type localVarReturnType = new TypeToken<GetPrequalificationsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -79,6 +79,203 @@ public class InvoicesApi {
     }
 
     /**
+     * Build call for getAllInvoices
+     * @param statuses A comma delimited list of invoice statuses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getAllInvoicesCall(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/platform/v2/invoices";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (statuses != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("statuses", statuses));
+        }
+
+        if (ids != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ids", ids));
+        }
+
+        if (platformBusinessIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBusinessIds", platformBusinessIds));
+        }
+
+        if (businessIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
+        }
+
+        if (platformInvoiceIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformInvoiceIds", platformInvoiceIds));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (createdAtStart != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtStart", createdAtStart));
+        }
+
+        if (createdAtEnd != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtEnd", createdAtEnd));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "Authorization" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getAllInvoicesValidateBeforeCall(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getAllInvoicesCall(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+
+    }
+
+    /**
+     * Fetch invoices
+     * 
+     * @param statuses A comma delimited list of invoice statuses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @return GetInvoicesResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetInvoicesResponse getAllInvoices(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetInvoicesResponse> localVarResp = getAllInvoicesWithHttpInfo(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Fetch invoices
+     * 
+     * @param statuses A comma delimited list of invoice statuses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @return ApiResponse&lt;GetInvoicesResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetInvoicesResponse> getAllInvoicesWithHttpInfo(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getAllInvoicesValidateBeforeCall(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd, null);
+        Type localVarReturnType = new TypeToken<GetInvoicesResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Fetch invoices (asynchronously)
+     * 
+     * @param statuses A comma delimited list of invoice statuses. (optional)
+     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getAllInvoicesAsync(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetInvoicesResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getAllInvoicesValidateBeforeCall(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd, _callback);
+        Type localVarReturnType = new TypeToken<GetInvoicesResponse>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getInvoice
      * @param id Either the Kanmon invoice UUID or your platform’s invoice ID, depending on &#x60;idType&#x60;. (required)
      * @param idType Which ID type to query the invoice by. Defaults to &#x60;KANMON&#x60;. Use &#x60;PLATFORM&#x60; if you want to query by your platform’s ID. (optional)
@@ -222,203 +419,6 @@ public class InvoicesApi {
 
         okhttp3.Call localVarCall = getInvoiceValidateBeforeCall(id, idType, _callback);
         Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for getInvoices
-     * @param statuses A comma delimited list of invoice statuses. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
-     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getInvoicesCall(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/platform/v2/invoices";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (statuses != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("statuses", statuses));
-        }
-
-        if (ids != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ids", ids));
-        }
-
-        if (platformBusinessIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformBusinessIds", platformBusinessIds));
-        }
-
-        if (businessIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
-        }
-
-        if (platformInvoiceIds != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("platformInvoiceIds", platformInvoiceIds));
-        }
-
-        if (offset != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
-        }
-
-        if (limit != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (createdAtStart != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtStart", createdAtStart));
-        }
-
-        if (createdAtEnd != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtEnd", createdAtEnd));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "Authorization" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call getInvoicesValidateBeforeCall(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getInvoicesCall(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd, _callback);
-
-    }
-
-    /**
-     * Fetch invoices
-     * 
-     * @param statuses A comma delimited list of invoice statuses. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
-     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return GetInvoicesResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public GetInvoicesResponse getInvoices(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetInvoicesResponse> localVarResp = getInvoicesWithHttpInfo(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Fetch invoices
-     * 
-     * @param statuses A comma delimited list of invoice statuses. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
-     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @return ApiResponse&lt;GetInvoicesResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<GetInvoicesResponse> getInvoicesWithHttpInfo(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getInvoicesValidateBeforeCall(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd, null);
-        Type localVarReturnType = new TypeToken<GetInvoicesResponse>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Fetch invoices (asynchronously)
-     * 
-     * @param statuses A comma delimited list of invoice statuses. (optional)
-     * @param ids A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
-     * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
-     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
-     * @param platformInvoiceIds A comma delimited list of your platforms’s unique IDs for invoices. (optional)
-     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
-     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call getInvoicesAsync(String statuses, String ids, String platformBusinessIds, String businessIds, String platformInvoiceIds, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetInvoicesResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = getInvoicesValidateBeforeCall(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd, _callback);
-        Type localVarReturnType = new TypeToken<GetInvoicesResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
