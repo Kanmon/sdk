@@ -53,12 +53,7 @@ export interface CreateBusinessBankAccountRequest {
     createBusinessBankAccountRequestBody: CreateBusinessBankAccountRequestBody;
 }
 
-export interface GetBusinessBankAccountRequest {
-    id: string;
-    idType?: GetBusinessBankAccountIdTypeEnum;
-}
-
-export interface GetBusinessBankAccountsRequest {
+export interface GetAllBusinessBankAccountsRequest {
     ids?: string;
     platformBankAccountIds?: string;
     platformBusinessIds?: string;
@@ -67,6 +62,11 @@ export interface GetBusinessBankAccountsRequest {
     limit?: number;
     createdAtStart?: string;
     createdAtEnd?: string;
+}
+
+export interface GetBusinessBankAccountRequest {
+    id: string;
+    idType?: GetBusinessBankAccountIdTypeEnum;
 }
 
 export interface UpdateBusinessBankAccountRequest {
@@ -124,52 +124,9 @@ export class BankAccountsApi extends runtime.BaseAPI {
 
     /**
      * Please contact Kanmon to enable access to bank account APIs.
-     * Fetch a business bank account
-     */
-    async getBusinessBankAccountRaw(requestParameters: GetBusinessBankAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BusinessBankAccount>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling getBusinessBankAccount().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['idType'] != null) {
-            queryParameters['idType'] = requestParameters['idType'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/bank-accounts/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => BusinessBankAccountFromJSON(jsonValue));
-    }
-
-    /**
-     * Please contact Kanmon to enable access to bank account APIs.
-     * Fetch a business bank account
-     */
-    async getBusinessBankAccount(requestParameters: GetBusinessBankAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BusinessBankAccount> {
-        const response = await this.getBusinessBankAccountRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Please contact Kanmon to enable access to bank account APIs.
      * Fetch business bank accounts
      */
-    async getBusinessBankAccountsRaw(requestParameters: GetBusinessBankAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBusinessBankAccountsResponse>> {
+    async getAllBusinessBankAccountsRaw(requestParameters: GetAllBusinessBankAccountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBusinessBankAccountsResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['ids'] != null) {
@@ -224,8 +181,51 @@ export class BankAccountsApi extends runtime.BaseAPI {
      * Please contact Kanmon to enable access to bank account APIs.
      * Fetch business bank accounts
      */
-    async getBusinessBankAccounts(requestParameters: GetBusinessBankAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBusinessBankAccountsResponse> {
-        const response = await this.getBusinessBankAccountsRaw(requestParameters, initOverrides);
+    async getAllBusinessBankAccounts(requestParameters: GetAllBusinessBankAccountsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetBusinessBankAccountsResponse> {
+        const response = await this.getAllBusinessBankAccountsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Please contact Kanmon to enable access to bank account APIs.
+     * Fetch a business bank account
+     */
+    async getBusinessBankAccountRaw(requestParameters: GetBusinessBankAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BusinessBankAccount>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getBusinessBankAccount().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['idType'] != null) {
+            queryParameters['idType'] = requestParameters['idType'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/bank-accounts/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BusinessBankAccountFromJSON(jsonValue));
+    }
+
+    /**
+     * Please contact Kanmon to enable access to bank account APIs.
+     * Fetch a business bank account
+     */
+    async getBusinessBankAccount(requestParameters: GetBusinessBankAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BusinessBankAccount> {
+        const response = await this.getBusinessBankAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

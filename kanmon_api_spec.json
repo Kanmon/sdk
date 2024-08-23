@@ -6,7 +6,7 @@
     {
       "get":
       {
-        "operationId": "getPrequalifiedBusinesses",
+        "operationId": "getAllPrequalifiedBusinesses",
         "x-readme":
         {
           "code-samples":
@@ -15,7 +15,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.prequalifications.getPrequalifiedBusinesses({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.prequalifications.getAllPrequalifiedBusinesses({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -271,7 +271,7 @@
       },
       "get":
       {
-        "operationId": "getBusinesses",
+        "operationId": "getAllBusinesses",
         "x-readme":
         {
           "code-samples":
@@ -280,7 +280,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.businesses.getBusinesses({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.businesses.getAllBusinesses({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -1037,7 +1037,7 @@
       },
       "get":
       {
-        "operationId": "getUsers",
+        "operationId": "getAllUsers",
         "x-readme":
         {
           "code-samples":
@@ -1046,7 +1046,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.users.getUsers({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.users.getAllUsers({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -1091,7 +1091,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "814690a2-57ec-49f5-a310-3f932c997f90,441fc036-6309-4a11-a26c-a6776471ea9f",
+            "example": "c44afefd-f4bb-41e2-8293-ee8f3436da7d,a2c28cf6-fe03-4537-be20-c5046e6289bf",
             "schema":
             {
               "type": "string"
@@ -1916,7 +1916,7 @@
     {
       "get":
       {
-        "operationId": "getInvoices",
+        "operationId": "getAllInvoices",
         "x-readme":
         {
           "code-samples":
@@ -1925,7 +1925,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.invoices.getInvoices({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.invoices.getAllInvoices({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -2514,7 +2514,7 @@
     {
       "get":
       {
-        "operationId": "getIssuedProducts",
+        "operationId": "getAllIssuedProducts",
         "x-readme":
         {
           "code-samples":
@@ -2523,7 +2523,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.issuedProducts.getIssuedProducts({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.issuedProducts.getAllIssuedProducts({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -2827,7 +2827,7 @@
       },
       "get":
       {
-        "operationId": "getBusinessBankAccounts",
+        "operationId": "getAllBusinessBankAccounts",
         "x-readme":
         {
           "code-samples":
@@ -2836,7 +2836,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.bankAccounts.getBusinessBankAccounts({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.bankAccounts.getAllBusinessBankAccounts({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -2882,7 +2882,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "1348287b-b4a5-4e92-bcb5-9b8d1fa9486e,74ccb8fc-6a69-41df-b6a9-9a4d2827ed89",
+            "example": "daa316ee-728d-4a7b-aa18-267f2cad1dac,46926699-76b0-438f-9419-0d5d16c6ef4e",
             "schema":
             {
               "type": "string"
@@ -3429,7 +3429,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "1b30378c-4c1c-4575-990e-4dc0e0e9cc87,a158c620-b37f-4c6b-9580-9615d94183d0",
+            "example": "ce814008-fb9a-4c74-8791-7689c0cfbacb,b7151f06-553b-4f40-8e5d-8d5e96f81857",
             "schema":
             {
               "type": "string"
@@ -3726,7 +3726,7 @@
     {
       "get":
       {
-        "operationId": "getDrawRequests",
+        "operationId": "getAllDrawRequests",
         "x-readme":
         {
           "code-samples":
@@ -3735,7 +3735,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.drawRequests.getDrawRequests({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.drawRequests.getAllDrawRequests({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -4013,7 +4013,7 @@
     {
       "get":
       {
-        "operationId": "getIntegratedMcaReceivablesByIssuedProductId",
+        "operationId": "getAllIntegratedMcaReceivables",
         "x-readme":
         {
           "code-samples":
@@ -4022,7 +4022,7 @@
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.integratedMcaReceivable.getIntegratedMcaReceivablesByIssuedProductId({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.integratedMcaReceivable.getAllIntegratedMcaReceivables({\n  ...params...\n})\n    "
             }
           ]
         },

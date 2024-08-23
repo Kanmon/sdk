@@ -58,7 +58,7 @@ public class IntegratedMcaReceivablesApiTest {
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getIntegratedMcaReceivablesByIssuedProductIdTest() throws ApiException {
+    public void getAllIntegratedMcaReceivablesTest() throws ApiException {
         String ids = null;
         String issuedProductIds = null;
         String transactionIds = null;
@@ -66,7 +66,7 @@ public class IntegratedMcaReceivablesApiTest {
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        GetIntegratedMcaReceivablesResponse response = api.getIntegratedMcaReceivablesByIssuedProductId(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd);
+        GetIntegratedMcaReceivablesResponse response = api.getAllIntegratedMcaReceivables(ids, issuedProductIds, transactionIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

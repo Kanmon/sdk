@@ -54,6 +54,23 @@ public class BusinessesApiTest {
     }
 
     /**
+     * Fetch businesses
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getAllBusinessesTest() throws ApiException {
+        String ids = null;
+        String platformBusinessIds = null;
+        BigDecimal offset = null;
+        BigDecimal limit = null;
+        String createdAtStart = null;
+        String createdAtEnd = null;
+        GetBusinessesResponse response = api.getAllBusinesses(ids, platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
+        // TODO: test validations
+    }
+
+    /**
      * Fetch a business
      *
      * @throws ApiException if the Api call fails
@@ -80,23 +97,6 @@ public class BusinessesApiTest {
         String createdAtStart = null;
         String createdAtEnd = null;
         GetActivityLogsResponse response = api.getBusinessActivityLog(id, idType, offset, limit, createdAtStart, createdAtEnd);
-        // TODO: test validations
-    }
-
-    /**
-     * Fetch businesses
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getBusinessesTest() throws ApiException {
-        String ids = null;
-        String platformBusinessIds = null;
-        BigDecimal offset = null;
-        BigDecimal limit = null;
-        String createdAtStart = null;
-        String createdAtEnd = null;
-        GetBusinessesResponse response = api.getBusinesses(ids, platformBusinessIds, offset, limit, createdAtStart, createdAtEnd);
         // TODO: test validations
     }
 

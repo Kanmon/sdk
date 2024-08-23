@@ -37,12 +37,7 @@ import {
     InvoiceToJSON,
 } from '../models/index';
 
-export interface GetInvoiceRequest {
-    id: string;
-    idType?: GetInvoiceIdTypeEnum;
-}
-
-export interface GetInvoicesRequest {
+export interface GetAllInvoicesRequest {
     statuses?: string;
     ids?: string;
     platformBusinessIds?: string;
@@ -54,56 +49,20 @@ export interface GetInvoicesRequest {
     createdAtEnd?: string;
 }
 
+export interface GetInvoiceRequest {
+    id: string;
+    idType?: GetInvoiceIdTypeEnum;
+}
+
 /**
  * 
  */
 export class InvoicesApi extends runtime.BaseAPI {
 
     /**
-     * Fetch an invoice
-     */
-    async getInvoiceRaw(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invoice>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling getInvoice().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters['idType'] != null) {
-            queryParameters['idType'] = requestParameters['idType'];
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/invoices/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceFromJSON(jsonValue));
-    }
-
-    /**
-     * Fetch an invoice
-     */
-    async getInvoice(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Invoice> {
-        const response = await this.getInvoiceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Fetch invoices
      */
-    async getInvoicesRaw(requestParameters: GetInvoicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetInvoicesResponse>> {
+    async getAllInvoicesRaw(requestParameters: GetAllInvoicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetInvoicesResponse>> {
         const queryParameters: any = {};
 
         if (requestParameters['statuses'] != null) {
@@ -161,8 +120,49 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * Fetch invoices
      */
-    async getInvoices(requestParameters: GetInvoicesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetInvoicesResponse> {
-        const response = await this.getInvoicesRaw(requestParameters, initOverrides);
+    async getAllInvoices(requestParameters: GetAllInvoicesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetInvoicesResponse> {
+        const response = await this.getAllInvoicesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch an invoice
+     */
+    async getInvoiceRaw(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invoice>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getInvoice().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters['idType'] != null) {
+            queryParameters['idType'] = requestParameters['idType'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/invoices/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch an invoice
+     */
+    async getInvoice(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Invoice> {
+        const response = await this.getInvoiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

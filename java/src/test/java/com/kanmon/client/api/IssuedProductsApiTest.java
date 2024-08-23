@@ -38,24 +38,12 @@ public class IssuedProductsApiTest {
     private final IssuedProductsApi api = new IssuedProductsApi();
 
     /**
-     * Fetch an issued product
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getIssuedProductByIdTest() throws ApiException {
-        String id = null;
-        IssuedProduct response = api.getIssuedProductById(id);
-        // TODO: test validations
-    }
-
-    /**
      * Fetch issued products
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getIssuedProductsTest() throws ApiException {
+    public void getAllIssuedProductsTest() throws ApiException {
         String offerIds = null;
         String ids = null;
         String platformBusinessIds = null;
@@ -64,7 +52,19 @@ public class IssuedProductsApiTest {
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        GetIssuedProductsResponse response = api.getIssuedProducts(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        GetIssuedProductsResponse response = api.getAllIssuedProducts(offerIds, ids, platformBusinessIds, businessIds, offset, limit, createdAtStart, createdAtEnd);
+        // TODO: test validations
+    }
+
+    /**
+     * Fetch an issued product
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getIssuedProductByIdTest() throws ApiException {
+        String id = null;
+        IssuedProduct response = api.getIssuedProductById(id);
         // TODO: test validations
     }
 

@@ -17,7 +17,7 @@ servers:
 paths:
   /api/platform/v2/prequalifications:
     get:
-      operationId: getPrequalifiedBusinesses
+      operationId: getAllPrequalifiedBusinesses
       parameters:
       - description: A comma delimited list of your platform’s unique IDs for businesses.
         example: "12345,67890"
@@ -103,13 +103,13 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.prequalifications.getPrequalifiedBusinesses({\n  ...params...\n\
+          code: "\nkanmonApi.prequalifications.getAllPrequalifiedBusinesses({\n  ...params...\n\
             })\n    "
       x-accepts:
       - application/json
   /api/platform/v2/businesses:
     get:
-      operationId: getBusinesses
+      operationId: getAllBusinesses
       parameters:
       - description: A comma delimited list of Kanmon’s unique IDs for businesses.
         example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
@@ -204,7 +204,8 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.businesses.getBusinesses({\n  ...params...\n})\n    "
+          code: "\nkanmonApi.businesses.getAllBusinesses({\n  ...params...\n})\n \
+            \   "
       x-accepts:
       - application/json
     post:
@@ -526,7 +527,7 @@ paths:
       - application/json
   /api/platform/v2/users:
     get:
-      operationId: getUsers
+      operationId: getAllUsers
       parameters:
       - description: A comma delimited list of Kanmon’s unique IDs for users.
         example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
@@ -558,7 +559,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "814690a2-57ec-49f5-a310-3f932c997f90,441fc036-6309-4a11-a26c-a6776471ea9f"
+        example: "c44afefd-f4bb-41e2-8293-ee8f3436da7d,a2c28cf6-fe03-4537-be20-c5046e6289bf"
         explode: true
         in: query
         name: businessIds
@@ -641,7 +642,7 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.users.getUsers({\n  ...params...\n})\n    "
+          code: "\nkanmonApi.users.getAllUsers({\n  ...params...\n})\n    "
       x-accepts:
       - application/json
     post:
@@ -1053,7 +1054,7 @@ paths:
       - application/json
   /api/platform/v2/invoices:
     get:
-      operationId: getInvoices
+      operationId: getAllInvoices
       parameters:
       - description: A comma delimited list of invoice statuses.
         example: "INVOICE_CREATED,INVOICE_FUNDED"
@@ -1175,7 +1176,7 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.invoices.getInvoices({\n  ...params...\n})\n    "
+          code: "\nkanmonApi.invoices.getAllInvoices({\n  ...params...\n})\n    "
       x-accepts:
       - application/json
   /api/platform/v2/offers/{id}:
@@ -1404,7 +1405,7 @@ paths:
       - application/json
   /api/platform/v2/issued-products:
     get:
-      operationId: getIssuedProducts
+      operationId: getAllIssuedProducts
       parameters:
       - description: A comma delimited list of Kanmon’s unique IDs for offers.
         example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
@@ -1517,14 +1518,14 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.issuedProducts.getIssuedProducts({\n  ...params...\n\
+          code: "\nkanmonApi.issuedProducts.getAllIssuedProducts({\n  ...params...\n\
             })\n    "
       x-accepts:
       - application/json
   /api/platform/v2/bank-accounts:
     get:
       description: Please contact Kanmon to enable access to bank account APIs.
-      operationId: getBusinessBankAccounts
+      operationId: getAllBusinessBankAccounts
       parameters:
       - description: A comma delimited list of Kanmon’s unique IDs for bank accounts.
         example: "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34"
@@ -1557,7 +1558,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "1348287b-b4a5-4e92-bcb5-9b8d1fa9486e,74ccb8fc-6a69-41df-b6a9-9a4d2827ed89"
+        example: "daa316ee-728d-4a7b-aa18-267f2cad1dac,46926699-76b0-438f-9419-0d5d16c6ef4e"
         explode: true
         in: query
         name: businessIds
@@ -1640,7 +1641,7 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.bankAccounts.getBusinessBankAccounts({\n  ...params...\n\
+          code: "\nkanmonApi.bankAccounts.getAllBusinessBankAccounts({\n  ...params...\n\
             })\n    "
       x-accepts:
       - application/json
@@ -1924,7 +1925,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "1b30378c-4c1c-4575-990e-4dc0e0e9cc87,a158c620-b37f-4c6b-9580-9615d94183d0"
+        example: "ce814008-fb9a-4c74-8791-7689c0cfbacb,b7151f06-553b-4f40-8e5d-8d5e96f81857"
         explode: true
         in: query
         name: drawRequestIds
@@ -2105,7 +2106,7 @@ paths:
       - application/json
   /api/platform/v2/draw-requests:
     get:
-      operationId: getDrawRequests
+      operationId: getAllDrawRequests
       parameters:
       - description: A comma delimited list of draw request statuses.
         example: "DRAW_REQUEST_FUNDED,DRAW_REQUEST_PAID_IN_FULL"
@@ -2218,7 +2219,7 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.drawRequests.getDrawRequests({\n  ...params...\n})\n\
+          code: "\nkanmonApi.drawRequests.getAllDrawRequests({\n  ...params...\n})\n\
             \    "
       x-accepts:
       - application/json
@@ -2274,7 +2275,7 @@ paths:
       - application/json
   /api/platform/v2/integrated-mca-receivables:
     get:
-      operationId: getIntegratedMcaReceivablesByIssuedProductId
+      operationId: getAllIntegratedMcaReceivables
       parameters:
       - description: A comma delimited list of Kanmon’s unique IDs for integrated
           MCA receivable.
@@ -2379,7 +2380,7 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.integratedMcaReceivable.getIntegratedMcaReceivablesByIssuedProductId({\n\
+          code: "\nkanmonApi.integratedMcaReceivable.getAllIntegratedMcaReceivables({\n\
             \  ...params...\n})\n    "
       x-accepts:
       - application/json

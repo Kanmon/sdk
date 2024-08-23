@@ -38,25 +38,12 @@ public class InvoicesApiTest {
     private final InvoicesApi api = new InvoicesApi();
 
     /**
-     * Fetch an invoice
-     *
-     * @throws ApiException if the Api call fails
-     */
-    @Test
-    public void getInvoiceTest() throws ApiException {
-        String id = null;
-        String idType = null;
-        Invoice response = api.getInvoice(id, idType);
-        // TODO: test validations
-    }
-
-    /**
      * Fetch invoices
      *
      * @throws ApiException if the Api call fails
      */
     @Test
-    public void getInvoicesTest() throws ApiException {
+    public void getAllInvoicesTest() throws ApiException {
         String statuses = null;
         String ids = null;
         String platformBusinessIds = null;
@@ -66,7 +53,20 @@ public class InvoicesApiTest {
         BigDecimal limit = null;
         String createdAtStart = null;
         String createdAtEnd = null;
-        GetInvoicesResponse response = api.getInvoices(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd);
+        GetInvoicesResponse response = api.getAllInvoices(statuses, ids, platformBusinessIds, businessIds, platformInvoiceIds, offset, limit, createdAtStart, createdAtEnd);
+        // TODO: test validations
+    }
+
+    /**
+     * Fetch an invoice
+     *
+     * @throws ApiException if the Api call fails
+     */
+    @Test
+    public void getInvoiceTest() throws ApiException {
+        String id = null;
+        String idType = null;
+        Invoice response = api.getInvoice(id, idType);
         // TODO: test validations
     }
 
