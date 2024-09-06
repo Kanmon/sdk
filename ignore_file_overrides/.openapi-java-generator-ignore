@@ -26,5 +26,6 @@
 **/git_push.sh
 **/*.md
 **/.travis.yml
-#**/src/main/java/com/kanmon/client/model/*Exception.java
-#**/src/test
+# Ignore pom.xml file during generation to avoid overwriting the Maven Central repository release information.
+# We will maintain this file manually if we need to add new dependencies or update the version of existing dependencies.
+**/pom.xml
