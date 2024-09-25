@@ -1,12 +1,9 @@
 name: Java Release to Maven
 
-# on:
-#   push:
-#     tags:
-#       - "v*"
 on:
   push:
-    branches: update-package-json-require
+    tags:
+      - "v*"
 
 jobs:
   publish:
