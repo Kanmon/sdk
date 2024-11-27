@@ -22,9 +22,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for businesses.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -32,9 +30,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -42,9 +38,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -52,9 +46,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -62,9 +54,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -82,9 +72,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -92,9 +80,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -109,14 +95,8 @@
             }
           }
         },
-        "tags": [
-          "Prequalifications"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Prequalifications"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/businesses": {
@@ -149,9 +129,7 @@
             "description": "Business created",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Business"
-                }
+                "schema": { "$ref": "#/components/schemas/Business" }
               }
             }
           },
@@ -159,9 +137,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -169,9 +145,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -213,14 +187,8 @@
             }
           }
         },
-        "tags": [
-          "Businesses"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Businesses"],
+        "security": [{ "Authorization": [] }]
       },
       "get": {
         "operationId": "getAllBusinesses",
@@ -242,9 +210,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for businesses.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -252,9 +218,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for businesses.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -262,9 +226,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -272,9 +234,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -282,9 +242,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -292,9 +250,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -312,9 +268,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -322,9 +276,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -339,14 +291,8 @@
             }
           }
         },
-        "tags": [
-          "Businesses"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Businesses"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/businesses/{id}": {
@@ -378,13 +324,7 @@
             "in": "query",
             "description": "Which ID type to query the business by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "requestBody": {
@@ -402,9 +342,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Business"
-                }
+                "schema": { "$ref": "#/components/schemas/Business" }
               }
             }
           },
@@ -412,9 +350,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -422,9 +358,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -466,14 +400,8 @@
             }
           }
         },
-        "tags": [
-          "Businesses"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Businesses"],
+        "security": [{ "Authorization": [] }]
       },
       "get": {
         "operationId": "getBusiness",
@@ -503,13 +431,7 @@
             "in": "query",
             "description": "Which ID type to query the business by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "responses": {
@@ -517,9 +439,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Business"
-                }
+                "schema": { "$ref": "#/components/schemas/Business" }
               }
             }
           },
@@ -527,9 +447,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -537,9 +455,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -564,14 +480,8 @@
             }
           }
         },
-        "tags": [
-          "Businesses"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Businesses"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/businesses/{id}/activity-logs": {
@@ -603,13 +513,7 @@
             "in": "query",
             "description": "Which ID type to query the business by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           },
           {
             "name": "offset",
@@ -617,9 +521,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -627,9 +529,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -637,9 +537,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -647,9 +545,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -667,9 +563,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -677,9 +571,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -704,14 +596,8 @@
             }
           }
         },
-        "tags": [
-          "Businesses"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Businesses"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/users": {
@@ -733,9 +619,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserRequestBody"
-              }
+              "schema": { "$ref": "#/components/schemas/CreateUserRequestBody" }
             }
           }
         },
@@ -744,9 +628,7 @@
             "description": "User created",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
+                "schema": { "$ref": "#/components/schemas/User" }
               }
             }
           },
@@ -754,9 +636,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -764,9 +644,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -811,14 +689,8 @@
             }
           }
         },
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Users"],
+        "security": [{ "Authorization": [] }]
       },
       "get": {
         "operationId": "getAllUsers",
@@ -840,9 +712,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for users.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformUserIds",
@@ -850,9 +720,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for users.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -860,19 +728,15 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique business IDs for users.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "businessIds",
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "e571dfdc-e6d5-42f3-ae13-892ffd893e7d,fd424965-a4b3-44e9-91f5-1152ee02a670",
-            "schema": {
-              "type": "string"
-            }
+            "example": "3ba26e34-66ac-4fc6-880d-6e675fe76d36,7c57c7af-6176-4ece-9be4-718538311b62",
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -880,9 +744,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -890,9 +752,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -900,9 +760,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -910,9 +768,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -920,9 +776,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetUsersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetUsersResponse" }
               }
             }
           },
@@ -930,9 +784,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -940,9 +792,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -957,14 +807,8 @@
             }
           }
         },
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Users"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/users/{id}": {
@@ -988,9 +832,7 @@
             "in": "path",
             "description": "Either the Kanmon user UUID or your platform’s user ID, depending on `idType`.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "idType",
@@ -998,13 +840,7 @@
             "in": "query",
             "description": "Which ID type to query the user by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "responses": {
@@ -1012,9 +848,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
+                "schema": { "$ref": "#/components/schemas/User" }
               }
             }
           },
@@ -1022,9 +856,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1032,9 +864,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1059,14 +889,8 @@
             }
           }
         },
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Users"],
+        "security": [{ "Authorization": [] }]
       },
       "patch": {
         "operationId": "updateUser",
@@ -1088,9 +912,7 @@
             "in": "path",
             "description": "Either the Kanmon user UUID or your platform’s user ID, depending on `idType`.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "idType",
@@ -1098,22 +920,14 @@
             "in": "query",
             "description": "Which ID type to query the user by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateUserRequestBody"
-              }
+              "schema": { "$ref": "#/components/schemas/UpdateUserRequestBody" }
             }
           }
         },
@@ -1122,9 +936,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
+                "schema": { "$ref": "#/components/schemas/User" }
               }
             }
           },
@@ -1132,9 +944,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1142,9 +952,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1186,14 +994,8 @@
             }
           }
         },
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Users"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/users/merge": {
@@ -1216,9 +1018,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MergeUsersRequestBody"
-              }
+              "schema": { "$ref": "#/components/schemas/MergeUsersRequestBody" }
             }
           }
         },
@@ -1237,9 +1037,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1247,9 +1045,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1284,14 +1080,8 @@
             }
           }
         },
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Users"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/connect-tokens": {
@@ -1324,9 +1114,7 @@
             "description": "Connect token created.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ConnectToken"
-                }
+                "schema": { "$ref": "#/components/schemas/ConnectToken" }
               }
             }
           },
@@ -1334,9 +1122,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1344,9 +1130,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1371,14 +1155,8 @@
             }
           }
         },
-        "tags": [
-          "Connect Tokens"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Connect Tokens"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/invoices/{id}": {
@@ -1402,9 +1180,7 @@
             "in": "path",
             "description": "Either the Kanmon invoice UUID or your platform’s invoice ID, depending on `idType`.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "idType",
@@ -1412,13 +1188,7 @@
             "in": "query",
             "description": "Which ID type to query the invoice by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "responses": {
@@ -1426,9 +1196,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Invoice"
-                }
+                "schema": { "$ref": "#/components/schemas/Invoice" }
               }
             }
           },
@@ -1436,9 +1204,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1446,9 +1212,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1458,12 +1222,8 @@
               "application/json": {
                 "schema": {
                   "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/InvoiceNotFoundException"
-                    },
-                    {
-                      "$ref": "#/components/schemas/BusinessNotFoundException"
-                    }
+                    { "$ref": "#/components/schemas/InvoiceNotFoundException" },
+                    { "$ref": "#/components/schemas/BusinessNotFoundException" }
                   ]
                 }
               }
@@ -1480,14 +1240,8 @@
             }
           }
         },
-        "tags": [
-          "Invoices"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Invoices"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/invoices": {
@@ -1511,9 +1265,7 @@
             "in": "query",
             "description": "A comma delimited list of invoice statuses.",
             "example": "INVOICE_CREATED,INVOICE_FUNDED",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "ids",
@@ -1521,9 +1273,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for invoices.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -1531,9 +1281,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for businesses.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "businessIds",
@@ -1541,9 +1289,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for businesses.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformInvoiceIds",
@@ -1551,9 +1297,7 @@
             "in": "query",
             "description": "A comma delimited list of your platforms’s unique IDs for invoices.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -1561,9 +1305,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -1571,9 +1313,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -1581,9 +1321,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -1591,9 +1329,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1601,9 +1337,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetInvoicesResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetInvoicesResponse" }
               }
             }
           },
@@ -1611,9 +1345,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1621,9 +1353,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1638,14 +1368,8 @@
             }
           }
         },
-        "tags": [
-          "Invoices"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Invoices"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/offers/{id}": {
@@ -1669,9 +1393,7 @@
             "in": "path",
             "description": "The Kanmon offer UUID.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1679,9 +1401,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Offer"
-                }
+                "schema": { "$ref": "#/components/schemas/Offer" }
               }
             }
           },
@@ -1689,9 +1409,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1699,9 +1417,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1726,14 +1442,8 @@
             }
           }
         },
-        "tags": [
-          "Offers"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Offers"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/offers": {
@@ -1757,9 +1467,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for offers.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -1767,9 +1475,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for businesses.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "businessIds",
@@ -1777,9 +1483,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for businesses.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -1787,9 +1491,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -1797,9 +1499,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -1807,9 +1507,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -1817,9 +1515,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1827,9 +1523,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetOffersResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/GetOffersResponse" }
               }
             }
           },
@@ -1837,9 +1531,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1847,9 +1539,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1864,14 +1554,8 @@
             }
           }
         },
-        "tags": [
-          "Offers"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Offers"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/issued-products/{id}": {
@@ -1895,9 +1579,7 @@
             "in": "path",
             "description": "The Kanmon issued product UUID.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -1905,9 +1587,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IssuedProduct"
-                }
+                "schema": { "$ref": "#/components/schemas/IssuedProduct" }
               }
             }
           },
@@ -1915,9 +1595,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -1925,9 +1603,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -1952,14 +1628,8 @@
             }
           }
         },
-        "tags": [
-          "Issued Products"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Issued Products"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/issued-products": {
@@ -1983,9 +1653,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for offers.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "ids",
@@ -1993,9 +1661,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for issued products.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -2003,9 +1669,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for businesses.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "businessIds",
@@ -2013,9 +1677,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for businesses.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -2023,9 +1685,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -2033,9 +1693,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -2043,9 +1701,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -2053,9 +1709,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -2073,9 +1727,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2083,9 +1735,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2100,14 +1750,8 @@
             }
           }
         },
-        "tags": [
-          "Issued Products"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Issued Products"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/bank-accounts": {
@@ -2141,9 +1785,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BusinessBankAccount"
-                }
+                "schema": { "$ref": "#/components/schemas/BusinessBankAccount" }
               }
             }
           },
@@ -2151,9 +1793,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2161,9 +1801,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2198,14 +1836,8 @@
             }
           }
         },
-        "tags": [
-          "Bank Accounts"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Bank Accounts"],
+        "security": [{ "Authorization": [] }]
       },
       "get": {
         "operationId": "getAllBusinessBankAccounts",
@@ -2228,9 +1860,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for bank accounts.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBankAccountIds",
@@ -2238,9 +1868,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for bank accounts.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -2248,19 +1876,15 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique business IDs for bannk accounts.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "businessIds",
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "29bc2693-ca4b-4d07-b7cf-dc509acd50ab,863ec540-c246-4698-8ea3-a05582883f2c",
-            "schema": {
-              "type": "string"
-            }
+            "example": "a8d4e5b7-5940-402d-a1f7-bc6287cdeec2,b9fda7eb-8838-4810-8711-f2f2ef22dc1f",
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -2268,9 +1892,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -2278,9 +1900,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -2288,9 +1908,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -2298,9 +1916,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -2318,9 +1934,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2328,9 +1942,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2345,14 +1957,8 @@
             }
           }
         },
-        "tags": [
-          "Bank Accounts"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Bank Accounts"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/bank-accounts/{id}": {
@@ -2377,9 +1983,7 @@
             "in": "path",
             "description": "Either the Kanmon bank account UUID or your platform’s bank account ID, depending on `idType`.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "idType",
@@ -2387,13 +1991,7 @@
             "in": "query",
             "description": "Which ID type to query the bank account by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "responses": {
@@ -2401,9 +1999,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BusinessBankAccount"
-                }
+                "schema": { "$ref": "#/components/schemas/BusinessBankAccount" }
               }
             }
           },
@@ -2411,9 +2007,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2421,9 +2015,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2448,14 +2040,8 @@
             }
           }
         },
-        "tags": [
-          "Bank Accounts"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Bank Accounts"],
+        "security": [{ "Authorization": [] }]
       },
       "patch": {
         "operationId": "updateBusinessBankAccount",
@@ -2478,9 +2064,7 @@
             "in": "path",
             "description": "Either the Kanmon bank account UUID or your platform’s bank account ID, depending on `idType`.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "idType",
@@ -2488,13 +2072,7 @@
             "in": "query",
             "description": "Which ID type to query the bank account by. Defaults to `KANMON`. Use `PLATFORM` if you want to query by your platform’s ID.",
             "example": "KANMON",
-            "schema": {
-              "enum": [
-                "KANMON",
-                "PLATFORM"
-              ],
-              "type": "string"
-            }
+            "schema": { "enum": ["KANMON", "PLATFORM"], "type": "string" }
           }
         ],
         "requestBody": {
@@ -2512,9 +2090,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BusinessBankAccount"
-                }
+                "schema": { "$ref": "#/components/schemas/BusinessBankAccount" }
               }
             }
           },
@@ -2522,9 +2098,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2532,9 +2106,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2559,14 +2131,8 @@
             }
           }
         },
-        "tags": [
-          "Bank Accounts"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Bank Accounts"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/payments/{id}": {
@@ -2590,9 +2156,7 @@
             "in": "path",
             "description": "The Kanmon payment order UUID.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -2600,9 +2164,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaymentOrder"
-                }
+                "schema": { "$ref": "#/components/schemas/PaymentOrder" }
               }
             }
           },
@@ -2610,9 +2172,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2620,9 +2180,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2647,14 +2205,8 @@
             }
           }
         },
-        "tags": [
-          "Payments"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Payments"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/issued-products/{id}/payment-schedule": {
@@ -2677,10 +2229,8 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "cee11812-ac88-4dc5-a7b2-08656f25bb74,11620f14-f637-41b6-9e03-670deaeac78b",
-            "schema": {
-              "type": "string"
-            }
+            "example": "e636b275-6400-4fb5-b961-53c1786dc417,d96ac176-7dc6-4df5-83f2-520cd4a68a39",
+            "schema": { "type": "string" }
           },
           {
             "name": "invoiceIds",
@@ -2688,9 +2238,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for invoices.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformInvoiceIds",
@@ -2698,9 +2246,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for invoices.",
             "example": "12322,12331",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "direction",
@@ -2709,10 +2255,7 @@
             "description": "The direction of the payment.",
             "example": "REPAYMENT",
             "schema": {
-              "enum": [
-                "DISBURSEMENT",
-                "REPAYMENT"
-              ],
+              "enum": ["DISBURSEMENT", "REPAYMENT"],
               "type": "string"
             }
           },
@@ -2722,9 +2265,7 @@
             "in": "query",
             "description": "The status of the payment.",
             "example": "PAID",
-            "schema": {
-              "$ref": "#/components/schemas/PaymentOrderStatus"
-            }
+            "schema": { "$ref": "#/components/schemas/PaymentOrderStatus" }
           },
           {
             "name": "id",
@@ -2732,9 +2273,7 @@
             "in": "path",
             "description": "The Kanmon issued product UUID.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -2742,9 +2281,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -2752,9 +2289,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           }
         ],
         "responses": {
@@ -2772,9 +2307,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2782,9 +2315,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2809,14 +2340,8 @@
             }
           }
         },
-        "tags": [
-          "Payments"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Payments"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/draw-requests/{id}": {
@@ -2840,9 +2365,7 @@
             "in": "path",
             "description": "The Kanmon draw request UUID.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -2850,9 +2373,7 @@
             "description": "",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DrawRequest"
-                }
+                "schema": { "$ref": "#/components/schemas/DrawRequest" }
               }
             }
           },
@@ -2860,9 +2381,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -2870,9 +2389,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -2897,14 +2414,8 @@
             }
           }
         },
-        "tags": [
-          "Draw Requests"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Draw Requests"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/draw-requests": {
@@ -2928,9 +2439,7 @@
             "in": "query",
             "description": "A comma delimited list of draw request statuses.",
             "example": "DRAW_REQUEST_FUNDED,DRAW_REQUEST_PAID_IN_FULL",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "ids",
@@ -2938,9 +2447,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for invoices.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "platformBusinessIds",
@@ -2948,9 +2455,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for businesses.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "businessIds",
@@ -2958,9 +2463,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for businesses.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -2968,9 +2471,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -2978,9 +2479,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -2988,9 +2487,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -2998,9 +2495,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -3018,9 +2513,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3028,9 +2521,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -3045,14 +2536,8 @@
             }
           }
         },
-        "tags": [
-          "Draw Requests"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Draw Requests"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/documents": {
@@ -3095,9 +2580,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3105,9 +2588,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -3122,14 +2603,8 @@
             }
           }
         },
-        "tags": [
-          "Documents"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Documents"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/integrated-mca-receivables": {
@@ -3153,9 +2628,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique IDs for integrated MCA receivable.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "issuedProductIds",
@@ -3163,9 +2636,7 @@
             "in": "query",
             "description": "A comma delimited list of Kanmon unique IDs for issued product.",
             "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6,70eaa08c-f7a5-4f3a-860d-a16dde5771e34",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "transactionIds",
@@ -3173,9 +2644,7 @@
             "in": "query",
             "description": "A comma delimited list of your platform’s unique IDs for transaction.",
             "example": "12345,67890",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "offset",
@@ -3183,9 +2652,7 @@
             "in": "query",
             "description": "The number of records to skip when performing pagination. Defaults to `0`.",
             "example": "0",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "limit",
@@ -3193,9 +2660,7 @@
             "in": "query",
             "description": "The number of records to limit when performing pagination. Defaults to `100`, which is the max.",
             "example": "100",
-            "schema": {
-              "type": "number"
-            }
+            "schema": { "type": "number" }
           },
           {
             "name": "createdAtStart",
@@ -3203,9 +2668,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is greater than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           },
           {
             "name": "createdAtEnd",
@@ -3213,9 +2676,7 @@
             "in": "query",
             "description": "Filter for records where `createdAt` is less than or equal to this value. ISO 8601 format.",
             "example": "2022-06-01T03:57:26.115Z",
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -3233,9 +2694,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3243,9 +2702,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -3260,14 +2717,8 @@
             }
           }
         },
-        "tags": [
-          "Integrated MCA Receivables"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Integrated MCA Receivables"],
+        "security": [{ "Authorization": [] }]
       },
       "post": {
         "operationId": "createIntegratedMcaReceivable",
@@ -3310,9 +2761,7 @@
               "application/json": {
                 "schema": {
                   "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/BadRequestException"
-                    },
+                    { "$ref": "#/components/schemas/BadRequestException" },
                     {
                       "$ref": "#/components/schemas/NoRemainingBalanceException"
                     },
@@ -3328,9 +2777,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -3372,14 +2819,8 @@
             }
           }
         },
-        "tags": [
-          "Integrated MCA Receivables"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Integrated MCA Receivables"],
+        "security": [{ "Authorization": [] }]
       }
     },
     "/api/platform/v2/embedded-session": {
@@ -3413,9 +2854,7 @@
             "description": "Embedded session created.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmbeddedSession"
-                }
+                "schema": { "$ref": "#/components/schemas/EmbeddedSession" }
               }
             }
           },
@@ -3423,9 +2862,7 @@
             "description": "BadRequestException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BadRequestException"
-                }
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
               }
             }
           },
@@ -3433,9 +2870,7 @@
             "description": "ForbiddenException",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ForbiddenException"
-                }
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
               }
             }
           },
@@ -3477,14 +2912,8 @@
             }
           }
         },
-        "tags": [
-          "Embedded Sessions"
-        ],
-        "security": [
-          {
-            "Authorization": []
-          }
-        ]
+        "tags": ["Embedded Sessions"],
+        "security": [{ "Authorization": [] }]
       }
     }
   },
@@ -3496,22 +2925,10 @@
   },
   "tags": [],
   "servers": [
-    {
-      "url": "https://api.kanmon.com",
-      "description": "Production"
-    },
-    {
-      "url": "https://api.kanmon.dev",
-      "description": "Sandbox"
-    },
-    {
-      "url": "http://localhost:3333",
-      "description": "Local"
-    },
-    {
-      "url": "https://workflow.concar.dev",
-      "description": "Staging"
-    }
+    { "url": "https://api.kanmon.com", "description": "Production" },
+    { "url": "https://api.kanmon.dev", "description": "Sandbox" },
+    { "url": "http://localhost:3333", "description": "Local" },
+    { "url": "https://workflow.concar.dev", "description": "Staging" }
   ],
   "components": {
     "securitySchemes": {
@@ -3522,22 +2939,24 @@
       }
     },
     "schemas": {
+      "ProductType": {
+        "type": "string",
+        "enum": [
+          "INVOICE_FINANCING",
+          "TERM_LOAN",
+          "MCA",
+          "LINE_OF_CREDIT",
+          "INTEGRATED_MCA",
+          "ACCOUNTS_PAYABLE_FINANCING"
+        ]
+      },
       "BusinessPrequalification": {
         "type": "object",
         "properties": {
           "product": {
-            "type": "string",
-            "description": "The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.",
             "example": "TERM_LOAN",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ],
-            "nullable": true
+            "nullable": true,
+            "$ref": "#/components/schemas/ProductType"
           },
           "platformId": {
             "type": "string",
@@ -3606,11 +3025,7 @@
             "example": "100"
           }
         },
-        "required": [
-          "limit",
-          "offset",
-          "totalCount"
-        ]
+        "required": ["limit", "offset", "totalCount"]
       },
       "GetPrequalificationsResponse": {
         "type": "object",
@@ -3618,32 +3033,21 @@
           "prequalifications": {
             "description": "Array of prequalifications.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BusinessPrequalification"
-            }
+            "items": { "$ref": "#/components/schemas/BusinessPrequalification" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "prequalifications",
-          "pagination"
-        ]
+        "required": ["prequalifications", "pagination"]
       },
       "BadRequestException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BadRequestException"
-            ],
+            "enum": ["BadRequestException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -3657,20 +3061,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "ForbiddenException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "ForbiddenException"
-            ],
+            "enum": ["ForbiddenException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -3684,20 +3082,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "InternalServerErrorException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "InternalServerErrorException"
-            ],
+            "enum": ["InternalServerErrorException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -3711,26 +3103,18 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "Address": {
         "type": "object",
         "properties": {
-          "addressLineOne": {
-            "type": "string"
-          },
+          "addressLineOne": { "type": "string" },
           "addressLineTwo": {
             "type": "string",
             "example": "Apt 123",
             "nullable": true
           },
-          "city": {
-            "type": "string"
-          },
+          "city": { "type": "string" },
           "state": {
             "type": "string",
             "description": "The 2 character abbreviated state",
@@ -3806,13 +3190,7 @@
             "example": "USA"
           }
         },
-        "required": [
-          "addressLineOne",
-          "city",
-          "state",
-          "zipcode",
-          "country"
-        ]
+        "required": ["addressLineOne", "city", "state", "zipcode", "country"]
       },
       "CreateBusinessRequestBody": {
         "type": "object",
@@ -3836,11 +3214,7 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "ein": {
             "type": "string",
@@ -3867,9 +3241,7 @@
             "description": "Metadata from your system that you want to associate the business with."
           }
         },
-        "required": [
-          "platformBusinessId"
-        ]
+        "required": ["platformBusinessId"]
       },
       "Business": {
         "type": "object",
@@ -3900,11 +3272,7 @@
               "addressLineOne": "123 Main Street"
             },
             "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "ein": {
             "type": "string",
@@ -3960,9 +3328,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BusinessAlreadyExistsException"
-            ],
+            "enum": ["BusinessAlreadyExistsException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -3976,11 +3342,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "UpdateBusinessRequestBody": {
         "type": "object",
@@ -4004,11 +3366,7 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "ein": {
             "type": "string",
@@ -4041,9 +3399,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BusinessNotFoundException"
-            ],
+            "enum": ["BusinessNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -4057,11 +3413,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "ActivityLog": {
         "type": "object",
@@ -4118,23 +3470,14 @@
           "activityLogs": {
             "description": "An array of activity logs.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ActivityLog"
-            }
+            "items": { "$ref": "#/components/schemas/ActivityLog" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "activityLogs",
-          "pagination"
-        ]
+        "required": ["activityLogs", "pagination"]
       },
       "GetBusinessesResponse": {
         "type": "object",
@@ -4142,23 +3485,14 @@
           "businesses": {
             "description": "Array of businesses.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Business"
-            }
+            "items": { "$ref": "#/components/schemas/Business" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "businesses",
-          "pagination"
-        ]
+        "required": ["businesses", "pagination"]
       },
       "CreateUserRequestBody": {
         "type": "object",
@@ -4202,34 +3536,20 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "roles": {
             "type": "array",
             "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>",
-            "example": [
-              "PRIMARY_OWNER"
-            ],
-            "items": {
-              "type": "string",
-              "enum": [
-                "PRIMARY_OWNER",
-                "OPERATOR"
-              ]
-            }
+            "example": ["PRIMARY_OWNER"],
+            "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
           "metadata": {
             "type": "object",
             "description": "Metadata from your system that you want to associate the user with."
           }
         },
-        "required": [
-          "platformUserId"
-        ]
+        "required": ["platformUserId"]
       },
       "User": {
         "type": "object",
@@ -4265,11 +3585,7 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "email": {
             "type": "string",
@@ -4292,16 +3608,8 @@
           "roles": {
             "type": "array",
             "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>",
-            "example": [
-              "PRIMARY_OWNER"
-            ],
-            "items": {
-              "type": "string",
-              "enum": [
-                "PRIMARY_OWNER",
-                "OPERATOR"
-              ]
-            }
+            "example": ["PRIMARY_OWNER"],
+            "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
           "metadata": {
             "type": "object",
@@ -4334,9 +3642,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "UserNotFoundException"
-            ],
+            "enum": ["UserNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -4350,11 +3656,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "GetUsersResponse": {
         "type": "object",
@@ -4362,23 +3664,14 @@
           "users": {
             "description": "Array of users.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            }
+            "items": { "$ref": "#/components/schemas/User" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "users",
-          "pagination"
-        ]
+        "required": ["users", "pagination"]
       },
       "UpdateUserRequestBody": {
         "type": "object",
@@ -4402,11 +3695,7 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "email": {
             "type": "string",
@@ -4416,16 +3705,8 @@
           "roles": {
             "type": "array",
             "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>",
-            "example": [
-              "PRIMARY_OWNER"
-            ],
-            "items": {
-              "type": "string",
-              "enum": [
-                "OPERATOR",
-                "PRIMARY_OWNER"
-              ]
-            }
+            "example": ["PRIMARY_OWNER"],
+            "items": { "type": "string", "enum": ["OPERATOR", "PRIMARY_OWNER"] }
           },
           "metadata": {
             "type": "object",
@@ -4464,23 +3745,17 @@
           "mergedUsers": {
             "description": "An array of users that were merged into the target business.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/User"
-            }
+            "items": { "$ref": "#/components/schemas/User" }
           }
         },
-        "required": [
-          "mergedUsers"
-        ]
+        "required": ["mergedUsers"]
       },
       "PrimaryBusinessOwnerAlreadyExistsForBusinessException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "PrimaryBusinessOwnerAlreadyExistsForBusinessException"
-            ],
+            "enum": ["PrimaryBusinessOwnerAlreadyExistsForBusinessException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -4494,11 +3769,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "CreateConnectTokenRequestBody": {
         "type": "object",
@@ -4524,9 +3795,7 @@
             "example": "24470124-e9d4-4a0b-9a1a-d575418ae050"
           }
         },
-        "required": [
-          "connectToken"
-        ]
+        "required": ["connectToken"]
       },
       "InvoiceStatus": {
         "type": "string",
@@ -4590,9 +3859,7 @@
             }
           }
         },
-        "required": [
-          "schedule"
-        ]
+        "required": ["schedule"]
       },
       "Invoice": {
         "type": "object",
@@ -4647,19 +3914,12 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "payorType": {
             "type": "string",
             "description": "`INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company.",
-            "enum": [
-              "BUSINESS",
-              "INDIVIDUAL"
-            ],
+            "enum": ["BUSINESS", "INDIVIDUAL"],
             "example": "BUSINESS",
             "nullable": true
           },
@@ -4728,9 +3988,7 @@
               ]
             },
             "allOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceRepaymentSchedule"
-              }
+              { "$ref": "#/components/schemas/InvoiceRepaymentSchedule" }
             ]
           },
           "advanceRatePercentage": {
@@ -4791,39 +4049,21 @@
           "invoices": {
             "description": "Array of invoices.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Invoice"
-            }
+            "items": { "$ref": "#/components/schemas/Invoice" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "invoices",
-          "pagination"
-        ]
+        "required": ["invoices", "pagination"]
       },
       "TermLoanOfferTerms": {
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.",
             "example": "TERM_LOAN",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "maxLoanAmountCents": {
             "type": "number",
@@ -4863,42 +4103,26 @@
       "FixedDateInvoiceRepaymentWindow": {
         "type": "object",
         "properties": {
-          "repaymentType": {
-            "type": "string",
-            "enum": [
-              "FIXED_DATE"
-            ]
-          },
+          "repaymentType": { "type": "string", "enum": ["FIXED_DATE"] },
           "monthlyRepaymentDay": {
             "type": "number",
             "description": "The day on which the repayment is due. E.g. a value of `15` means the repayment is due on the 15th.",
             "example": "15"
           }
         },
-        "required": [
-          "repaymentType",
-          "monthlyRepaymentDay"
-        ]
+        "required": ["repaymentType", "monthlyRepaymentDay"]
       },
       "FixedDurationInvoiceRepaymentWindow": {
         "type": "object",
         "properties": {
-          "repaymentType": {
-            "type": "string",
-            "enum": [
-              "FIXED_DURATION"
-            ]
-          },
+          "repaymentType": { "type": "string", "enum": ["FIXED_DURATION"] },
           "repaymentDurationDays": {
             "type": "number",
             "description": "This amount of days after which the repayment duration is due.",
             "example": 30
           }
         },
-        "required": [
-          "repaymentType",
-          "repaymentDurationDays"
-        ]
+        "required": ["repaymentType", "repaymentDurationDays"]
       },
       "PaymentPlanRepaymentScheduleItem": {
         "type": "object",
@@ -4914,10 +4138,7 @@
             "example": 50
           }
         },
-        "required": [
-          "repaymentDurationDays",
-          "repaymentPercentage"
-        ]
+        "required": ["repaymentDurationDays", "repaymentPercentage"]
       },
       "PaymentPlanRepaymentSchedule": {
         "type": "object",
@@ -4930,27 +4151,17 @@
             }
           }
         },
-        "required": [
-          "schedule"
-        ]
+        "required": ["schedule"]
       },
       "MultipleDurationInvoiceRepaymentWindow": {
         "type": "object",
         "properties": {
-          "repaymentType": {
-            "type": "string",
-            "enum": [
-              "MULTIPLE_DURATION"
-            ]
-          },
+          "repaymentType": { "type": "string", "enum": ["MULTIPLE_DURATION"] },
           "repaymentSchedule": {
             "$ref": "#/components/schemas/PaymentPlanRepaymentSchedule"
           }
         },
-        "required": [
-          "repaymentType",
-          "repaymentSchedule"
-        ]
+        "required": ["repaymentType", "repaymentSchedule"]
       },
       "InvoicePaymentPlan": {
         "type": "object",
@@ -4990,17 +4201,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.",
             "example": "INVOICE_FINANCING",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents": {
             "type": "number",
@@ -5010,32 +4212,17 @@
           "pricingPlans": {
             "description": "The pricing plans available for this offer.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoicePaymentPlan"
-            }
+            "items": { "$ref": "#/components/schemas/InvoicePaymentPlan" }
           }
         },
-        "required": [
-          "productType",
-          "totalLimitCents",
-          "pricingPlans"
-        ]
+        "required": ["productType", "totalLimitCents", "pricingPlans"]
       },
       "McaOfferTerms": {
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `MCA` for `McaOfferTerms`.",
             "example": "MCA",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents": {
             "type": "number",
@@ -5056,12 +4243,7 @@
             "type": "string",
             "description": "The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.",
             "example": "WEEKLY",
-            "enum": [
-              "DAILY",
-              "WEEKLY",
-              "BIWEEKLY",
-              "MONTHLY"
-            ]
+            "enum": ["DAILY", "WEEKLY", "BIWEEKLY", "MONTHLY"]
           },
           "totalRepaymentCents": {
             "type": "number",
@@ -5088,17 +4270,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditOfferTerms`.",
             "example": "LINE_OF_CREDIT",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents": {
             "type": "number",
@@ -5133,17 +4306,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaOfferTerms`.",
             "example": "INTEGRATED_MCA",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents": {
             "type": "number",
@@ -5180,21 +4344,12 @@
           "maxAdvanceAmountCents"
         ]
       },
-      "AccountsPayableFinancingOfferTerms": {
+      "AccountPayableFinancingOfferTerms": {
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingOfferTerms`.",
             "example": "ACCOUNTS_PAYABLE_FINANCING",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents": {
             "type": "number",
@@ -5204,16 +4359,10 @@
           "pricingPlans": {
             "description": "The pricing plans available for this offer.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoicePaymentPlan"
-            }
+            "items": { "$ref": "#/components/schemas/InvoicePaymentPlan" }
           }
         },
-        "required": [
-          "productType",
-          "totalLimitCents",
-          "pricingPlans"
-        ]
+        "required": ["productType", "totalLimitCents", "pricingPlans"]
       },
       "Offer": {
         "type": "object",
@@ -5236,23 +4385,13 @@
           },
           "terms": {
             "oneOf": [
+              { "$ref": "#/components/schemas/TermLoanOfferTerms" },
+              { "$ref": "#/components/schemas/InvoiceFinancingOfferTerms" },
+              { "$ref": "#/components/schemas/McaOfferTerms" },
+              { "$ref": "#/components/schemas/IntegratedMcaOfferTerms" },
+              { "$ref": "#/components/schemas/LineOfCreditOfferTerms" },
               {
-                "$ref": "#/components/schemas/TermLoanOfferTerms"
-              },
-              {
-                "$ref": "#/components/schemas/InvoiceFinancingOfferTerms"
-              },
-              {
-                "$ref": "#/components/schemas/McaOfferTerms"
-              },
-              {
-                "$ref": "#/components/schemas/IntegratedMcaOfferTerms"
-              },
-              {
-                "$ref": "#/components/schemas/LineOfCreditOfferTerms"
-              },
-              {
-                "$ref": "#/components/schemas/AccountsPayableFinancingOfferTerms"
+                "$ref": "#/components/schemas/AccountPayableFinancingOfferTerms"
               }
             ],
             "discriminator": {
@@ -5263,7 +4402,7 @@
                 "MCA": "#/components/schemas/McaOfferTerms",
                 "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaOfferTerms",
                 "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditOfferTerms",
-                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountsPayableFinancingOfferTerms"
+                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountPayableFinancingOfferTerms"
               }
             },
             "description": "Terms of the offer."
@@ -5307,9 +4446,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "OfferNotFoundException"
-            ],
+            "enum": ["OfferNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -5323,11 +4460,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "GetOffersResponse": {
         "type": "object",
@@ -5335,39 +4468,21 @@
           "offers": {
             "description": "Array of offers.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Offer"
-            }
+            "items": { "$ref": "#/components/schemas/Offer" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "offers",
-          "pagination"
-        ]
+        "required": ["offers", "pagination"]
       },
       "TermLoanServicingData": {
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.",
             "example": "TERM_LOAN",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "loanAmountCents": {
             "type": "number",
@@ -5415,17 +4530,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingServicingData`.",
             "example": "INVOICE_FINANCING",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents": {
             "type": "number",
@@ -5434,9 +4540,7 @@
           "pricingPlans": {
             "description": "The pricing plans available for this issued product.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoicePaymentPlan"
-            }
+            "items": { "$ref": "#/components/schemas/InvoicePaymentPlan" }
           },
           "availableLimitCents": {
             "type": "number",
@@ -5454,17 +4558,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `MCA` for `McaServicingData`.",
             "example": "MCA",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents": {
             "type": "number",
@@ -5490,12 +4585,7 @@
             "type": "string",
             "description": "The repayment frequency of the loan. E.g. biweekly repayment occurs every 14 days, weekly repayment occurs every 7 days, etc.",
             "example": "WEEKLY",
-            "enum": [
-              "DAILY",
-              "WEEKLY",
-              "BIWEEKLY",
-              "MONTHLY"
-            ]
+            "enum": ["DAILY", "WEEKLY", "BIWEEKLY", "MONTHLY"]
           },
           "nextPaymentDate": {
             "type": "string",
@@ -5524,17 +4614,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaServicingData`.",
             "example": "INTEGRATED_MCA",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "advanceAmountCents": {
             "type": "number",
@@ -5575,17 +4656,8 @@
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.",
             "example": "LINE_OF_CREDIT",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents": {
             "type": "number",
@@ -5622,21 +4694,12 @@
           "repaymentDurationMonths"
         ]
       },
-      "AccountsPayableFinancingServicingData": {
+      "AccountPayableFinancingServicingData": {
         "type": "object",
         "properties": {
           "productType": {
-            "type": "string",
-            "description": "The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingServicingData`.",
             "example": "ACCOUNTS_PAYABLE_FINANCING",
-            "enum": [
-              "INVOICE_FINANCING",
-              "TERM_LOAN",
-              "MCA",
-              "LINE_OF_CREDIT",
-              "INTEGRATED_MCA",
-              "ACCOUNTS_PAYABLE_FINANCING"
-            ]
+            "$ref": "#/components/schemas/ProductType"
           },
           "totalLimitCents": {
             "type": "number",
@@ -5645,9 +4708,7 @@
           "pricingPlans": {
             "description": "The pricing plans available for this issued product.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvoicePaymentPlan"
-            }
+            "items": { "$ref": "#/components/schemas/InvoicePaymentPlan" }
           },
           "availableLimitCents": {
             "type": "number",
@@ -5700,23 +4761,13 @@
           },
           "servicingData": {
             "oneOf": [
+              { "$ref": "#/components/schemas/TermLoanServicingData" },
+              { "$ref": "#/components/schemas/InvoiceFinancingServicingData" },
+              { "$ref": "#/components/schemas/McaServicingData" },
+              { "$ref": "#/components/schemas/IntegratedMcaServicingData" },
+              { "$ref": "#/components/schemas/LineOfCreditServicingData" },
               {
-                "$ref": "#/components/schemas/TermLoanServicingData"
-              },
-              {
-                "$ref": "#/components/schemas/InvoiceFinancingServicingData"
-              },
-              {
-                "$ref": "#/components/schemas/McaServicingData"
-              },
-              {
-                "$ref": "#/components/schemas/IntegratedMcaServicingData"
-              },
-              {
-                "$ref": "#/components/schemas/LineOfCreditServicingData"
-              },
-              {
-                "$ref": "#/components/schemas/AccountsPayableFinancingServicingData"
+                "$ref": "#/components/schemas/AccountPayableFinancingServicingData"
               }
             ],
             "discriminator": {
@@ -5727,7 +4778,7 @@
                 "MCA": "#/components/schemas/McaServicingData",
                 "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaServicingData",
                 "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditServicingData",
-                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountsPayableFinancingServicingData"
+                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountPayableFinancingServicingData"
               }
             },
             "description": "The data needed to service this specific type of issued product"
@@ -5759,9 +4810,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "IssuedProductNotFoundException"
-            ],
+            "enum": ["IssuedProductNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -5775,11 +4824,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "GetIssuedProductsResponse": {
         "type": "object",
@@ -5787,23 +4832,14 @@
           "issuedProducts": {
             "description": "Array of issued products.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IssuedProduct"
-            }
+            "items": { "$ref": "#/components/schemas/IssuedProduct" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "issuedProducts",
-          "pagination"
-        ]
+        "required": ["issuedProducts", "pagination"]
       },
       "CreateBusinessBankAccountRequestBody": {
         "type": "object",
@@ -5842,22 +4878,13 @@
             "type": "string",
             "description": "The bank account’s type. Currently, we only support checking accounts. We may support others in the future.",
             "example": "CHECKING",
-            "enum": [
-              "CHECKING"
-            ]
+            "enum": ["CHECKING"]
           },
           "roles": {
             "type": "array",
             "description": "The bank account’s roles. Currently, we only support creating disbursement bank account. We may support others in the future.",
-            "example": [
-              "DISBURSEMENT"
-            ],
-            "items": {
-              "type": "string",
-              "enum": [
-                "DISBURSEMENT"
-              ]
-            }
+            "example": ["DISBURSEMENT"],
+            "items": { "type": "string", "enum": ["DISBURSEMENT"] }
           }
         },
         "required": [
@@ -5902,22 +4929,13 @@
             "type": "string",
             "description": "The bank account’s type. Currently, we only support checking accounts. We may support others in the future.",
             "example": "CHECKING",
-            "enum": [
-              "CHECKING"
-            ]
+            "enum": ["CHECKING"]
           },
           "roles": {
             "type": "array",
             "description": "The bank account’s roles. Currently, we only support disbursement bank role.",
-            "example": [
-              "DISBURSEMENT"
-            ],
-            "items": {
-              "type": "string",
-              "enum": [
-                "DISBURSEMENT"
-              ]
-            }
+            "example": ["DISBURSEMENT"],
+            "items": { "type": "string", "enum": ["DISBURSEMENT"] }
           },
           "createdAt": {
             "type": "string",
@@ -5947,9 +4965,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BankAccountAlreadyExistException"
-            ],
+            "enum": ["BankAccountAlreadyExistException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -5963,20 +4979,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "BankAccountNotFoundException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BankAccountNotFoundException"
-            ],
+            "enum": ["BankAccountNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -5990,11 +5000,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "GetBusinessBankAccountsResponse": {
         "type": "object",
@@ -6002,23 +5008,14 @@
           "bankAccounts": {
             "description": "Array of business bank accounts.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BusinessBankAccount"
-            }
+            "items": { "$ref": "#/components/schemas/BusinessBankAccount" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "bankAccounts",
-          "pagination"
-        ]
+        "required": ["bankAccounts", "pagination"]
       },
       "UpdateBusinessAccountRequestBody": {
         "type": "object",
@@ -6048,11 +5045,7 @@
       "PaymentOrderStatus": {
         "type": "string",
         "description": "The status of the payment.",
-        "enum": [
-          "FAILED",
-          "PAID",
-          "PENDING"
-        ]
+        "enum": ["FAILED", "PAID", "PENDING"]
       },
       "PaymentOrder": {
         "type": "object",
@@ -6135,10 +5128,7 @@
           "direction": {
             "type": "string",
             "description": "The direction of the payment.",
-            "enum": [
-              "DISBURSEMENT",
-              "REPAYMENT"
-            ],
+            "enum": ["DISBURSEMENT", "REPAYMENT"],
             "example": "DISBURSEMENT"
           },
           "status": {
@@ -6179,9 +5169,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "PaymentOrderNotFoundException"
-            ],
+            "enum": ["PaymentOrderNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -6195,11 +5183,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "PaymentScheduleItem": {
         "type": "object",
@@ -6217,17 +5201,10 @@
           "paymentOrder": {
             "description": "The payment order for this schedule item",
             "nullable": true,
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaymentOrder"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaymentOrder" }]
           }
         },
-        "required": [
-          "effectiveDate",
-          "totalPaymentAmountCents"
-        ]
+        "required": ["effectiveDate", "totalPaymentAmountCents"]
       },
       "GetPaymentScheduleResponse": {
         "type": "object",
@@ -6235,23 +5212,14 @@
           "paymentSchedule": {
             "description": "Array of payment schedule items for an issued product.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PaymentScheduleItem"
-            }
+            "items": { "$ref": "#/components/schemas/PaymentScheduleItem" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "paymentSchedule",
-          "pagination"
-        ]
+        "required": ["paymentSchedule", "pagination"]
       },
       "DrawRequestState": {
         "type": "string",
@@ -6341,9 +5309,7 @@
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "DrawRequestNotFoundException"
-            ],
+            "enum": ["DrawRequestNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -6357,11 +5323,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "GetDrawRequestsResponse": {
         "type": "object",
@@ -6369,33 +5331,21 @@
           "drawRequests": {
             "description": "Array of draw requests.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DrawRequest"
-            }
+            "items": { "$ref": "#/components/schemas/DrawRequest" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "drawRequests",
-          "pagination"
-        ]
+        "required": ["drawRequests", "pagination"]
       },
       "UploadBankDocumentsRequest": {
         "type": "object",
         "properties": {
           "invoices": {
             "type": "array",
-            "items": {
-              "type": "string",
-              "format": "binary"
-            },
+            "items": { "type": "string", "format": "binary" },
             "description": "Invoices to be uploaded. The file format must be PDF. The limit is 10 files, 10 MB per file."
           },
           "businessId": {
@@ -6409,16 +5359,12 @@
             "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
           }
         },
-        "required": [
-          "invoices"
-        ]
+        "required": ["invoices"]
       },
       "BusinessDocumentType": {
         "type": "string",
         "description": "The type of document that is uploaded.",
-        "enum": [
-          "INVOICE"
-        ]
+        "enum": ["INVOICE"]
       },
       "BusinessDocument": {
         "type": "object",
@@ -6474,14 +5420,10 @@
           "documents": {
             "description": "The documents that were uploaded.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BusinessDocument"
-            }
+            "items": { "$ref": "#/components/schemas/BusinessDocument" }
           }
         },
-        "required": [
-          "documents"
-        ]
+        "required": ["documents"]
       },
       "IntegratedMcaReceivable": {
         "type": "object",
@@ -6544,23 +5486,14 @@
           "integratedMcaReceivables": {
             "description": "The integrated MCA receivables that were created.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IntegratedMcaReceivable"
-            }
+            "items": { "$ref": "#/components/schemas/IntegratedMcaReceivable" }
           },
           "pagination": {
             "description": "Pagination metadata.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/PaginationResult"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/PaginationResult" }]
           }
         },
-        "required": [
-          "integratedMcaReceivables",
-          "pagination"
-        ]
+        "required": ["integratedMcaReceivables", "pagination"]
       },
       "CreateIntegratedMcaReceivableBody": {
         "type": "object",
@@ -6641,19 +5574,12 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "payorType": {
             "type": "string",
             "description": "`INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company.",
-            "enum": [
-              "BUSINESS",
-              "INDIVIDUAL"
-            ],
+            "enum": ["BUSINESS", "INDIVIDUAL"],
             "example": "BUSINESS"
           },
           "payorBusinessName": {
@@ -6696,23 +5622,16 @@
         "properties": {
           "component": {
             "type": "string",
-            "enum": [
-              "SESSION_INVOICE_FLOW"
-            ],
+            "enum": ["SESSION_INVOICE_FLOW"],
             "description": "Generates a session token for the invoice confirmation flow. This option can be used if you have all the required invoice data."
           },
           "invoices": {
             "description": "Details about the list of invoices which are to be created.",
             "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SessionInvoice"
-            }
+            "items": { "$ref": "#/components/schemas/SessionInvoice" }
           }
         },
-        "required": [
-          "component",
-          "invoices"
-        ]
+        "required": ["component", "invoices"]
       },
       "SessionInvoiceWithInvoiceFile": {
         "type": "object",
@@ -6761,19 +5680,12 @@
               "zipcode": "94401",
               "addressLineOne": "123 Main Street"
             },
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Address"
-              }
-            ]
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
           },
           "payorType": {
             "type": "string",
             "description": "`INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company.",
-            "enum": [
-              "BUSINESS",
-              "INDIVIDUAL"
-            ],
+            "enum": ["BUSINESS", "INDIVIDUAL"],
             "example": "BUSINESS"
           },
           "payorBusinessName": {
@@ -6801,19 +5713,14 @@
             "example": "Invoice for equipment purchased."
           }
         },
-        "required": [
-          "platformInvoiceId",
-          "documentId"
-        ]
+        "required": ["platformInvoiceId", "documentId"]
       },
       "InvoiceFlowWithInvoiceFileSessionTokenData": {
         "type": "object",
         "properties": {
           "component": {
             "type": "string",
-            "enum": [
-              "SESSION_INVOICE_FLOW_WITH_INVOICE_FILE"
-            ],
+            "enum": ["SESSION_INVOICE_FLOW_WITH_INVOICE_FILE"],
             "description": "Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.`"
           },
           "invoices": {
@@ -6824,10 +5731,7 @@
             }
           }
         },
-        "required": [
-          "component",
-          "invoices"
-        ]
+        "required": ["component", "invoices"]
       },
       "CreateSessionTokenRequestBody": {
         "type": "object",
@@ -6844,9 +5748,7 @@
           },
           "data": {
             "oneOf": [
-              {
-                "$ref": "#/components/schemas/InvoiceFlowSessionTokenData"
-              },
+              { "$ref": "#/components/schemas/InvoiceFlowSessionTokenData" },
               {
                 "$ref": "#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData"
               }
@@ -6861,9 +5763,7 @@
             "description": "This will differ depending on which `component` is used."
           }
         },
-        "required": [
-          "data"
-        ]
+        "required": ["data"]
       },
       "EmbeddedSession": {
         "type": "object",
@@ -6873,18 +5773,14 @@
             "description": "The session token used to launch an embedded session."
           }
         },
-        "required": [
-          "sessionToken"
-        ]
+        "required": ["sessionToken"]
       },
       "BusinessHasNoPrimaryOwnerException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BusinessHasNoPrimaryOwnerException"
-            ],
+            "enum": ["BusinessHasNoPrimaryOwnerException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -6898,20 +5794,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "PrimaryBusinessOwnerAlreadyExistsWithEmailException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "PrimaryBusinessOwnerAlreadyExistsWithEmailException"
-            ],
+            "enum": ["PrimaryBusinessOwnerAlreadyExistsWithEmailException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -6925,20 +5815,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "PrimaryBusinessOwnerNotFoundException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "PrimaryBusinessOwnerNotFoundException"
-            ],
+            "enum": ["PrimaryBusinessOwnerNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -6952,20 +5836,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "UnmergeableBusinessException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "UnmergeableBusinessException"
-            ],
+            "enum": ["UnmergeableBusinessException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -6979,20 +5857,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "UserAlreadyExistsWithEmailException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "UserAlreadyExistsWithEmailException"
-            ],
+            "enum": ["UserAlreadyExistsWithEmailException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7006,20 +5878,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "UserAlreadyExistsWithPlatformUserIdException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "UserAlreadyExistsWithPlatformUserIdException"
-            ],
+            "enum": ["UserAlreadyExistsWithPlatformUserIdException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7033,20 +5899,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "BusinessHasNoInvoiceFinancingProductException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BusinessHasNoInvoiceFinancingProductException"
-            ],
+            "enum": ["BusinessHasNoInvoiceFinancingProductException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7060,20 +5920,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "InvalidInvoiceDueDateException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "InvalidInvoiceDueDateException"
-            ],
+            "enum": ["InvalidInvoiceDueDateException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7087,20 +5941,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "InvoiceNotFoundException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "InvoiceNotFoundException"
-            ],
+            "enum": ["InvoiceNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7114,20 +5962,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "OfferAlreadySelectedException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "OfferAlreadySelectedException"
-            ],
+            "enum": ["OfferAlreadySelectedException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7141,20 +5983,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "OfferNotLockedException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "OfferNotLockedException"
-            ],
+            "enum": ["OfferNotLockedException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7168,20 +6004,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "SomeOffersHaveExpiredException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "SomeOffersHaveExpiredException"
-            ],
+            "enum": ["SomeOffersHaveExpiredException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7195,11 +6025,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException": {
         "type": "object",
@@ -7222,20 +6048,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "BankStatementsInvalidException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BankStatementsInvalidException"
-            ],
+            "enum": ["BankStatementsInvalidException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7249,20 +6069,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "PlaidAssetReportsInvalidException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "PlaidAssetReportsInvalidException"
-            ],
+            "enum": ["PlaidAssetReportsInvalidException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7276,20 +6090,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "CheckingAccountRequiredException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "CheckingAccountMustPresentException"
-            ],
+            "enum": ["CheckingAccountMustPresentException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7303,20 +6111,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "BusinessPlaidBankAccountNotFoundException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "BusinessPlaidBankAccountNotFoundException"
-            ],
+            "enum": ["BusinessPlaidBankAccountNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7330,20 +6132,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "IncorrectProductTypeException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "IncorrectProductTypeException"
-            ],
+            "enum": ["IncorrectProductTypeException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7357,20 +6153,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "IntegratedMcaReceivableAlreadyExistsException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "IntegratedMcaReceivableAlreadyExistsException"
-            ],
+            "enum": ["IntegratedMcaReceivableAlreadyExistsException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7384,20 +6174,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "NoRemainingBalanceException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "NoRemainingBalanceException"
-            ],
+            "enum": ["NoRemainingBalanceException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7411,20 +6195,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "IncorrectRepaymentAmountException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "IncorrectRepaymentAmountException"
-            ],
+            "enum": ["IncorrectRepaymentAmountException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7438,20 +6216,14 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       },
       "CustomInitializationNotFoundException": {
         "type": "object",
         "properties": {
           "errorCode": {
             "type": "string",
-            "enum": [
-              "CustomInitializationNotFoundException"
-            ],
+            "enum": ["CustomInitializationNotFoundException"],
             "description": "Safe for programmatic use."
           },
           "message": {
@@ -7465,11 +6237,7 @@
             "example": "2022-06-01T03:57:26.115Z"
           }
         },
-        "required": [
-          "errorCode",
-          "message",
-          "timestamp"
-        ]
+        "required": ["errorCode", "message", "timestamp"]
       }
     }
   }
