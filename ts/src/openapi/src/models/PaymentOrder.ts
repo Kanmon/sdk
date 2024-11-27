@@ -132,7 +132,8 @@ export const PaymentOrderFeeTypeEnum = {
     LATE_PAYMENT: 'LATE_PAYMENT',
     INSUFFICIENT_FUNDS: 'INSUFFICIENT_FUNDS',
     TRANSACTION_FEE: 'TRANSACTION_FEE',
-    MAINTENANCE: 'MAINTENANCE'
+    MAINTENANCE: 'MAINTENANCE',
+    EXTENSION_FEE: 'EXTENSION_FEE'
 } as const;
 export type PaymentOrderFeeTypeEnum = typeof PaymentOrderFeeTypeEnum[keyof typeof PaymentOrderFeeTypeEnum];
 

@@ -111,7 +111,7 @@ public class IntegratedMcaReceivable {
   }
 
   /**
-   * The unique identifier for the issued product in Kanmon′s system.
+   * The unique identifier for the issued product within Kanmon.
    * @return issuedProductId
    */
   @javax.annotation.Nonnull

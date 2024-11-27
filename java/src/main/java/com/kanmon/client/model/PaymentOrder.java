@@ -108,7 +108,9 @@ public class PaymentOrder {
     
     TRANSACTION_FEE("TRANSACTION_FEE"),
     
-    MAINTENANCE("MAINTENANCE");
+    MAINTENANCE("MAINTENANCE"),
+    
+    EXTENSION_FEE("EXTENSION_FEE");
 
     private String value;
 

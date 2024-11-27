@@ -22,7 +22,8 @@ export const ProductType = {
     TERM_LOAN: 'TERM_LOAN',
     MCA: 'MCA',
     LINE_OF_CREDIT: 'LINE_OF_CREDIT',
-    INTEGRATED_MCA: 'INTEGRATED_MCA'
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
 } as const;
 export type ProductType = typeof ProductType[keyof typeof ProductType];
 

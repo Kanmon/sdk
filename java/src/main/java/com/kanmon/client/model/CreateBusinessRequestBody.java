@@ -75,6 +75,10 @@ public class CreateBusinessRequestBody {
   @SerializedName(SERIALIZED_NAME_WEBSITE)
   private String website;
 
+  public static final String SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME = "customInitializationName";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME)
+  private String customInitializationName;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
@@ -196,6 +200,25 @@ public class CreateBusinessRequestBody {
   }
 
 
+  public CreateBusinessRequestBody customInitializationName(String customInitializationName) {
+    this.customInitializationName = customInitializationName;
+    return this;
+  }
+
+  /**
+   * A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.
+   * @return customInitializationName
+   */
+  @javax.annotation.Nullable
+  public String getCustomInitializationName() {
+    return customInitializationName;
+  }
+
+  public void setCustomInitializationName(String customInitializationName) {
+    this.customInitializationName = customInitializationName;
+  }
+
+
   public CreateBusinessRequestBody metadata(Object metadata) {
     this.metadata = metadata;
     return this;
@@ -231,12 +254,13 @@ public class CreateBusinessRequestBody {
         Objects.equals(this.ein, createBusinessRequestBody.ein) &&
         Objects.equals(this.phoneNumber, createBusinessRequestBody.phoneNumber) &&
         Objects.equals(this.website, createBusinessRequestBody.website) &&
+        Objects.equals(this.customInitializationName, createBusinessRequestBody.customInitializationName) &&
         Objects.equals(this.metadata, createBusinessRequestBody.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformBusinessId, name, address, ein, phoneNumber, website, metadata);
+    return Objects.hash(platformBusinessId, name, address, ein, phoneNumber, website, customInitializationName, metadata);
   }
 
   @Override
@@ -249,6 +273,7 @@ public class CreateBusinessRequestBody {
     sb.append("    ein: ").append(toIndentedString(ein)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
+    sb.append("    customInitializationName: ").append(toIndentedString(customInitializationName)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -278,6 +303,7 @@ public class CreateBusinessRequestBody {
     openapiFields.add("ein");
     openapiFields.add("phoneNumber");
     openapiFields.add("website");
+    openapiFields.add("customInitializationName");
     openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)
@@ -331,6 +357,9 @@ public class CreateBusinessRequestBody {
       }
       if ((jsonObj.get("website") != null && !jsonObj.get("website").isJsonNull()) && !jsonObj.get("website").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `website` to be a primitive type in the JSON string but got `%s`", jsonObj.get("website").toString()));
+      }
+      if ((jsonObj.get("customInitializationName") != null && !jsonObj.get("customInitializationName").isJsonNull()) && !jsonObj.get("customInitializationName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customInitializationName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customInitializationName").toString()));
       }
   }
 

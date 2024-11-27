@@ -14,6 +14,8 @@ src/apis/PrequalificationsApi.ts
 src/apis/UsersApi.ts
 src/apis/index.ts
 src/index.ts
+src/models/AccountPayableFinancingOfferTerms.ts
+src/models/AccountPayableFinancingServicingData.ts
 src/models/ActivityLog.ts
 src/models/Address.ts
 src/models/BadRequestException.ts
@@ -32,6 +34,7 @@ src/models/BusinessPlaidBankAccountNotFoundException.ts
 src/models/BusinessPrequalification.ts
 src/models/CheckingAccountRequiredException.ts
 src/models/ConnectToken.ts
+src/models/CreateBusiness404Response.ts
 src/models/CreateBusinessBankAccountRequestBody.ts
 src/models/CreateBusinessDocumentsResponse.ts
 src/models/CreateBusinessRequestBody.ts
@@ -44,6 +47,7 @@ src/models/CreateSessionTokenRequestBody.ts
 src/models/CreateSessionTokenRequestBodyData.ts
 src/models/CreateUser409Response.ts
 src/models/CreateUserRequestBody.ts
+src/models/CustomInitializationNotFoundException.ts
 src/models/DrawRequest.ts
 src/models/DrawRequestNotFoundException.ts
 src/models/DrawRequestState.ts

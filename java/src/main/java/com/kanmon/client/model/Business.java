@@ -80,6 +80,10 @@ public class Business {
   @SerializedName(SERIALIZED_NAME_WEBSITE)
   private Object website;
 
+  public static final String SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME = "customInitializationName";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME)
+  private Object customInitializationName;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
@@ -228,6 +232,25 @@ public class Business {
   }
 
 
+  public Business customInitializationName(Object customInitializationName) {
+    this.customInitializationName = customInitializationName;
+    return this;
+  }
+
+  /**
+   * A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.
+   * @return customInitializationName
+   */
+  @javax.annotation.Nullable
+  public Object getCustomInitializationName() {
+    return customInitializationName;
+  }
+
+  public void setCustomInitializationName(Object customInitializationName) {
+    this.customInitializationName = customInitializationName;
+  }
+
+
   public Business metadata(Object metadata) {
     this.metadata = metadata;
     return this;
@@ -302,6 +325,7 @@ public class Business {
         Objects.equals(this.ein, business.ein) &&
         Objects.equals(this.phoneNumber, business.phoneNumber) &&
         Objects.equals(this.website, business.website) &&
+        Objects.equals(this.customInitializationName, business.customInitializationName) &&
         Objects.equals(this.metadata, business.metadata) &&
         Objects.equals(this.createdAt, business.createdAt) &&
         Objects.equals(this.updatedAt, business.updatedAt);
@@ -313,7 +337,7 @@ public class Business {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformBusinessId, name, address, ein, phoneNumber, website, metadata, createdAt, updatedAt);
+    return Objects.hash(id, platformBusinessId, name, address, ein, phoneNumber, website, customInitializationName, metadata, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -334,6 +358,7 @@ public class Business {
     sb.append("    ein: ").append(toIndentedString(ein)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
+    sb.append("    customInitializationName: ").append(toIndentedString(customInitializationName)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
@@ -366,6 +391,7 @@ public class Business {
     openapiFields.add("ein");
     openapiFields.add("phoneNumber");
     openapiFields.add("website");
+    openapiFields.add("customInitializationName");
     openapiFields.add("metadata");
     openapiFields.add("createdAt");
     openapiFields.add("updatedAt");

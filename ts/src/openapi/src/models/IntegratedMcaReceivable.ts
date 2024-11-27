@@ -26,7 +26,7 @@ export interface IntegratedMcaReceivable {
      */
     id: string;
     /**
-     * The unique identifier for the issued product in Kanmon′s system.
+     * The unique identifier for the issued product within Kanmon.
      * @type {string}
      * @memberof IntegratedMcaReceivable
      */

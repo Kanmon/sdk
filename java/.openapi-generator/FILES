@@ -41,6 +41,8 @@ src/main/java/com/kanmon/client/auth/Authentication.java
 src/main/java/com/kanmon/client/auth/HttpBasicAuth.java
 src/main/java/com/kanmon/client/auth/HttpBearerAuth.java
 src/main/java/com/kanmon/client/model/AbstractOpenApiSchema.java
+src/main/java/com/kanmon/client/model/AccountPayableFinancingOfferTerms.java
+src/main/java/com/kanmon/client/model/AccountPayableFinancingServicingData.java
 src/main/java/com/kanmon/client/model/ActivityLog.java
 src/main/java/com/kanmon/client/model/Address.java
 src/main/java/com/kanmon/client/model/BadRequestException.java
@@ -59,6 +61,7 @@ src/main/java/com/kanmon/client/model/BusinessPlaidBankAccountNotFoundException.
 src/main/java/com/kanmon/client/model/BusinessPrequalification.java
 src/main/java/com/kanmon/client/model/CheckingAccountRequiredException.java
 src/main/java/com/kanmon/client/model/ConnectToken.java
+src/main/java/com/kanmon/client/model/CreateBusiness404Response.java
 src/main/java/com/kanmon/client/model/CreateBusinessBankAccountRequestBody.java
 src/main/java/com/kanmon/client/model/CreateBusinessDocumentsResponse.java
 src/main/java/com/kanmon/client/model/CreateBusinessRequestBody.java
@@ -71,6 +74,7 @@ src/main/java/com/kanmon/client/model/CreateSessionTokenRequestBody.java
 src/main/java/com/kanmon/client/model/CreateSessionTokenRequestBodyData.java
 src/main/java/com/kanmon/client/model/CreateUser409Response.java
 src/main/java/com/kanmon/client/model/CreateUserRequestBody.java
+src/main/java/com/kanmon/client/model/CustomInitializationNotFoundException.java
 src/main/java/com/kanmon/client/model/DrawRequest.java
 src/main/java/com/kanmon/client/model/DrawRequestNotFoundException.java
 src/main/java/com/kanmon/client/model/DrawRequestState.java
@@ -152,11 +156,5 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/api/BankAccountsApiTest.java
-src/test/java/com/kanmon/client/api/BusinessesApiTest.java
-src/test/java/com/kanmon/client/api/DrawRequestsApiTest.java
-src/test/java/com/kanmon/client/api/IntegratedMcaReceivablesApiTest.java
-src/test/java/com/kanmon/client/api/InvoicesApiTest.java
-src/test/java/com/kanmon/client/api/IssuedProductsApiTest.java
-src/test/java/com/kanmon/client/api/PrequalificationsApiTest.java
-src/test/java/com/kanmon/client/api/UsersApiTest.java
+src/test/java/com/kanmon/client/model/AccountPayableFinancingOfferTermsTest.java
+src/test/java/com/kanmon/client/model/AccountPayableFinancingServicingDataTest.java
