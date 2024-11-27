@@ -69,6 +69,12 @@ export interface Business {
      */
     website: object | null;
     /**
+     * A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.
+     * @type {object}
+     * @memberof Business
+     */
+    customInitializationName?: object;
+    /**
      * Metadata from your system that you want to associate the business with.
      * @type {object}
      * @memberof Business
@@ -120,6 +126,7 @@ export function BusinessFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'ein': json['ein'],
         'phoneNumber': json['phoneNumber'],
         'website': json['website'],
+        'customInitializationName': json['customInitializationName'] == null ? undefined : json['customInitializationName'],
         'metadata': json['metadata'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
@@ -139,6 +146,7 @@ export function BusinessToJSON(value?: Business | null): any {
         'ein': value['ein'],
         'phoneNumber': value['phoneNumber'],
         'website': value['website'],
+        'customInitializationName': value['customInitializationName'],
         'metadata': value['metadata'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],

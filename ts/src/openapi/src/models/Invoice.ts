@@ -123,7 +123,7 @@ export interface Invoice {
      */
     status: InvoiceStatus;
     /**
-     * The unique identifier for the issued product in Kanmon′s system.
+     * The unique identifier for the issued product within Kanmon.
      * @type {string}
      * @memberof Invoice
      */

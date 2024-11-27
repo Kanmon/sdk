@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface BusinessPrequalification {
     /**
-     * 
-     * @type {ProductType}
+     * The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.
+     * @type {string}
      * @memberof BusinessPrequalification
      */
-    product: ProductType;
+    product: BusinessPrequalificationProductEnum | null;
     /**
      * The UUID representing your platform in Kanmon.
      * @type {string}
@@ -77,6 +70,19 @@ export interface BusinessPrequalification {
 }
 
 
+/**
+ * @export
+ */
+export const BusinessPrequalificationProductEnum = {
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
+} as const;
+export type BusinessPrequalificationProductEnum = typeof BusinessPrequalificationProductEnum[keyof typeof BusinessPrequalificationProductEnum];
+
 
 /**
  * Check if a given object implements the BusinessPrequalification interface.
@@ -103,7 +109,7 @@ export function BusinessPrequalificationFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'product': ProductTypeFromJSON(json['product']),
+        'product': json['product'],
         'platformId': json['platformId'],
         'businessId': json['businessId'],
         'platformBusinessId': json['platformBusinessId'],
@@ -120,7 +126,7 @@ export function BusinessPrequalificationToJSON(value?: BusinessPrequalification 
     }
     return {
         
-        'product': ProductTypeToJSON(value['product']),
+        'product': value['product'],
         'platformId': value['platformId'],
         'businessId': value['businessId'],
         'platformBusinessId': value['platformBusinessId'],

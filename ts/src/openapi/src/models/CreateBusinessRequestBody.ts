@@ -63,6 +63,12 @@ export interface CreateBusinessRequestBody {
      */
     website?: string;
     /**
+     * A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.
+     * @type {string}
+     * @memberof CreateBusinessRequestBody
+     */
+    customInitializationName?: string;
+    /**
      * Metadata from your system that you want to associate the business with.
      * @type {object}
      * @memberof CreateBusinessRequestBody
@@ -94,6 +100,7 @@ export function CreateBusinessRequestBodyFromJSONTyped(json: any, ignoreDiscrimi
         'ein': json['ein'] == null ? undefined : json['ein'],
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'website': json['website'] == null ? undefined : json['website'],
+        'customInitializationName': json['customInitializationName'] == null ? undefined : json['customInitializationName'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
     };
 }
@@ -110,6 +117,7 @@ export function CreateBusinessRequestBodyToJSON(value?: CreateBusinessRequestBod
         'ein': value['ein'],
         'phoneNumber': value['phoneNumber'],
         'website': value['website'],
+        'customInitializationName': value['customInitializationName'],
         'metadata': value['metadata'],
     };
 }

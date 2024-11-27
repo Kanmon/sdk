@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface LineOfCreditServicingData {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.
+     * @type {string}
      * @memberof LineOfCreditServicingData
      */
-    productType: ProductType;
+    productType: LineOfCreditServicingDataProductTypeEnum;
     /**
      * The total credit limit - in cents.
      * @type {number}
@@ -65,6 +58,19 @@ export interface LineOfCreditServicingData {
 }
 
 
+/**
+ * @export
+ */
+export const LineOfCreditServicingDataProductTypeEnum = {
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
+} as const;
+export type LineOfCreditServicingDataProductTypeEnum = typeof LineOfCreditServicingDataProductTypeEnum[keyof typeof LineOfCreditServicingDataProductTypeEnum];
+
 
 /**
  * Check if a given object implements the LineOfCreditServicingData interface.
@@ -89,7 +95,7 @@ export function LineOfCreditServicingDataFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'totalLimitCents': json['totalLimitCents'],
         'availableLimitCents': json['availableLimitCents'],
         'interestRatePercentage': json['interestRatePercentage'],
@@ -104,7 +110,7 @@ export function LineOfCreditServicingDataToJSON(value?: LineOfCreditServicingDat
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'totalLimitCents': value['totalLimitCents'],
         'availableLimitCents': value['availableLimitCents'],
         'interestRatePercentage': value['interestRatePercentage'],

@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface IntegratedMcaServicingData {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaServicingData`.
+     * @type {string}
      * @memberof IntegratedMcaServicingData
      */
-    productType: ProductType;
+    productType: IntegratedMcaServicingDataProductTypeEnum;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -65,6 +58,19 @@ export interface IntegratedMcaServicingData {
 }
 
 
+/**
+ * @export
+ */
+export const IntegratedMcaServicingDataProductTypeEnum = {
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
+} as const;
+export type IntegratedMcaServicingDataProductTypeEnum = typeof IntegratedMcaServicingDataProductTypeEnum[keyof typeof IntegratedMcaServicingDataProductTypeEnum];
+
 
 /**
  * Check if a given object implements the IntegratedMcaServicingData interface.
@@ -89,7 +95,7 @@ export function IntegratedMcaServicingDataFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'advanceAmountCents': json['advanceAmountCents'],
         'repaymentPercentage': json['repaymentPercentage'],
         'feeFactor': json['feeFactor'],
@@ -104,7 +110,7 @@ export function IntegratedMcaServicingDataToJSON(value?: IntegratedMcaServicingD
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'advanceAmountCents': value['advanceAmountCents'],
         'repaymentPercentage': value['repaymentPercentage'],
         'feeFactor': value['feeFactor'],

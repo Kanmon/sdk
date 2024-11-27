@@ -79,7 +79,7 @@ public class DocumentsApi {
     /**
      * Build call for createBusinessDocument
      * @param invoices Invoices to be uploaded. The file format must be PDF. The limit is 10 files, 10 MB per file. (required)
-     * @param businessId The unique identifier for business in our system. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
+     * @param businessId The unique identifier for business within Kanmon. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @param platformBusinessId The unique identifier for business in your platform. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -165,7 +165,7 @@ public class DocumentsApi {
      * Upload documents for a business
      * 
      * @param invoices Invoices to be uploaded. The file format must be PDF. The limit is 10 files, 10 MB per file. (required)
-     * @param businessId The unique identifier for business in our system. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
+     * @param businessId The unique identifier for business within Kanmon. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @param platformBusinessId The unique identifier for business in your platform. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @return CreateBusinessDocumentsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -187,7 +187,7 @@ public class DocumentsApi {
      * Upload documents for a business
      * 
      * @param invoices Invoices to be uploaded. The file format must be PDF. The limit is 10 files, 10 MB per file. (required)
-     * @param businessId The unique identifier for business in our system. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
+     * @param businessId The unique identifier for business within Kanmon. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @param platformBusinessId The unique identifier for business in your platform. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @return ApiResponse&lt;CreateBusinessDocumentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -210,7 +210,7 @@ public class DocumentsApi {
      * Upload documents for a business (asynchronously)
      * 
      * @param invoices Invoices to be uploaded. The file format must be PDF. The limit is 10 files, 10 MB per file. (required)
-     * @param businessId The unique identifier for business in our system. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
+     * @param businessId The unique identifier for business within Kanmon. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @param platformBusinessId The unique identifier for business in your platform. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

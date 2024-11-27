@@ -50,12 +50,12 @@ import java.util.Set;
 import com.kanmon.client.JSON;
 
 /**
- * InvoiceFinancingServicingData
+ * AccountsPayableFinancingServicingData
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
-public class InvoiceFinancingServicingData {
+public class AccountsPayableFinancingServicingData {
   /**
-   * The type of product being offered. Always &#x60;INVOICE_FINANCING&#x60; for &#x60;InvoiceFinancingServicingData&#x60;.
+   * The type of product being offered. Always &#x60;ACCOUNTS_PAYABLE_FINANCING&#x60; for &#x60;AccountsPayableFinancingServicingData&#x60;.
    */
   @JsonAdapter(ProductTypeEnum.Adapter.class)
   public enum ProductTypeEnum {
@@ -130,16 +130,16 @@ public class InvoiceFinancingServicingData {
   @SerializedName(SERIALIZED_NAME_AVAILABLE_LIMIT_CENTS)
   private BigDecimal availableLimitCents;
 
-  public InvoiceFinancingServicingData() {
+  public AccountsPayableFinancingServicingData() {
   }
 
-  public InvoiceFinancingServicingData productType(ProductTypeEnum productType) {
+  public AccountsPayableFinancingServicingData productType(ProductTypeEnum productType) {
     this.productType = productType;
     return this;
   }
 
   /**
-   * The type of product being offered. Always &#x60;INVOICE_FINANCING&#x60; for &#x60;InvoiceFinancingServicingData&#x60;.
+   * The type of product being offered. Always &#x60;ACCOUNTS_PAYABLE_FINANCING&#x60; for &#x60;AccountsPayableFinancingServicingData&#x60;.
    * @return productType
    */
   @javax.annotation.Nonnull
@@ -152,7 +152,7 @@ public class InvoiceFinancingServicingData {
   }
 
 
-  public InvoiceFinancingServicingData totalLimitCents(BigDecimal totalLimitCents) {
+  public AccountsPayableFinancingServicingData totalLimitCents(BigDecimal totalLimitCents) {
     this.totalLimitCents = totalLimitCents;
     return this;
   }
@@ -171,12 +171,12 @@ public class InvoiceFinancingServicingData {
   }
 
 
-  public InvoiceFinancingServicingData pricingPlans(List<InvoicePaymentPlan> pricingPlans) {
+  public AccountsPayableFinancingServicingData pricingPlans(List<InvoicePaymentPlan> pricingPlans) {
     this.pricingPlans = pricingPlans;
     return this;
   }
 
-  public InvoiceFinancingServicingData addPricingPlansItem(InvoicePaymentPlan pricingPlansItem) {
+  public AccountsPayableFinancingServicingData addPricingPlansItem(InvoicePaymentPlan pricingPlansItem) {
     if (this.pricingPlans == null) {
       this.pricingPlans = new ArrayList<>();
     }
@@ -198,7 +198,7 @@ public class InvoiceFinancingServicingData {
   }
 
 
-  public InvoiceFinancingServicingData availableLimitCents(BigDecimal availableLimitCents) {
+  public AccountsPayableFinancingServicingData availableLimitCents(BigDecimal availableLimitCents) {
     this.availableLimitCents = availableLimitCents;
     return this;
   }
@@ -226,11 +226,11 @@ public class InvoiceFinancingServicingData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InvoiceFinancingServicingData invoiceFinancingServicingData = (InvoiceFinancingServicingData) o;
-    return Objects.equals(this.productType, invoiceFinancingServicingData.productType) &&
-        Objects.equals(this.totalLimitCents, invoiceFinancingServicingData.totalLimitCents) &&
-        Objects.equals(this.pricingPlans, invoiceFinancingServicingData.pricingPlans) &&
-        Objects.equals(this.availableLimitCents, invoiceFinancingServicingData.availableLimitCents);
+    AccountsPayableFinancingServicingData accountsPayableFinancingServicingData = (AccountsPayableFinancingServicingData) o;
+    return Objects.equals(this.productType, accountsPayableFinancingServicingData.productType) &&
+        Objects.equals(this.totalLimitCents, accountsPayableFinancingServicingData.totalLimitCents) &&
+        Objects.equals(this.pricingPlans, accountsPayableFinancingServicingData.pricingPlans) &&
+        Objects.equals(this.availableLimitCents, accountsPayableFinancingServicingData.availableLimitCents);
   }
 
   @Override
@@ -241,7 +241,7 @@ public class InvoiceFinancingServicingData {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InvoiceFinancingServicingData {\n");
+    sb.append("class AccountsPayableFinancingServicingData {\n");
     sb.append("    productType: ").append(toIndentedString(productType)).append("\n");
     sb.append("    totalLimitCents: ").append(toIndentedString(totalLimitCents)).append("\n");
     sb.append("    pricingPlans: ").append(toIndentedString(pricingPlans)).append("\n");
@@ -285,25 +285,25 @@ public class InvoiceFinancingServicingData {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InvoiceFinancingServicingData
+   * @throws IOException if the JSON Element is invalid with respect to AccountsPayableFinancingServicingData
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!InvoiceFinancingServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InvoiceFinancingServicingData is not found in the empty JSON string", InvoiceFinancingServicingData.openapiRequiredFields.toString()));
+        if (!AccountsPayableFinancingServicingData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AccountsPayableFinancingServicingData is not found in the empty JSON string", AccountsPayableFinancingServicingData.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InvoiceFinancingServicingData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InvoiceFinancingServicingData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!AccountsPayableFinancingServicingData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountsPayableFinancingServicingData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : InvoiceFinancingServicingData.openapiRequiredFields) {
+      for (String requiredField : AccountsPayableFinancingServicingData.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -330,22 +330,22 @@ public class InvoiceFinancingServicingData {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InvoiceFinancingServicingData.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InvoiceFinancingServicingData' and its subtypes
+       if (!AccountsPayableFinancingServicingData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AccountsPayableFinancingServicingData' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InvoiceFinancingServicingData> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InvoiceFinancingServicingData.class));
+       final TypeAdapter<AccountsPayableFinancingServicingData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AccountsPayableFinancingServicingData.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<InvoiceFinancingServicingData>() {
+       return (TypeAdapter<T>) new TypeAdapter<AccountsPayableFinancingServicingData>() {
            @Override
-           public void write(JsonWriter out, InvoiceFinancingServicingData value) throws IOException {
+           public void write(JsonWriter out, AccountsPayableFinancingServicingData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public InvoiceFinancingServicingData read(JsonReader in) throws IOException {
+           public AccountsPayableFinancingServicingData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -356,18 +356,18 @@ public class InvoiceFinancingServicingData {
   }
 
   /**
-   * Create an instance of InvoiceFinancingServicingData given an JSON string
+   * Create an instance of AccountsPayableFinancingServicingData given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of InvoiceFinancingServicingData
-   * @throws IOException if the JSON string is invalid with respect to InvoiceFinancingServicingData
+   * @return An instance of AccountsPayableFinancingServicingData
+   * @throws IOException if the JSON string is invalid with respect to AccountsPayableFinancingServicingData
    */
-  public static InvoiceFinancingServicingData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InvoiceFinancingServicingData.class);
+  public static AccountsPayableFinancingServicingData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AccountsPayableFinancingServicingData.class);
   }
 
   /**
-   * Convert an instance of InvoiceFinancingServicingData to an JSON string
+   * Convert an instance of AccountsPayableFinancingServicingData to an JSON string
    *
    * @return JSON string
    */

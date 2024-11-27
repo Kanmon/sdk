@@ -32,6 +32,7 @@ import java.math.BigDecimal;
 import com.kanmon.client.model.Business;
 import com.kanmon.client.model.BusinessAlreadyExistsException;
 import com.kanmon.client.model.BusinessNotFoundException;
+import com.kanmon.client.model.CreateBusiness404Response;
 import com.kanmon.client.model.CreateBusinessRequestBody;
 import com.kanmon.client.model.ForbiddenException;
 import com.kanmon.client.model.GetActivityLogsResponse;
@@ -94,6 +95,7 @@ public class BusinessesApi {
         <tr><td> 201 </td><td> Business created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -166,6 +168,7 @@ public class BusinessesApi {
         <tr><td> 201 </td><td> Business created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -187,6 +190,7 @@ public class BusinessesApi {
         <tr><td> 201 </td><td> Business created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -210,6 +214,7 @@ public class BusinessesApi {
         <tr><td> 201 </td><td> Business created </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -734,7 +739,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -819,7 +824,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -843,7 +848,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
@@ -869,7 +874,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>

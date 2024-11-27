@@ -236,6 +236,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createBusiness_404_response'
+          description: "BusinessNotFoundException, CustomInitializationNotFoundException"
         "409":
           content:
             application/json:
@@ -386,8 +392,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BusinessNotFoundException'
-          description: BusinessNotFoundException
+                $ref: '#/components/schemas/createBusiness_404_response'
+          description: "BusinessNotFoundException, CustomInitializationNotFoundException"
         "409":
           content:
             application/json:
@@ -559,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "c44afefd-f4bb-41e2-8293-ee8f3436da7d,a2c28cf6-fe03-4537-be20-c5046e6289bf"
+        example: "e571dfdc-e6d5-42f3-ae13-892ffd893e7d,fd424965-a4b3-44e9-91f5-1152ee02a670"
         explode: true
         in: query
         name: businessIds
@@ -1558,7 +1564,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "daa316ee-728d-4a7b-aa18-267f2cad1dac,46926699-76b0-438f-9419-0d5d16c6ef4e"
+        example: "29bc2693-ca4b-4d07-b7cf-dc509acd50ab,863ec540-c246-4698-8ea3-a05582883f2c"
         explode: true
         in: query
         name: businessIds
@@ -1925,7 +1931,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "ce814008-fb9a-4c74-8791-7689c0cfbacb,b7151f06-553b-4f40-8e5d-8d5e96f81857"
+        example: "cee11812-ac88-4dc5-a7b2-08656f25bb74,11620f14-f637-41b6-9e03-670deaeac78b"
         explode: true
         in: query
         name: drawRequestIds
@@ -2512,18 +2518,10 @@ paths:
       - application/json
 components:
   schemas:
-    ProductType:
-      enum:
-      - INVOICE_FINANCING
-      - TERM_LOAN
-      - MCA
-      - LINE_OF_CREDIT
-      - INTEGRATED_MCA
-      type: string
     BusinessPrequalification:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
-        product: INVOICE_FINANCING
+        product: TERM_LOAN
         platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         isPrequalified: true
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2532,7 +2530,19 @@ components:
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         product:
-          $ref: '#/components/schemas/ProductType'
+          description: "The product that the business is prequalified for. This will\
+            \ be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`,\
+            \ `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`."
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: TERM_LOAN
+          nullable: true
+          type: string
         platformId:
           description: The UUID representing your platform in Kanmon.
           example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2597,7 +2607,7 @@ components:
         pagination: ""
         prequalifications:
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: INVOICE_FINANCING
+          product: TERM_LOAN
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2605,7 +2615,7 @@ components:
           prequalifiedAmountCents: 1000000
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: INVOICE_FINANCING
+          product: TERM_LOAN
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2800,6 +2810,7 @@ components:
         phoneNumber: "+14155556789"
         name: My Business
         ein: "123456789"
+        customInitializationName: custom
       properties:
         platformBusinessId:
           description: Your platform’s unique ID for the business.
@@ -2833,6 +2844,17 @@ components:
           description: The business’s website.
           example: https://www.my-business.com
           type: string
+        customInitializationName:
+          description: "A Custom Initialization controls custom implementation profiles\
+            \ for you in Kanmon. Custom Initializations enable a variety of specific\
+            \ configurations for your integration, including embedded UI customization,\
+            \ feature activation, and platform product-line identification. The Kanmon\
+            \ Team will work with you to establish a Custom Initialization and corresponding\
+            \ custom profile if your platform can benefit from this optional configuration.\
+            \ To identify each Custom Initialization, you can define a unique customInitializationName\
+            \ as a reference."
+          example: custom
+          type: string
         metadata:
           description: Metadata from your system that you want to associate the business
             with.
@@ -2856,6 +2878,7 @@ components:
         name: My Business
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         ein: "123456789"
+        customInitializationName: custom
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         id:
@@ -2898,6 +2921,17 @@ components:
           description: The business’s website.
           example: https://www.my-business.com
           nullable: true
+          type: object
+        customInitializationName:
+          description: "A Custom Initialization controls custom implementation profiles\
+            \ for you in Kanmon. Custom Initializations enable a variety of specific\
+            \ configurations for your integration, including embedded UI customization,\
+            \ feature activation, and platform product-line identification. The Kanmon\
+            \ Team will work with you to establish a Custom Initialization and corresponding\
+            \ custom profile if your platform can benefit from this optional configuration.\
+            \ To identify each Custom Initialization, you can define a unique customInitializationName\
+            \ as a reference."
+          example: custom
           type: object
         metadata:
           description: Metadata from your system that you want to associate the business
@@ -2959,6 +2993,7 @@ components:
         phoneNumber: "+14155556789"
         name: My Business
         ein: "123456789"
+        customInitializationName: custom
       properties:
         name:
           description: The business’s name.
@@ -2992,6 +3027,17 @@ components:
           description: The business’s website.
           example: https://www.my-business.com
           type: string
+        customInitializationName:
+          description: "A Custom Initialization controls custom implementation profiles\
+            \ for you in Kanmon. Custom Initializations enable a variety of specific\
+            \ configurations for your integration, including embedded UI customization,\
+            \ feature activation, and platform product-line identification. The Kanmon\
+            \ Team will work with you to establish a Custom Initialization and corresponding\
+            \ custom profile if your platform can benefit from this optional configuration.\
+            \ To identify each Custom Initialization, you can define a unique customInitializationName\
+            \ as a reference."
+          example: custom
+          type: object
         metadata:
           description: Metadata from your system that you want to associate the business
             with.
@@ -3118,6 +3164,7 @@ components:
           name: My Business
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           ein: "123456789"
+          customInitializationName: custom
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
           website: https://www.my-business.com
@@ -3133,6 +3180,7 @@ components:
           name: My Business
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           ein: "123456789"
+          customInitializationName: custom
           updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         businesses:
@@ -3796,7 +3844,7 @@ components:
         status:
           $ref: '#/components/schemas/InvoiceStatus'
         issuedProductId:
-          description: The unique identifier for the issued product in Kanmon′s system.
+          description: The unique identifier for the issued product within Kanmon.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         feeAmountCents:
@@ -3969,10 +4017,19 @@ components:
         durationMonths: 6
         feePercentage: 3
         interestRatePercentage: 10
-        productType: INVOICE_FINANCING
+        productType: TERM_LOAN
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: TERM_LOAN
+          type: string
         maxLoanAmountCents:
           description: The maximum loan amount - in cents.
           example: 1000000
@@ -4093,7 +4150,17 @@ components:
     InvoiceFinancingOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INVOICE_FINANCING`
+            for `InvoiceFinancingOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INVOICE_FINANCING
+          type: string
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4111,7 +4178,16 @@ components:
     McaOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `MCA` for `McaOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4159,7 +4235,17 @@ components:
     LineOfCreditOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `LINE_OF_CREDIT`
+            for `LineOfCreditOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: LINE_OF_CREDIT
+          type: string
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4188,7 +4274,17 @@ components:
     IntegratedMcaOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INTEGRATED_MCA`
+            for `IntegratedMcaOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INTEGRATED_MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4222,6 +4318,34 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
+    AccountsPayableFinancingOfferTerms:
+      properties:
+        productType:
+          description: The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING`
+            for `AccountsPayableFinancingOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: ACCOUNTS_PAYABLE_FINANCING
+          type: string
+        totalLimitCents:
+          description: The total limit allowed for this offer - in cents.
+          example: 1000000
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this offer.
+          items:
+            $ref: '#/components/schemas/InvoicePaymentPlan'
+          type: array
+      required:
+      - pricingPlans
+      - productType
+      - totalLimitCents
+      type: object
     Offer:
       example:
         expiredAt: 2023-12-29T03:57:26.115Z
@@ -4233,7 +4357,7 @@ components:
           durationMonths: 6
           feePercentage: 3
           interestRatePercentage: 10
-          productType: INVOICE_FINANCING
+          productType: TERM_LOAN
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         selectedAt: 2023-12-15T03:57:26.115Z
@@ -4319,7 +4443,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4333,7 +4457,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4360,11 +4484,20 @@ components:
         monthlyPaymentCents: 100000
         nextPaymentDate: 2023-12-15
         originationFeeCents: 100000
-        productType: INVOICE_FINANCING
+        productType: TERM_LOAN
         principalBalanceCents: 1000000
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: TERM_LOAN
+          type: string
         loanAmountCents:
           description: The total loan amount - in cents.
           example: 1000000
@@ -4402,7 +4535,17 @@ components:
     InvoiceFinancingServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INVOICE_FINANCING`
+            for `InvoiceFinancingServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INVOICE_FINANCING
+          type: string
         totalLimitCents:
           description: The total limit allowed - in cents.
           type: number
@@ -4424,7 +4567,16 @@ components:
     McaServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `MCA` for `McaServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4478,7 +4630,17 @@ components:
     IntegratedMcaServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INTEGRATED_MCA`
+            for `IntegratedMcaServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INTEGRATED_MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4515,7 +4677,17 @@ components:
     LineOfCreditServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `LINE_OF_CREDIT`
+            for `LineOfCreditServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: LINE_OF_CREDIT
+          type: string
         totalLimitCents:
           description: The total credit limit - in cents.
           example: 1000000
@@ -4547,6 +4719,38 @@ components:
       - repaymentDurationMonths
       - totalLimitCents
       type: object
+    AccountsPayableFinancingServicingData:
+      properties:
+        productType:
+          description: The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING`
+            for `AccountsPayableFinancingServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: ACCOUNTS_PAYABLE_FINANCING
+          type: string
+        totalLimitCents:
+          description: The total limit allowed - in cents.
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this issued product.
+          items:
+            $ref: '#/components/schemas/InvoicePaymentPlan'
+          type: array
+        availableLimitCents:
+          description: The total limit less the amount of balance outstanding - in
+            cents.
+          type: number
+      required:
+      - availableLimitCents
+      - pricingPlans
+      - productType
+      - totalLimitCents
+      type: object
     IssuedProduct:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
@@ -4557,7 +4761,7 @@ components:
           monthlyPaymentCents: 100000
           nextPaymentDate: 2023-12-15
           originationFeeCents: 100000
-          productType: INVOICE_FINANCING
+          productType: TERM_LOAN
           principalBalanceCents: 1000000
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         loanStatus: CURRENT
@@ -4650,7 +4854,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -4665,7 +4869,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -5019,6 +5223,7 @@ components:
           - INSUFFICIENT_FUNDS
           - TRANSACTION_FEE
           - MAINTENANCE
+          - EXTENSION_FEE
           example: INSUFFICIENT_FUNDS
           nullable: true
           type: string
@@ -5282,7 +5487,7 @@ components:
             type: string
           type: array
         businessId:
-          description: The unique identifier for business in our system. Either of
+          description: The unique identifier for business within Kanmon. Either of
             `businessId` or `platformBusinessId` is required.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
@@ -5387,7 +5592,7 @@ components:
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         issuedProductId:
-          description: The unique identifier for the issued product in Kanmon′s system.
+          description: The unique identifier for the issued product within Kanmon.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         chargeAmountCents:
@@ -5468,7 +5673,7 @@ components:
         repaymentAmountCents: 100000
       properties:
         issuedProductId:
-          description: The unique identifier for the issued product in Kanmon′s system.
+          description: The unique identifier for the issued product within Kanmon.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         chargeAmountCents:
@@ -5805,7 +6010,7 @@ components:
         businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
       properties:
         businessId:
-          description: The unique identifier for business in our system. Either of
+          description: The unique identifier for business within Kanmon. Either of
             `businessId` or `platformBusinessId` is required.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
@@ -6265,6 +6470,30 @@ components:
       - message
       - timestamp
       type: object
+    CustomInitializationNotFoundException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - CustomInitializationNotFoundException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    createBusiness_404_response:
+      oneOf:
+      - $ref: '#/components/schemas/BusinessNotFoundException'
+      - $ref: '#/components/schemas/CustomInitializationNotFoundException'
     createUser_409_response:
       oneOf:
       - $ref: '#/components/schemas/PrimaryBusinessOwnerAlreadyExistsForBusinessException'
@@ -6306,6 +6535,7 @@ components:
           MCA: '#/components/schemas/McaOfferTerms'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaOfferTerms'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditOfferTerms'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingOfferTerms'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
@@ -6313,6 +6543,7 @@ components:
       - $ref: '#/components/schemas/McaOfferTerms'
       - $ref: '#/components/schemas/IntegratedMcaOfferTerms'
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
+      - $ref: '#/components/schemas/AccountsPayableFinancingOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
       discriminator:
@@ -6322,6 +6553,7 @@ components:
           MCA: '#/components/schemas/McaServicingData'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingServicingData'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
@@ -6329,6 +6561,7 @@ components:
       - $ref: '#/components/schemas/McaServicingData'
       - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
+      - $ref: '#/components/schemas/AccountsPayableFinancingServicingData'
     CreateSessionTokenRequestBody_data:
       description: This will differ depending on which `component` is used.
       discriminator:

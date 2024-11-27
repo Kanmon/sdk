@@ -23,25 +23,25 @@ import {
 /**
  * 
  * @export
- * @interface InvoiceFinancingOfferTerms
+ * @interface AccountsPayableFinancingOfferTerms
  */
-export interface InvoiceFinancingOfferTerms {
+export interface AccountsPayableFinancingOfferTerms {
     /**
-     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.
+     * The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingOfferTerms`.
      * @type {string}
-     * @memberof InvoiceFinancingOfferTerms
+     * @memberof AccountsPayableFinancingOfferTerms
      */
-    productType: InvoiceFinancingOfferTermsProductTypeEnum;
+    productType: AccountsPayableFinancingOfferTermsProductTypeEnum;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
-     * @memberof InvoiceFinancingOfferTerms
+     * @memberof AccountsPayableFinancingOfferTerms
      */
     totalLimitCents: number;
     /**
      * The pricing plans available for this offer.
      * @type {Array<InvoicePaymentPlan>}
-     * @memberof InvoiceFinancingOfferTerms
+     * @memberof AccountsPayableFinancingOfferTerms
      */
     pricingPlans: Array<InvoicePaymentPlan>;
 }
@@ -50,7 +50,7 @@ export interface InvoiceFinancingOfferTerms {
 /**
  * @export
  */
-export const InvoiceFinancingOfferTermsProductTypeEnum = {
+export const AccountsPayableFinancingOfferTermsProductTypeEnum = {
     INVOICE_FINANCING: 'INVOICE_FINANCING',
     TERM_LOAN: 'TERM_LOAN',
     MCA: 'MCA',
@@ -58,24 +58,24 @@ export const InvoiceFinancingOfferTermsProductTypeEnum = {
     INTEGRATED_MCA: 'INTEGRATED_MCA',
     ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
 } as const;
-export type InvoiceFinancingOfferTermsProductTypeEnum = typeof InvoiceFinancingOfferTermsProductTypeEnum[keyof typeof InvoiceFinancingOfferTermsProductTypeEnum];
+export type AccountsPayableFinancingOfferTermsProductTypeEnum = typeof AccountsPayableFinancingOfferTermsProductTypeEnum[keyof typeof AccountsPayableFinancingOfferTermsProductTypeEnum];
 
 
 /**
- * Check if a given object implements the InvoiceFinancingOfferTerms interface.
+ * Check if a given object implements the AccountsPayableFinancingOfferTerms interface.
  */
-export function instanceOfInvoiceFinancingOfferTerms(value: object): value is InvoiceFinancingOfferTerms {
+export function instanceOfAccountsPayableFinancingOfferTerms(value: object): value is AccountsPayableFinancingOfferTerms {
     if (!('productType' in value) || value['productType'] === undefined) return false;
     if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
     if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
     return true;
 }
 
-export function InvoiceFinancingOfferTermsFromJSON(json: any): InvoiceFinancingOfferTerms {
-    return InvoiceFinancingOfferTermsFromJSONTyped(json, false);
+export function AccountsPayableFinancingOfferTermsFromJSON(json: any): AccountsPayableFinancingOfferTerms {
+    return AccountsPayableFinancingOfferTermsFromJSONTyped(json, false);
 }
 
-export function InvoiceFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean): InvoiceFinancingOfferTerms {
+export function AccountsPayableFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountsPayableFinancingOfferTerms {
     if (json == null) {
         return json;
     }
@@ -87,7 +87,7 @@ export function InvoiceFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscrim
     };
 }
 
-export function InvoiceFinancingOfferTermsToJSON(value?: InvoiceFinancingOfferTerms | null): any {
+export function AccountsPayableFinancingOfferTermsToJSON(value?: AccountsPayableFinancingOfferTerms | null): any {
     if (value == null) {
         return value;
     }

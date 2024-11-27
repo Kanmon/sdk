@@ -20,7 +20,7 @@ import { mapValues } from '../runtime';
  */
 export interface CreateIntegratedMcaReceivableBody {
     /**
-     * The unique identifier for the issued product in Kanmon′s system.
+     * The unique identifier for the issued product within Kanmon.
      * @type {string}
      * @memberof CreateIntegratedMcaReceivableBody
      */

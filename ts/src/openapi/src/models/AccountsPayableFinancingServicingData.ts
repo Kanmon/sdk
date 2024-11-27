@@ -23,34 +23,40 @@ import {
 /**
  * 
  * @export
- * @interface InvoiceFinancingOfferTerms
+ * @interface AccountsPayableFinancingServicingData
  */
-export interface InvoiceFinancingOfferTerms {
+export interface AccountsPayableFinancingServicingData {
     /**
-     * The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.
+     * The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingServicingData`.
      * @type {string}
-     * @memberof InvoiceFinancingOfferTerms
+     * @memberof AccountsPayableFinancingServicingData
      */
-    productType: InvoiceFinancingOfferTermsProductTypeEnum;
+    productType: AccountsPayableFinancingServicingDataProductTypeEnum;
     /**
-     * The total limit allowed for this offer - in cents.
+     * The total limit allowed - in cents.
      * @type {number}
-     * @memberof InvoiceFinancingOfferTerms
+     * @memberof AccountsPayableFinancingServicingData
      */
     totalLimitCents: number;
     /**
-     * The pricing plans available for this offer.
+     * The pricing plans available for this issued product.
      * @type {Array<InvoicePaymentPlan>}
-     * @memberof InvoiceFinancingOfferTerms
+     * @memberof AccountsPayableFinancingServicingData
      */
     pricingPlans: Array<InvoicePaymentPlan>;
+    /**
+     * The total limit less the amount of balance outstanding - in cents.
+     * @type {number}
+     * @memberof AccountsPayableFinancingServicingData
+     */
+    availableLimitCents: number;
 }
 
 
 /**
  * @export
  */
-export const InvoiceFinancingOfferTermsProductTypeEnum = {
+export const AccountsPayableFinancingServicingDataProductTypeEnum = {
     INVOICE_FINANCING: 'INVOICE_FINANCING',
     TERM_LOAN: 'TERM_LOAN',
     MCA: 'MCA',
@@ -58,24 +64,25 @@ export const InvoiceFinancingOfferTermsProductTypeEnum = {
     INTEGRATED_MCA: 'INTEGRATED_MCA',
     ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
 } as const;
-export type InvoiceFinancingOfferTermsProductTypeEnum = typeof InvoiceFinancingOfferTermsProductTypeEnum[keyof typeof InvoiceFinancingOfferTermsProductTypeEnum];
+export type AccountsPayableFinancingServicingDataProductTypeEnum = typeof AccountsPayableFinancingServicingDataProductTypeEnum[keyof typeof AccountsPayableFinancingServicingDataProductTypeEnum];
 
 
 /**
- * Check if a given object implements the InvoiceFinancingOfferTerms interface.
+ * Check if a given object implements the AccountsPayableFinancingServicingData interface.
  */
-export function instanceOfInvoiceFinancingOfferTerms(value: object): value is InvoiceFinancingOfferTerms {
+export function instanceOfAccountsPayableFinancingServicingData(value: object): value is AccountsPayableFinancingServicingData {
     if (!('productType' in value) || value['productType'] === undefined) return false;
     if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
     if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
+    if (!('availableLimitCents' in value) || value['availableLimitCents'] === undefined) return false;
     return true;
 }
 
-export function InvoiceFinancingOfferTermsFromJSON(json: any): InvoiceFinancingOfferTerms {
-    return InvoiceFinancingOfferTermsFromJSONTyped(json, false);
+export function AccountsPayableFinancingServicingDataFromJSON(json: any): AccountsPayableFinancingServicingData {
+    return AccountsPayableFinancingServicingDataFromJSONTyped(json, false);
 }
 
-export function InvoiceFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean): InvoiceFinancingOfferTerms {
+export function AccountsPayableFinancingServicingDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountsPayableFinancingServicingData {
     if (json == null) {
         return json;
     }
@@ -84,10 +91,11 @@ export function InvoiceFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscrim
         'productType': json['productType'],
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
+        'availableLimitCents': json['availableLimitCents'],
     };
 }
 
-export function InvoiceFinancingOfferTermsToJSON(value?: InvoiceFinancingOfferTerms | null): any {
+export function AccountsPayableFinancingServicingDataToJSON(value?: AccountsPayableFinancingServicingData | null): any {
     if (value == null) {
         return value;
     }
@@ -96,6 +104,7 @@ export function InvoiceFinancingOfferTermsToJSON(value?: InvoiceFinancingOfferTe
         'productType': value['productType'],
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
+        'availableLimitCents': value['availableLimitCents'],
     };
 }
 

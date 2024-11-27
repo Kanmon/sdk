@@ -75,6 +75,10 @@ public class UpdateBusinessRequestBody {
   @SerializedName(SERIALIZED_NAME_WEBSITE)
   private String website;
 
+  public static final String SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME = "customInitializationName";
+  @SerializedName(SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME)
+  private Object customInitializationName;
+
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
@@ -196,6 +200,25 @@ public class UpdateBusinessRequestBody {
   }
 
 
+  public UpdateBusinessRequestBody customInitializationName(Object customInitializationName) {
+    this.customInitializationName = customInitializationName;
+    return this;
+  }
+
+  /**
+   * A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.
+   * @return customInitializationName
+   */
+  @javax.annotation.Nullable
+  public Object getCustomInitializationName() {
+    return customInitializationName;
+  }
+
+  public void setCustomInitializationName(Object customInitializationName) {
+    this.customInitializationName = customInitializationName;
+  }
+
+
   public UpdateBusinessRequestBody metadata(Object metadata) {
     this.metadata = metadata;
     return this;
@@ -231,12 +254,13 @@ public class UpdateBusinessRequestBody {
         Objects.equals(this.ein, updateBusinessRequestBody.ein) &&
         Objects.equals(this.phoneNumber, updateBusinessRequestBody.phoneNumber) &&
         Objects.equals(this.website, updateBusinessRequestBody.website) &&
+        Objects.equals(this.customInitializationName, updateBusinessRequestBody.customInitializationName) &&
         Objects.equals(this.metadata, updateBusinessRequestBody.metadata);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, platformBusinessId, address, ein, phoneNumber, website, metadata);
+    return Objects.hash(name, platformBusinessId, address, ein, phoneNumber, website, customInitializationName, metadata);
   }
 
   @Override
@@ -249,6 +273,7 @@ public class UpdateBusinessRequestBody {
     sb.append("    ein: ").append(toIndentedString(ein)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
+    sb.append("    customInitializationName: ").append(toIndentedString(customInitializationName)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -278,6 +303,7 @@ public class UpdateBusinessRequestBody {
     openapiFields.add("ein");
     openapiFields.add("phoneNumber");
     openapiFields.add("website");
+    openapiFields.add("customInitializationName");
     openapiFields.add("metadata");
 
     // a set of required properties/fields (JSON key names)

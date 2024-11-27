@@ -19,7 +19,6 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -52,9 +51,69 @@ import com.kanmon.client.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class McaServicingData {
+  /**
+   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaServicingData&#x60;.
+   */
+  @JsonAdapter(ProductTypeEnum.Adapter.class)
+  public enum ProductTypeEnum {
+    INVOICE_FINANCING("INVOICE_FINANCING"),
+    
+    TERM_LOAN("TERM_LOAN"),
+    
+    MCA("MCA"),
+    
+    LINE_OF_CREDIT("LINE_OF_CREDIT"),
+    
+    INTEGRATED_MCA("INTEGRATED_MCA"),
+    
+    ACCOUNTS_PAYABLE_FINANCING("ACCOUNTS_PAYABLE_FINANCING");
+
+    private String value;
+
+    ProductTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static ProductTypeEnum fromValue(String value) {
+      for (ProductTypeEnum b : ProductTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<ProductTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final ProductTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public ProductTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return ProductTypeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      ProductTypeEnum.fromValue(value);
+    }
+  }
+
   public static final String SERIALIZED_NAME_PRODUCT_TYPE = "productType";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPE)
-  private ProductType productType;
+  private ProductTypeEnum productType;
 
   public static final String SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS = "advanceAmountCents";
   @SerializedName(SERIALIZED_NAME_ADVANCE_AMOUNT_CENTS)
@@ -143,21 +202,21 @@ public class McaServicingData {
   public McaServicingData() {
   }
 
-  public McaServicingData productType(ProductType productType) {
+  public McaServicingData productType(ProductTypeEnum productType) {
     this.productType = productType;
     return this;
   }
 
   /**
-   * Get productType
+   * The type of product being offered. Always &#x60;MCA&#x60; for &#x60;McaServicingData&#x60;.
    * @return productType
    */
   @javax.annotation.Nonnull
-  public ProductType getProductType() {
+  public ProductTypeEnum getProductType() {
     return productType;
   }
 
-  public void setProductType(ProductType productType) {
+  public void setProductType(ProductTypeEnum productType) {
     this.productType = productType;
   }
 
@@ -403,8 +462,11 @@ public class McaServicingData {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("productType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `productType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("productType").toString()));
+      }
       // validate the required field `productType`
-      ProductType.validateJsonElement(jsonObj.get("productType"));
+      ProductTypeEnum.validateJsonElement(jsonObj.get("productType"));
       if (!jsonObj.get("repaymentFrequency").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `repaymentFrequency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("repaymentFrequency").toString()));
       }

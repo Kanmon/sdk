@@ -72,7 +72,7 @@ public class CreateSessionTokenRequestBody {
   }
 
   /**
-   * The unique identifier for business in our system. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required.
+   * The unique identifier for business within Kanmon. Either of &#x60;businessId&#x60; or &#x60;platformBusinessId&#x60; is required.
    * @return businessId
    */
   @javax.annotation.Nullable

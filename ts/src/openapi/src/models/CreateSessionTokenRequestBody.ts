@@ -27,7 +27,7 @@ import {
  */
 export interface CreateSessionTokenRequestBody {
     /**
-     * The unique identifier for business in our system. Either of `businessId` or `platformBusinessId` is required.
+     * The unique identifier for business within Kanmon. Either of `businessId` or `platformBusinessId` is required.
      * @type {string}
      * @memberof CreateSessionTokenRequestBody
      */
