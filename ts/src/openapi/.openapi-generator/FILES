@@ -14,8 +14,8 @@ src/apis/PrequalificationsApi.ts
 src/apis/UsersApi.ts
 src/apis/index.ts
 src/index.ts
-src/models/AccountsPayableFinancingOfferTerms.ts
-src/models/AccountsPayableFinancingServicingData.ts
+src/models/AccountPayableFinancingOfferTerms.ts
+src/models/AccountPayableFinancingServicingData.ts
 src/models/ActivityLog.ts
 src/models/Address.ts
 src/models/BadRequestException.ts
@@ -114,6 +114,7 @@ src/models/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsForBusinessException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsWithEmailException.ts
 src/models/PrimaryBusinessOwnerNotFoundException.ts
+src/models/ProductType.ts
 src/models/SessionInvoice.ts
 src/models/SessionInvoiceWithInvoiceFile.ts
 src/models/SomeOffersHaveExpiredException.ts

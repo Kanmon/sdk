@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.ProductType;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -51,69 +52,9 @@ import com.kanmon.client.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class BusinessPrequalification {
-  /**
-   * The product that the business is prequalified for. This will be null if &#x60;isPrequalified&#x60; is false. Values can be &#x60;INVOICE_FINANCING&#x60;, &#x60;TERM_LOAN&#x60;, &#x60;MCA&#x60;, &#x60;LINE_OF_CREDIT&#x60;, &#x60;INTEGRATED_MCA&#x60;.
-   */
-  @JsonAdapter(ProductEnum.Adapter.class)
-  public enum ProductEnum {
-    INVOICE_FINANCING("INVOICE_FINANCING"),
-    
-    TERM_LOAN("TERM_LOAN"),
-    
-    MCA("MCA"),
-    
-    LINE_OF_CREDIT("LINE_OF_CREDIT"),
-    
-    INTEGRATED_MCA("INTEGRATED_MCA"),
-    
-    ACCOUNTS_PAYABLE_FINANCING("ACCOUNTS_PAYABLE_FINANCING");
-
-    private String value;
-
-    ProductEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ProductEnum fromValue(String value) {
-      for (ProductEnum b : ProductEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      return null;
-    }
-
-    public static class Adapter extends TypeAdapter<ProductEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ProductEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ProductEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ProductEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      ProductEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_PRODUCT = "product";
   @SerializedName(SERIALIZED_NAME_PRODUCT)
-  private ProductEnum product;
+  private ProductType product;
 
   public static final String SERIALIZED_NAME_PLATFORM_ID = "platformId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_ID)
@@ -146,21 +87,21 @@ public class BusinessPrequalification {
   public BusinessPrequalification() {
   }
 
-  public BusinessPrequalification product(ProductEnum product) {
+  public BusinessPrequalification product(ProductType product) {
     this.product = product;
     return this;
   }
 
   /**
-   * The product that the business is prequalified for. This will be null if &#x60;isPrequalified&#x60; is false. Values can be &#x60;INVOICE_FINANCING&#x60;, &#x60;TERM_LOAN&#x60;, &#x60;MCA&#x60;, &#x60;LINE_OF_CREDIT&#x60;, &#x60;INTEGRATED_MCA&#x60;.
+   * Get product
    * @return product
    */
-  @javax.annotation.Nullable
-  public ProductEnum getProduct() {
+  @javax.annotation.Nonnull
+  public ProductType getProduct() {
     return product;
   }
 
-  public void setProduct(ProductEnum product) {
+  public void setProduct(ProductType product) {
     this.product = product;
   }
 
@@ -406,11 +347,8 @@ public class BusinessPrequalification {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("product") != null && !jsonObj.get("product").isJsonNull()) && !jsonObj.get("product").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `product` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product").toString()));
-      }
       // validate the required field `product`
-      ProductEnum.validateJsonElement(jsonObj.get("product"));
+      ProductType.validateJsonElement(jsonObj.get("product"));
       if (!jsonObj.get("platformId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformId").toString()));
       }

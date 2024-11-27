@@ -29,53 +29,46 @@ import {
 /**
  * 
  * @export
- * @interface InvoiceFinancingServicingData
+ * @interface AccountPayableFinancingOfferTerms
  */
-export interface InvoiceFinancingServicingData {
+export interface AccountPayableFinancingOfferTerms {
     /**
      * 
      * @type {ProductType}
-     * @memberof InvoiceFinancingServicingData
+     * @memberof AccountPayableFinancingOfferTerms
      */
     productType: ProductType;
     /**
-     * The total limit allowed - in cents.
+     * The total limit allowed for this offer - in cents.
      * @type {number}
-     * @memberof InvoiceFinancingServicingData
+     * @memberof AccountPayableFinancingOfferTerms
      */
     totalLimitCents: number;
     /**
-     * The pricing plans available for this issued product.
+     * The pricing plans available for this offer.
      * @type {Array<InvoicePaymentPlan>}
-     * @memberof InvoiceFinancingServicingData
+     * @memberof AccountPayableFinancingOfferTerms
      */
     pricingPlans: Array<InvoicePaymentPlan>;
-    /**
-     * The total limit less the amount of balance outstanding - in cents.
-     * @type {number}
-     * @memberof InvoiceFinancingServicingData
-     */
-    availableLimitCents: number;
 }
 
 
 
 /**
- * Check if a given object implements the InvoiceFinancingServicingData interface.
+ * Check if a given object implements the AccountPayableFinancingOfferTerms interface.
  */
-export function instanceOfInvoiceFinancingServicingData(value: object): value is InvoiceFinancingServicingData {
+export function instanceOfAccountPayableFinancingOfferTerms(value: object): value is AccountPayableFinancingOfferTerms {
     if (!('productType' in value) || value['productType'] === undefined) return false;
     if (!('totalLimitCents' in value) || value['totalLimitCents'] === undefined) return false;
     if (!('pricingPlans' in value) || value['pricingPlans'] === undefined) return false;
-    if (!('availableLimitCents' in value) || value['availableLimitCents'] === undefined) return false;
     return true;
 }
 
-export function InvoiceFinancingServicingDataFromJSON(json: any): InvoiceFinancingServicingData {
-    return InvoiceFinancingServicingDataFromJSONTyped(json, false);
+export function AccountPayableFinancingOfferTermsFromJSON(json: any): AccountPayableFinancingOfferTerms {
+    return AccountPayableFinancingOfferTermsFromJSONTyped(json, false);
 }
 
-export function InvoiceFinancingServicingDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): InvoiceFinancingServicingData {
+export function AccountPayableFinancingOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountPayableFinancingOfferTerms {
     if (json == null) {
         return json;
     }
@@ -84,11 +77,10 @@ export function InvoiceFinancingServicingDataFromJSONTyped(json: any, ignoreDisc
         'productType': ProductTypeFromJSON(json['productType']),
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
-        'availableLimitCents': json['availableLimitCents'],
     };
 }
 
-export function InvoiceFinancingServicingDataToJSON(value?: InvoiceFinancingServicingData | null): any {
+export function AccountPayableFinancingOfferTermsToJSON(value?: AccountPayableFinancingOfferTerms | null): any {
     if (value == null) {
         return value;
     }
@@ -97,7 +89,6 @@ export function InvoiceFinancingServicingDataToJSON(value?: InvoiceFinancingServ
         'productType': ProductTypeToJSON(value['productType']),
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
-        'availableLimitCents': value['availableLimitCents'],
     };
 }
 

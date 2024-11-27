@@ -12,13 +12,13 @@
  * Do not edit the class manually.
  */
 
-import type { AccountsPayableFinancingServicingData } from './AccountsPayableFinancingServicingData';
+import type { AccountPayableFinancingServicingData } from './AccountPayableFinancingServicingData';
 import {
-    instanceOfAccountsPayableFinancingServicingData,
-    AccountsPayableFinancingServicingDataFromJSON,
-    AccountsPayableFinancingServicingDataFromJSONTyped,
-    AccountsPayableFinancingServicingDataToJSON,
-} from './AccountsPayableFinancingServicingData';
+    instanceOfAccountPayableFinancingServicingData,
+    AccountPayableFinancingServicingDataFromJSON,
+    AccountPayableFinancingServicingDataFromJSONTyped,
+    AccountPayableFinancingServicingDataToJSON,
+} from './AccountPayableFinancingServicingData';
 import type { IntegratedMcaServicingData } from './IntegratedMcaServicingData';
 import {
     instanceOfIntegratedMcaServicingData,
@@ -60,7 +60,7 @@ import {
  * The data needed to service this specific type of issued product
  * @export
  */
-export type IssuedProductServicingData = { productType: 'ACCOUNTS_PAYABLE_FINANCING' } & AccountsPayableFinancingServicingData | { productType: 'INTEGRATED_MCA' } & IntegratedMcaServicingData | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingServicingData | { productType: 'LINE_OF_CREDIT' } & LineOfCreditServicingData | { productType: 'MCA' } & McaServicingData | { productType: 'TERM_LOAN' } & TermLoanServicingData;
+export type IssuedProductServicingData = { productType: 'ACCOUNTS_PAYABLE_FINANCING' } & AccountPayableFinancingServicingData | { productType: 'INTEGRATED_MCA' } & IntegratedMcaServicingData | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingServicingData | { productType: 'LINE_OF_CREDIT' } & LineOfCreditServicingData | { productType: 'MCA' } & McaServicingData | { productType: 'TERM_LOAN' } & TermLoanServicingData;
 
 export function IssuedProductServicingDataFromJSON(json: any): IssuedProductServicingData {
     return IssuedProductServicingDataFromJSONTyped(json, false);
@@ -72,7 +72,7 @@ export function IssuedProductServicingDataFromJSONTyped(json: any, ignoreDiscrim
     }
     switch (json['productType']) {
         case 'ACCOUNTS_PAYABLE_FINANCING':
-            return Object.assign({}, AccountsPayableFinancingServicingDataFromJSONTyped(json, true), { productType: 'ACCOUNTS_PAYABLE_FINANCING' } as const);
+            return Object.assign({}, AccountPayableFinancingServicingDataFromJSONTyped(json, true), { productType: 'ACCOUNTS_PAYABLE_FINANCING' } as const);
         case 'INTEGRATED_MCA':
             return Object.assign({}, IntegratedMcaServicingDataFromJSONTyped(json, true), { productType: 'INTEGRATED_MCA' } as const);
         case 'INVOICE_FINANCING':
@@ -94,7 +94,7 @@ export function IssuedProductServicingDataToJSON(value?: IssuedProductServicingD
     }
     switch (value['productType']) {
         case 'ACCOUNTS_PAYABLE_FINANCING':
-            return AccountsPayableFinancingServicingDataToJSON(value);
+            return AccountPayableFinancingServicingDataToJSON(value);
         case 'INTEGRATED_MCA':
             return IntegratedMcaServicingDataToJSON(value);
         case 'INVOICE_FINANCING':

@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './AccountsPayableFinancingOfferTerms';
-export * from './AccountsPayableFinancingServicingData';
+export * from './AccountPayableFinancingOfferTerms';
+export * from './AccountPayableFinancingServicingData';
 export * from './ActivityLog';
 export * from './Address';
 export * from './BadRequestException';
@@ -100,6 +100,7 @@ export * from './PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException'
 export * from './PrimaryBusinessOwnerAlreadyExistsForBusinessException';
 export * from './PrimaryBusinessOwnerAlreadyExistsWithEmailException';
 export * from './PrimaryBusinessOwnerNotFoundException';
+export * from './ProductType';
 export * from './SessionInvoice';
 export * from './SessionInvoiceWithInvoiceFile';
 export * from './SomeOffersHaveExpiredException';
