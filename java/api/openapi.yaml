@@ -565,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "3ba26e34-66ac-4fc6-880d-6e675fe76d36,7c57c7af-6176-4ece-9be4-718538311b62"
+        example: "b7973ab8-7894-4e1e-8778-7e28759db4a3,b028f39d-d360-4fa1-ba05-f1835bd589d7"
         explode: true
         in: query
         name: businessIds
@@ -933,6 +933,9 @@ paths:
       - application/json
   /api/platform/v2/connect-tokens:
     post:
+      description: Create a one-time use Connect Token for authenticating the user.
+        The Connect Token expires after 24 hours. Multiple Connect Tokens can be created
+        at the same time for a single user.
       operationId: createConnectToken
       parameters: []
       requestBody:
@@ -974,7 +977,7 @@ paths:
           description: InternalServerErrorException
       security:
       - Authorization: []
-      summary: Create a connect token
+      summary: Create a Connect Token
       tags:
       - Connect Tokens
       x-readme:
@@ -1564,7 +1567,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "a8d4e5b7-5940-402d-a1f7-bc6287cdeec2,b9fda7eb-8838-4810-8711-f2f2ef22dc1f"
+        example: "bd5af11c-d65f-41ba-9eef-fa4cce45680f,e7f206c6-e84a-4d71-aea0-79f41389eea0"
         explode: true
         in: query
         name: businessIds
@@ -1931,7 +1934,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "e636b275-6400-4fb5-b961-53c1786dc417,d96ac176-7dc6-4df5-83f2-520cd4a68a39"
+        example: "2a5b8b2c-c992-4531-8a84-98adf6fbe9de,f9098583-2a4b-4b85-bb6e-71b2aee75cd8"
         explode: true
         in: query
         name: drawRequestIds
@@ -3677,6 +3680,7 @@ components:
       - INVOICE_FUNDED
       - INVOICE_PAID_IN_FULL
       - REJECTED
+      - IN_REVIEW
       - DEFAULTED
       - LATE
       type: string
@@ -4267,7 +4271,7 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
-    AccountPayableFinancingOfferTerms:
+    AccountsPayableFinancingOfferTerms:
       properties:
         productType:
           $ref: '#/components/schemas/ProductType'
@@ -4610,7 +4614,7 @@ components:
       - repaymentDurationMonths
       - totalLimitCents
       type: object
-    AccountPayableFinancingServicingData:
+    AccountsPayableFinancingServicingData:
       properties:
         productType:
           $ref: '#/components/schemas/ProductType'
@@ -5846,6 +5850,210 @@ components:
       - component
       - invoices
       type: object
+    AccountsPayableSessionInvoice:
+      properties:
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceNumber:
+          description: Your user-facing identifier for the invoice. This does not
+            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          example: "123"
+          type: string
+        invoiceAmountCents:
+          description: The invoice amount - in cents. This needs to be greater than
+            or equal to 100.
+          example: 1000000
+          type: number
+        invoiceDueDate:
+          description: The date when the invoice will be paid by the payor. ISO 8601
+            date format. This date must be at least 7 days in the future and must
+            be after the `invoiceIssuedDate`.
+          example: 2022-06-01
+          type: string
+        invoiceIssuedDate:
+          description: The date when the payee issued the invoice. ISO 8601 date format.
+          example: 2022-04-01
+          type: string
+        payeeEmail:
+          description: The email of the payee.
+          example: user@gmail.com
+          type: string
+        payeeAddress:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The address of the payee. The address is optional. If you\
+            \ provide the address, you need to provide all the required fields in\
+            \ the address."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        payeeType:
+          description: '`INDIVIDUAL` if the payee is a person and `BUSINESS` if the
+            payee is a company.'
+          enum:
+          - BUSINESS
+          - INDIVIDUAL
+          example: BUSINESS
+          type: string
+        payeeBusinessName:
+          description: The registered name of the payee business when the payee is
+            a business and not an individual. Required and should only be defined
+            if `payeeType` is `BUSINESS`.
+          example: My Business
+          type: string
+        payeeFirstName:
+          description: The first name of the payee when the payee is an individual
+            and not a business. Required and should only be defined if `payeeType`
+            is `INDIVIDUAL`.
+          example: John
+          type: string
+        payeeMiddleName:
+          description: The middle name of the payee when the payee is an individual
+            and not a business. Optional and should only be defined if `payeeType`
+            is `INDIVIDUAL`.
+          type: string
+        payeeLastName:
+          description: The last name of the payee when the payee is an individual
+            and not a business. Required and should only be defined if `payeeType`
+            is `INDIVIDUAL`.
+          example: Smith
+          type: string
+        description:
+          description: The description of the goods or services in the invoice.
+          example: Invoice for equipment purchased.
+          type: string
+      required:
+      - description
+      - invoiceAmountCents
+      - invoiceDueDate
+      - payeeType
+      - platformInvoiceId
+      - platformInvoiceNumber
+      type: object
+    AccountsPayableInvoiceFlowSessionTokenData:
+      properties:
+        component:
+          description: Generates a session token for the accounts payable invoice
+            confirmation flow. This option can be used if you have all the required
+            invoice data.
+          enum:
+          - SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW
+          type: string
+        invoices:
+          description: Details about the list of invoices which are to be created.
+          items:
+            $ref: '#/components/schemas/AccountsPayableSessionInvoice'
+          type: array
+      required:
+      - component
+      - invoices
+      type: object
+    AccountsPayableSessionInvoiceWithInvoiceFile:
+      properties:
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        documentId:
+          description: The UUID of the invoice document created in Kanmon.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceNumber:
+          description: Your user-facing identifier for the invoice. This does not
+            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          example: "123"
+          type: string
+        invoiceAmountCents:
+          description: The invoice amount - in cents. This needs to be greater than
+            or equal to 100.
+          example: 1000000
+          type: number
+        invoiceDueDate:
+          description: The date when the invoice will be paid by the payor. ISO 8601
+            date format. This date must be at least 7 days in the future and must
+            be after the `invoiceIssuedDate`.
+          example: 2022-06-01
+          type: string
+        invoiceIssuedDate:
+          description: The date when the payee issued the invoice. ISO 8601 date format.
+          example: 2022-04-01
+          type: string
+        payeeEmail:
+          description: The email of the payee.
+          example: user@gmail.com
+          type: string
+        payeeAddress:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The address of the payee. The address is optional. If you\
+            \ provide the address, you need to provide all the required fields in\
+            \ the address."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        payeeType:
+          description: '`INDIVIDUAL` if the payee is a person and `BUSINESS` if the
+            payee is a company.'
+          enum:
+          - BUSINESS
+          - INDIVIDUAL
+          example: BUSINESS
+          type: string
+        payeeBusinessName:
+          description: The registered name of the payee business when the payee is
+            a business and not an individual.
+          example: My Business
+          type: string
+        payeeFirstName:
+          description: The first name of the payee when the payee is an individual
+            and not a business.
+          example: John
+          type: string
+        payeeMiddleName:
+          description: The middle name of the payee when the payee is an individual
+            and not a business.
+          type: string
+        payeeLastName:
+          description: The last name of the payee when the payee is an individual
+            and not a business.
+          example: Smith
+          type: string
+        description:
+          description: The description of the goods or services in the invoice.
+          example: Invoice for equipment purchased.
+          type: string
+      required:
+      - documentId
+      - platformInvoiceId
+      type: object
+    AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData:
+      properties:
+        component:
+          description: Generates a session token for the accounts payable invoice
+            confirmation flow. This option can be used if you do not have all the
+            required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option.
+            Optional data that is not provided may be collected from the user. An
+            invoice PDF must be provided.`
+          enum:
+          - SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE
+          type: string
+        invoices:
+          description: Details about the list of invoices which are to be created.
+          items:
+            $ref: '#/components/schemas/AccountsPayableSessionInvoiceWithInvoiceFile'
+          type: array
+      required:
+      - component
+      - invoices
+      type: object
     CreateSessionTokenRequestBody:
       example:
         platformBusinessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
@@ -6045,6 +6253,26 @@ components:
           description: Safe for programmatic use.
           enum:
           - BusinessHasNoInvoiceFinancingProductException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    BusinessHasNoAccountsPayableFinancingProductException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessHasNoAccountsPayableFinancingProductException
           type: string
         message:
           description: The human readable description of the error.
@@ -6416,7 +6644,7 @@ components:
           MCA: '#/components/schemas/McaOfferTerms'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaOfferTerms'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditOfferTerms'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountPayableFinancingOfferTerms'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingOfferTerms'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
@@ -6424,7 +6652,7 @@ components:
       - $ref: '#/components/schemas/McaOfferTerms'
       - $ref: '#/components/schemas/IntegratedMcaOfferTerms'
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
-      - $ref: '#/components/schemas/AccountPayableFinancingOfferTerms'
+      - $ref: '#/components/schemas/AccountsPayableFinancingOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
       discriminator:
@@ -6434,7 +6662,7 @@ components:
           MCA: '#/components/schemas/McaServicingData'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountPayableFinancingServicingData'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingServicingData'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
@@ -6442,17 +6670,21 @@ components:
       - $ref: '#/components/schemas/McaServicingData'
       - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
-      - $ref: '#/components/schemas/AccountPayableFinancingServicingData'
+      - $ref: '#/components/schemas/AccountsPayableFinancingServicingData'
     CreateSessionTokenRequestBody_data:
       description: This will differ depending on which `component` is used.
       discriminator:
         mapping:
           SESSION_INVOICE_FLOW: '#/components/schemas/InvoiceFlowSessionTokenData'
           SESSION_INVOICE_FLOW_WITH_INVOICE_FILE: '#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData'
+          SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW: '#/components/schemas/AccountsPayableInvoiceFlowSessionTokenData'
+          SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE: '#/components/schemas/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData'
         propertyName: component
       oneOf:
       - $ref: '#/components/schemas/InvoiceFlowSessionTokenData'
       - $ref: '#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData'
+      - $ref: '#/components/schemas/AccountsPayableInvoiceFlowSessionTokenData'
+      - $ref: '#/components/schemas/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData'
   securitySchemes:
     Authorization:
       in: header

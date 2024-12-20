@@ -54,6 +54,7 @@ export const InvoiceStatus = {
     INVOICE_FUNDED: 'INVOICE_FUNDED',
     INVOICE_PAID_IN_FULL: 'INVOICE_PAID_IN_FULL',
     REJECTED: 'REJECTED',
+    IN_REVIEW: 'IN_REVIEW',
     DEFAULTED: 'DEFAULTED',
     LATE: 'LATE'
 } as const;

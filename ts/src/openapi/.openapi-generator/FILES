@@ -14,8 +14,12 @@ src/apis/PrequalificationsApi.ts
 src/apis/UsersApi.ts
 src/apis/index.ts
 src/index.ts
-src/models/AccountPayableFinancingOfferTerms.ts
-src/models/AccountPayableFinancingServicingData.ts
+src/models/AccountsPayableFinancingOfferTerms.ts
+src/models/AccountsPayableFinancingServicingData.ts
+src/models/AccountsPayableInvoiceFlowSessionTokenData.ts
+src/models/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.ts
+src/models/AccountsPayableSessionInvoice.ts
+src/models/AccountsPayableSessionInvoiceWithInvoiceFile.ts
 src/models/ActivityLog.ts
 src/models/Address.ts
 src/models/BadRequestException.ts
@@ -27,6 +31,7 @@ src/models/BusinessAlreadyExistsException.ts
 src/models/BusinessBankAccount.ts
 src/models/BusinessDocument.ts
 src/models/BusinessDocumentType.ts
+src/models/BusinessHasNoAccountsPayableFinancingProductException.ts
 src/models/BusinessHasNoInvoiceFinancingProductException.ts
 src/models/BusinessHasNoPrimaryOwnerException.ts
 src/models/BusinessNotFoundException.ts

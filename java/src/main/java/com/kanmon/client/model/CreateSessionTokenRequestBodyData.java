@@ -19,9 +19,11 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.AccountsPayableInvoiceFlowSessionTokenData;
+import com.kanmon.client.model.AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData;
+import com.kanmon.client.model.AccountsPayableSessionInvoiceWithInvoiceFile;
 import com.kanmon.client.model.InvoiceFlowSessionTokenData;
 import com.kanmon.client.model.InvoiceFlowWithInvoiceFileSessionTokenData;
-import com.kanmon.client.model.SessionInvoiceWithInvoiceFile;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,6 +78,8 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
             final TypeAdapter<InvoiceFlowSessionTokenData> adapterInvoiceFlowSessionTokenData = gson.getDelegateAdapter(this, TypeToken.get(InvoiceFlowSessionTokenData.class));
             final TypeAdapter<InvoiceFlowWithInvoiceFileSessionTokenData> adapterInvoiceFlowWithInvoiceFileSessionTokenData = gson.getDelegateAdapter(this, TypeToken.get(InvoiceFlowWithInvoiceFileSessionTokenData.class));
+            final TypeAdapter<AccountsPayableInvoiceFlowSessionTokenData> adapterAccountsPayableInvoiceFlowSessionTokenData = gson.getDelegateAdapter(this, TypeToken.get(AccountsPayableInvoiceFlowSessionTokenData.class));
+            final TypeAdapter<AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData> adapterAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData = gson.getDelegateAdapter(this, TypeToken.get(AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.class));
 
             return (TypeAdapter<T>) new TypeAdapter<CreateSessionTokenRequestBodyData>() {
                 @Override
@@ -97,7 +101,19 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData");
+                    // check if the actual instance is of the type `AccountsPayableInvoiceFlowSessionTokenData`
+                    if (value.getActualInstance() instanceof AccountsPayableInvoiceFlowSessionTokenData) {
+                        JsonElement element = adapterAccountsPayableInvoiceFlowSessionTokenData.toJsonTree((AccountsPayableInvoiceFlowSessionTokenData)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    // check if the actual instance is of the type `AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData`
+                    if (value.getActualInstance() instanceof AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData) {
+                        JsonElement element = adapterAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.toJsonTree((AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: AccountsPayableInvoiceFlowSessionTokenData, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData, InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData");
                 }
 
                 @Override
@@ -133,6 +149,30 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
                         errorMessages.add(String.format("Deserialization for InvoiceFlowWithInvoiceFileSessionTokenData failed with `%s`.", e.getMessage()));
                         log.log(Level.FINER, "Input data does not match schema 'InvoiceFlowWithInvoiceFileSessionTokenData'", e);
                     }
+                    // deserialize AccountsPayableInvoiceFlowSessionTokenData
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        AccountsPayableInvoiceFlowSessionTokenData.validateJsonElement(jsonElement);
+                        actualAdapter = adapterAccountsPayableInvoiceFlowSessionTokenData;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'AccountsPayableInvoiceFlowSessionTokenData'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for AccountsPayableInvoiceFlowSessionTokenData failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'AccountsPayableInvoiceFlowSessionTokenData'", e);
+                    }
+                    // deserialize AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.validateJsonElement(jsonElement);
+                        actualAdapter = adapterAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData'", e);
+                    }
 
                     if (match == 1) {
                         CreateSessionTokenRequestBodyData ret = new CreateSessionTokenRequestBodyData();
@@ -161,6 +201,8 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
     static {
         schemas.put("InvoiceFlowSessionTokenData", InvoiceFlowSessionTokenData.class);
         schemas.put("InvoiceFlowWithInvoiceFileSessionTokenData", InvoiceFlowWithInvoiceFileSessionTokenData.class);
+        schemas.put("AccountsPayableInvoiceFlowSessionTokenData", AccountsPayableInvoiceFlowSessionTokenData.class);
+        schemas.put("AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData", AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.class);
     }
 
     @Override
@@ -171,7 +213,7 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData
+     * AccountsPayableInvoiceFlowSessionTokenData, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData, InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData
      *
      * It could be an instance of the 'oneOf' schemas.
      */
@@ -187,14 +229,24 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData");
+        if (instance instanceof AccountsPayableInvoiceFlowSessionTokenData) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (instance instanceof AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be AccountsPayableInvoiceFlowSessionTokenData, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData, InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData
+     * AccountsPayableInvoiceFlowSessionTokenData, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData, InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData
      *
-     * @return The actual instance (InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData)
+     * @return The actual instance (AccountsPayableInvoiceFlowSessionTokenData, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData, InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -221,6 +273,26 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
      */
     public InvoiceFlowWithInvoiceFileSessionTokenData getInvoiceFlowWithInvoiceFileSessionTokenData() throws ClassCastException {
         return (InvoiceFlowWithInvoiceFileSessionTokenData)super.getActualInstance();
+    }
+    /**
+     * Get the actual instance of `AccountsPayableInvoiceFlowSessionTokenData`. If the actual instance is not `AccountsPayableInvoiceFlowSessionTokenData`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AccountsPayableInvoiceFlowSessionTokenData`
+     * @throws ClassCastException if the instance is not `AccountsPayableInvoiceFlowSessionTokenData`
+     */
+    public AccountsPayableInvoiceFlowSessionTokenData getAccountsPayableInvoiceFlowSessionTokenData() throws ClassCastException {
+        return (AccountsPayableInvoiceFlowSessionTokenData)super.getActualInstance();
+    }
+    /**
+     * Get the actual instance of `AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData`. If the actual instance is not `AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData`
+     * @throws ClassCastException if the instance is not `AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData`
+     */
+    public AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData getAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData() throws ClassCastException {
+        return (AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData)super.getActualInstance();
     }
 
     /**
@@ -249,8 +321,24 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
             errorMessages.add(String.format("Deserialization for InvoiceFlowWithInvoiceFileSessionTokenData failed with `%s`.", e.getMessage()));
             // continue to the next one
         }
+        // validate the json string with AccountsPayableInvoiceFlowSessionTokenData
+        try {
+            AccountsPayableInvoiceFlowSessionTokenData.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for AccountsPayableInvoiceFlowSessionTokenData failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
+        // validate the json string with AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData
+        try {
+            AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for CreateSessionTokenRequestBodyData with oneOf schemas: InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for CreateSessionTokenRequestBodyData with oneOf schemas: AccountsPayableInvoiceFlowSessionTokenData, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData, InvoiceFlowSessionTokenData, InvoiceFlowWithInvoiceFileSessionTokenData. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 
