@@ -19,6 +19,12 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
+import type { ProductType } from './ProductType';
+import {
+    ProductTypeFromJSON,
+    ProductTypeFromJSONTyped,
+    ProductTypeToJSON,
+} from './ProductType';
 
 /**
  * 
@@ -27,11 +33,11 @@ import {
  */
 export interface AccountsPayableFinancingServicingData {
     /**
-     * The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingServicingData`.
-     * @type {string}
+     * 
+     * @type {ProductType}
      * @memberof AccountsPayableFinancingServicingData
      */
-    productType: AccountsPayableFinancingServicingDataProductTypeEnum;
+    productType: ProductType;
     /**
      * The total limit allowed - in cents.
      * @type {number}
@@ -52,19 +58,6 @@ export interface AccountsPayableFinancingServicingData {
     availableLimitCents: number;
 }
 
-
-/**
- * @export
- */
-export const AccountsPayableFinancingServicingDataProductTypeEnum = {
-    INVOICE_FINANCING: 'INVOICE_FINANCING',
-    TERM_LOAN: 'TERM_LOAN',
-    MCA: 'MCA',
-    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
-    INTEGRATED_MCA: 'INTEGRATED_MCA',
-    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
-} as const;
-export type AccountsPayableFinancingServicingDataProductTypeEnum = typeof AccountsPayableFinancingServicingDataProductTypeEnum[keyof typeof AccountsPayableFinancingServicingDataProductTypeEnum];
 
 
 /**
@@ -88,7 +81,7 @@ export function AccountsPayableFinancingServicingDataFromJSONTyped(json: any, ig
     }
     return {
         
-        'productType': json['productType'],
+        'productType': ProductTypeFromJSON(json['productType']),
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
         'availableLimitCents': json['availableLimitCents'],
@@ -101,7 +94,7 @@ export function AccountsPayableFinancingServicingDataToJSON(value?: AccountsPaya
     }
     return {
         
-        'productType': value['productType'],
+        'productType': ProductTypeToJSON(value['productType']),
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
         'availableLimitCents': value['availableLimitCents'],

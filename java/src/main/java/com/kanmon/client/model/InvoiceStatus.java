@@ -37,6 +37,8 @@ public enum InvoiceStatus {
   
   REJECTED("REJECTED"),
   
+  IN_REVIEW("IN_REVIEW"),
+  
   DEFAULTED("DEFAULTED"),
   
   LATE("LATE");

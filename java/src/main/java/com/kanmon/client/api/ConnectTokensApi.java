@@ -150,8 +150,8 @@ public class ConnectTokensApi {
     }
 
     /**
-     * Create a connect token
-     * 
+     * Create a Connect Token
+     * Create a one-time use Connect Token for authenticating the user. The Connect Token expires after 24 hours. Multiple Connect Tokens can be created at the same time for a single user.
      * @param createConnectTokenRequestBody  (required)
      * @return ConnectToken
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -171,8 +171,8 @@ public class ConnectTokensApi {
     }
 
     /**
-     * Create a connect token
-     * 
+     * Create a Connect Token
+     * Create a one-time use Connect Token for authenticating the user. The Connect Token expires after 24 hours. Multiple Connect Tokens can be created at the same time for a single user.
      * @param createConnectTokenRequestBody  (required)
      * @return ApiResponse&lt;ConnectToken&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -193,8 +193,8 @@ public class ConnectTokensApi {
     }
 
     /**
-     * Create a connect token (asynchronously)
-     * 
+     * Create a Connect Token (asynchronously)
+     * Create a one-time use Connect Token for authenticating the user. The Connect Token expires after 24 hours. Multiple Connect Tokens can be created at the same time for a single user.
      * @param createConnectTokenRequestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call

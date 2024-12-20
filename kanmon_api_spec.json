@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "3ba26e34-66ac-4fc6-880d-6e675fe76d36,7c57c7af-6176-4ece-9be4-718538311b62",
+            "example": "b7973ab8-7894-4e1e-8778-7e28759db4a3,b028f39d-d360-4fa1-ba05-f1835bd589d7",
             "schema": { "type": "string" }
           },
           {
@@ -1097,7 +1097,8 @@
             }
           ]
         },
-        "summary": "Create a connect token",
+        "summary": "Create a Connect Token",
+        "description": "Create a one-time use Connect Token for authenticating the user. The Connect Token expires after 24 hours. Multiple Connect Tokens can be created at the same time for a single user.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1883,7 +1884,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "a8d4e5b7-5940-402d-a1f7-bc6287cdeec2,b9fda7eb-8838-4810-8711-f2f2ef22dc1f",
+            "example": "bd5af11c-d65f-41ba-9eef-fa4cce45680f,e7f206c6-e84a-4d71-aea0-79f41389eea0",
             "schema": { "type": "string" }
           },
           {
@@ -2229,7 +2230,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "e636b275-6400-4fb5-b961-53c1786dc417,d96ac176-7dc6-4df5-83f2-520cd4a68a39",
+            "example": "2a5b8b2c-c992-4531-8a84-98adf6fbe9de,f9098583-2a4b-4b85-bb6e-71b2aee75cd8",
             "schema": { "type": "string" }
           },
           {
@@ -3805,6 +3806,7 @@
           "INVOICE_FUNDED",
           "INVOICE_PAID_IN_FULL",
           "REJECTED",
+          "IN_REVIEW",
           "DEFAULTED",
           "LATE"
         ]
@@ -4344,7 +4346,7 @@
           "maxAdvanceAmountCents"
         ]
       },
-      "AccountPayableFinancingOfferTerms": {
+      "AccountsPayableFinancingOfferTerms": {
         "type": "object",
         "properties": {
           "productType": {
@@ -4391,7 +4393,7 @@
               { "$ref": "#/components/schemas/IntegratedMcaOfferTerms" },
               { "$ref": "#/components/schemas/LineOfCreditOfferTerms" },
               {
-                "$ref": "#/components/schemas/AccountPayableFinancingOfferTerms"
+                "$ref": "#/components/schemas/AccountsPayableFinancingOfferTerms"
               }
             ],
             "discriminator": {
@@ -4402,7 +4404,7 @@
                 "MCA": "#/components/schemas/McaOfferTerms",
                 "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaOfferTerms",
                 "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditOfferTerms",
-                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountPayableFinancingOfferTerms"
+                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountsPayableFinancingOfferTerms"
               }
             },
             "description": "Terms of the offer."
@@ -4694,7 +4696,7 @@
           "repaymentDurationMonths"
         ]
       },
-      "AccountPayableFinancingServicingData": {
+      "AccountsPayableFinancingServicingData": {
         "type": "object",
         "properties": {
           "productType": {
@@ -4767,7 +4769,7 @@
               { "$ref": "#/components/schemas/IntegratedMcaServicingData" },
               { "$ref": "#/components/schemas/LineOfCreditServicingData" },
               {
-                "$ref": "#/components/schemas/AccountPayableFinancingServicingData"
+                "$ref": "#/components/schemas/AccountsPayableFinancingServicingData"
               }
             ],
             "discriminator": {
@@ -4778,7 +4780,7 @@
                 "MCA": "#/components/schemas/McaServicingData",
                 "INTEGRATED_MCA": "#/components/schemas/IntegratedMcaServicingData",
                 "LINE_OF_CREDIT": "#/components/schemas/LineOfCreditServicingData",
-                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountPayableFinancingServicingData"
+                "ACCOUNTS_PAYABLE_FINANCING": "#/components/schemas/AccountsPayableFinancingServicingData"
               }
             },
             "description": "The data needed to service this specific type of issued product"
@@ -5733,6 +5735,208 @@
         },
         "required": ["component", "invoices"]
       },
+      "AccountsPayableSessionInvoice": {
+        "type": "object",
+        "properties": {
+          "platformInvoiceId": {
+            "type": "string",
+            "description": "Your platform’s unique ID for the invoice.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "platformInvoiceNumber": {
+            "type": "string",
+            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "example": "123"
+          },
+          "invoiceAmountCents": {
+            "type": "number",
+            "description": "The invoice amount - in cents. This needs to be greater than or equal to 100.",
+            "example": 1000000
+          },
+          "invoiceDueDate": {
+            "type": "string",
+            "description": "The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the `invoiceIssuedDate`.",
+            "example": "2022-06-01"
+          },
+          "invoiceIssuedDate": {
+            "type": "string",
+            "description": "The date when the payee issued the invoice. ISO 8601 date format.",
+            "example": "2022-04-01"
+          },
+          "payeeEmail": {
+            "type": "string",
+            "description": "The email of the payee.",
+            "example": "user@gmail.com"
+          },
+          "payeeAddress": {
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
+            "example": {
+              "city": "San Mateo",
+              "state": "CA",
+              "country": "USA",
+              "zipcode": "94401",
+              "addressLineOne": "123 Main Street"
+            },
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
+          },
+          "payeeType": {
+            "type": "string",
+            "description": "`INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.",
+            "enum": ["BUSINESS", "INDIVIDUAL"],
+            "example": "BUSINESS"
+          },
+          "payeeBusinessName": {
+            "type": "string",
+            "description": "The registered name of the payee business when the payee is a business and not an individual. Required and should only be defined if `payeeType` is `BUSINESS`.",
+            "example": "My Business"
+          },
+          "payeeFirstName": {
+            "type": "string",
+            "description": "The first name of the payee when the payee is an individual and not a business. Required and should only be defined if `payeeType` is `INDIVIDUAL`.",
+            "example": "John"
+          },
+          "payeeMiddleName": {
+            "type": "string",
+            "description": "The middle name of the payee when the payee is an individual and not a business. Optional and should only be defined if `payeeType` is `INDIVIDUAL`."
+          },
+          "payeeLastName": {
+            "type": "string",
+            "description": "The last name of the payee when the payee is an individual and not a business. Required and should only be defined if `payeeType` is `INDIVIDUAL`.",
+            "example": "Smith"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the goods or services in the invoice.",
+            "example": "Invoice for equipment purchased."
+          }
+        },
+        "required": [
+          "platformInvoiceId",
+          "platformInvoiceNumber",
+          "invoiceAmountCents",
+          "invoiceDueDate",
+          "payeeType",
+          "description"
+        ]
+      },
+      "AccountsPayableInvoiceFlowSessionTokenData": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string",
+            "enum": ["SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW"],
+            "description": "Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you have all the required invoice data."
+          },
+          "invoices": {
+            "description": "Details about the list of invoices which are to be created.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsPayableSessionInvoice"
+            }
+          }
+        },
+        "required": ["component", "invoices"]
+      },
+      "AccountsPayableSessionInvoiceWithInvoiceFile": {
+        "type": "object",
+        "properties": {
+          "platformInvoiceId": {
+            "type": "string",
+            "description": "Your platform’s unique ID for the invoice.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "documentId": {
+            "type": "string",
+            "description": "The UUID of the invoice document created in Kanmon.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "platformInvoiceNumber": {
+            "type": "string",
+            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "example": "123"
+          },
+          "invoiceAmountCents": {
+            "type": "number",
+            "description": "The invoice amount - in cents. This needs to be greater than or equal to 100.",
+            "example": 1000000
+          },
+          "invoiceDueDate": {
+            "type": "string",
+            "description": "The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the `invoiceIssuedDate`.",
+            "example": "2022-06-01"
+          },
+          "invoiceIssuedDate": {
+            "type": "string",
+            "description": "The date when the payee issued the invoice. ISO 8601 date format.",
+            "example": "2022-04-01"
+          },
+          "payeeEmail": {
+            "type": "string",
+            "description": "The email of the payee.",
+            "example": "user@gmail.com"
+          },
+          "payeeAddress": {
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
+            "example": {
+              "city": "San Mateo",
+              "state": "CA",
+              "country": "USA",
+              "zipcode": "94401",
+              "addressLineOne": "123 Main Street"
+            },
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
+          },
+          "payeeType": {
+            "type": "string",
+            "description": "`INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.",
+            "enum": ["BUSINESS", "INDIVIDUAL"],
+            "example": "BUSINESS"
+          },
+          "payeeBusinessName": {
+            "type": "string",
+            "description": "The registered name of the payee business when the payee is a business and not an individual.",
+            "example": "My Business"
+          },
+          "payeeFirstName": {
+            "type": "string",
+            "description": "The first name of the payee when the payee is an individual and not a business.",
+            "example": "John"
+          },
+          "payeeMiddleName": {
+            "type": "string",
+            "description": "The middle name of the payee when the payee is an individual and not a business."
+          },
+          "payeeLastName": {
+            "type": "string",
+            "description": "The last name of the payee when the payee is an individual and not a business.",
+            "example": "Smith"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the goods or services in the invoice.",
+            "example": "Invoice for equipment purchased."
+          }
+        },
+        "required": ["platformInvoiceId", "documentId"]
+      },
+      "AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData": {
+        "type": "object",
+        "properties": {
+          "component": {
+            "type": "string",
+            "enum": ["SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE"],
+            "description": "Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.`"
+          },
+          "invoices": {
+            "description": "Details about the list of invoices which are to be created.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AccountsPayableSessionInvoiceWithInvoiceFile"
+            }
+          }
+        },
+        "required": ["component", "invoices"]
+      },
       "CreateSessionTokenRequestBody": {
         "type": "object",
         "properties": {
@@ -5751,13 +5955,21 @@
               { "$ref": "#/components/schemas/InvoiceFlowSessionTokenData" },
               {
                 "$ref": "#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData"
+              },
+              {
+                "$ref": "#/components/schemas/AccountsPayableInvoiceFlowSessionTokenData"
+              },
+              {
+                "$ref": "#/components/schemas/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData"
               }
             ],
             "discriminator": {
               "propertyName": "component",
               "mapping": {
                 "SESSION_INVOICE_FLOW": "#/components/schemas/InvoiceFlowSessionTokenData",
-                "SESSION_INVOICE_FLOW_WITH_INVOICE_FILE": "#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData"
+                "SESSION_INVOICE_FLOW_WITH_INVOICE_FILE": "#/components/schemas/InvoiceFlowWithInvoiceFileSessionTokenData",
+                "SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW": "#/components/schemas/AccountsPayableInvoiceFlowSessionTokenData",
+                "SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE": "#/components/schemas/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData"
               }
             },
             "description": "This will differ depending on which `component` is used."
@@ -5907,6 +6119,27 @@
           "errorCode": {
             "type": "string",
             "enum": ["BusinessHasNoInvoiceFinancingProductException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "An error occurred."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "BusinessHasNoAccountsPayableFinancingProductException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["BusinessHasNoAccountsPayableFinancingProductException"],
             "description": "Safe for programmatic use."
           },
           "message": {

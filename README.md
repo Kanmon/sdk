@@ -1,4 +1,4 @@
-# Kanmon SDK 
+# Kanmon SDK
 
 Kanmon SDK is a library that provides a simple way to interact with the Kanmon API.
 

@@ -12,6 +12,20 @@
  * Do not edit the class manually.
  */
 
+import type { AccountsPayableInvoiceFlowSessionTokenData } from './AccountsPayableInvoiceFlowSessionTokenData';
+import {
+    instanceOfAccountsPayableInvoiceFlowSessionTokenData,
+    AccountsPayableInvoiceFlowSessionTokenDataFromJSON,
+    AccountsPayableInvoiceFlowSessionTokenDataFromJSONTyped,
+    AccountsPayableInvoiceFlowSessionTokenDataToJSON,
+} from './AccountsPayableInvoiceFlowSessionTokenData';
+import type { AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData } from './AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData';
+import {
+    instanceOfAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData,
+    AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenDataFromJSON,
+    AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenDataFromJSONTyped,
+    AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenDataToJSON,
+} from './AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData';
 import type { InvoiceFlowSessionTokenData } from './InvoiceFlowSessionTokenData';
 import {
     instanceOfInvoiceFlowSessionTokenData,
@@ -32,7 +46,7 @@ import {
  * This will differ depending on which `component` is used.
  * @export
  */
-export type CreateSessionTokenRequestBodyData = { component: 'SESSION_INVOICE_FLOW' } & InvoiceFlowSessionTokenData | { component: 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE' } & InvoiceFlowWithInvoiceFileSessionTokenData;
+export type CreateSessionTokenRequestBodyData = { component: 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW' } & AccountsPayableInvoiceFlowSessionTokenData | { component: 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE' } & AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData | { component: 'SESSION_INVOICE_FLOW' } & InvoiceFlowSessionTokenData | { component: 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE' } & InvoiceFlowWithInvoiceFileSessionTokenData;
 
 export function CreateSessionTokenRequestBodyDataFromJSON(json: any): CreateSessionTokenRequestBodyData {
     return CreateSessionTokenRequestBodyDataFromJSONTyped(json, false);
@@ -43,6 +57,10 @@ export function CreateSessionTokenRequestBodyDataFromJSONTyped(json: any, ignore
         return json;
     }
     switch (json['component']) {
+        case 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW':
+            return Object.assign({}, AccountsPayableInvoiceFlowSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW' } as const);
+        case 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE':
+            return Object.assign({}, AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE' } as const);
         case 'SESSION_INVOICE_FLOW':
             return Object.assign({}, InvoiceFlowSessionTokenDataFromJSONTyped(json, true), { component: 'SESSION_INVOICE_FLOW' } as const);
         case 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE':
@@ -57,6 +75,10 @@ export function CreateSessionTokenRequestBodyDataToJSON(value?: CreateSessionTok
         return value;
     }
     switch (value['component']) {
+        case 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW':
+            return AccountsPayableInvoiceFlowSessionTokenDataToJSON(value);
+        case 'SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE':
+            return AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenDataToJSON(value);
         case 'SESSION_INVOICE_FLOW':
             return InvoiceFlowSessionTokenDataToJSON(value);
         case 'SESSION_INVOICE_FLOW_WITH_INVOICE_FILE':

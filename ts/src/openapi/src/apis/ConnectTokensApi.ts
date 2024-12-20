@@ -47,7 +47,8 @@ export interface CreateConnectTokenRequest {
 export class ConnectTokensApi extends runtime.BaseAPI {
 
     /**
-     * Create a connect token
+     * Create a one-time use Connect Token for authenticating the user. The Connect Token expires after 24 hours. Multiple Connect Tokens can be created at the same time for a single user.
+     * Create a Connect Token
      */
     async createConnectTokenRaw(requestParameters: CreateConnectTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConnectToken>> {
         if (requestParameters['createConnectTokenRequestBody'] == null) {
@@ -79,7 +80,8 @@ export class ConnectTokensApi extends runtime.BaseAPI {
     }
 
     /**
-     * Create a connect token
+     * Create a one-time use Connect Token for authenticating the user. The Connect Token expires after 24 hours. Multiple Connect Tokens can be created at the same time for a single user.
+     * Create a Connect Token
      */
     async createConnectToken(requestParameters: CreateConnectTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConnectToken> {
         const response = await this.createConnectTokenRaw(requestParameters, initOverrides);

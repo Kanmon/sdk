@@ -18,10 +18,8 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.kanmon.client.model.InvoicePaymentPlan;
-import com.kanmon.client.model.ProductType;
+import com.kanmon.client.model.AccountsPayableSessionInvoiceWithInvoiceFile;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,41 +27,33 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * Model tests for AccountPayableFinancingOfferTerms
+ * Model tests for AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData
  */
-public class AccountPayableFinancingOfferTermsTest {
-    private final AccountPayableFinancingOfferTerms model = new AccountPayableFinancingOfferTerms();
+public class AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenDataTest {
+    private final AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData model = new AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData();
 
     /**
-     * Model tests for AccountPayableFinancingOfferTerms
+     * Model tests for AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData
      */
     @Test
-    public void testAccountPayableFinancingOfferTerms() {
-        // TODO: test AccountPayableFinancingOfferTerms
+    public void testAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData() {
+        // TODO: test AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData
     }
 
     /**
-     * Test the property 'productType'
+     * Test the property 'component'
      */
     @Test
-    public void productTypeTest() {
-        // TODO: test productType
+    public void componentTest() {
+        // TODO: test component
     }
 
     /**
-     * Test the property 'totalLimitCents'
+     * Test the property 'invoices'
      */
     @Test
-    public void totalLimitCentsTest() {
-        // TODO: test totalLimitCents
-    }
-
-    /**
-     * Test the property 'pricingPlans'
-     */
-    @Test
-    public void pricingPlansTest() {
-        // TODO: test pricingPlans
+    public void invoicesTest() {
+        // TODO: test invoices
     }
 
 }
