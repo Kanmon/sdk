@@ -159,6 +159,86 @@ public class Invoice {
   @SerializedName(SERIALIZED_NAME_PAYOR_LAST_NAME)
   private String payorLastName;
 
+  public static final String SERIALIZED_NAME_PAYEE_EMAIL = "payeeEmail";
+  @SerializedName(SERIALIZED_NAME_PAYEE_EMAIL)
+  private String payeeEmail;
+
+  public static final String SERIALIZED_NAME_PAYEE_ADDRESS = "payeeAddress";
+  @SerializedName(SERIALIZED_NAME_PAYEE_ADDRESS)
+  private Address payeeAddress;
+
+  /**
+   * &#x60;INDIVIDUAL&#x60; if the payee is a person and &#x60;BUSINESS&#x60; if the payee is a company.
+   */
+  @JsonAdapter(PayeeTypeEnum.Adapter.class)
+  public enum PayeeTypeEnum {
+    BUSINESS("BUSINESS"),
+    
+    INDIVIDUAL("INDIVIDUAL");
+
+    private String value;
+
+    PayeeTypeEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static PayeeTypeEnum fromValue(String value) {
+      for (PayeeTypeEnum b : PayeeTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<PayeeTypeEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PayeeTypeEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PayeeTypeEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return PayeeTypeEnum.fromValue(value);
+      }
+    }
+
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      String value = jsonElement.getAsString();
+      PayeeTypeEnum.fromValue(value);
+    }
+  }
+
+  public static final String SERIALIZED_NAME_PAYEE_TYPE = "payeeType";
+  @SerializedName(SERIALIZED_NAME_PAYEE_TYPE)
+  private PayeeTypeEnum payeeType;
+
+  public static final String SERIALIZED_NAME_PAYEE_BUSINESS_NAME = "payeeBusinessName";
+  @SerializedName(SERIALIZED_NAME_PAYEE_BUSINESS_NAME)
+  private String payeeBusinessName;
+
+  public static final String SERIALIZED_NAME_PAYEE_FIRST_NAME = "payeeFirstName";
+  @SerializedName(SERIALIZED_NAME_PAYEE_FIRST_NAME)
+  private String payeeFirstName;
+
+  public static final String SERIALIZED_NAME_PAYEE_MIDDLE_NAME = "payeeMiddleName";
+  @SerializedName(SERIALIZED_NAME_PAYEE_MIDDLE_NAME)
+  private String payeeMiddleName;
+
+  public static final String SERIALIZED_NAME_PAYEE_LAST_NAME = "payeeLastName";
+  @SerializedName(SERIALIZED_NAME_PAYEE_LAST_NAME)
+  private String payeeLastName;
+
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
   private InvoiceStatus status;
@@ -457,6 +537,139 @@ public class Invoice {
   }
 
 
+  public Invoice payeeEmail(String payeeEmail) {
+    this.payeeEmail = payeeEmail;
+    return this;
+  }
+
+  /**
+   * The email of the payee.
+   * @return payeeEmail
+   */
+  @javax.annotation.Nullable
+  public String getPayeeEmail() {
+    return payeeEmail;
+  }
+
+  public void setPayeeEmail(String payeeEmail) {
+    this.payeeEmail = payeeEmail;
+  }
+
+
+  public Invoice payeeAddress(Address payeeAddress) {
+    this.payeeAddress = payeeAddress;
+    return this;
+  }
+
+  /**
+   * The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+   * @return payeeAddress
+   */
+  @javax.annotation.Nullable
+  public Address getPayeeAddress() {
+    return payeeAddress;
+  }
+
+  public void setPayeeAddress(Address payeeAddress) {
+    this.payeeAddress = payeeAddress;
+  }
+
+
+  public Invoice payeeType(PayeeTypeEnum payeeType) {
+    this.payeeType = payeeType;
+    return this;
+  }
+
+  /**
+   * &#x60;INDIVIDUAL&#x60; if the payee is a person and &#x60;BUSINESS&#x60; if the payee is a company.
+   * @return payeeType
+   */
+  @javax.annotation.Nullable
+  public PayeeTypeEnum getPayeeType() {
+    return payeeType;
+  }
+
+  public void setPayeeType(PayeeTypeEnum payeeType) {
+    this.payeeType = payeeType;
+  }
+
+
+  public Invoice payeeBusinessName(String payeeBusinessName) {
+    this.payeeBusinessName = payeeBusinessName;
+    return this;
+  }
+
+  /**
+   * The registered name of the payee business when the payee is a business and not an individual.
+   * @return payeeBusinessName
+   */
+  @javax.annotation.Nullable
+  public String getPayeeBusinessName() {
+    return payeeBusinessName;
+  }
+
+  public void setPayeeBusinessName(String payeeBusinessName) {
+    this.payeeBusinessName = payeeBusinessName;
+  }
+
+
+  public Invoice payeeFirstName(String payeeFirstName) {
+    this.payeeFirstName = payeeFirstName;
+    return this;
+  }
+
+  /**
+   * The first name of the payee when the payee is an individual and not a business.
+   * @return payeeFirstName
+   */
+  @javax.annotation.Nullable
+  public String getPayeeFirstName() {
+    return payeeFirstName;
+  }
+
+  public void setPayeeFirstName(String payeeFirstName) {
+    this.payeeFirstName = payeeFirstName;
+  }
+
+
+  public Invoice payeeMiddleName(String payeeMiddleName) {
+    this.payeeMiddleName = payeeMiddleName;
+    return this;
+  }
+
+  /**
+   * The middle name of the payee when the payee is an individual and not a business.
+   * @return payeeMiddleName
+   */
+  @javax.annotation.Nullable
+  public String getPayeeMiddleName() {
+    return payeeMiddleName;
+  }
+
+  public void setPayeeMiddleName(String payeeMiddleName) {
+    this.payeeMiddleName = payeeMiddleName;
+  }
+
+
+  public Invoice payeeLastName(String payeeLastName) {
+    this.payeeLastName = payeeLastName;
+    return this;
+  }
+
+  /**
+   * The last name of the payee when the payee is an individual and not a business.
+   * @return payeeLastName
+   */
+  @javax.annotation.Nullable
+  public String getPayeeLastName() {
+    return payeeLastName;
+  }
+
+  public void setPayeeLastName(String payeeLastName) {
+    this.payeeLastName = payeeLastName;
+  }
+
+
   public Invoice status(InvoiceStatus status) {
     this.status = status;
     return this;
@@ -708,6 +921,13 @@ public class Invoice {
         Objects.equals(this.payorFirstName, invoice.payorFirstName) &&
         Objects.equals(this.payorMiddleName, invoice.payorMiddleName) &&
         Objects.equals(this.payorLastName, invoice.payorLastName) &&
+        Objects.equals(this.payeeEmail, invoice.payeeEmail) &&
+        Objects.equals(this.payeeAddress, invoice.payeeAddress) &&
+        Objects.equals(this.payeeType, invoice.payeeType) &&
+        Objects.equals(this.payeeBusinessName, invoice.payeeBusinessName) &&
+        Objects.equals(this.payeeFirstName, invoice.payeeFirstName) &&
+        Objects.equals(this.payeeMiddleName, invoice.payeeMiddleName) &&
+        Objects.equals(this.payeeLastName, invoice.payeeLastName) &&
         Objects.equals(this.status, invoice.status) &&
         Objects.equals(this.issuedProductId, invoice.issuedProductId) &&
         Objects.equals(this.feeAmountCents, invoice.feeAmountCents) &&
@@ -728,7 +948,7 @@ public class Invoice {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformInvoiceId, platformInvoiceNumber, invoiceAmountCents, invoiceDueDate, invoiceIssuedDate, payorEmail, payorAddress, payorType, payorBusinessName, payorFirstName, payorMiddleName, payorLastName, status, issuedProductId, feeAmountCents, principalAmountCents, invoiceAdvanceAmountCents, repaymentAmountCents, repaymentSchedule, advanceRatePercentage, transactionFeePercentage, amountRequestedForFinancingCents, createdAt, updatedAt);
+    return Objects.hash(id, platformInvoiceId, platformInvoiceNumber, invoiceAmountCents, invoiceDueDate, invoiceIssuedDate, payorEmail, payorAddress, payorType, payorBusinessName, payorFirstName, payorMiddleName, payorLastName, payeeEmail, payeeAddress, payeeType, payeeBusinessName, payeeFirstName, payeeMiddleName, payeeLastName, status, issuedProductId, feeAmountCents, principalAmountCents, invoiceAdvanceAmountCents, repaymentAmountCents, repaymentSchedule, advanceRatePercentage, transactionFeePercentage, amountRequestedForFinancingCents, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -755,6 +975,13 @@ public class Invoice {
     sb.append("    payorFirstName: ").append(toIndentedString(payorFirstName)).append("\n");
     sb.append("    payorMiddleName: ").append(toIndentedString(payorMiddleName)).append("\n");
     sb.append("    payorLastName: ").append(toIndentedString(payorLastName)).append("\n");
+    sb.append("    payeeEmail: ").append(toIndentedString(payeeEmail)).append("\n");
+    sb.append("    payeeAddress: ").append(toIndentedString(payeeAddress)).append("\n");
+    sb.append("    payeeType: ").append(toIndentedString(payeeType)).append("\n");
+    sb.append("    payeeBusinessName: ").append(toIndentedString(payeeBusinessName)).append("\n");
+    sb.append("    payeeFirstName: ").append(toIndentedString(payeeFirstName)).append("\n");
+    sb.append("    payeeMiddleName: ").append(toIndentedString(payeeMiddleName)).append("\n");
+    sb.append("    payeeLastName: ").append(toIndentedString(payeeLastName)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    issuedProductId: ").append(toIndentedString(issuedProductId)).append("\n");
     sb.append("    feeAmountCents: ").append(toIndentedString(feeAmountCents)).append("\n");
@@ -802,6 +1029,13 @@ public class Invoice {
     openapiFields.add("payorFirstName");
     openapiFields.add("payorMiddleName");
     openapiFields.add("payorLastName");
+    openapiFields.add("payeeEmail");
+    openapiFields.add("payeeAddress");
+    openapiFields.add("payeeType");
+    openapiFields.add("payeeBusinessName");
+    openapiFields.add("payeeFirstName");
+    openapiFields.add("payeeMiddleName");
+    openapiFields.add("payeeLastName");
     openapiFields.add("status");
     openapiFields.add("issuedProductId");
     openapiFields.add("feeAmountCents");
@@ -828,6 +1062,11 @@ public class Invoice {
     openapiRequiredFields.add("payorFirstName");
     openapiRequiredFields.add("payorMiddleName");
     openapiRequiredFields.add("payorLastName");
+    openapiRequiredFields.add("payeeEmail");
+    openapiRequiredFields.add("payeeBusinessName");
+    openapiRequiredFields.add("payeeFirstName");
+    openapiRequiredFields.add("payeeMiddleName");
+    openapiRequiredFields.add("payeeLastName");
     openapiRequiredFields.add("status");
     openapiRequiredFields.add("issuedProductId");
     openapiRequiredFields.add("feeAmountCents");
@@ -910,6 +1149,32 @@ public class Invoice {
       }
       if ((jsonObj.get("payorLastName") != null && !jsonObj.get("payorLastName").isJsonNull()) && !jsonObj.get("payorLastName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payorLastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorLastName").toString()));
+      }
+      if ((jsonObj.get("payeeEmail") != null && !jsonObj.get("payeeEmail").isJsonNull()) && !jsonObj.get("payeeEmail").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payeeEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeEmail").toString()));
+      }
+      // validate the optional field `payeeAddress`
+      if (jsonObj.get("payeeAddress") != null && !jsonObj.get("payeeAddress").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("payeeAddress"));
+      }
+      if ((jsonObj.get("payeeType") != null && !jsonObj.get("payeeType").isJsonNull()) && !jsonObj.get("payeeType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payeeType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeType").toString()));
+      }
+      // validate the optional field `payeeType`
+      if (jsonObj.get("payeeType") != null && !jsonObj.get("payeeType").isJsonNull()) {
+        PayeeTypeEnum.validateJsonElement(jsonObj.get("payeeType"));
+      }
+      if ((jsonObj.get("payeeBusinessName") != null && !jsonObj.get("payeeBusinessName").isJsonNull()) && !jsonObj.get("payeeBusinessName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payeeBusinessName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeBusinessName").toString()));
+      }
+      if ((jsonObj.get("payeeFirstName") != null && !jsonObj.get("payeeFirstName").isJsonNull()) && !jsonObj.get("payeeFirstName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payeeFirstName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeFirstName").toString()));
+      }
+      if ((jsonObj.get("payeeMiddleName") != null && !jsonObj.get("payeeMiddleName").isJsonNull()) && !jsonObj.get("payeeMiddleName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payeeMiddleName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeMiddleName").toString()));
+      }
+      if ((jsonObj.get("payeeLastName") != null && !jsonObj.get("payeeLastName").isJsonNull()) && !jsonObj.get("payeeLastName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payeeLastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeLastName").toString()));
       }
       // validate the required field `status`
       InvoiceStatus.validateJsonElement(jsonObj.get("status"));

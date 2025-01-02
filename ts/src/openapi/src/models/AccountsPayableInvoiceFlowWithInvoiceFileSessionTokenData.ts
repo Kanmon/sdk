@@ -27,7 +27,7 @@ import {
  */
 export interface AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData {
     /**
-     * Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.`
+     * Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.
      * @type {string}
      * @memberof AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData
      */
