@@ -117,6 +117,48 @@ export interface Invoice {
      */
     payorLastName: string | null;
     /**
+     * The email of the payee.
+     * @type {string}
+     * @memberof Invoice
+     */
+    payeeEmail: string | null;
+    /**
+     * The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+     * @type {Address}
+     * @memberof Invoice
+     */
+    payeeAddress?: Address | null;
+    /**
+     * `INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.
+     * @type {string}
+     * @memberof Invoice
+     */
+    payeeType?: InvoicePayeeTypeEnum | null;
+    /**
+     * The registered name of the payee business when the payee is a business and not an individual.
+     * @type {string}
+     * @memberof Invoice
+     */
+    payeeBusinessName: string | null;
+    /**
+     * The first name of the payee when the payee is an individual and not a business.
+     * @type {string}
+     * @memberof Invoice
+     */
+    payeeFirstName: string | null;
+    /**
+     * The middle name of the payee when the payee is an individual and not a business.
+     * @type {string}
+     * @memberof Invoice
+     */
+    payeeMiddleName: string | null;
+    /**
+     * The last name of the payee when the payee is an individual and not a business.
+     * @type {string}
+     * @memberof Invoice
+     */
+    payeeLastName: string | null;
+    /**
      * 
      * @type {InvoiceStatus}
      * @memberof Invoice
@@ -200,6 +242,15 @@ export const InvoicePayorTypeEnum = {
 } as const;
 export type InvoicePayorTypeEnum = typeof InvoicePayorTypeEnum[keyof typeof InvoicePayorTypeEnum];
 
+/**
+ * @export
+ */
+export const InvoicePayeeTypeEnum = {
+    BUSINESS: 'BUSINESS',
+    INDIVIDUAL: 'INDIVIDUAL'
+} as const;
+export type InvoicePayeeTypeEnum = typeof InvoicePayeeTypeEnum[keyof typeof InvoicePayeeTypeEnum];
+
 
 /**
  * Check if a given object implements the Invoice interface.
@@ -216,6 +267,11 @@ export function instanceOfInvoice(value: object): value is Invoice {
     if (!('payorFirstName' in value) || value['payorFirstName'] === undefined) return false;
     if (!('payorMiddleName' in value) || value['payorMiddleName'] === undefined) return false;
     if (!('payorLastName' in value) || value['payorLastName'] === undefined) return false;
+    if (!('payeeEmail' in value) || value['payeeEmail'] === undefined) return false;
+    if (!('payeeBusinessName' in value) || value['payeeBusinessName'] === undefined) return false;
+    if (!('payeeFirstName' in value) || value['payeeFirstName'] === undefined) return false;
+    if (!('payeeMiddleName' in value) || value['payeeMiddleName'] === undefined) return false;
+    if (!('payeeLastName' in value) || value['payeeLastName'] === undefined) return false;
     if (!('status' in value) || value['status'] === undefined) return false;
     if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
     if (!('feeAmountCents' in value) || value['feeAmountCents'] === undefined) return false;
@@ -254,6 +310,13 @@ export function InvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): I
         'payorFirstName': json['payorFirstName'],
         'payorMiddleName': json['payorMiddleName'],
         'payorLastName': json['payorLastName'],
+        'payeeEmail': json['payeeEmail'],
+        'payeeAddress': json['payeeAddress'] == null ? undefined : AddressFromJSON(json['payeeAddress']),
+        'payeeType': json['payeeType'] == null ? undefined : json['payeeType'],
+        'payeeBusinessName': json['payeeBusinessName'],
+        'payeeFirstName': json['payeeFirstName'],
+        'payeeMiddleName': json['payeeMiddleName'],
+        'payeeLastName': json['payeeLastName'],
         'status': InvoiceStatusFromJSON(json['status']),
         'issuedProductId': json['issuedProductId'],
         'feeAmountCents': json['feeAmountCents'],
@@ -288,6 +351,13 @@ export function InvoiceToJSON(value?: Invoice | null): any {
         'payorFirstName': value['payorFirstName'],
         'payorMiddleName': value['payorMiddleName'],
         'payorLastName': value['payorLastName'],
+        'payeeEmail': value['payeeEmail'],
+        'payeeAddress': AddressToJSON(value['payeeAddress']),
+        'payeeType': value['payeeType'],
+        'payeeBusinessName': value['payeeBusinessName'],
+        'payeeFirstName': value['payeeFirstName'],
+        'payeeMiddleName': value['payeeMiddleName'],
+        'payeeLastName': value['payeeLastName'],
         'status': InvoiceStatusToJSON(value['status']),
         'issuedProductId': value['issuedProductId'],
         'feeAmountCents': value['feeAmountCents'],

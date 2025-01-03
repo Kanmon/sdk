@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "b7973ab8-7894-4e1e-8778-7e28759db4a3,b028f39d-d360-4fa1-ba05-f1835bd589d7",
+            "example": "ac7d5bb7-46bc-4658-946d-5e61b9081da7,6ad946bd-ee27-4046-b512-049e55cfe4af",
             "schema": { "type": "string" }
           },
           {
@@ -1884,7 +1884,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "bd5af11c-d65f-41ba-9eef-fa4cce45680f,e7f206c6-e84a-4d71-aea0-79f41389eea0",
+            "example": "0de7aa9d-e9a5-4939-a0b4-7deffceabb8b,7738e39d-0622-49ef-a2b5-c5bf8e442550",
             "schema": { "type": "string" }
           },
           {
@@ -2230,7 +2230,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "2a5b8b2c-c992-4531-8a84-98adf6fbe9de,f9098583-2a4b-4b85-bb6e-71b2aee75cd8",
+            "example": "2759cc55-043e-46fa-b890-ca8e4b44d80c,fda214fa-1bb2-43ca-971c-915396c86300",
             "schema": { "type": "string" }
           },
           {
@@ -3948,6 +3948,54 @@
             "example": "Smith",
             "nullable": true
           },
+          "payeeEmail": {
+            "type": "string",
+            "description": "The email of the payee.",
+            "example": "user@gmail.com",
+            "nullable": true
+          },
+          "payeeAddress": {
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
+            "nullable": true,
+            "example": {
+              "city": "San Mateo",
+              "state": "CA",
+              "country": "USA",
+              "zipcode": "94401",
+              "addressLineOne": "123 Main Street"
+            },
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
+          },
+          "payeeType": {
+            "type": "string",
+            "description": "`INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.",
+            "enum": ["BUSINESS", "INDIVIDUAL"],
+            "example": "BUSINESS",
+            "nullable": true
+          },
+          "payeeBusinessName": {
+            "type": "string",
+            "description": "The registered name of the payee business when the payee is a business and not an individual.",
+            "example": "My Business",
+            "nullable": true
+          },
+          "payeeFirstName": {
+            "type": "string",
+            "description": "The first name of the payee when the payee is an individual and not a business.",
+            "nullable": true,
+            "example": "John"
+          },
+          "payeeMiddleName": {
+            "type": "string",
+            "description": "The middle name of the payee when the payee is an individual and not a business.",
+            "nullable": true
+          },
+          "payeeLastName": {
+            "type": "string",
+            "description": "The last name of the payee when the payee is an individual and not a business.",
+            "example": "Smith",
+            "nullable": true
+          },
           "status": {
             "example": "INVOICE_CREATED",
             "$ref": "#/components/schemas/InvoiceStatus"
@@ -4031,6 +4079,11 @@
           "payorFirstName",
           "payorMiddleName",
           "payorLastName",
+          "payeeEmail",
+          "payeeBusinessName",
+          "payeeFirstName",
+          "payeeMiddleName",
+          "payeeLastName",
           "status",
           "issuedProductId",
           "feeAmountCents",
@@ -5723,7 +5776,7 @@
           "component": {
             "type": "string",
             "enum": ["SESSION_INVOICE_FLOW_WITH_INVOICE_FILE"],
-            "description": "Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.`"
+            "description": "Generates a session token for the invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided."
           },
           "invoices": {
             "description": "Details about the list of invoices which are to be created.",
@@ -5925,7 +5978,7 @@
           "component": {
             "type": "string",
             "enum": ["SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE"],
-            "description": "Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.`"
+            "description": "Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided."
           },
           "invoices": {
             "description": "Details about the list of invoices which are to be created.",

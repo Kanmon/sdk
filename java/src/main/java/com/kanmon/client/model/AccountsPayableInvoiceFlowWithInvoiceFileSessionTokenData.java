@@ -54,7 +54,7 @@ import com.kanmon.client.JSON;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData {
   /**
-   * Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;
+   * Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.
    */
   @JsonAdapter(ComponentEnum.Adapter.class)
   public enum ComponentEnum {
@@ -120,7 +120,7 @@ public class AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData {
   }
 
   /**
-   * Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.&#x60;
+   * Generates a session token for the accounts payable invoice confirmation flow. This option can be used if you do not have all the required invoice data for the SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW option. Optional data that is not provided may be collected from the user. An invoice PDF must be provided.
    * @return component
    */
   @javax.annotation.Nonnull
