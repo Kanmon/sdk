@@ -77,6 +77,10 @@ public class CreateUserRequestBody {
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
   private String lastName;
 
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
+
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
   private Address address;
@@ -258,6 +262,25 @@ public class CreateUserRequestBody {
   }
 
 
+  public CreateUserRequestBody phoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * The user’s phone number. No formatting characters, country code is optional.
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+
   public CreateUserRequestBody address(Address address) {
     this.address = address;
     return this;
@@ -339,6 +362,7 @@ public class CreateUserRequestBody {
         Objects.equals(this.email, createUserRequestBody.email) &&
         Objects.equals(this.firstName, createUserRequestBody.firstName) &&
         Objects.equals(this.lastName, createUserRequestBody.lastName) &&
+        Objects.equals(this.phoneNumber, createUserRequestBody.phoneNumber) &&
         Objects.equals(this.address, createUserRequestBody.address) &&
         Objects.equals(this.roles, createUserRequestBody.roles) &&
         Objects.equals(this.metadata, createUserRequestBody.metadata);
@@ -346,7 +370,7 @@ public class CreateUserRequestBody {
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformUserId, platformBusinessId, businessId, email, firstName, lastName, address, roles, metadata);
+    return Objects.hash(platformUserId, platformBusinessId, businessId, email, firstName, lastName, phoneNumber, address, roles, metadata);
   }
 
   @Override
@@ -359,6 +383,7 @@ public class CreateUserRequestBody {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
@@ -390,6 +415,7 @@ public class CreateUserRequestBody {
     openapiFields.add("email");
     openapiFields.add("firstName");
     openapiFields.add("lastName");
+    openapiFields.add("phoneNumber");
     openapiFields.add("address");
     openapiFields.add("roles");
     openapiFields.add("metadata");
@@ -444,6 +470,9 @@ public class CreateUserRequestBody {
       }
       if ((jsonObj.get("lastName") != null && !jsonObj.get("lastName").isJsonNull()) && !jsonObj.get("lastName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `lastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lastName").toString()));
+      }
+      if ((jsonObj.get("phoneNumber") != null && !jsonObj.get("phoneNumber").isJsonNull()) && !jsonObj.get("phoneNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `phoneNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phoneNumber").toString()));
       }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {

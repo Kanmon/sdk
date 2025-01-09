@@ -45,7 +45,7 @@ export interface AccountsPayableSessionInvoice {
      */
     invoiceAmountCents: number;
     /**
-     * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the `invoiceIssuedDate`.
+     * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be no more than 5 days in the past. If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`.
      * @type {string}
      * @memberof AccountsPayableSessionInvoice
      */

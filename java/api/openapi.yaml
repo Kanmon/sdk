@@ -565,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "ac7d5bb7-46bc-4658-946d-5e61b9081da7,6ad946bd-ee27-4046-b512-049e55cfe4af"
+        example: "06268279-1621-49af-b4f4-57d7f18d254e,1a9a36c6-6662-4bcb-b805-8e845ff647bf"
         explode: true
         in: query
         name: businessIds
@@ -1567,7 +1567,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "0de7aa9d-e9a5-4939-a0b4-7deffceabb8b,7738e39d-0622-49ef-a2b5-c5bf8e442550"
+        example: "fe1f509a-4100-4909-8d9d-52d786a2fe4b,9a977780-cddd-42b1-9538-30973a0a5f00"
         explode: true
         in: query
         name: businessIds
@@ -1934,7 +1934,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "2759cc55-043e-46fa-b890-ca8e4b44d80c,fda214fa-1bb2-43ca-971c-915396c86300"
+        example: "8f80d0c1-9158-46cc-8328-480d0b57f9ad,bbae380d-8df5-41d1-bb94-4a94d735b0a4"
         explode: true
         in: query
         name: drawRequestIds
@@ -3202,6 +3202,7 @@ components:
         lastName: Smith
         metadata: "{}"
         platformBusinessId: "12345"
+        phoneNumber: "+14155556789"
         address:
           city: San Mateo
           state: CA
@@ -3239,6 +3240,11 @@ components:
         lastName:
           description: The user’s last name.
           example: Smith
+          type: string
+        phoneNumber:
+          description: "The user’s phone number. No formatting characters, country\
+            \ code is optional."
+          example: "+14155556789"
           type: string
         address:
           allOf:
@@ -3282,21 +3288,22 @@ components:
       type: object
     User:
       example:
-        firstName: John
         lastName: Smith
-        createdAt: 2022-06-01T03:57:26.115Z
         metadata: "{}"
-        platformBusinessId: "12345"
         address:
           city: San Mateo
           state: CA
           country: USA
           zipcode: "94401"
           addressLineOne: 123 Main Street
-        platformUserId: "12345"
         roles:
         - PRIMARY_OWNER
         businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        firstName: John
+        createdAt: 2022-06-01T03:57:26.115Z
+        platformBusinessId: "12345"
+        phoneNumber: "+14155556789"
+        platformUserId: "12345"
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         email: user@gmail.com
         updatedAt: 2022-06-01T03:57:26.115Z
@@ -3312,6 +3319,11 @@ components:
         platformBusinessId:
           description: Your platform’s unique business ID for the user.
           example: "12345"
+          nullable: true
+          type: string
+        phoneNumber:
+          description: The user’s phone number.
+          example: "+14155556789"
           nullable: true
           type: string
         businessId:
@@ -3417,39 +3429,41 @@ components:
       example:
         pagination: ""
         users:
-        - firstName: John
-          lastName: Smith
-          createdAt: 2022-06-01T03:57:26.115Z
+        - lastName: Smith
           metadata: "{}"
-          platformBusinessId: "12345"
           address:
             city: San Mateo
             state: CA
             country: USA
             zipcode: "94401"
             addressLineOne: 123 Main Street
-          platformUserId: "12345"
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          firstName: John
+          createdAt: 2022-06-01T03:57:26.115Z
+          platformBusinessId: "12345"
+          phoneNumber: "+14155556789"
+          platformUserId: "12345"
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
-        - firstName: John
-          lastName: Smith
-          createdAt: 2022-06-01T03:57:26.115Z
+        - lastName: Smith
           metadata: "{}"
-          platformBusinessId: "12345"
           address:
             city: San Mateo
             state: CA
             country: USA
             zipcode: "94401"
             addressLineOne: 123 Main Street
-          platformUserId: "12345"
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          firstName: John
+          createdAt: 2022-06-01T03:57:26.115Z
+          platformBusinessId: "12345"
+          phoneNumber: "+14155556789"
+          platformUserId: "12345"
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
@@ -3472,6 +3486,7 @@ components:
         firstName: John
         lastName: Smith
         metadata: "{}"
+        phoneNumber: "+14155556789"
         address:
           city: San Mateo
           state: CA
@@ -3489,6 +3504,11 @@ components:
         lastName:
           description: The user’s last name.
           example: Smith
+          type: string
+        phoneNumber:
+          description: "The user’s phone number. No formatting characters, country\
+            \ code is optional."
+          example: "+14155556789"
           type: string
         address:
           allOf:
@@ -3564,39 +3584,41 @@ components:
     MergeUsersResponseBody:
       example:
         mergedUsers:
-        - firstName: John
-          lastName: Smith
-          createdAt: 2022-06-01T03:57:26.115Z
+        - lastName: Smith
           metadata: "{}"
-          platformBusinessId: "12345"
           address:
             city: San Mateo
             state: CA
             country: USA
             zipcode: "94401"
             addressLineOne: 123 Main Street
-          platformUserId: "12345"
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          firstName: John
+          createdAt: 2022-06-01T03:57:26.115Z
+          platformBusinessId: "12345"
+          phoneNumber: "+14155556789"
+          platformUserId: "12345"
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
-        - firstName: John
-          lastName: Smith
-          createdAt: 2022-06-01T03:57:26.115Z
+        - lastName: Smith
           metadata: "{}"
-          platformBusinessId: "12345"
           address:
             city: San Mateo
             state: CA
             country: USA
             zipcode: "94401"
             addressLineOne: 123 Main Street
-          platformUserId: "12345"
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          firstName: John
+          createdAt: 2022-06-01T03:57:26.115Z
+          platformBusinessId: "12345"
+          phoneNumber: "+14155556789"
+          platformUserId: "12345"
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
@@ -5958,9 +5980,9 @@ components:
           example: 1000000
           type: number
         invoiceDueDate:
-          description: The date when the invoice will be paid by the payor. ISO 8601
-            date format. This date must be at least 7 days in the future and must
-            be after the `invoiceIssuedDate`.
+          description: "The date when the invoice will be paid by the payor. ISO 8601\
+            \ date format. This date must be no more than 5 days in the past. If `invoiceIssuedDate`\
+            \ is provided, then it must be after `invoiceIssuedDate`."
           example: 2022-06-01
           type: string
         invoiceIssuedDate:
@@ -6065,9 +6087,9 @@ components:
           example: 1000000
           type: number
         invoiceDueDate:
-          description: The date when the invoice will be paid by the payor. ISO 8601
-            date format. This date must be at least 7 days in the future and must
-            be after the `invoiceIssuedDate`.
+          description: "The date when the invoice will be paid by the payor. ISO 8601\
+            \ date format. This date must be no more than 5 days in the past. If `invoiceIssuedDate`\
+            \ is provided, then it must be after `invoiceIssuedDate`."
           example: 2022-06-01
           type: string
         invoiceIssuedDate:

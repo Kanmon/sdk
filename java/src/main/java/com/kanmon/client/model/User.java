@@ -66,6 +66,10 @@ public class User {
   @SerializedName(SERIALIZED_NAME_PLATFORM_BUSINESS_ID)
   private String platformBusinessId;
 
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
+
   public static final String SERIALIZED_NAME_BUSINESS_ID = "businessId";
   @SerializedName(SERIALIZED_NAME_BUSINESS_ID)
   private String businessId;
@@ -211,6 +215,25 @@ public class User {
 
   public void setPlatformBusinessId(String platformBusinessId) {
     this.platformBusinessId = platformBusinessId;
+  }
+
+
+  public User phoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * The user’s phone number.
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -406,6 +429,7 @@ public class User {
     return Objects.equals(this.id, user.id) &&
         Objects.equals(this.platformUserId, user.platformUserId) &&
         Objects.equals(this.platformBusinessId, user.platformBusinessId) &&
+        Objects.equals(this.phoneNumber, user.phoneNumber) &&
         Objects.equals(this.businessId, user.businessId) &&
         Objects.equals(this.address, user.address) &&
         Objects.equals(this.email, user.email) &&
@@ -423,7 +447,7 @@ public class User {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformUserId, platformBusinessId, businessId, address, email, firstName, lastName, roles, metadata, createdAt, updatedAt);
+    return Objects.hash(id, platformUserId, platformBusinessId, phoneNumber, businessId, address, email, firstName, lastName, roles, metadata, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -440,6 +464,7 @@ public class User {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    platformUserId: ").append(toIndentedString(platformUserId)).append("\n");
     sb.append("    platformBusinessId: ").append(toIndentedString(platformBusinessId)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    businessId: ").append(toIndentedString(businessId)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
@@ -474,6 +499,7 @@ public class User {
     openapiFields.add("id");
     openapiFields.add("platformUserId");
     openapiFields.add("platformBusinessId");
+    openapiFields.add("phoneNumber");
     openapiFields.add("businessId");
     openapiFields.add("address");
     openapiFields.add("email");
@@ -532,6 +558,9 @@ public class User {
       }
       if ((jsonObj.get("platformBusinessId") != null && !jsonObj.get("platformBusinessId").isJsonNull()) && !jsonObj.get("platformBusinessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformBusinessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformBusinessId").toString()));
+      }
+      if ((jsonObj.get("phoneNumber") != null && !jsonObj.get("phoneNumber").isJsonNull()) && !jsonObj.get("phoneNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `phoneNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phoneNumber").toString()));
       }
       if (!jsonObj.get("businessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `businessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("businessId").toString()));
