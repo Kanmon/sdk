@@ -245,7 +245,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
   /**
-   * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the &#x60;invoiceIssuedDate&#x60;.
+   * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be no more than 5 days in the past. If &#x60;invoiceIssuedDate&#x60; is provided, then it must be after &#x60;invoiceIssuedDate&#x60;.
    * @return invoiceDueDate
    */
   @javax.annotation.Nullable

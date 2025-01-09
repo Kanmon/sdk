@@ -45,6 +45,12 @@ export interface User {
      */
     platformBusinessId: string | null;
     /**
+     * The user’s phone number.
+     * @type {string}
+     * @memberof User
+     */
+    phoneNumber?: string | null;
+    /**
      * The UUID representing the user’s business in Kanmon.
      * @type {string}
      * @memberof User
@@ -139,6 +145,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'id': json['id'],
         'platformUserId': json['platformUserId'] == null ? undefined : json['platformUserId'],
         'platformBusinessId': json['platformBusinessId'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'businessId': json['businessId'],
         'address': AddressFromJSON(json['address']),
         'email': json['email'],
@@ -160,6 +167,7 @@ export function UserToJSON(value?: User | null): any {
         'id': value['id'],
         'platformUserId': value['platformUserId'],
         'platformBusinessId': value['platformBusinessId'],
+        'phoneNumber': value['phoneNumber'],
         'businessId': value['businessId'],
         'address': AddressToJSON(value['address']),
         'email': value['email'],

@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "ac7d5bb7-46bc-4658-946d-5e61b9081da7,6ad946bd-ee27-4046-b512-049e55cfe4af",
+            "example": "06268279-1621-49af-b4f4-57d7f18d254e,1a9a36c6-6662-4bcb-b805-8e845ff647bf",
             "schema": { "type": "string" }
           },
           {
@@ -1884,7 +1884,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "0de7aa9d-e9a5-4939-a0b4-7deffceabb8b,7738e39d-0622-49ef-a2b5-c5bf8e442550",
+            "example": "fe1f509a-4100-4909-8d9d-52d786a2fe4b,9a977780-cddd-42b1-9538-30973a0a5f00",
             "schema": { "type": "string" }
           },
           {
@@ -2230,7 +2230,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "2759cc55-043e-46fa-b890-ca8e4b44d80c,fda214fa-1bb2-43ca-971c-915396c86300",
+            "example": "8f80d0c1-9158-46cc-8328-480d0b57f9ad,bbae380d-8df5-41d1-bb94-4a94d735b0a4",
             "schema": { "type": "string" }
           },
           {
@@ -3528,6 +3528,11 @@
             "description": "The user’s last name.",
             "example": "Smith"
           },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The user’s phone number. No formatting characters, country code is optional.",
+            "example": "+14155556789"
+          },
           "address": {
             "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
@@ -3569,6 +3574,12 @@
             "type": "string",
             "description": "Your platform’s unique business ID for the user.",
             "example": "12345",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The user’s phone number.",
+            "example": "+14155556789",
             "nullable": true
           },
           "businessId": {
@@ -3686,6 +3697,11 @@
             "type": "string",
             "description": "The user’s last name.",
             "example": "Smith"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "The user’s phone number. No formatting characters, country code is optional.",
+            "example": "+14155556789"
           },
           "address": {
             "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
@@ -5808,7 +5824,7 @@
           },
           "invoiceDueDate": {
             "type": "string",
-            "description": "The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the `invoiceIssuedDate`.",
+            "description": "The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be no more than 5 days in the past. If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`.",
             "example": "2022-06-01"
           },
           "invoiceIssuedDate": {
@@ -5915,7 +5931,7 @@
           },
           "invoiceDueDate": {
             "type": "string",
-            "description": "The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be at least 7 days in the future and must be after the `invoiceIssuedDate`.",
+            "description": "The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be no more than 5 days in the past. If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`.",
             "example": "2022-06-01"
           },
           "invoiceIssuedDate": {

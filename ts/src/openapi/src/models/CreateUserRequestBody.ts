@@ -63,6 +63,12 @@ export interface CreateUserRequestBody {
      */
     lastName?: string;
     /**
+     * The user’s phone number. No formatting characters, country code is optional.
+     * @type {string}
+     * @memberof CreateUserRequestBody
+     */
+    phoneNumber?: string;
+    /**
      * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
      * @type {Address}
      * @memberof CreateUserRequestBody
@@ -117,6 +123,7 @@ export function CreateUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
         'email': json['email'] == null ? undefined : json['email'],
         'firstName': json['firstName'] == null ? undefined : json['firstName'],
         'lastName': json['lastName'] == null ? undefined : json['lastName'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
         'roles': json['roles'] == null ? undefined : json['roles'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
@@ -135,6 +142,7 @@ export function CreateUserRequestBodyToJSON(value?: CreateUserRequestBody | null
         'email': value['email'],
         'firstName': value['firstName'],
         'lastName': value['lastName'],
+        'phoneNumber': value['phoneNumber'],
         'address': AddressToJSON(value['address']),
         'roles': value['roles'],
         'metadata': value['metadata'],

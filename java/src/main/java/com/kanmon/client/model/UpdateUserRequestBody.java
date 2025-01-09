@@ -61,6 +61,10 @@ public class UpdateUserRequestBody {
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
   private String lastName;
 
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
+
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
   private Address address;
@@ -170,6 +174,25 @@ public class UpdateUserRequestBody {
   }
 
 
+  public UpdateUserRequestBody phoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * The user’s phone number. No formatting characters, country code is optional.
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+
   public UpdateUserRequestBody address(Address address) {
     this.address = address;
     return this;
@@ -266,6 +289,7 @@ public class UpdateUserRequestBody {
     UpdateUserRequestBody updateUserRequestBody = (UpdateUserRequestBody) o;
     return Objects.equals(this.firstName, updateUserRequestBody.firstName) &&
         Objects.equals(this.lastName, updateUserRequestBody.lastName) &&
+        Objects.equals(this.phoneNumber, updateUserRequestBody.phoneNumber) &&
         Objects.equals(this.address, updateUserRequestBody.address) &&
         Objects.equals(this.email, updateUserRequestBody.email) &&
         Objects.equals(this.roles, updateUserRequestBody.roles) &&
@@ -274,7 +298,7 @@ public class UpdateUserRequestBody {
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, address, email, roles, metadata);
+    return Objects.hash(firstName, lastName, phoneNumber, address, email, roles, metadata);
   }
 
   @Override
@@ -283,6 +307,7 @@ public class UpdateUserRequestBody {
     sb.append("class UpdateUserRequestBody {\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
@@ -311,6 +336,7 @@ public class UpdateUserRequestBody {
     openapiFields = new HashSet<String>();
     openapiFields.add("firstName");
     openapiFields.add("lastName");
+    openapiFields.add("phoneNumber");
     openapiFields.add("address");
     openapiFields.add("email");
     openapiFields.add("roles");
@@ -346,6 +372,9 @@ public class UpdateUserRequestBody {
       }
       if ((jsonObj.get("lastName") != null && !jsonObj.get("lastName").isJsonNull()) && !jsonObj.get("lastName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `lastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("lastName").toString()));
+      }
+      if ((jsonObj.get("phoneNumber") != null && !jsonObj.get("phoneNumber").isJsonNull()) && !jsonObj.get("phoneNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `phoneNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phoneNumber").toString()));
       }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {

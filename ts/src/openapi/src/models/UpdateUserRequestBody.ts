@@ -39,6 +39,12 @@ export interface UpdateUserRequestBody {
      */
     lastName?: string;
     /**
+     * The user’s phone number. No formatting characters, country code is optional.
+     * @type {string}
+     * @memberof UpdateUserRequestBody
+     */
+    phoneNumber?: string;
+    /**
      * The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
      * @type {Address}
      * @memberof UpdateUserRequestBody
@@ -94,6 +100,7 @@ export function UpdateUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
         
         'firstName': json['firstName'] == null ? undefined : json['firstName'],
         'lastName': json['lastName'] == null ? undefined : json['lastName'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
         'email': json['email'] == null ? undefined : json['email'],
         'roles': json['roles'] == null ? undefined : json['roles'],
@@ -109,6 +116,7 @@ export function UpdateUserRequestBodyToJSON(value?: UpdateUserRequestBody | null
         
         'firstName': value['firstName'],
         'lastName': value['lastName'],
+        'phoneNumber': value['phoneNumber'],
         'address': AddressToJSON(value['address']),
         'email': value['email'],
         'roles': value['roles'],
