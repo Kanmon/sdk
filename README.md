@@ -29,3 +29,4 @@ If you have any issues, please report them in the [issues](https://github.com/Ka
 ## Individual SDKs
 
 - [Node Typescript](./ts/README.md)
+- [Java](./java/README.md)
