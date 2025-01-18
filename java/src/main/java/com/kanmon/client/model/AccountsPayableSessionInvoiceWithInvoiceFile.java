@@ -302,7 +302,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
   /**
-   * The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+   * The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.
    * @return payeeAddress
    */
   @javax.annotation.Nullable
