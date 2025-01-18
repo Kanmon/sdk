@@ -531,6 +531,104 @@ paths:
             })\n    "
       x-accepts:
       - application/json
+  /api/platform/v2/sandbox/businesses/{id}/reset:
+    post:
+      operationId: sandboxResetBusiness
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Reset a business in sandbox
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n\
+            \    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/sandbox/businesses/{id}/delete:
+    delete:
+      operationId: sandboxDeleteBusiness
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Delete a business in sandbox
+      tags:
+      - Businesses
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n\
+            })\n    "
+      x-accepts:
+      - application/json
   /api/platform/v2/users:
     get:
       operationId: getAllUsers
@@ -565,7 +663,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "06268279-1621-49af-b4f4-57d7f18d254e,1a9a36c6-6662-4bcb-b805-8e845ff647bf"
+        example: "2b39aba5-18b9-4a68-814d-54bb75db0dde,5eb8f455-18a7-45dd-b757-6cfa826d8933"
         explode: true
         in: query
         name: businessIds
@@ -1567,7 +1665,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "fe1f509a-4100-4909-8d9d-52d786a2fe4b,9a977780-cddd-42b1-9538-30973a0a5f00"
+        example: "d445ff65-47f5-4f96-b4ac-9a2360b9fba8,59cce1a8-5b43-4456-8daa-37488316d49f"
         explode: true
         in: query
         name: businessIds
@@ -1934,7 +2032,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "8f80d0c1-9158-46cc-8328-480d0b57f9ad,bbae380d-8df5-41d1-bb94-4a94d735b0a4"
+        example: "5846c5ce-945f-43b9-a854-d1378eebe7ea,95201e6e-8177-4a43-8ace-2fa94b111b26"
         explode: true
         in: query
         name: drawRequestIds
@@ -2824,7 +2922,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The business’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address."
+            \ the address, you need to provide all the required fields in the address.\
+            \ The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -2898,7 +2997,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The business’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address."
+            \ the address, you need to provide all the required fields in the address.\
+            \ The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -3007,7 +3107,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The business’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address."
+            \ the address, you need to provide all the required fields in the address.\
+            \ The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -3250,7 +3351,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The user’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address."
+            \ the address, you need to provide all the required fields in the address.\
+            \ The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -3334,7 +3436,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The user’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address."
+            \ the address, you need to provide all the required fields in the address.\
+            \ The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -3514,7 +3617,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The user’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address."
+            \ the address, you need to provide all the required fields in the address.\
+            \ The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -3836,7 +3940,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payor. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address."
+            \ the address. The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -3886,7 +3990,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payee. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address."
+            \ the address. The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -5756,7 +5860,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payor. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address."
+            \ the address. The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -5902,7 +6006,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payor. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address."
+            \ the address. The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -5998,7 +6102,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payee. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address."
+            \ the address. The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA
@@ -6105,7 +6209,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payee. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address."
+            \ the address. The address must be a street address, not a PO Box."
           example:
             city: San Mateo
             state: CA

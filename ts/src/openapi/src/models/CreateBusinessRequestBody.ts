@@ -39,7 +39,7 @@ export interface CreateBusinessRequestBody {
      */
     name?: string;
     /**
-     * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.
+     * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.
      * @type {Address}
      * @memberof CreateBusinessRequestBody
      */
