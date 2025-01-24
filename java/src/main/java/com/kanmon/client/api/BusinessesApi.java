@@ -227,6 +227,141 @@ public class BusinessesApi {
         return localVarCall;
     }
     /**
+     * Build call for deleteBusiness
+     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteBusinessCall(Object id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/platform/v2/sandbox/businesses/{id}/delete-business"
+            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "Authorization" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteBusinessValidateBeforeCall(Object id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling deleteBusiness(Async)");
+        }
+
+        return deleteBusinessCall(id, _callback);
+
+    }
+
+    /**
+     * Delete a business
+     * 
+     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
+     * @return Business
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public Business deleteBusiness(Object id) throws ApiException {
+        ApiResponse<Business> localVarResp = deleteBusinessWithHttpInfo(id);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete a business
+     * 
+     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
+     * @return ApiResponse&lt;Business&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Business> deleteBusinessWithHttpInfo(Object id) throws ApiException {
+        okhttp3.Call localVarCall = deleteBusinessValidateBeforeCall(id, null);
+        Type localVarReturnType = new TypeToken<Business>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete a business (asynchronously)
+     * 
+     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteBusinessAsync(Object id, final ApiCallback<Business> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteBusinessValidateBeforeCall(id, _callback);
+        Type localVarReturnType = new TypeToken<Business>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for getAllBusinesses
      * @param ids A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
      * @param platformBusinessIds A comma delimited list of your platform’s unique IDs for businesses. (optional)
@@ -726,134 +861,7 @@ public class BusinessesApi {
         return localVarCall;
     }
     /**
-     * Build call for sandboxDeleteBusiness
-     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call sandboxDeleteBusinessCall(Object id, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/api/platform/v2/sandbox/businesses/{id}/delete"
-            .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] { "Authorization" };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call sandboxDeleteBusinessValidateBeforeCall(Object id, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling sandboxDeleteBusiness(Async)");
-        }
-
-        return sandboxDeleteBusinessCall(id, _callback);
-
-    }
-
-    /**
-     * Delete a business in sandbox
-     * 
-     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public void sandboxDeleteBusiness(Object id) throws ApiException {
-        sandboxDeleteBusinessWithHttpInfo(id);
-    }
-
-    /**
-     * Delete a business in sandbox
-     * 
-     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> sandboxDeleteBusinessWithHttpInfo(Object id) throws ApiException {
-        okhttp3.Call localVarCall = sandboxDeleteBusinessValidateBeforeCall(id, null);
-        return localVarApiClient.execute(localVarCall);
-    }
-
-    /**
-     * Delete a business in sandbox (asynchronously)
-     * 
-     * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call sandboxDeleteBusinessAsync(Object id, final ApiCallback<Void> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = sandboxDeleteBusinessValidateBeforeCall(id, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for sandboxResetBusiness
+     * Build call for resetBusiness
      * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -867,7 +875,7 @@ public class BusinessesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sandboxResetBusinessCall(Object id, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call resetBusinessCall(Object id, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -884,7 +892,7 @@ public class BusinessesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/platform/v2/sandbox/businesses/{id}/reset"
+        String localVarPath = "/api/platform/v2/sandbox/businesses/{id}/reset-business"
             .replace("{" + "id" + "}", localVarApiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -913,18 +921,18 @@ public class BusinessesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call sandboxResetBusinessValidateBeforeCall(Object id, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call resetBusinessValidateBeforeCall(Object id, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling sandboxResetBusiness(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling resetBusiness(Async)");
         }
 
-        return sandboxResetBusinessCall(id, _callback);
+        return resetBusinessCall(id, _callback);
 
     }
 
     /**
-     * Reset a business in sandbox
+     * Reset a business
      * 
      * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
      * @return Business
@@ -938,13 +946,13 @@ public class BusinessesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public Business sandboxResetBusiness(Object id) throws ApiException {
-        ApiResponse<Business> localVarResp = sandboxResetBusinessWithHttpInfo(id);
+    public Business resetBusiness(Object id) throws ApiException {
+        ApiResponse<Business> localVarResp = resetBusinessWithHttpInfo(id);
         return localVarResp.getData();
     }
 
     /**
-     * Reset a business in sandbox
+     * Reset a business
      * 
      * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
      * @return ApiResponse&lt;Business&gt;
@@ -958,14 +966,14 @@ public class BusinessesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<Business> sandboxResetBusinessWithHttpInfo(Object id) throws ApiException {
-        okhttp3.Call localVarCall = sandboxResetBusinessValidateBeforeCall(id, null);
+    public ApiResponse<Business> resetBusinessWithHttpInfo(Object id) throws ApiException {
+        okhttp3.Call localVarCall = resetBusinessValidateBeforeCall(id, null);
         Type localVarReturnType = new TypeToken<Business>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Reset a business in sandbox (asynchronously)
+     * Reset a business (asynchronously)
      * 
      * @param id Either the Kanmon business UUID or your platform’s business ID, depending on &#x60;idType&#x60;. (required)
      * @param _callback The callback to be executed when the API call finishes
@@ -980,9 +988,9 @@ public class BusinessesApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call sandboxResetBusinessAsync(Object id, final ApiCallback<Business> _callback) throws ApiException {
+    public okhttp3.Call resetBusinessAsync(Object id, final ApiCallback<Business> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = sandboxResetBusinessValidateBeforeCall(id, _callback);
+        okhttp3.Call localVarCall = resetBusinessValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<Business>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

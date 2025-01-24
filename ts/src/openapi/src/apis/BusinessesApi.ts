@@ -56,6 +56,10 @@ export interface CreateBusinessRequest {
     createBusinessRequestBody: CreateBusinessRequestBody;
 }
 
+export interface DeleteBusinessRequest {
+    id: any;
+}
+
 export interface GetAllBusinessesRequest {
     ids?: string;
     platformBusinessIds?: string;
@@ -79,11 +83,7 @@ export interface GetBusinessActivityLogRequest {
     createdAtEnd?: string;
 }
 
-export interface SandboxDeleteBusinessRequest {
-    id: any;
-}
-
-export interface SandboxResetBusinessRequest {
+export interface ResetBusinessRequest {
     id: any;
 }
 
@@ -135,6 +135,43 @@ export class BusinessesApi extends runtime.BaseAPI {
      */
     async createBusiness(requestParameters: CreateBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Business> {
         const response = await this.createBusinessRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a business
+     */
+    async deleteBusinessRaw(requestParameters: DeleteBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Business>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteBusiness().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/sandbox/businesses/{id}/delete-business`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BusinessFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a business
+     */
+    async deleteBusiness(requestParameters: DeleteBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Business> {
+        const response = await this.deleteBusinessRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -291,13 +328,13 @@ export class BusinessesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Delete a business in sandbox
+     * Reset a business
      */
-    async sandboxDeleteBusinessRaw(requestParameters: SandboxDeleteBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async resetBusinessRaw(requestParameters: ResetBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Business>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
-                'Required parameter "id" was null or undefined when calling sandboxDeleteBusiness().'
+                'Required parameter "id" was null or undefined when calling resetBusiness().'
             );
         }
 
@@ -310,43 +347,7 @@ export class BusinessesApi extends runtime.BaseAPI {
         }
 
         const response = await this.request({
-            path: `/api/platform/v2/sandbox/businesses/{id}/delete`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Delete a business in sandbox
-     */
-    async sandboxDeleteBusiness(requestParameters: SandboxDeleteBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.sandboxDeleteBusinessRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Reset a business in sandbox
-     */
-    async sandboxResetBusinessRaw(requestParameters: SandboxResetBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Business>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling sandboxResetBusiness().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
-        }
-
-        const response = await this.request({
-            path: `/api/platform/v2/sandbox/businesses/{id}/reset`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            path: `/api/platform/v2/sandbox/businesses/{id}/reset-business`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -356,10 +357,10 @@ export class BusinessesApi extends runtime.BaseAPI {
     }
 
     /**
-     * Reset a business in sandbox
+     * Reset a business
      */
-    async sandboxResetBusiness(requestParameters: SandboxResetBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Business> {
-        const response = await this.sandboxResetBusinessRaw(requestParameters, initOverrides);
+    async resetBusiness(requestParameters: ResetBusinessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Business> {
+        const response = await this.resetBusinessRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

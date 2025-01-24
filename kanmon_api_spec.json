@@ -600,20 +600,20 @@
         "security": [{ "Authorization": [] }]
       }
     },
-    "/api/platform/v2/sandbox/businesses/{id}/reset": {
+    "/api/platform/v2/sandbox/businesses/{id}/reset-business": {
       "post": {
-        "operationId": "sandboxResetBusiness",
+        "operationId": "resetBusiness",
         "x-readme": {
           "code-samples": [
             {
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.businesses.resetBusiness({\n  ...params...\n})\n    "
             }
           ]
         },
-        "summary": "Reset a business in sandbox",
+        "summary": "Reset a business",
         "parameters": [
           {
             "name": "id",
@@ -664,20 +664,20 @@
         "security": [{ "Authorization": [] }]
       }
     },
-    "/api/platform/v2/sandbox/businesses/{id}/delete": {
+    "/api/platform/v2/sandbox/businesses/{id}/delete-business": {
       "delete": {
-        "operationId": "sandboxDeleteBusiness",
+        "operationId": "deleteBusiness",
         "x-readme": {
           "code-samples": [
             {
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.businesses.deleteBusiness({\n  ...params...\n})\n    "
             }
           ]
         },
-        "summary": "Delete a business in sandbox",
+        "summary": "Delete a business",
         "parameters": [
           {
             "name": "id",
@@ -689,6 +689,14 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Business" }
+              }
+            }
+          },
           "400": {
             "description": "BadRequestException",
             "content": {
@@ -855,7 +863,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "2b39aba5-18b9-4a68-814d-54bb75db0dde,5eb8f455-18a7-45dd-b757-6cfa826d8933",
+            "example": "05b63491-c65a-4b73-9279-f4c34fb21002,003ddb1d-8a18-4880-882e-0753173b22f2",
             "schema": { "type": "string" }
           },
           {
@@ -2004,7 +2012,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "d445ff65-47f5-4f96-b4ac-9a2360b9fba8,59cce1a8-5b43-4456-8daa-37488316d49f",
+            "example": "dcf9d34d-4961-4dab-a584-038632da8da4,d7df5344-6236-4fdd-8fbf-48a816c8a8f8",
             "schema": { "type": "string" }
           },
           {
@@ -2350,7 +2358,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "5846c5ce-945f-43b9-a854-d1378eebe7ea,95201e6e-8177-4a43-8ace-2fa94b111b26",
+            "example": "3fdb53cc-4895-4f5c-81f3-a19b93be2c83,613becff-0a97-4bdf-b3f6-d29ee225a305",
             "schema": { "type": "string" }
           },
           {
@@ -3060,24 +3068,22 @@
       }
     },
     "schemas": {
-      "ProductType": {
-        "type": "string",
-        "enum": [
-          "INVOICE_FINANCING",
-          "TERM_LOAN",
-          "MCA",
-          "LINE_OF_CREDIT",
-          "INTEGRATED_MCA",
-          "ACCOUNTS_PAYABLE_FINANCING"
-        ]
-      },
       "BusinessPrequalification": {
         "type": "object",
         "properties": {
           "product": {
+            "type": "string",
+            "description": "The product that the business is prequalified for. This will be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`, `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`.",
             "example": "TERM_LOAN",
-            "nullable": true,
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ],
+            "nullable": true
           },
           "platformId": {
             "type": "string",
@@ -3327,7 +3333,7 @@
             "example": "My Business"
           },
           "address": {
-            "description": "The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -3384,7 +3390,7 @@
             "nullable": true
           },
           "address": {
-            "description": "The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -3479,7 +3485,7 @@
             "example": "12345"
           },
           "address": {
-            "description": "The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -3654,7 +3660,7 @@
             "example": "+14155556789"
           },
           "address": {
-            "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -3708,7 +3714,7 @@
             "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
           },
           "address": {
-            "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "nullable": true,
             "example": {
               "city": "San Mateo",
@@ -3824,7 +3830,7 @@
             "example": "+14155556789"
           },
           "address": {
-            "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The user’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -4043,7 +4049,7 @@
             "nullable": true
           },
           "payorAddress": {
-            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "nullable": true,
             "example": {
               "city": "San Mateo",
@@ -4091,7 +4097,7 @@
             "nullable": true
           },
           "payeeAddress": {
-            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "nullable": true,
             "example": {
               "city": "San Mateo",
@@ -4253,8 +4259,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.",
             "example": "TERM_LOAN",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "maxLoanAmountCents": {
             "type": "number",
@@ -4392,8 +4407,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingOfferTerms`.",
             "example": "INVOICE_FINANCING",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "totalLimitCents": {
             "type": "number",
@@ -4412,8 +4436,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `MCA` for `McaOfferTerms`.",
             "example": "MCA",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "advanceAmountCents": {
             "type": "number",
@@ -4461,8 +4494,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditOfferTerms`.",
             "example": "LINE_OF_CREDIT",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "totalLimitCents": {
             "type": "number",
@@ -4497,8 +4539,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaOfferTerms`.",
             "example": "INTEGRATED_MCA",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "advanceAmountCents": {
             "type": "number",
@@ -4539,8 +4590,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingOfferTerms`.",
             "example": "ACCOUNTS_PAYABLE_FINANCING",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "totalLimitCents": {
             "type": "number",
@@ -4672,8 +4732,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.",
             "example": "TERM_LOAN",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "loanAmountCents": {
             "type": "number",
@@ -4721,8 +4790,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `INVOICE_FINANCING` for `InvoiceFinancingServicingData`.",
             "example": "INVOICE_FINANCING",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "totalLimitCents": {
             "type": "number",
@@ -4749,8 +4827,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `MCA` for `McaServicingData`.",
             "example": "MCA",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "advanceAmountCents": {
             "type": "number",
@@ -4805,8 +4892,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `INTEGRATED_MCA` for `IntegratedMcaServicingData`.",
             "example": "INTEGRATED_MCA",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "advanceAmountCents": {
             "type": "number",
@@ -4847,8 +4943,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `LINE_OF_CREDIT` for `LineOfCreditServicingData`.",
             "example": "LINE_OF_CREDIT",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "totalLimitCents": {
             "type": "number",
@@ -4889,8 +4994,17 @@
         "type": "object",
         "properties": {
           "productType": {
+            "type": "string",
+            "description": "The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingServicingData`.",
             "example": "ACCOUNTS_PAYABLE_FINANCING",
-            "$ref": "#/components/schemas/ProductType"
+            "enum": [
+              "INVOICE_FINANCING",
+              "TERM_LOAN",
+              "MCA",
+              "LINE_OF_CREDIT",
+              "INTEGRATED_MCA",
+              "ACCOUNTS_PAYABLE_FINANCING"
+            ]
           },
           "totalLimitCents": {
             "type": "number",
@@ -5757,7 +5871,7 @@
             "example": "user@gmail.com"
           },
           "payorAddress": {
-            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -5863,7 +5977,7 @@
             "example": "user@gmail.com"
           },
           "payorAddress": {
-            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -5958,7 +6072,7 @@
             "example": "user@gmail.com"
           },
           "payeeAddress": {
-            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",
@@ -6065,7 +6179,7 @@
             "example": "user@gmail.com"
           },
           "payeeAddress": {
-            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address.",
             "example": {
               "city": "San Mateo",
               "state": "CA",

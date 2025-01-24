@@ -531,9 +531,9 @@ paths:
             })\n    "
       x-accepts:
       - application/json
-  /api/platform/v2/sandbox/businesses/{id}/reset:
+  /api/platform/v2/sandbox/businesses/{id}/reset-business:
     post:
-      operationId: sandboxResetBusiness
+      operationId: resetBusiness
       parameters:
       - description: "Either the Kanmon business UUID or your platform’s business\
           \ ID, depending on `idType`."
@@ -571,7 +571,7 @@ paths:
           description: InternalServerErrorException
       security:
       - Authorization: []
-      summary: Reset a business in sandbox
+      summary: Reset a business
       tags:
       - Businesses
       x-readme:
@@ -579,13 +579,12 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n\
-            \    "
+          code: "\nkanmonApi.businesses.resetBusiness({\n  ...params...\n})\n    "
       x-accepts:
       - application/json
-  /api/platform/v2/sandbox/businesses/{id}/delete:
+  /api/platform/v2/sandbox/businesses/{id}/delete-business:
     delete:
-      operationId: sandboxDeleteBusiness
+      operationId: deleteBusiness
       parameters:
       - description: "Either the Kanmon business UUID or your platform’s business\
           \ ID, depending on `idType`."
@@ -597,6 +596,12 @@ paths:
         schema: {}
         style: simple
       responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+          description: ""
         "400":
           content:
             application/json:
@@ -617,7 +622,7 @@ paths:
           description: InternalServerErrorException
       security:
       - Authorization: []
-      summary: Delete a business in sandbox
+      summary: Delete a business
       tags:
       - Businesses
       x-readme:
@@ -625,8 +630,7 @@ paths:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n\
-            })\n    "
+          code: "\nkanmonApi.businesses.deleteBusiness({\n  ...params...\n})\n    "
       x-accepts:
       - application/json
   /api/platform/v2/users:
@@ -663,7 +667,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "2b39aba5-18b9-4a68-814d-54bb75db0dde,5eb8f455-18a7-45dd-b757-6cfa826d8933"
+        example: "05b63491-c65a-4b73-9279-f4c34fb21002,003ddb1d-8a18-4880-882e-0753173b22f2"
         explode: true
         in: query
         name: businessIds
@@ -1665,7 +1669,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "d445ff65-47f5-4f96-b4ac-9a2360b9fba8,59cce1a8-5b43-4456-8daa-37488316d49f"
+        example: "dcf9d34d-4961-4dab-a584-038632da8da4,d7df5344-6236-4fdd-8fbf-48a816c8a8f8"
         explode: true
         in: query
         name: businessIds
@@ -2032,7 +2036,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "5846c5ce-945f-43b9-a854-d1378eebe7ea,95201e6e-8177-4a43-8ace-2fa94b111b26"
+        example: "3fdb53cc-4895-4f5c-81f3-a19b93be2c83,613becff-0a97-4bdf-b3f6-d29ee225a305"
         explode: true
         in: query
         name: drawRequestIds
@@ -2619,19 +2623,10 @@ paths:
       - application/json
 components:
   schemas:
-    ProductType:
-      enum:
-      - INVOICE_FINANCING
-      - TERM_LOAN
-      - MCA
-      - LINE_OF_CREDIT
-      - INTEGRATED_MCA
-      - ACCOUNTS_PAYABLE_FINANCING
-      type: string
     BusinessPrequalification:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
-        product: INVOICE_FINANCING
+        product: TERM_LOAN
         platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         isPrequalified: true
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2640,7 +2635,19 @@ components:
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         product:
-          $ref: '#/components/schemas/ProductType'
+          description: "The product that the business is prequalified for. This will\
+            \ be null if `isPrequalified` is false. Values can be `INVOICE_FINANCING`,\
+            \ `TERM_LOAN`, `MCA`, `LINE_OF_CREDIT`, `INTEGRATED_MCA`."
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: TERM_LOAN
+          nullable: true
+          type: string
         platformId:
           description: The UUID representing your platform in Kanmon.
           example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2705,7 +2712,7 @@ components:
         pagination: ""
         prequalifications:
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: INVOICE_FINANCING
+          product: TERM_LOAN
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2713,7 +2720,7 @@ components:
           prequalifiedAmountCents: 1000000
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
-          product: INVOICE_FINANCING
+          product: TERM_LOAN
           platformBusinessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           isPrequalified: true
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -2922,8 +2929,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The business’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address.\
-            \ The address must be a street address, not a PO Box."
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -2997,8 +3003,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The business’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address.\
-            \ The address must be a street address, not a PO Box."
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3107,8 +3112,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The business’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address.\
-            \ The address must be a street address, not a PO Box."
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3351,8 +3355,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The user’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address.\
-            \ The address must be a street address, not a PO Box."
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3436,8 +3439,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The user’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address.\
-            \ The address must be a street address, not a PO Box."
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3617,8 +3619,7 @@ components:
           allOf:
           - $ref: '#/components/schemas/Address'
           description: "The user’s address. The address is optional. If you provide\
-            \ the address, you need to provide all the required fields in the address.\
-            \ The address must be a street address, not a PO Box."
+            \ the address, you need to provide all the required fields in the address."
           example:
             city: San Mateo
             state: CA
@@ -3940,7 +3941,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payor. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address. The address must be a street address, not a PO Box."
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -3990,7 +3991,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payee. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address. The address must be a street address, not a PO Box."
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -4235,10 +4236,19 @@ components:
         durationMonths: 6
         feePercentage: 3
         interestRatePercentage: 10
-        productType: INVOICE_FINANCING
+        productType: TERM_LOAN
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: TERM_LOAN
+          type: string
         maxLoanAmountCents:
           description: The maximum loan amount - in cents.
           example: 1000000
@@ -4359,7 +4369,17 @@ components:
     InvoiceFinancingOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INVOICE_FINANCING`
+            for `InvoiceFinancingOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INVOICE_FINANCING
+          type: string
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4377,7 +4397,16 @@ components:
     McaOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `MCA` for `McaOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4425,7 +4454,17 @@ components:
     LineOfCreditOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `LINE_OF_CREDIT`
+            for `LineOfCreditOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: LINE_OF_CREDIT
+          type: string
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4454,7 +4493,17 @@ components:
     IntegratedMcaOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INTEGRATED_MCA`
+            for `IntegratedMcaOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INTEGRATED_MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4491,7 +4540,17 @@ components:
     AccountsPayableFinancingOfferTerms:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING`
+            for `AccountsPayableFinancingOfferTerms`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: ACCOUNTS_PAYABLE_FINANCING
+          type: string
         totalLimitCents:
           description: The total limit allowed for this offer - in cents.
           example: 1000000
@@ -4517,7 +4576,7 @@ components:
           durationMonths: 6
           feePercentage: 3
           interestRatePercentage: 10
-          productType: INVOICE_FINANCING
+          productType: TERM_LOAN
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         selectedAt: 2023-12-15T03:57:26.115Z
@@ -4603,7 +4662,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4617,7 +4676,7 @@ components:
             durationMonths: 6
             feePercentage: 3
             interestRatePercentage: 10
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -4644,11 +4703,20 @@ components:
         monthlyPaymentCents: 100000
         nextPaymentDate: 2023-12-15
         originationFeeCents: 100000
-        productType: INVOICE_FINANCING
+        productType: TERM_LOAN
         principalBalanceCents: 1000000
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `TERM_LOAN` for `TermLoanServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: TERM_LOAN
+          type: string
         loanAmountCents:
           description: The total loan amount - in cents.
           example: 1000000
@@ -4686,7 +4754,17 @@ components:
     InvoiceFinancingServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INVOICE_FINANCING`
+            for `InvoiceFinancingServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INVOICE_FINANCING
+          type: string
         totalLimitCents:
           description: The total limit allowed - in cents.
           type: number
@@ -4708,7 +4786,16 @@ components:
     McaServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `MCA` for `McaServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4762,7 +4849,17 @@ components:
     IntegratedMcaServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `INTEGRATED_MCA`
+            for `IntegratedMcaServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: INTEGRATED_MCA
+          type: string
         advanceAmountCents:
           description: The loan amount - in cents.
           example: 1000000
@@ -4799,7 +4896,17 @@ components:
     LineOfCreditServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `LINE_OF_CREDIT`
+            for `LineOfCreditServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: LINE_OF_CREDIT
+          type: string
         totalLimitCents:
           description: The total credit limit - in cents.
           example: 1000000
@@ -4834,7 +4941,17 @@ components:
     AccountsPayableFinancingServicingData:
       properties:
         productType:
-          $ref: '#/components/schemas/ProductType'
+          description: The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING`
+            for `AccountsPayableFinancingServicingData`.
+          enum:
+          - INVOICE_FINANCING
+          - TERM_LOAN
+          - MCA
+          - LINE_OF_CREDIT
+          - INTEGRATED_MCA
+          - ACCOUNTS_PAYABLE_FINANCING
+          example: ACCOUNTS_PAYABLE_FINANCING
+          type: string
         totalLimitCents:
           description: The total limit allowed - in cents.
           type: number
@@ -4863,7 +4980,7 @@ components:
           monthlyPaymentCents: 100000
           nextPaymentDate: 2023-12-15
           originationFeeCents: 100000
-          productType: INVOICE_FINANCING
+          productType: TERM_LOAN
           principalBalanceCents: 1000000
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         loanStatus: CURRENT
@@ -4956,7 +5073,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -4971,7 +5088,7 @@ components:
             monthlyPaymentCents: 100000
             nextPaymentDate: 2023-12-15
             originationFeeCents: 100000
-            productType: INVOICE_FINANCING
+            productType: TERM_LOAN
             principalBalanceCents: 1000000
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
@@ -5860,7 +5977,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payor. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address. The address must be a street address, not a PO Box."
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -6006,7 +6123,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payor. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address. The address must be a street address, not a PO Box."
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -6102,7 +6219,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payee. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address. The address must be a street address, not a PO Box."
+            \ the address."
           example:
             city: San Mateo
             state: CA
@@ -6209,7 +6326,7 @@ components:
           - $ref: '#/components/schemas/Address'
           description: "The address of the payee. The address is optional. If you\
             \ provide the address, you need to provide all the required fields in\
-            \ the address. The address must be a street address, not a PO Box."
+            \ the address."
           example:
             city: San Mateo
             state: CA

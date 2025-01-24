@@ -19,12 +19,6 @@ import {
     InvoicePaymentPlanFromJSONTyped,
     InvoicePaymentPlanToJSON,
 } from './InvoicePaymentPlan';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
 
 /**
  * 
@@ -33,11 +27,11 @@ import {
  */
 export interface AccountsPayableFinancingOfferTerms {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `ACCOUNTS_PAYABLE_FINANCING` for `AccountsPayableFinancingOfferTerms`.
+     * @type {string}
      * @memberof AccountsPayableFinancingOfferTerms
      */
-    productType: ProductType;
+    productType: AccountsPayableFinancingOfferTermsProductTypeEnum;
     /**
      * The total limit allowed for this offer - in cents.
      * @type {number}
@@ -52,6 +46,19 @@ export interface AccountsPayableFinancingOfferTerms {
     pricingPlans: Array<InvoicePaymentPlan>;
 }
 
+
+/**
+ * @export
+ */
+export const AccountsPayableFinancingOfferTermsProductTypeEnum = {
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
+} as const;
+export type AccountsPayableFinancingOfferTermsProductTypeEnum = typeof AccountsPayableFinancingOfferTermsProductTypeEnum[keyof typeof AccountsPayableFinancingOfferTermsProductTypeEnum];
 
 
 /**
@@ -74,7 +81,7 @@ export function AccountsPayableFinancingOfferTermsFromJSONTyped(json: any, ignor
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'totalLimitCents': json['totalLimitCents'],
         'pricingPlans': ((json['pricingPlans'] as Array<any>).map(InvoicePaymentPlanFromJSON)),
     };
@@ -86,7 +93,7 @@ export function AccountsPayableFinancingOfferTermsToJSON(value?: AccountsPayable
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'totalLimitCents': value['totalLimitCents'],
         'pricingPlans': ((value['pricingPlans'] as Array<any>).map(InvoicePaymentPlanToJSON)),
     };

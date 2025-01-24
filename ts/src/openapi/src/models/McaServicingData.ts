@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface McaServicingData {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `MCA` for `McaServicingData`.
+     * @type {string}
      * @memberof McaServicingData
      */
-    productType: ProductType;
+    productType: McaServicingDataProductTypeEnum;
     /**
      * The loan amount - in cents.
      * @type {number}
@@ -80,6 +73,19 @@ export interface McaServicingData {
 /**
  * @export
  */
+export const McaServicingDataProductTypeEnum = {
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
+} as const;
+export type McaServicingDataProductTypeEnum = typeof McaServicingDataProductTypeEnum[keyof typeof McaServicingDataProductTypeEnum];
+
+/**
+ * @export
+ */
 export const McaServicingDataRepaymentFrequencyEnum = {
     DAILY: 'DAILY',
     WEEKLY: 'WEEKLY',
@@ -114,7 +120,7 @@ export function McaServicingDataFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'advanceAmountCents': json['advanceAmountCents'],
         'repaymentPercentage': json['repaymentPercentage'],
         'feeFactor': json['feeFactor'],
@@ -131,7 +137,7 @@ export function McaServicingDataToJSON(value?: McaServicingData | null): any {
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'advanceAmountCents': value['advanceAmountCents'],
         'repaymentPercentage': value['repaymentPercentage'],
         'feeFactor': value['feeFactor'],

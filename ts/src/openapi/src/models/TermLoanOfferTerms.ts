@@ -13,13 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ProductType } from './ProductType';
-import {
-    ProductTypeFromJSON,
-    ProductTypeFromJSONTyped,
-    ProductTypeToJSON,
-} from './ProductType';
-
 /**
  * 
  * @export
@@ -27,11 +20,11 @@ import {
  */
 export interface TermLoanOfferTerms {
     /**
-     * 
-     * @type {ProductType}
+     * The type of product being offered. Always `TERM_LOAN` for `TermLoanOfferTerms`.
+     * @type {string}
      * @memberof TermLoanOfferTerms
      */
-    productType: ProductType;
+    productType: TermLoanOfferTermsProductTypeEnum;
     /**
      * The maximum loan amount - in cents.
      * @type {number}
@@ -65,6 +58,19 @@ export interface TermLoanOfferTerms {
 }
 
 
+/**
+ * @export
+ */
+export const TermLoanOfferTermsProductTypeEnum = {
+    INVOICE_FINANCING: 'INVOICE_FINANCING',
+    TERM_LOAN: 'TERM_LOAN',
+    MCA: 'MCA',
+    LINE_OF_CREDIT: 'LINE_OF_CREDIT',
+    INTEGRATED_MCA: 'INTEGRATED_MCA',
+    ACCOUNTS_PAYABLE_FINANCING: 'ACCOUNTS_PAYABLE_FINANCING'
+} as const;
+export type TermLoanOfferTermsProductTypeEnum = typeof TermLoanOfferTermsProductTypeEnum[keyof typeof TermLoanOfferTermsProductTypeEnum];
+
 
 /**
  * Check if a given object implements the TermLoanOfferTerms interface.
@@ -89,7 +95,7 @@ export function TermLoanOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'productType': ProductTypeFromJSON(json['productType']),
+        'productType': json['productType'],
         'maxLoanAmountCents': json['maxLoanAmountCents'],
         'loanAmountCents': json['loanAmountCents'],
         'interestRatePercentage': json['interestRatePercentage'],
@@ -104,7 +110,7 @@ export function TermLoanOfferTermsToJSON(value?: TermLoanOfferTerms | null): any
     }
     return {
         
-        'productType': ProductTypeToJSON(value['productType']),
+        'productType': value['productType'],
         'maxLoanAmountCents': value['maxLoanAmountCents'],
         'loanAmountCents': value['loanAmountCents'],
         'interestRatePercentage': value['interestRatePercentage'],

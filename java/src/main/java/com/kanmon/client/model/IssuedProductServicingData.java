@@ -25,7 +25,6 @@ import com.kanmon.client.model.InvoiceFinancingServicingData;
 import com.kanmon.client.model.InvoicePaymentPlan;
 import com.kanmon.client.model.LineOfCreditServicingData;
 import com.kanmon.client.model.McaServicingData;
-import com.kanmon.client.model.ProductType;
 import com.kanmon.client.model.TermLoanServicingData;
 import java.io.IOException;
 import java.math.BigDecimal;
