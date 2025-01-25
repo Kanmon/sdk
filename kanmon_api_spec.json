@@ -600,126 +600,6 @@
         "security": [{ "Authorization": [] }]
       }
     },
-    "/api/platform/v2/sandbox/businesses/{id}/reset": {
-      "post": {
-        "operationId": "sandboxResetBusiness",
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "node",
-              "install": "npm install @kanmon/sdk",
-              "name": "SDK",
-              "code": "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n    "
-            }
-          ]
-        },
-        "summary": "Reset a business in sandbox",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Either the Kanmon business UUID or your platform’s business ID, depending on `idType`.",
-            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Business" }
-              }
-            }
-          },
-          "400": {
-            "description": "BadRequestException",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/BadRequestException" }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenException",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalServerErrorException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerErrorException"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Businesses"],
-        "security": [{ "Authorization": [] }]
-      }
-    },
-    "/api/platform/v2/sandbox/businesses/{id}/delete": {
-      "delete": {
-        "operationId": "sandboxDeleteBusiness",
-        "x-readme": {
-          "code-samples": [
-            {
-              "language": "node",
-              "install": "npm install @kanmon/sdk",
-              "name": "SDK",
-              "code": "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n})\n    "
-            }
-          ]
-        },
-        "summary": "Delete a business in sandbox",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "Either the Kanmon business UUID or your platform’s business ID, depending on `idType`.",
-            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
-            "schema": {}
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "BadRequestException",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/BadRequestException" }
-              }
-            }
-          },
-          "403": {
-            "description": "ForbiddenException",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
-              }
-            }
-          },
-          "500": {
-            "description": "InternalServerErrorException",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InternalServerErrorException"
-                }
-              }
-            }
-          }
-        },
-        "tags": ["Businesses"],
-        "security": [{ "Authorization": [] }]
-      }
-    },
     "/api/platform/v2/users": {
       "post": {
         "operationId": "createUser",
@@ -855,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "2b39aba5-18b9-4a68-814d-54bb75db0dde,5eb8f455-18a7-45dd-b757-6cfa826d8933",
+            "example": "3010404d-e85b-492c-949d-686ff66d9ca3,c253c16d-891f-419e-84ab-af3c31301aa4",
             "schema": { "type": "string" }
           },
           {
@@ -2004,7 +1884,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "d445ff65-47f5-4f96-b4ac-9a2360b9fba8,59cce1a8-5b43-4456-8daa-37488316d49f",
+            "example": "596ef238-64b8-4555-b52c-7d5bf09ef059,07ccb1fe-a874-41ae-a159-3641c0647786",
             "schema": { "type": "string" }
           },
           {
@@ -2350,7 +2230,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "5846c5ce-945f-43b9-a854-d1378eebe7ea,95201e6e-8177-4a43-8ace-2fa94b111b26",
+            "example": "36db4528-1122-4895-8d35-c0ac8ff8a4c8,d009d3da-d1f5-49ff-81d9-79b2b996e00d",
             "schema": { "type": "string" }
           },
           {
@@ -2941,6 +2821,126 @@
           }
         },
         "tags": ["Integrated MCA Receivables"],
+        "security": [{ "Authorization": [] }]
+      }
+    },
+    "/api/platform/v2/sandbox/businesses/{id}/reset": {
+      "post": {
+        "operationId": "sandboxResetBusiness",
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "node",
+              "install": "npm install @kanmon/sdk",
+              "name": "SDK",
+              "code": "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n    "
+            }
+          ]
+        },
+        "summary": "Reset a business in sandbox",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Either the Kanmon business UUID or your platform’s business ID, depending on `idType`.",
+            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Business" }
+              }
+            }
+          },
+          "400": {
+            "description": "BadRequestException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalServerErrorException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Sandbox Utilities"],
+        "security": [{ "Authorization": [] }]
+      }
+    },
+    "/api/platform/v2/sandbox/businesses/{id}/delete": {
+      "delete": {
+        "operationId": "sandboxDeleteBusiness",
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "node",
+              "install": "npm install @kanmon/sdk",
+              "name": "SDK",
+              "code": "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n})\n    "
+            }
+          ]
+        },
+        "summary": "Delete a business in sandbox",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "Either the Kanmon business UUID or your platform’s business ID, depending on `idType`.",
+            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "BadRequestException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalServerErrorException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Sandbox Utilities"],
         "security": [{ "Authorization": [] }]
       }
     },

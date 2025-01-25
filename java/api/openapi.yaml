@@ -531,104 +531,6 @@ paths:
             })\n    "
       x-accepts:
       - application/json
-  /api/platform/v2/sandbox/businesses/{id}/reset:
-    post:
-      operationId: sandboxResetBusiness
-      parameters:
-      - description: "Either the Kanmon business UUID or your platform’s business\
-          \ ID, depending on `idType`."
-        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema: {}
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Business'
-          description: ""
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestException'
-          description: BadRequestException
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenException'
-          description: ForbiddenException
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerErrorException'
-          description: InternalServerErrorException
-      security:
-      - Authorization: []
-      summary: Reset a business in sandbox
-      tags:
-      - Businesses
-      x-readme:
-        code-samples:
-        - language: node
-          install: npm install @kanmon/sdk
-          name: SDK
-          code: "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n\
-            \    "
-      x-accepts:
-      - application/json
-  /api/platform/v2/sandbox/businesses/{id}/delete:
-    delete:
-      operationId: sandboxDeleteBusiness
-      parameters:
-      - description: "Either the Kanmon business UUID or your platform’s business\
-          \ ID, depending on `idType`."
-        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema: {}
-        style: simple
-      responses:
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequestException'
-          description: BadRequestException
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ForbiddenException'
-          description: ForbiddenException
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerErrorException'
-          description: InternalServerErrorException
-      security:
-      - Authorization: []
-      summary: Delete a business in sandbox
-      tags:
-      - Businesses
-      x-readme:
-        code-samples:
-        - language: node
-          install: npm install @kanmon/sdk
-          name: SDK
-          code: "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n\
-            })\n    "
-      x-accepts:
-      - application/json
   /api/platform/v2/users:
     get:
       operationId: getAllUsers
@@ -663,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "2b39aba5-18b9-4a68-814d-54bb75db0dde,5eb8f455-18a7-45dd-b757-6cfa826d8933"
+        example: "3010404d-e85b-492c-949d-686ff66d9ca3,c253c16d-891f-419e-84ab-af3c31301aa4"
         explode: true
         in: query
         name: businessIds
@@ -1665,7 +1567,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "d445ff65-47f5-4f96-b4ac-9a2360b9fba8,59cce1a8-5b43-4456-8daa-37488316d49f"
+        example: "596ef238-64b8-4555-b52c-7d5bf09ef059,07ccb1fe-a874-41ae-a159-3641c0647786"
         explode: true
         in: query
         name: businessIds
@@ -2032,7 +1934,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "5846c5ce-945f-43b9-a854-d1378eebe7ea,95201e6e-8177-4a43-8ace-2fa94b111b26"
+        example: "36db4528-1122-4895-8d35-c0ac8ff8a4c8,d009d3da-d1f5-49ff-81d9-79b2b996e00d"
         explode: true
         in: query
         name: drawRequestIds
@@ -2550,6 +2452,104 @@ paths:
           code: "\nkanmonApi.integratedMcaReceivable.createIntegratedMcaReceivable({\n\
             \  ...params...\n})\n    "
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/sandbox/businesses/{id}/reset:
+    post:
+      operationId: sandboxResetBusiness
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Business'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Reset a business in sandbox
+      tags:
+      - Sandbox Utilities
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.sandboxResetBusiness({\n  ...params...\n})\n\
+            \    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/sandbox/businesses/{id}/delete:
+    delete:
+      operationId: sandboxDeleteBusiness
+      parameters:
+      - description: "Either the Kanmon business UUID or your platform’s business\
+          \ ID, depending on `idType`."
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema: {}
+        style: simple
+      responses:
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Delete a business in sandbox
+      tags:
+      - Sandbox Utilities
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.businesses.sandboxDeleteBusiness({\n  ...params...\n\
+            })\n    "
       x-accepts:
       - application/json
   /api/platform/v2/embedded-session:

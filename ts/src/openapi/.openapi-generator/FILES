@@ -11,6 +11,7 @@ src/apis/IssuedProductsApi.ts
 src/apis/OffersApi.ts
 src/apis/PaymentsApi.ts
 src/apis/PrequalificationsApi.ts
+src/apis/SandboxUtilitiesApi.ts
 src/apis/UsersApi.ts
 src/apis/index.ts
 src/index.ts
