@@ -35,6 +35,7 @@ src/main/java/com/kanmon/client/api/IssuedProductsApi.java
 src/main/java/com/kanmon/client/api/OffersApi.java
 src/main/java/com/kanmon/client/api/PaymentsApi.java
 src/main/java/com/kanmon/client/api/PrequalificationsApi.java
+src/main/java/com/kanmon/client/api/SandboxUtilitiesApi.java
 src/main/java/com/kanmon/client/api/UsersApi.java
 src/main/java/com/kanmon/client/auth/ApiKeyAuth.java
 src/main/java/com/kanmon/client/auth/Authentication.java
@@ -146,6 +147,7 @@ src/main/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsForAnotherIs
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsForBusinessException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerNotFoundException.java
+src/main/java/com/kanmon/client/model/ProductType.java
 src/main/java/com/kanmon/client/model/SessionInvoice.java
 src/main/java/com/kanmon/client/model/SessionInvoiceWithInvoiceFile.java
 src/main/java/com/kanmon/client/model/SomeOffersHaveExpiredException.java
@@ -160,3 +162,4 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
+src/test/java/com/kanmon/client/api/SandboxUtilitiesApiTest.java

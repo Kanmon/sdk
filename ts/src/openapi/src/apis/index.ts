@@ -12,4 +12,5 @@ export * from './IssuedProductsApi';
 export * from './OffersApi';
 export * from './PaymentsApi';
 export * from './PrequalificationsApi';
+export * from './SandboxUtilitiesApi';
 export * from './UsersApi';
