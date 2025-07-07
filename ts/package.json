@@ -28,7 +28,7 @@
     "dist/**/*"
   ],
   "engines": {
-    "node": "^18"
+    "node": ">=18"
   },
   "publishConfig": {
     "access": "public"
