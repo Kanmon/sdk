@@ -150,6 +150,10 @@ public class User {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
 
+  public static final String SERIALIZED_NAME_IS_USCITIZEN = "isUscitizen";
+  @SerializedName(SERIALIZED_NAME_IS_USCITIZEN)
+  private Boolean isUscitizen;
+
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
@@ -346,7 +350,7 @@ public class User {
   }
 
   /**
-   * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. &lt;br/&gt;This means the user can complete onboarding, receive offers, choose to accept offers, &lt;br/&gt;sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on &lt;br/&gt;behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. &lt;br/&gt;Secondary owners are beneficial owners of a business, like primary owners, and Kanmon &lt;br/&gt;must perform KYC checks for these users. Kanmon will handle creating and managing &lt;br/&gt;these users for KYC purposes through a separate process. &lt;br/&gt;
+   * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. &lt;br/&gt;
    * @return roles
    */
   @javax.annotation.Nullable
@@ -375,6 +379,25 @@ public class User {
 
   public void setMetadata(Object metadata) {
     this.metadata = metadata;
+  }
+
+
+  public User isUscitizen(Boolean isUscitizen) {
+    this.isUscitizen = isUscitizen;
+    return this;
+  }
+
+  /**
+   * Is the user a U.S. citizen or permanent resident?
+   * @return isUscitizen
+   */
+  @javax.annotation.Nullable
+  public Boolean getIsUscitizen() {
+    return isUscitizen;
+  }
+
+  public void setIsUscitizen(Boolean isUscitizen) {
+    this.isUscitizen = isUscitizen;
   }
 
 
@@ -437,6 +460,7 @@ public class User {
         Objects.equals(this.lastName, user.lastName) &&
         Objects.equals(this.roles, user.roles) &&
         Objects.equals(this.metadata, user.metadata) &&
+        Objects.equals(this.isUscitizen, user.isUscitizen) &&
         Objects.equals(this.createdAt, user.createdAt) &&
         Objects.equals(this.updatedAt, user.updatedAt);
   }
@@ -447,7 +471,7 @@ public class User {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformUserId, platformBusinessId, phoneNumber, businessId, address, email, firstName, lastName, roles, metadata, createdAt, updatedAt);
+    return Objects.hash(id, platformUserId, platformBusinessId, phoneNumber, businessId, address, email, firstName, lastName, roles, metadata, isUscitizen, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -472,6 +496,7 @@ public class User {
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    isUscitizen: ").append(toIndentedString(isUscitizen)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
@@ -507,6 +532,7 @@ public class User {
     openapiFields.add("lastName");
     openapiFields.add("roles");
     openapiFields.add("metadata");
+    openapiFields.add("isUscitizen");
     openapiFields.add("createdAt");
     openapiFields.add("updatedAt");
 

@@ -75,7 +75,7 @@ export interface CreateUserRequestBody {
      */
     address?: Address;
     /**
-     * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>
+     * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>
      * @type {Array<string>}
      * @memberof CreateUserRequestBody
      */
@@ -86,6 +86,12 @@ export interface CreateUserRequestBody {
      * @memberof CreateUserRequestBody
      */
     metadata?: object;
+    /**
+     * Is the user a U.S. citizen or permanent resident?
+     * @type {boolean}
+     * @memberof CreateUserRequestBody
+     */
+    isUscitizen?: boolean;
 }
 
 
@@ -127,6 +133,7 @@ export function CreateUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
         'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
         'roles': json['roles'] == null ? undefined : json['roles'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'isUscitizen': json['isUscitizen'] == null ? undefined : json['isUscitizen'],
     };
 }
 
@@ -146,6 +153,7 @@ export function CreateUserRequestBodyToJSON(value?: CreateUserRequestBody | null
         'address': AddressToJSON(value['address']),
         'roles': value['roles'],
         'metadata': value['metadata'],
+        'isUscitizen': value['isUscitizen'],
     };
 }
 

@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "3010404d-e85b-492c-949d-686ff66d9ca3,c253c16d-891f-419e-84ab-af3c31301aa4",
+            "example": "4b0af647-83ea-4ee5-8800-1ffcba67aaae,e61586ef-b2a1-41ef-99bd-41a43e233e87",
             "schema": { "type": "string" }
           },
           {
@@ -1884,7 +1884,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "596ef238-64b8-4555-b52c-7d5bf09ef059,07ccb1fe-a874-41ae-a159-3641c0647786",
+            "example": "d632cb91-ef4c-412b-8344-118deb4a8901,997396be-e676-4abf-a0a8-cb07ac737616",
             "schema": { "type": "string" }
           },
           {
@@ -2230,7 +2230,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "36db4528-1122-4895-8d35-c0ac8ff8a4c8,d009d3da-d1f5-49ff-81d9-79b2b996e00d",
+            "example": "efc8c41d-4a5b-464e-82bc-26c398d1c690,5ad0007f-3306-40c0-8b65-17ede9317c62",
             "schema": { "type": "string" }
           },
           {
@@ -2610,14 +2610,14 @@
     },
     "/api/platform/v2/integrated-mca-receivables": {
       "get": {
-        "operationId": "getAllIntegratedMcaReceivables",
+        "operationId": "getReceivables",
         "x-readme": {
           "code-samples": [
             {
               "language": "node",
               "install": "npm install @kanmon/sdk",
               "name": "SDK",
-              "code": "\nkanmonApi.integratedMcaReceivable.getAllIntegratedMcaReceivables({\n  ...params...\n})\n    "
+              "code": "\nkanmonApi.integratedMca.getReceivables({\n  ...params...\n})\n    "
             }
           ]
         },
@@ -2718,7 +2718,7 @@
             }
           }
         },
-        "tags": ["Integrated MCA Receivables"],
+        "tags": ["Integrated MCA"],
         "security": [{ "Authorization": [] }]
       },
       "post": {
@@ -2820,7 +2820,93 @@
             }
           }
         },
-        "tags": ["Integrated MCA Receivables"],
+        "tags": ["Integrated MCA"],
+        "security": [{ "Authorization": [] }]
+      }
+    },
+    "/api/platform/v2/issued-products/{id}/integrated-mca-payment-windows": {
+      "get": {
+        "operationId": "getIntegratedMcaPaymentWindows",
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "node",
+              "install": "npm install @kanmon/sdk",
+              "name": "SDK",
+              "code": "\nkanmonApi.integratedMcaPaymentWindow.getIntegratedMcaPaymentWindows({\n  ...params...\n})\n    "
+            }
+          ]
+        },
+        "summary": "Fetch integrated MCA payment windows for an issued product",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The Kanmon issued product UUID.",
+            "example": "60eaa08c-f7a5-4f3a-860d-a16dde5771d6",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetIntegratedMcaPaymentWindowsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "BadRequestException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BadRequestException" }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "404": {
+            "description": "IssuedProductNotFoundException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IssuedProductNotFoundException"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "BusinessHasNoIntegratedMcaProductException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BusinessHasNoIntegratedMcaProductException"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalServerErrorException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Integrated MCA"],
         "security": [{ "Authorization": [] }]
       }
     },
@@ -3378,7 +3464,7 @@
             "example": "12345"
           },
           "name": {
-            "type": "object",
+            "type": "string",
             "description": "The business’s name.",
             "example": "My Business",
             "nullable": true
@@ -3402,19 +3488,19 @@
             "nullable": true
           },
           "phoneNumber": {
-            "type": "object",
+            "type": "string",
             "description": "The business’s phone number. No formatting characters, country code is optional.",
             "example": "+14155556789",
             "nullable": true
           },
           "website": {
-            "type": "object",
+            "type": "string",
             "description": "The business’s website.",
             "example": "https://www.my-business.com",
             "nullable": true
           },
           "customInitializationName": {
-            "type": "object",
+            "type": "string",
             "description": "A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.",
             "example": "custom"
           },
@@ -3666,13 +3752,18 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
             "example": ["PRIMARY_OWNER"],
             "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
           "metadata": {
             "type": "object",
             "description": "Metadata from your system that you want to associate the user with."
+          },
+          "isUscitizen": {
+            "type": "boolean",
+            "description": "Is the user a U.S. citizen or permanent resident?",
+            "example": true
           }
         },
         "required": ["platformUserId"]
@@ -3739,13 +3830,18 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
             "example": ["PRIMARY_OWNER"],
             "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
           "metadata": {
             "type": "object",
             "description": "Metadata from your system that you want to associate the user with."
+          },
+          "isUscitizen": {
+            "type": "boolean",
+            "description": "Is the user a U.S. citizen or permanent resident?",
+            "example": true
           },
           "createdAt": {
             "type": "string",
@@ -3841,7 +3937,7 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
             "example": ["PRIMARY_OWNER"],
             "items": { "type": "string", "enum": ["OPERATOR", "PRIMARY_OWNER"] }
           },
@@ -4524,6 +4620,12 @@
             "type": "number",
             "description": "The maximum loan amount - in cents.",
             "example": 1000000
+          },
+          "monthlyMinimumPaymentAmountCents": {
+            "type": "number",
+            "description": "The monthly minimum payment amount - in cents. `null` if there is no monthly minimum payment.",
+            "example": 100000,
+            "nullable": true
           }
         },
         "required": [
@@ -4532,7 +4634,8 @@
           "repaymentPercentage",
           "feeFactor",
           "totalRepaymentCents",
-          "maxAdvanceAmountCents"
+          "maxAdvanceAmountCents",
+          "monthlyMinimumPaymentAmountCents"
         ]
       },
       "AccountsPayableFinancingOfferTerms": {
@@ -4832,6 +4935,12 @@
             "type": "number",
             "description": "The total repayment amount less the amount repaid - in cents.",
             "example": 1100000
+          },
+          "monthlyMinimumPaymentAmountCents": {
+            "type": "object",
+            "description": "The monthly minimum payment amount - in cents. `null` if there is no monthly minimum payment.",
+            "example": 100000,
+            "nullable": true
           }
         },
         "required": [
@@ -4840,7 +4949,8 @@
           "repaymentPercentage",
           "feeFactor",
           "totalRepaymentCents",
-          "advanceBalanceCents"
+          "advanceBalanceCents",
+          "monthlyMinimumPaymentAmountCents"
         ]
       },
       "LineOfCreditServicingData": {
@@ -5722,6 +5832,72 @@
           "transactionId",
           "transactionTime"
         ]
+      },
+      "IntegratedMcaPaymentWindow": {
+        "type": "object",
+        "properties": {
+          "windowStartDate": {
+            "type": "string",
+            "description": "Start UTC ISO 8601 timestamp of the payment window.",
+            "example": "2022-06-01T03:57:26.115Z"
+          },
+          "windowEndDate": {
+            "type": "string",
+            "description": "End UTC ISO 8601 timestamp of the payment window.",
+            "example": "2022-07-01T03:57:26.115Z"
+          },
+          "totalRepaymentAmountCentsInWindow": {
+            "type": "number",
+            "description": "Total repayment amount during this window - in cents.",
+            "example": 1000000
+          },
+          "minimumPaymentAmountCentsInWindow": {
+            "type": "object",
+            "description": "Minimum payment amount for this window - in cents. This is `null` if no minimum payment was collected.",
+            "example": 100000,
+            "nullable": true
+          }
+        },
+        "required": [
+          "windowStartDate",
+          "windowEndDate",
+          "totalRepaymentAmountCentsInWindow",
+          "minimumPaymentAmountCentsInWindow"
+        ]
+      },
+      "GetIntegratedMcaPaymentWindowsResponse": {
+        "type": "object",
+        "properties": {
+          "paymentWindows": {
+            "description": "The payment periods for the integrated MCA.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegratedMcaPaymentWindow"
+            }
+          }
+        },
+        "required": ["paymentWindows"]
+      },
+      "BusinessHasNoIntegratedMcaProductException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["BusinessHasNoIntegratedMcaProductException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "An error occurred."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
       },
       "SessionInvoice": {
         "type": "object",

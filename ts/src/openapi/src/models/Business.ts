@@ -40,10 +40,10 @@ export interface Business {
     platformBusinessId?: string;
     /**
      * The business’s name.
-     * @type {object}
+     * @type {string}
      * @memberof Business
      */
-    name: object | null;
+    name: string | null;
     /**
      * The business’s address. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.
      * @type {Address}
@@ -58,22 +58,22 @@ export interface Business {
     ein: string | null;
     /**
      * The business’s phone number. No formatting characters, country code is optional.
-     * @type {object}
+     * @type {string}
      * @memberof Business
      */
-    phoneNumber: object | null;
+    phoneNumber: string | null;
     /**
      * The business’s website.
-     * @type {object}
+     * @type {string}
      * @memberof Business
      */
-    website: object | null;
+    website: string | null;
     /**
      * A Custom Initialization controls custom implementation profiles for you in Kanmon. Custom Initializations enable a variety of specific configurations for your integration, including embedded UI customization, feature activation, and platform product-line identification. The Kanmon Team will work with you to establish a Custom Initialization and corresponding custom profile if your platform can benefit from this optional configuration. To identify each Custom Initialization, you can define a unique customInitializationName as a reference.
-     * @type {object}
+     * @type {string}
      * @memberof Business
      */
-    customInitializationName?: object;
+    customInitializationName?: string;
     /**
      * Metadata from your system that you want to associate the business with.
      * @type {object}

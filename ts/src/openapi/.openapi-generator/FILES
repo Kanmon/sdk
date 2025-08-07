@@ -5,7 +5,7 @@ src/apis/ConnectTokensApi.ts
 src/apis/DocumentsApi.ts
 src/apis/DrawRequestsApi.ts
 src/apis/EmbeddedSessionsApi.ts
-src/apis/IntegratedMCAReceivablesApi.ts
+src/apis/IntegratedMCAApi.ts
 src/apis/InvoicesApi.ts
 src/apis/IssuedProductsApi.ts
 src/apis/OffersApi.ts
@@ -33,6 +33,7 @@ src/models/BusinessBankAccount.ts
 src/models/BusinessDocument.ts
 src/models/BusinessDocumentType.ts
 src/models/BusinessHasNoAccountsPayableFinancingProductException.ts
+src/models/BusinessHasNoIntegratedMcaProductException.ts
 src/models/BusinessHasNoInvoiceFinancingProductException.ts
 src/models/BusinessHasNoPrimaryOwnerException.ts
 src/models/BusinessNotFoundException.ts
@@ -65,6 +66,7 @@ src/models/GetActivityLogsResponse.ts
 src/models/GetBusinessBankAccountsResponse.ts
 src/models/GetBusinessesResponse.ts
 src/models/GetDrawRequestsResponse.ts
+src/models/GetIntegratedMcaPaymentWindowsResponse.ts
 src/models/GetIntegratedMcaReceivablesResponse.ts
 src/models/GetInvoice404Response.ts
 src/models/GetInvoicesResponse.ts
@@ -76,6 +78,7 @@ src/models/GetUsersResponse.ts
 src/models/IncorrectProductTypeException.ts
 src/models/IncorrectRepaymentAmountException.ts
 src/models/IntegratedMcaOfferTerms.ts
+src/models/IntegratedMcaPaymentWindow.ts
 src/models/IntegratedMcaReceivable.ts
 src/models/IntegratedMcaReceivableAlreadyExistsException.ts
 src/models/IntegratedMcaServicingData.ts

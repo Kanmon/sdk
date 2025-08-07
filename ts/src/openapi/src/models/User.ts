@@ -81,7 +81,7 @@ export interface User {
      */
     lastName?: string | null;
     /**
-     * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. <br/>This means the user can complete onboarding, receive offers, choose to accept offers, <br/>sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on <br/>behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. <br/>Secondary owners are beneficial owners of a business, like primary owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon will handle creating and managing <br/>these users for KYC purposes through a separate process. <br/>
+     * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>
      * @type {Array<string>}
      * @memberof User
      */
@@ -92,6 +92,12 @@ export interface User {
      * @memberof User
      */
     metadata: object;
+    /**
+     * Is the user a U.S. citizen or permanent resident?
+     * @type {boolean}
+     * @memberof User
+     */
+    isUscitizen?: boolean;
     /**
      * Creation UTC ISO 8601 timestamp of the user.
      * @type {string}
@@ -153,6 +159,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'lastName': json['lastName'] == null ? undefined : json['lastName'],
         'roles': json['roles'] == null ? undefined : json['roles'],
         'metadata': json['metadata'],
+        'isUscitizen': json['isUscitizen'] == null ? undefined : json['isUscitizen'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
     };
@@ -175,6 +182,7 @@ export function UserToJSON(value?: User | null): any {
         'lastName': value['lastName'],
         'roles': value['roles'],
         'metadata': value['metadata'],
+        'isUscitizen': value['isUscitizen'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],
     };

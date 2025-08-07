@@ -76,6 +76,10 @@ public class IntegratedMcaServicingData {
   @SerializedName(SERIALIZED_NAME_ADVANCE_BALANCE_CENTS)
   private BigDecimal advanceBalanceCents;
 
+  public static final String SERIALIZED_NAME_MONTHLY_MINIMUM_PAYMENT_AMOUNT_CENTS = "monthlyMinimumPaymentAmountCents";
+  @SerializedName(SERIALIZED_NAME_MONTHLY_MINIMUM_PAYMENT_AMOUNT_CENTS)
+  private Object monthlyMinimumPaymentAmountCents;
+
   public IntegratedMcaServicingData() {
   }
 
@@ -193,6 +197,25 @@ public class IntegratedMcaServicingData {
   }
 
 
+  public IntegratedMcaServicingData monthlyMinimumPaymentAmountCents(Object monthlyMinimumPaymentAmountCents) {
+    this.monthlyMinimumPaymentAmountCents = monthlyMinimumPaymentAmountCents;
+    return this;
+  }
+
+  /**
+   * The monthly minimum payment amount - in cents. &#x60;null&#x60; if there is no monthly minimum payment.
+   * @return monthlyMinimumPaymentAmountCents
+   */
+  @javax.annotation.Nullable
+  public Object getMonthlyMinimumPaymentAmountCents() {
+    return monthlyMinimumPaymentAmountCents;
+  }
+
+  public void setMonthlyMinimumPaymentAmountCents(Object monthlyMinimumPaymentAmountCents) {
+    this.monthlyMinimumPaymentAmountCents = monthlyMinimumPaymentAmountCents;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -208,12 +231,13 @@ public class IntegratedMcaServicingData {
         Objects.equals(this.repaymentPercentage, integratedMcaServicingData.repaymentPercentage) &&
         Objects.equals(this.feeFactor, integratedMcaServicingData.feeFactor) &&
         Objects.equals(this.totalRepaymentCents, integratedMcaServicingData.totalRepaymentCents) &&
-        Objects.equals(this.advanceBalanceCents, integratedMcaServicingData.advanceBalanceCents);
+        Objects.equals(this.advanceBalanceCents, integratedMcaServicingData.advanceBalanceCents) &&
+        Objects.equals(this.monthlyMinimumPaymentAmountCents, integratedMcaServicingData.monthlyMinimumPaymentAmountCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, advanceBalanceCents);
+    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, advanceBalanceCents, monthlyMinimumPaymentAmountCents);
   }
 
   @Override
@@ -226,6 +250,7 @@ public class IntegratedMcaServicingData {
     sb.append("    feeFactor: ").append(toIndentedString(feeFactor)).append("\n");
     sb.append("    totalRepaymentCents: ").append(toIndentedString(totalRepaymentCents)).append("\n");
     sb.append("    advanceBalanceCents: ").append(toIndentedString(advanceBalanceCents)).append("\n");
+    sb.append("    monthlyMinimumPaymentAmountCents: ").append(toIndentedString(monthlyMinimumPaymentAmountCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -254,6 +279,7 @@ public class IntegratedMcaServicingData {
     openapiFields.add("feeFactor");
     openapiFields.add("totalRepaymentCents");
     openapiFields.add("advanceBalanceCents");
+    openapiFields.add("monthlyMinimumPaymentAmountCents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -263,6 +289,7 @@ public class IntegratedMcaServicingData {
     openapiRequiredFields.add("feeFactor");
     openapiRequiredFields.add("totalRepaymentCents");
     openapiRequiredFields.add("advanceBalanceCents");
+    openapiRequiredFields.add("monthlyMinimumPaymentAmountCents");
   }
 
   /**
