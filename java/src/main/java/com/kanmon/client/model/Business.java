@@ -62,7 +62,7 @@ public class Business {
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
-  private Object name;
+  private String name;
 
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
@@ -74,15 +74,15 @@ public class Business {
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
-  private Object phoneNumber;
+  private String phoneNumber;
 
   public static final String SERIALIZED_NAME_WEBSITE = "website";
   @SerializedName(SERIALIZED_NAME_WEBSITE)
-  private Object website;
+  private String website;
 
   public static final String SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME = "customInitializationName";
   @SerializedName(SERIALIZED_NAME_CUSTOM_INITIALIZATION_NAME)
-  private Object customInitializationName;
+  private String customInitializationName;
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
@@ -137,7 +137,7 @@ public class Business {
   }
 
 
-  public Business name(Object name) {
+  public Business name(String name) {
     this.name = name;
     return this;
   }
@@ -147,11 +147,11 @@ public class Business {
    * @return name
    */
   @javax.annotation.Nullable
-  public Object getName() {
+  public String getName() {
     return name;
   }
 
-  public void setName(Object name) {
+  public void setName(String name) {
     this.name = name;
   }
 
@@ -194,7 +194,7 @@ public class Business {
   }
 
 
-  public Business phoneNumber(Object phoneNumber) {
+  public Business phoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
@@ -204,16 +204,16 @@ public class Business {
    * @return phoneNumber
    */
   @javax.annotation.Nullable
-  public Object getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(Object phoneNumber) {
+  public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
 
-  public Business website(Object website) {
+  public Business website(String website) {
     this.website = website;
     return this;
   }
@@ -223,16 +223,16 @@ public class Business {
    * @return website
    */
   @javax.annotation.Nullable
-  public Object getWebsite() {
+  public String getWebsite() {
     return website;
   }
 
-  public void setWebsite(Object website) {
+  public void setWebsite(String website) {
     this.website = website;
   }
 
 
-  public Business customInitializationName(Object customInitializationName) {
+  public Business customInitializationName(String customInitializationName) {
     this.customInitializationName = customInitializationName;
     return this;
   }
@@ -242,11 +242,11 @@ public class Business {
    * @return customInitializationName
    */
   @javax.annotation.Nullable
-  public Object getCustomInitializationName() {
+  public String getCustomInitializationName() {
     return customInitializationName;
   }
 
-  public void setCustomInitializationName(Object customInitializationName) {
+  public void setCustomInitializationName(String customInitializationName) {
     this.customInitializationName = customInitializationName;
   }
 
@@ -442,12 +442,24 @@ public class Business {
       if ((jsonObj.get("platformBusinessId") != null && !jsonObj.get("platformBusinessId").isJsonNull()) && !jsonObj.get("platformBusinessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformBusinessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformBusinessId").toString()));
       }
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+      }
       // validate the optional field `address`
       if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
         Address.validateJsonElement(jsonObj.get("address"));
       }
       if ((jsonObj.get("ein") != null && !jsonObj.get("ein").isJsonNull()) && !jsonObj.get("ein").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `ein` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ein").toString()));
+      }
+      if ((jsonObj.get("phoneNumber") != null && !jsonObj.get("phoneNumber").isJsonNull()) && !jsonObj.get("phoneNumber").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `phoneNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phoneNumber").toString()));
+      }
+      if ((jsonObj.get("website") != null && !jsonObj.get("website").isJsonNull()) && !jsonObj.get("website").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `website` to be a primitive type in the JSON string but got `%s`", jsonObj.get("website").toString()));
+      }
+      if ((jsonObj.get("customInitializationName") != null && !jsonObj.get("customInitializationName").isJsonNull()) && !jsonObj.get("customInitializationName").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `customInitializationName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("customInitializationName").toString()));
       }
       if (!jsonObj.get("createdAt").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `createdAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("createdAt").toString()));

@@ -62,6 +62,12 @@ export interface IntegratedMcaServicingData {
      * @memberof IntegratedMcaServicingData
      */
     advanceBalanceCents: number;
+    /**
+     * The monthly minimum payment amount - in cents. `null` if there is no monthly minimum payment.
+     * @type {object}
+     * @memberof IntegratedMcaServicingData
+     */
+    monthlyMinimumPaymentAmountCents: object | null;
 }
 
 
@@ -76,6 +82,7 @@ export function instanceOfIntegratedMcaServicingData(value: object): value is In
     if (!('feeFactor' in value) || value['feeFactor'] === undefined) return false;
     if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
     if (!('advanceBalanceCents' in value) || value['advanceBalanceCents'] === undefined) return false;
+    if (!('monthlyMinimumPaymentAmountCents' in value) || value['monthlyMinimumPaymentAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -95,6 +102,7 @@ export function IntegratedMcaServicingDataFromJSONTyped(json: any, ignoreDiscrim
         'feeFactor': json['feeFactor'],
         'totalRepaymentCents': json['totalRepaymentCents'],
         'advanceBalanceCents': json['advanceBalanceCents'],
+        'monthlyMinimumPaymentAmountCents': json['monthlyMinimumPaymentAmountCents'],
     };
 }
 
@@ -110,6 +118,7 @@ export function IntegratedMcaServicingDataToJSON(value?: IntegratedMcaServicingD
         'feeFactor': value['feeFactor'],
         'totalRepaymentCents': value['totalRepaymentCents'],
         'advanceBalanceCents': value['advanceBalanceCents'],
+        'monthlyMinimumPaymentAmountCents': value['monthlyMinimumPaymentAmountCents'],
     };
 }
 

@@ -169,6 +169,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessBankAccount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessDocument.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessHasNoAccountsPayableFinancingProductException.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessHasNoIntegratedMcaProductException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessHasNoInvoiceFinancingProductException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessHasNoPrimaryOwnerException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.BusinessNotFoundException.CustomTypeAdapterFactory());
@@ -200,6 +201,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetBusinessBankAccountsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetBusinessesResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetDrawRequestsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetIntegratedMcaPaymentWindowsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetIntegratedMcaReceivablesResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetInvoice404Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetInvoicesResponse.CustomTypeAdapterFactory());
@@ -211,6 +213,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IncorrectProductTypeException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IncorrectRepaymentAmountException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaOfferTerms.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaPaymentWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaReceivable.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaReceivableAlreadyExistsException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaServicingData.CustomTypeAdapterFactory());

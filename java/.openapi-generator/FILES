@@ -29,7 +29,7 @@ src/main/java/com/kanmon/client/api/ConnectTokensApi.java
 src/main/java/com/kanmon/client/api/DocumentsApi.java
 src/main/java/com/kanmon/client/api/DrawRequestsApi.java
 src/main/java/com/kanmon/client/api/EmbeddedSessionsApi.java
-src/main/java/com/kanmon/client/api/IntegratedMcaReceivablesApi.java
+src/main/java/com/kanmon/client/api/IntegratedMcaApi.java
 src/main/java/com/kanmon/client/api/InvoicesApi.java
 src/main/java/com/kanmon/client/api/IssuedProductsApi.java
 src/main/java/com/kanmon/client/api/OffersApi.java
@@ -60,6 +60,7 @@ src/main/java/com/kanmon/client/model/BusinessBankAccount.java
 src/main/java/com/kanmon/client/model/BusinessDocument.java
 src/main/java/com/kanmon/client/model/BusinessDocumentType.java
 src/main/java/com/kanmon/client/model/BusinessHasNoAccountsPayableFinancingProductException.java
+src/main/java/com/kanmon/client/model/BusinessHasNoIntegratedMcaProductException.java
 src/main/java/com/kanmon/client/model/BusinessHasNoInvoiceFinancingProductException.java
 src/main/java/com/kanmon/client/model/BusinessHasNoPrimaryOwnerException.java
 src/main/java/com/kanmon/client/model/BusinessNotFoundException.java
@@ -92,6 +93,7 @@ src/main/java/com/kanmon/client/model/GetActivityLogsResponse.java
 src/main/java/com/kanmon/client/model/GetBusinessBankAccountsResponse.java
 src/main/java/com/kanmon/client/model/GetBusinessesResponse.java
 src/main/java/com/kanmon/client/model/GetDrawRequestsResponse.java
+src/main/java/com/kanmon/client/model/GetIntegratedMcaPaymentWindowsResponse.java
 src/main/java/com/kanmon/client/model/GetIntegratedMcaReceivablesResponse.java
 src/main/java/com/kanmon/client/model/GetInvoice404Response.java
 src/main/java/com/kanmon/client/model/GetInvoicesResponse.java
@@ -103,6 +105,7 @@ src/main/java/com/kanmon/client/model/GetUsersResponse.java
 src/main/java/com/kanmon/client/model/IncorrectProductTypeException.java
 src/main/java/com/kanmon/client/model/IncorrectRepaymentAmountException.java
 src/main/java/com/kanmon/client/model/IntegratedMcaOfferTerms.java
+src/main/java/com/kanmon/client/model/IntegratedMcaPaymentWindow.java
 src/main/java/com/kanmon/client/model/IntegratedMcaReceivable.java
 src/main/java/com/kanmon/client/model/IntegratedMcaReceivableAlreadyExistsException.java
 src/main/java/com/kanmon/client/model/IntegratedMcaServicingData.java
@@ -162,4 +165,3 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/api/SandboxUtilitiesApiTest.java

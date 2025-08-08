@@ -145,6 +145,10 @@ public class CreateUserRequestBody {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
 
+  public static final String SERIALIZED_NAME_IS_US_CITIZEN = "isUsCitizen";
+  @SerializedName(SERIALIZED_NAME_IS_US_CITIZEN)
+  private Boolean isUsCitizen;
+
   public CreateUserRequestBody() {
   }
 
@@ -314,7 +318,7 @@ public class CreateUserRequestBody {
   }
 
   /**
-   * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. &lt;br/&gt;This means the user can complete onboarding, receive offers, choose to accept offers, &lt;br/&gt;sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on &lt;br/&gt;behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. &lt;br/&gt;Secondary owners are beneficial owners of a business, like primary owners, and Kanmon &lt;br/&gt;must perform KYC checks for these users. Kanmon will handle creating and managing &lt;br/&gt;these users for KYC purposes through a separate process. &lt;br/&gt;
+   * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. &lt;br/&gt;&lt;br/&gt;A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. &lt;br/&gt;&lt;br/&gt;An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. &lt;br /&gt;&lt;br/&gt;Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. &lt;br/&gt;
    * @return roles
    */
   @javax.annotation.Nullable
@@ -346,6 +350,25 @@ public class CreateUserRequestBody {
   }
 
 
+  public CreateUserRequestBody isUsCitizen(Boolean isUsCitizen) {
+    this.isUsCitizen = isUsCitizen;
+    return this;
+  }
+
+  /**
+   * Whether the user is a U.S. citizen or permanent resident.
+   * @return isUsCitizen
+   */
+  @javax.annotation.Nullable
+  public Boolean getIsUsCitizen() {
+    return isUsCitizen;
+  }
+
+  public void setIsUsCitizen(Boolean isUsCitizen) {
+    this.isUsCitizen = isUsCitizen;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -365,12 +388,13 @@ public class CreateUserRequestBody {
         Objects.equals(this.phoneNumber, createUserRequestBody.phoneNumber) &&
         Objects.equals(this.address, createUserRequestBody.address) &&
         Objects.equals(this.roles, createUserRequestBody.roles) &&
-        Objects.equals(this.metadata, createUserRequestBody.metadata);
+        Objects.equals(this.metadata, createUserRequestBody.metadata) &&
+        Objects.equals(this.isUsCitizen, createUserRequestBody.isUsCitizen);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformUserId, platformBusinessId, businessId, email, firstName, lastName, phoneNumber, address, roles, metadata);
+    return Objects.hash(platformUserId, platformBusinessId, businessId, email, firstName, lastName, phoneNumber, address, roles, metadata, isUsCitizen);
   }
 
   @Override
@@ -387,6 +411,7 @@ public class CreateUserRequestBody {
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    isUsCitizen: ").append(toIndentedString(isUsCitizen)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -419,6 +444,7 @@ public class CreateUserRequestBody {
     openapiFields.add("address");
     openapiFields.add("roles");
     openapiFields.add("metadata");
+    openapiFields.add("isUsCitizen");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

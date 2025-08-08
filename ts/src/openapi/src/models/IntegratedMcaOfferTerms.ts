@@ -62,6 +62,12 @@ export interface IntegratedMcaOfferTerms {
      * @memberof IntegratedMcaOfferTerms
      */
     maxAdvanceAmountCents: number;
+    /**
+     * The monthly minimum payment amount - in cents. `null` if there is no monthly minimum payment.
+     * @type {number}
+     * @memberof IntegratedMcaOfferTerms
+     */
+    monthlyMinimumPaymentAmountCents: number | null;
 }
 
 
@@ -76,6 +82,7 @@ export function instanceOfIntegratedMcaOfferTerms(value: object): value is Integ
     if (!('feeFactor' in value) || value['feeFactor'] === undefined) return false;
     if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
     if (!('maxAdvanceAmountCents' in value) || value['maxAdvanceAmountCents'] === undefined) return false;
+    if (!('monthlyMinimumPaymentAmountCents' in value) || value['monthlyMinimumPaymentAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -95,6 +102,7 @@ export function IntegratedMcaOfferTermsFromJSONTyped(json: any, ignoreDiscrimina
         'feeFactor': json['feeFactor'],
         'totalRepaymentCents': json['totalRepaymentCents'],
         'maxAdvanceAmountCents': json['maxAdvanceAmountCents'],
+        'monthlyMinimumPaymentAmountCents': json['monthlyMinimumPaymentAmountCents'],
     };
 }
 
@@ -110,6 +118,7 @@ export function IntegratedMcaOfferTermsToJSON(value?: IntegratedMcaOfferTerms | 
         'feeFactor': value['feeFactor'],
         'totalRepaymentCents': value['totalRepaymentCents'],
         'maxAdvanceAmountCents': value['maxAdvanceAmountCents'],
+        'monthlyMinimumPaymentAmountCents': value['monthlyMinimumPaymentAmountCents'],
     };
 }
 

@@ -565,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "3010404d-e85b-492c-949d-686ff66d9ca3,c253c16d-891f-419e-84ab-af3c31301aa4"
+        example: "4b0af647-83ea-4ee5-8800-1ffcba67aaae,e61586ef-b2a1-41ef-99bd-41a43e233e87"
         explode: true
         in: query
         name: businessIds
@@ -1567,7 +1567,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "596ef238-64b8-4555-b52c-7d5bf09ef059,07ccb1fe-a874-41ae-a159-3641c0647786"
+        example: "d632cb91-ef4c-412b-8344-118deb4a8901,997396be-e676-4abf-a0a8-cb07ac737616"
         explode: true
         in: query
         name: businessIds
@@ -1934,7 +1934,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "36db4528-1122-4895-8d35-c0ac8ff8a4c8,d009d3da-d1f5-49ff-81d9-79b2b996e00d"
+        example: "efc8c41d-4a5b-464e-82bc-26c398d1c690,5ad0007f-3306-40c0-8b65-17ede9317c62"
         explode: true
         in: query
         name: drawRequestIds
@@ -2284,7 +2284,7 @@ paths:
       - application/json
   /api/platform/v2/integrated-mca-receivables:
     get:
-      operationId: getAllIntegratedMcaReceivables
+      operationId: getReceivables
       parameters:
       - description: A comma delimited list of Kanmon’s unique IDs for integrated
           MCA receivable.
@@ -2383,14 +2383,14 @@ paths:
       - Authorization: []
       summary: Fetch integrated MCA receivables
       tags:
-      - Integrated MCA Receivables
+      - Integrated MCA
       x-readme:
         code-samples:
         - language: node
           install: npm install @kanmon/sdk
           name: SDK
-          code: "\nkanmonApi.integratedMcaReceivable.getAllIntegratedMcaReceivables({\n\
-            \  ...params...\n})\n    "
+          code: "\nkanmonApi.integratedMca.getReceivables({\n  ...params...\n})\n\
+            \    "
       x-accepts:
       - application/json
     post:
@@ -2443,7 +2443,7 @@ paths:
       - Authorization: []
       summary: Create an integrated MCA receivable
       tags:
-      - Integrated MCA Receivables
+      - Integrated MCA
       x-readme:
         code-samples:
         - language: node
@@ -2452,6 +2452,70 @@ paths:
           code: "\nkanmonApi.integratedMcaReceivable.createIntegratedMcaReceivable({\n\
             \  ...params...\n})\n    "
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /api/platform/v2/issued-products/{id}/integrated-mca-payment-windows:
+    get:
+      operationId: getIntegratedMcaPaymentWindows
+      parameters:
+      - description: The Kanmon issued product UUID.
+        example: 60eaa08c-f7a5-4f3a-860d-a16dde5771d6
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetIntegratedMcaPaymentWindowsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IssuedProductNotFoundException'
+          description: IssuedProductNotFoundException
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessHasNoIntegratedMcaProductException'
+          description: BusinessHasNoIntegratedMcaProductException
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch integrated MCA payment windows for an issued product
+      tags:
+      - Integrated MCA
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.integratedMcaPaymentWindow.getIntegratedMcaPaymentWindows({\n\
+            \  ...params...\n})\n    "
       x-accepts:
       - application/json
   /api/platform/v2/sandbox/businesses/{id}/reset:
@@ -2992,7 +3056,7 @@ components:
           description: The business’s name.
           example: My Business
           nullable: true
-          type: object
+          type: string
         address:
           allOf:
           - $ref: '#/components/schemas/Address'
@@ -3016,12 +3080,12 @@ components:
             \ code is optional."
           example: "+14155556789"
           nullable: true
-          type: object
+          type: string
         website:
           description: The business’s website.
           example: https://www.my-business.com
           nullable: true
-          type: object
+          type: string
         customInitializationName:
           description: "A Custom Initialization controls custom implementation profiles\
             \ for you in Kanmon. Custom Initializations enable a variety of specific\
@@ -3032,7 +3096,7 @@ components:
             \ To identify each Custom Initialization, you can define a unique customInitializationName\
             \ as a reference."
           example: custom
-          type: object
+          type: string
         metadata:
           description: Metadata from your system that you want to associate the business
             with.
@@ -3314,6 +3378,7 @@ components:
         roles:
         - PRIMARY_OWNER
         businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        isUsCitizen: true
         email: user@gmail.com
       properties:
         platformUserId:
@@ -3362,17 +3427,17 @@ components:
         roles:
           description: "The user’s roles. If no roles are defined, the user will be\
             \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
-            \ a user with the authority to issue debt on behalf of the business. <br/>This\
+            \ a user with the authority to issue debt on behalf of the business. This\
             \ means the user can complete onboarding, receive offers, choose to accept\
-            \ offers, <br/>sign financing agreements, and service an active issued\
-            \ product. <br/><br/>An operator is a user with permission to service\
-            \ an active issued product. Examples are uploading invoices on <br/>behalf\
-            \ of the business, checking the status of payments, etc. <br /><br/>Please\
-            \ note Kanmon supports an additional user role called secondary owners.\
-            \ <br/>Secondary owners are beneficial owners of a business, like primary\
-            \ owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon\
-            \ will handle creating and managing <br/>these users for KYC purposes\
-            \ through a separate process. <br/>"
+            \ offers, sign financing agreements, and service an active issued product.\
+            \ <br/><br/>An operator is a user with permission to service an active\
+            \ issued product. Examples are uploading invoices on behalf of the business,\
+            \ checking the status of payments, etc. <br /><br/>Please note Kanmon\
+            \ supports an additional user role called secondary owners. Secondary\
+            \ owners are beneficial owners of a business, like primary owners, and\
+            \ Kanmon must perform KYC checks for these users. Kanmon will handle creating\
+            \ and managing these users for KYC purposes through a separate process.\
+            \ <br/>"
           example:
           - PRIMARY_OWNER
           items:
@@ -3385,6 +3450,10 @@ components:
           description: Metadata from your system that you want to associate the user
             with.
           type: object
+        isUsCitizen:
+          description: Whether the user is a U.S. citizen or permanent resident.
+          example: true
+          type: boolean
       required:
       - platformUserId
       type: object
@@ -3401,6 +3470,7 @@ components:
         roles:
         - PRIMARY_OWNER
         businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        isUsCitizen: true
         firstName: John
         createdAt: 2022-06-01T03:57:26.115Z
         platformBusinessId: "12345"
@@ -3463,17 +3533,17 @@ components:
         roles:
           description: "The user’s roles. If no roles are defined, the user will be\
             \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
-            \ a user with the authority to issue debt on behalf of the business. <br/>This\
+            \ a user with the authority to issue debt on behalf of the business. This\
             \ means the user can complete onboarding, receive offers, choose to accept\
-            \ offers, <br/>sign financing agreements, and service an active issued\
-            \ product. <br/><br/>An operator is a user with permission to service\
-            \ an active issued product. Examples are uploading invoices on <br/>behalf\
-            \ of the business, checking the status of payments, etc. <br /><br/>Please\
-            \ note Kanmon supports an additional user role called secondary owners.\
-            \ <br/>Secondary owners are beneficial owners of a business, like primary\
-            \ owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon\
-            \ will handle creating and managing <br/>these users for KYC purposes\
-            \ through a separate process. <br/>"
+            \ offers, sign financing agreements, and service an active issued product.\
+            \ <br/><br/>An operator is a user with permission to service an active\
+            \ issued product. Examples are uploading invoices on behalf of the business,\
+            \ checking the status of payments, etc. <br /><br/>Please note Kanmon\
+            \ supports an additional user role called secondary owners. Secondary\
+            \ owners are beneficial owners of a business, like primary owners, and\
+            \ Kanmon must perform KYC checks for these users. Kanmon will handle creating\
+            \ and managing these users for KYC purposes through a separate process.\
+            \ <br/>"
           example:
           - PRIMARY_OWNER
           items:
@@ -3485,6 +3555,11 @@ components:
         metadata:
           description: Metadata from your system that you want to associate the user
             with.
+          type: object
+        isUsCitizen:
+          description: Is the user a U.S. citizen or permanent resident?
+          example: true
+          nullable: true
           type: object
         createdAt:
           description: Creation UTC ISO 8601 timestamp of the user.
@@ -3543,6 +3618,7 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
@@ -3562,6 +3638,7 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
@@ -3632,17 +3709,17 @@ components:
         roles:
           description: "The user’s roles. If no roles are defined, the user will be\
             \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
-            \ a user with the authority to issue debt on behalf of the business. <br/>This\
+            \ a user with the authority to issue debt on behalf of the business. This\
             \ means the user can complete onboarding, receive offers, choose to accept\
-            \ offers, <br/>sign financing agreements, and service an active issued\
-            \ product. <br/><br/>An operator is a user with permission to service\
-            \ an active issued product. Examples are uploading invoices on <br/>behalf\
-            \ of the business, checking the status of payments, etc. <br /><br/>Please\
-            \ note Kanmon supports an additional user role called secondary owners.\
-            \ <br/>Secondary owners are beneficial owners of a business, like primary\
-            \ owners, and Kanmon <br/>must perform KYC checks for these users. Kanmon\
-            \ will handle creating and managing <br/>these users for KYC purposes\
-            \ through a separate process. <br/>"
+            \ offers, sign financing agreements, and service an active issued product.\
+            \ <br/><br/>An operator is a user with permission to service an active\
+            \ issued product. Examples are uploading invoices on behalf of the business,\
+            \ checking the status of payments, etc. <br /><br/>Please note Kanmon\
+            \ supports an additional user role called secondary owners. Secondary\
+            \ owners are beneficial owners of a business, like primary owners, and\
+            \ Kanmon must perform KYC checks for these users. Kanmon will handle creating\
+            \ and managing these users for KYC purposes through a separate process.\
+            \ <br/>"
           example:
           - PRIMARY_OWNER
           items:
@@ -3699,6 +3776,7 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
@@ -3718,6 +3796,7 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
@@ -4480,10 +4559,17 @@ components:
           description: The maximum loan amount - in cents.
           example: 1000000
           type: number
+        monthlyMinimumPaymentAmountCents:
+          description: The monthly minimum payment amount - in cents. `null` if there
+            is no monthly minimum payment.
+          example: 100000
+          nullable: true
+          type: number
       required:
       - advanceAmountCents
       - feeFactor
       - maxAdvanceAmountCents
+      - monthlyMinimumPaymentAmountCents
       - productType
       - repaymentPercentage
       - totalRepaymentCents
@@ -4788,10 +4874,17 @@ components:
           description: The total repayment amount less the amount repaid - in cents.
           example: 1100000
           type: number
+        monthlyMinimumPaymentAmountCents:
+          description: The monthly minimum payment amount - in cents. `null` if there
+            is no monthly minimum payment.
+          example: 100000
+          nullable: true
+          type: object
       required:
       - advanceAmountCents
       - advanceBalanceCents
       - feeFactor
+      - monthlyMinimumPaymentAmountCents
       - productType
       - repaymentPercentage
       - totalRepaymentCents
@@ -5805,6 +5898,81 @@ components:
       - repaymentAmountCents
       - transactionId
       - transactionTime
+      type: object
+    IntegratedMcaPaymentWindow:
+      example:
+        windowStartDate: 2022-06-01T03:57:26.115Z
+        totalRepaymentAmountCentsInWindow: 1000000
+        minimumPaymentAmountCentsInWindow: 100000
+        windowEndDate: 2022-07-01T03:57:26.115Z
+      properties:
+        windowStartDate:
+          description: Start UTC ISO 8601 timestamp of the payment window.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        windowEndDate:
+          description: End UTC ISO 8601 timestamp of the payment window.
+          example: 2022-07-01T03:57:26.115Z
+          type: string
+        totalRepaymentAmountCentsInWindow:
+          description: Total repayment amount during this window - in cents.
+          example: 1000000
+          type: number
+        minimumPaymentAmountCentsInWindow:
+          description: Minimum payment amount for this window - in cents. This is
+            `null` if no minimum payment was collected.
+          example: 100000
+          nullable: true
+          type: object
+      required:
+      - minimumPaymentAmountCentsInWindow
+      - totalRepaymentAmountCentsInWindow
+      - windowEndDate
+      - windowStartDate
+      type: object
+    GetIntegratedMcaPaymentWindowsResponse:
+      example:
+        paymentWindows:
+        - windowStartDate: 2022-06-01T03:57:26.115Z
+          totalRepaymentAmountCentsInWindow: 1000000
+          minimumPaymentAmountCentsInWindow: 100000
+          windowEndDate: 2022-07-01T03:57:26.115Z
+        - windowStartDate: 2022-06-01T03:57:26.115Z
+          totalRepaymentAmountCentsInWindow: 1000000
+          minimumPaymentAmountCentsInWindow: 100000
+          windowEndDate: 2022-07-01T03:57:26.115Z
+      properties:
+        paymentWindows:
+          description: The payment periods for the integrated MCA.
+          items:
+            $ref: '#/components/schemas/IntegratedMcaPaymentWindow'
+          type: array
+      required:
+      - paymentWindows
+      type: object
+    BusinessHasNoIntegratedMcaProductException:
+      example:
+        errorCode: BusinessHasNoIntegratedMcaProductException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - BusinessHasNoIntegratedMcaProductException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
       type: object
     SessionInvoice:
       example:
