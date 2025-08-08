@@ -3375,10 +3375,10 @@ components:
           zipcode: "94401"
           addressLineOne: 123 Main Street
         platformUserId: "12345"
-        isUscitizen: true
         roles:
         - PRIMARY_OWNER
         businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        isUsCitizen: true
         email: user@gmail.com
       properties:
         platformUserId:
@@ -3450,8 +3450,8 @@ components:
           description: Metadata from your system that you want to associate the user
             with.
           type: object
-        isUscitizen:
-          description: Is the user a U.S. citizen or permanent resident?
+        isUsCitizen:
+          description: Whether the user is a U.S. citizen or permanent resident.
           example: true
           type: boolean
       required:
@@ -3470,12 +3470,12 @@ components:
         roles:
         - PRIMARY_OWNER
         businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        isUsCitizen: true
         firstName: John
         createdAt: 2022-06-01T03:57:26.115Z
         platformBusinessId: "12345"
         phoneNumber: "+14155556789"
         platformUserId: "12345"
-        isUscitizen: true
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         email: user@gmail.com
         updatedAt: 2022-06-01T03:57:26.115Z
@@ -3556,10 +3556,11 @@ components:
           description: Metadata from your system that you want to associate the user
             with.
           type: object
-        isUscitizen:
+        isUsCitizen:
           description: Is the user a U.S. citizen or permanent resident?
           example: true
-          type: boolean
+          nullable: true
+          type: object
         createdAt:
           description: Creation UTC ISO 8601 timestamp of the user.
           example: 2022-06-01T03:57:26.115Z
@@ -3617,12 +3618,12 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           phoneNumber: "+14155556789"
           platformUserId: "12345"
-          isUscitizen: true
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
@@ -3637,12 +3638,12 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           phoneNumber: "+14155556789"
           platformUserId: "12345"
-          isUscitizen: true
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
@@ -3775,12 +3776,12 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           phoneNumber: "+14155556789"
           platformUserId: "12345"
-          isUscitizen: true
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z
@@ -3795,12 +3796,12 @@ components:
           roles:
           - PRIMARY_OWNER
           businessId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          isUsCitizen: true
           firstName: John
           createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           phoneNumber: "+14155556789"
           platformUserId: "12345"
-          isUscitizen: true
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           email: user@gmail.com
           updatedAt: 2022-06-01T03:57:26.115Z

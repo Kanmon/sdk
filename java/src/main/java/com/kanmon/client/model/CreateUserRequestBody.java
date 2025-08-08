@@ -145,9 +145,9 @@ public class CreateUserRequestBody {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
 
-  public static final String SERIALIZED_NAME_IS_USCITIZEN = "isUscitizen";
-  @SerializedName(SERIALIZED_NAME_IS_USCITIZEN)
-  private Boolean isUscitizen;
+  public static final String SERIALIZED_NAME_IS_US_CITIZEN = "isUsCitizen";
+  @SerializedName(SERIALIZED_NAME_IS_US_CITIZEN)
+  private Boolean isUsCitizen;
 
   public CreateUserRequestBody() {
   }
@@ -350,22 +350,22 @@ public class CreateUserRequestBody {
   }
 
 
-  public CreateUserRequestBody isUscitizen(Boolean isUscitizen) {
-    this.isUscitizen = isUscitizen;
+  public CreateUserRequestBody isUsCitizen(Boolean isUsCitizen) {
+    this.isUsCitizen = isUsCitizen;
     return this;
   }
 
   /**
-   * Is the user a U.S. citizen or permanent resident?
-   * @return isUscitizen
+   * Whether the user is a U.S. citizen or permanent resident.
+   * @return isUsCitizen
    */
   @javax.annotation.Nullable
-  public Boolean getIsUscitizen() {
-    return isUscitizen;
+  public Boolean getIsUsCitizen() {
+    return isUsCitizen;
   }
 
-  public void setIsUscitizen(Boolean isUscitizen) {
-    this.isUscitizen = isUscitizen;
+  public void setIsUsCitizen(Boolean isUsCitizen) {
+    this.isUsCitizen = isUsCitizen;
   }
 
 
@@ -389,12 +389,12 @@ public class CreateUserRequestBody {
         Objects.equals(this.address, createUserRequestBody.address) &&
         Objects.equals(this.roles, createUserRequestBody.roles) &&
         Objects.equals(this.metadata, createUserRequestBody.metadata) &&
-        Objects.equals(this.isUscitizen, createUserRequestBody.isUscitizen);
+        Objects.equals(this.isUsCitizen, createUserRequestBody.isUsCitizen);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformUserId, platformBusinessId, businessId, email, firstName, lastName, phoneNumber, address, roles, metadata, isUscitizen);
+    return Objects.hash(platformUserId, platformBusinessId, businessId, email, firstName, lastName, phoneNumber, address, roles, metadata, isUsCitizen);
   }
 
   @Override
@@ -411,7 +411,7 @@ public class CreateUserRequestBody {
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
     sb.append("    roles: ").append(toIndentedString(roles)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    isUscitizen: ").append(toIndentedString(isUscitizen)).append("\n");
+    sb.append("    isUsCitizen: ").append(toIndentedString(isUsCitizen)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -444,7 +444,7 @@ public class CreateUserRequestBody {
     openapiFields.add("address");
     openapiFields.add("roles");
     openapiFields.add("metadata");
-    openapiFields.add("isUscitizen");
+    openapiFields.add("isUsCitizen");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

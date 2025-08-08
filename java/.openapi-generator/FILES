@@ -165,7 +165,3 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/api/IntegratedMcaApiTest.java
-src/test/java/com/kanmon/client/model/BusinessHasNoIntegratedMcaProductExceptionTest.java
-src/test/java/com/kanmon/client/model/GetIntegratedMcaPaymentWindowsResponseTest.java
-src/test/java/com/kanmon/client/model/IntegratedMcaPaymentWindowTest.java

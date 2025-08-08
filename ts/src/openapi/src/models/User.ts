@@ -94,10 +94,10 @@ export interface User {
     metadata: object;
     /**
      * Is the user a U.S. citizen or permanent resident?
-     * @type {boolean}
+     * @type {object}
      * @memberof User
      */
-    isUscitizen?: boolean;
+    isUsCitizen?: object | null;
     /**
      * Creation UTC ISO 8601 timestamp of the user.
      * @type {string}
@@ -159,7 +159,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'lastName': json['lastName'] == null ? undefined : json['lastName'],
         'roles': json['roles'] == null ? undefined : json['roles'],
         'metadata': json['metadata'],
-        'isUscitizen': json['isUscitizen'] == null ? undefined : json['isUscitizen'],
+        'isUsCitizen': json['isUsCitizen'] == null ? undefined : json['isUsCitizen'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
     };
@@ -182,7 +182,7 @@ export function UserToJSON(value?: User | null): any {
         'lastName': value['lastName'],
         'roles': value['roles'],
         'metadata': value['metadata'],
-        'isUscitizen': value['isUscitizen'],
+        'isUsCitizen': value['isUsCitizen'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],
     };

@@ -87,11 +87,11 @@ export interface CreateUserRequestBody {
      */
     metadata?: object;
     /**
-     * Is the user a U.S. citizen or permanent resident?
+     * Whether the user is a U.S. citizen or permanent resident.
      * @type {boolean}
      * @memberof CreateUserRequestBody
      */
-    isUscitizen?: boolean;
+    isUsCitizen?: boolean;
 }
 
 
@@ -133,7 +133,7 @@ export function CreateUserRequestBodyFromJSONTyped(json: any, ignoreDiscriminato
         'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
         'roles': json['roles'] == null ? undefined : json['roles'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
-        'isUscitizen': json['isUscitizen'] == null ? undefined : json['isUscitizen'],
+        'isUsCitizen': json['isUsCitizen'] == null ? undefined : json['isUsCitizen'],
     };
 }
 
@@ -153,7 +153,7 @@ export function CreateUserRequestBodyToJSON(value?: CreateUserRequestBody | null
         'address': AddressToJSON(value['address']),
         'roles': value['roles'],
         'metadata': value['metadata'],
-        'isUscitizen': value['isUscitizen'],
+        'isUsCitizen': value['isUsCitizen'],
     };
 }
 
