@@ -37,7 +37,7 @@ public class KanmonPlatformApi {
     private OffersApi offers;
     private PaymentsApi payments;
     private PrequalificationsApi prequalifications;
-    private IntegratedMcaReceivablesApi integratedMcaReceivables;
+    private IntegratedMcaApi integratedMca;
     private Gson gson;
 
     public KanmonPlatformApi(String apiToken) {
@@ -61,7 +61,7 @@ public class KanmonPlatformApi {
         this.offers = new OffersApi(this.apiClient);
         this.payments = new PaymentsApi(this.apiClient);
         this.prequalifications = new PrequalificationsApi(this.apiClient);
-        this.integratedMcaReceivables = new IntegratedMcaReceivablesApi(this.apiClient);
+        this.integratedMca = new IntegratedMcaApi(this.apiClient);
         gson = new Gson();
     }
 
@@ -113,8 +113,8 @@ public class KanmonPlatformApi {
         return prequalifications;
     }
 
-    public IntegratedMcaReceivablesApi getIntegratedMcaReceivables() {
-        return integratedMcaReceivables;
+    public IntegratedMcaApi getIntegratedMca() {
+        return integratedMca;
     }
 
     public KanmonApiException getKanmonException(ApiException apiException) {
