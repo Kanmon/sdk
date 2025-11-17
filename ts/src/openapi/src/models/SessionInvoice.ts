@@ -33,7 +33,7 @@ export interface SessionInvoice {
      */
     platformInvoiceId: string;
     /**
-     * Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.
+     * Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.
      * @type {string}
      * @memberof SessionInvoice
      */

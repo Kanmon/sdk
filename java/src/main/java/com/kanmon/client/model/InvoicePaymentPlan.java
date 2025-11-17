@@ -52,6 +52,10 @@ import com.kanmon.client.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class InvoicePaymentPlan {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_ADVANCE_RATE_PERCENTAGE = "advanceRatePercentage";
   @SerializedName(SERIALIZED_NAME_ADVANCE_RATE_PERCENTAGE)
   private BigDecimal advanceRatePercentage;
@@ -66,6 +70,25 @@ public class InvoicePaymentPlan {
 
   public InvoicePaymentPlan() {
   }
+
+  public InvoicePaymentPlan id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * The UUID representing the invoice payment plan.
+   * @return id
+   */
+  @javax.annotation.Nonnull
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
 
   public InvoicePaymentPlan advanceRatePercentage(BigDecimal advanceRatePercentage) {
     this.advanceRatePercentage = advanceRatePercentage;
@@ -134,20 +157,22 @@ public class InvoicePaymentPlan {
       return false;
     }
     InvoicePaymentPlan invoicePaymentPlan = (InvoicePaymentPlan) o;
-    return Objects.equals(this.advanceRatePercentage, invoicePaymentPlan.advanceRatePercentage) &&
+    return Objects.equals(this.id, invoicePaymentPlan.id) &&
+        Objects.equals(this.advanceRatePercentage, invoicePaymentPlan.advanceRatePercentage) &&
         Objects.equals(this.transactionFeePercentage, invoicePaymentPlan.transactionFeePercentage) &&
         Objects.equals(this.repaymentWindow, invoicePaymentPlan.repaymentWindow);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(advanceRatePercentage, transactionFeePercentage, repaymentWindow);
+    return Objects.hash(id, advanceRatePercentage, transactionFeePercentage, repaymentWindow);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvoicePaymentPlan {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    advanceRatePercentage: ").append(toIndentedString(advanceRatePercentage)).append("\n");
     sb.append("    transactionFeePercentage: ").append(toIndentedString(transactionFeePercentage)).append("\n");
     sb.append("    repaymentWindow: ").append(toIndentedString(repaymentWindow)).append("\n");
@@ -173,12 +198,14 @@ public class InvoicePaymentPlan {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("id");
     openapiFields.add("advanceRatePercentage");
     openapiFields.add("transactionFeePercentage");
     openapiFields.add("repaymentWindow");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("id");
     openapiRequiredFields.add("advanceRatePercentage");
     openapiRequiredFields.add("transactionFeePercentage");
     openapiRequiredFields.add("repaymentWindow");
@@ -212,6 +239,9 @@ public class InvoicePaymentPlan {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      }
       // validate the required field `repaymentWindow`
       InvoicePaymentPlanRepaymentWindow.validateJsonElement(jsonObj.get("repaymentWindow"));
   }

@@ -16,6 +16,10 @@
 import * as runtime from '../runtime';
 import type {
   BadRequestException,
+  FinanceInvoice400Response,
+  FinanceInvoice404Response,
+  FinanceInvoice409Response,
+  FinanceInvoiceRequestBody,
   ForbiddenException,
   GetInvoice404Response,
   GetInvoicesResponse,
@@ -25,6 +29,14 @@ import type {
 import {
     BadRequestExceptionFromJSON,
     BadRequestExceptionToJSON,
+    FinanceInvoice400ResponseFromJSON,
+    FinanceInvoice400ResponseToJSON,
+    FinanceInvoice404ResponseFromJSON,
+    FinanceInvoice404ResponseToJSON,
+    FinanceInvoice409ResponseFromJSON,
+    FinanceInvoice409ResponseToJSON,
+    FinanceInvoiceRequestBodyFromJSON,
+    FinanceInvoiceRequestBodyToJSON,
     ForbiddenExceptionFromJSON,
     ForbiddenExceptionToJSON,
     GetInvoice404ResponseFromJSON,
@@ -36,6 +48,10 @@ import {
     InvoiceFromJSON,
     InvoiceToJSON,
 } from '../models/index';
+
+export interface FinanceInvoiceRequest {
+    financeInvoiceRequestBody: FinanceInvoiceRequestBody;
+}
 
 export interface GetAllInvoicesRequest {
     statuses?: string;
@@ -58,6 +74,46 @@ export interface GetInvoiceRequest {
  * 
  */
 export class InvoicesApi extends runtime.BaseAPI {
+
+    /**
+     * Finance an invoice
+     */
+    async financeInvoiceRaw(requestParameters: FinanceInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invoice>> {
+        if (requestParameters['financeInvoiceRequestBody'] == null) {
+            throw new runtime.RequiredError(
+                'financeInvoiceRequestBody',
+                'Required parameter "financeInvoiceRequestBody" was null or undefined when calling financeInvoice().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/invoices/finance`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FinanceInvoiceRequestBodyToJSON(requestParameters['financeInvoiceRequestBody']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceFromJSON(jsonValue));
+    }
+
+    /**
+     * Finance an invoice
+     */
+    async financeInvoice(requestParameters: FinanceInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Invoice> {
+        const response = await this.financeInvoiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Fetch invoices

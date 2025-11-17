@@ -27,6 +27,12 @@ import {
  */
 export interface InvoicePaymentPlan {
     /**
+     * The UUID representing the invoice payment plan.
+     * @type {string}
+     * @memberof InvoicePaymentPlan
+     */
+    id: string;
+    /**
      * The percentage of the invoice that is allowed for advances. E.g. a value of `80` would mean that $800 would be advanced on a $1,000 invoice.
      * @type {number}
      * @memberof InvoicePaymentPlan
@@ -50,6 +56,7 @@ export interface InvoicePaymentPlan {
  * Check if a given object implements the InvoicePaymentPlan interface.
  */
 export function instanceOfInvoicePaymentPlan(value: object): value is InvoicePaymentPlan {
+    if (!('id' in value) || value['id'] === undefined) return false;
     if (!('advanceRatePercentage' in value) || value['advanceRatePercentage'] === undefined) return false;
     if (!('transactionFeePercentage' in value) || value['transactionFeePercentage'] === undefined) return false;
     if (!('repaymentWindow' in value) || value['repaymentWindow'] === undefined) return false;
@@ -66,6 +73,7 @@ export function InvoicePaymentPlanFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
+        'id': json['id'],
         'advanceRatePercentage': json['advanceRatePercentage'],
         'transactionFeePercentage': json['transactionFeePercentage'],
         'repaymentWindow': InvoicePaymentPlanRepaymentWindowFromJSON(json['repaymentWindow']),
@@ -78,6 +86,7 @@ export function InvoicePaymentPlanToJSON(value?: InvoicePaymentPlan | null): any
     }
     return {
         
+        'id': value['id'],
         'advanceRatePercentage': value['advanceRatePercentage'],
         'transactionFeePercentage': value['transactionFeePercentage'],
         'repaymentWindow': InvoicePaymentPlanRepaymentWindowToJSON(value['repaymentWindow']),

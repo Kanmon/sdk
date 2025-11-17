@@ -184,7 +184,7 @@ public class AccountsPayableSessionInvoice {
   }
 
   /**
-   * Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your &#x60;platformInvoiceId&#x60;.
+   * Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your &#x60;platformInvoiceId&#x60;.
    * @return platformInvoiceNumber
    */
   @javax.annotation.Nonnull

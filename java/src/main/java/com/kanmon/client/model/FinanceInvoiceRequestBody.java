@@ -48,17 +48,21 @@ import java.util.Set;
 import com.kanmon.client.JSON;
 
 /**
- * AccountsPayableSessionInvoiceWithInvoiceFile
+ * FinanceInvoiceRequestBody
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
-public class AccountsPayableSessionInvoiceWithInvoiceFile {
+public class FinanceInvoiceRequestBody {
+  public static final String SERIALIZED_NAME_ISSUED_PRODUCT_ID = "issuedProductId";
+  @SerializedName(SERIALIZED_NAME_ISSUED_PRODUCT_ID)
+  private String issuedProductId;
+
+  public static final String SERIALIZED_NAME_INVOICE_PAYMENT_PLAN_ID = "invoicePaymentPlanId";
+  @SerializedName(SERIALIZED_NAME_INVOICE_PAYMENT_PLAN_ID)
+  private String invoicePaymentPlanId;
+
   public static final String SERIALIZED_NAME_PLATFORM_INVOICE_ID = "platformInvoiceId";
   @SerializedName(SERIALIZED_NAME_PLATFORM_INVOICE_ID)
   private String platformInvoiceId;
-
-  public static final String SERIALIZED_NAME_DOCUMENT_ID = "documentId";
-  @SerializedName(SERIALIZED_NAME_DOCUMENT_ID)
-  private String documentId;
 
   public static final String SERIALIZED_NAME_PLATFORM_INVOICE_NUMBER = "platformInvoiceNumber";
   @SerializedName(SERIALIZED_NAME_PLATFORM_INVOICE_NUMBER)
@@ -68,6 +72,10 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   @SerializedName(SERIALIZED_NAME_INVOICE_AMOUNT_CENTS)
   private BigDecimal invoiceAmountCents;
 
+  public static final String SERIALIZED_NAME_AMOUNT_REQUESTED_FOR_FINANCING_CENTS = "amountRequestedForFinancingCents";
+  @SerializedName(SERIALIZED_NAME_AMOUNT_REQUESTED_FOR_FINANCING_CENTS)
+  private BigDecimal amountRequestedForFinancingCents;
+
   public static final String SERIALIZED_NAME_INVOICE_DUE_DATE = "invoiceDueDate";
   @SerializedName(SERIALIZED_NAME_INVOICE_DUE_DATE)
   private String invoiceDueDate;
@@ -75,6 +83,10 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   public static final String SERIALIZED_NAME_INVOICE_ISSUED_DATE = "invoiceIssuedDate";
   @SerializedName(SERIALIZED_NAME_INVOICE_ISSUED_DATE)
   private String invoiceIssuedDate;
+
+  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
+  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  private String description;
 
   public static final String SERIALIZED_NAME_PAYEE_EMAIL = "payeeEmail";
   @SerializedName(SERIALIZED_NAME_PAYEE_EMAIL)
@@ -156,14 +168,48 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   @SerializedName(SERIALIZED_NAME_PAYEE_LAST_NAME)
   private String payeeLastName;
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
-
-  public AccountsPayableSessionInvoiceWithInvoiceFile() {
+  public FinanceInvoiceRequestBody() {
   }
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile platformInvoiceId(String platformInvoiceId) {
+  public FinanceInvoiceRequestBody issuedProductId(String issuedProductId) {
+    this.issuedProductId = issuedProductId;
+    return this;
+  }
+
+  /**
+   * The unique identifier for the issued product within Kanmon.
+   * @return issuedProductId
+   */
+  @javax.annotation.Nonnull
+  public String getIssuedProductId() {
+    return issuedProductId;
+  }
+
+  public void setIssuedProductId(String issuedProductId) {
+    this.issuedProductId = issuedProductId;
+  }
+
+
+  public FinanceInvoiceRequestBody invoicePaymentPlanId(String invoicePaymentPlanId) {
+    this.invoicePaymentPlanId = invoicePaymentPlanId;
+    return this;
+  }
+
+  /**
+   * The unique identifier for the invoice payment plan within Kanmon.
+   * @return invoicePaymentPlanId
+   */
+  @javax.annotation.Nonnull
+  public String getInvoicePaymentPlanId() {
+    return invoicePaymentPlanId;
+  }
+
+  public void setInvoicePaymentPlanId(String invoicePaymentPlanId) {
+    this.invoicePaymentPlanId = invoicePaymentPlanId;
+  }
+
+
+  public FinanceInvoiceRequestBody platformInvoiceId(String platformInvoiceId) {
     this.platformInvoiceId = platformInvoiceId;
     return this;
   }
@@ -182,26 +228,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile documentId(String documentId) {
-    this.documentId = documentId;
-    return this;
-  }
-
-  /**
-   * The UUID of the invoice document created in Kanmon.
-   * @return documentId
-   */
-  @javax.annotation.Nonnull
-  public String getDocumentId() {
-    return documentId;
-  }
-
-  public void setDocumentId(String documentId) {
-    this.documentId = documentId;
-  }
-
-
-  public AccountsPayableSessionInvoiceWithInvoiceFile platformInvoiceNumber(String platformInvoiceNumber) {
+  public FinanceInvoiceRequestBody platformInvoiceNumber(String platformInvoiceNumber) {
     this.platformInvoiceNumber = platformInvoiceNumber;
     return this;
   }
@@ -210,7 +237,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
    * Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your &#x60;platformInvoiceId&#x60;.
    * @return platformInvoiceNumber
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getPlatformInvoiceNumber() {
     return platformInvoiceNumber;
   }
@@ -220,7 +247,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile invoiceAmountCents(BigDecimal invoiceAmountCents) {
+  public FinanceInvoiceRequestBody invoiceAmountCents(BigDecimal invoiceAmountCents) {
     this.invoiceAmountCents = invoiceAmountCents;
     return this;
   }
@@ -229,7 +256,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
    * The invoice amount - in cents. This needs to be greater than or equal to 100.
    * @return invoiceAmountCents
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public BigDecimal getInvoiceAmountCents() {
     return invoiceAmountCents;
   }
@@ -239,16 +266,35 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile invoiceDueDate(String invoiceDueDate) {
+  public FinanceInvoiceRequestBody amountRequestedForFinancingCents(BigDecimal amountRequestedForFinancingCents) {
+    this.amountRequestedForFinancingCents = amountRequestedForFinancingCents;
+    return this;
+  }
+
+  /**
+   * The amount requested for financing - in cents. The portion of the invoice amount that the business requests to be financed. Must be less than or equal to the &#x60;invoiceAmountCents&#x60;. This needs to be greater than or equal to 100.
+   * @return amountRequestedForFinancingCents
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getAmountRequestedForFinancingCents() {
+    return amountRequestedForFinancingCents;
+  }
+
+  public void setAmountRequestedForFinancingCents(BigDecimal amountRequestedForFinancingCents) {
+    this.amountRequestedForFinancingCents = amountRequestedForFinancingCents;
+  }
+
+
+  public FinanceInvoiceRequestBody invoiceDueDate(String invoiceDueDate) {
     this.invoiceDueDate = invoiceDueDate;
     return this;
   }
 
   /**
-   * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be no more than 5 days in the past. If &#x60;invoiceIssuedDate&#x60; is provided, then it must be after &#x60;invoiceIssuedDate&#x60;.
+   * The date when the invoice will be paid. ISO 8601 date format. If &#x60;invoiceIssuedDate&#x60; is provided, then it must be after &#x60;invoiceIssuedDate&#x60;. If product type is &#x60;ACCOUNTS_PAYABLE_FINANCING&#x60;, this date must be no more than 5 days in the past. If product type is &#x60;INVOICE_FINANCING&#x60;, this date must be at least 7 days in the future.
    * @return invoiceDueDate
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public String getInvoiceDueDate() {
     return invoiceDueDate;
   }
@@ -258,7 +304,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile invoiceIssuedDate(String invoiceIssuedDate) {
+  public FinanceInvoiceRequestBody invoiceIssuedDate(String invoiceIssuedDate) {
     this.invoiceIssuedDate = invoiceIssuedDate;
     return this;
   }
@@ -277,7 +323,26 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeEmail(String payeeEmail) {
+  public FinanceInvoiceRequestBody description(String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * The description of the goods or services in the invoice.
+   * @return description
+   */
+  @javax.annotation.Nonnull
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+
+  public FinanceInvoiceRequestBody payeeEmail(String payeeEmail) {
     this.payeeEmail = payeeEmail;
     return this;
   }
@@ -296,7 +361,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeAddress(Address payeeAddress) {
+  public FinanceInvoiceRequestBody payeeAddress(Address payeeAddress) {
     this.payeeAddress = payeeAddress;
     return this;
   }
@@ -315,7 +380,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeType(PayeeTypeEnum payeeType) {
+  public FinanceInvoiceRequestBody payeeType(PayeeTypeEnum payeeType) {
     this.payeeType = payeeType;
     return this;
   }
@@ -324,7 +389,7 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
    * &#x60;INDIVIDUAL&#x60; if the payee is a person and &#x60;BUSINESS&#x60; if the payee is a company.
    * @return payeeType
    */
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   public PayeeTypeEnum getPayeeType() {
     return payeeType;
   }
@@ -334,13 +399,13 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeBusinessName(String payeeBusinessName) {
+  public FinanceInvoiceRequestBody payeeBusinessName(String payeeBusinessName) {
     this.payeeBusinessName = payeeBusinessName;
     return this;
   }
 
   /**
-   * The registered name of the payee business when the payee is a business and not an individual.
+   * The registered name of the payee business when the payee is a business and not an individual. Required and should only be defined if &#x60;payeeType&#x60; is &#x60;BUSINESS&#x60;.
    * @return payeeBusinessName
    */
   @javax.annotation.Nullable
@@ -353,13 +418,13 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeFirstName(String payeeFirstName) {
+  public FinanceInvoiceRequestBody payeeFirstName(String payeeFirstName) {
     this.payeeFirstName = payeeFirstName;
     return this;
   }
 
   /**
-   * The first name of the payee when the payee is an individual and not a business.
+   * The first name of the payee when the payee is an individual and not a business. Required and should only be defined if &#x60;payeeType&#x60; is &#x60;INDIVIDUAL&#x60;.
    * @return payeeFirstName
    */
   @javax.annotation.Nullable
@@ -372,13 +437,13 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeMiddleName(String payeeMiddleName) {
+  public FinanceInvoiceRequestBody payeeMiddleName(String payeeMiddleName) {
     this.payeeMiddleName = payeeMiddleName;
     return this;
   }
 
   /**
-   * The middle name of the payee when the payee is an individual and not a business.
+   * The middle name of the payee when the payee is an individual and not a business. Optional and should only be defined if &#x60;payeeType&#x60; is &#x60;INDIVIDUAL&#x60;.
    * @return payeeMiddleName
    */
   @javax.annotation.Nullable
@@ -391,13 +456,13 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile payeeLastName(String payeeLastName) {
+  public FinanceInvoiceRequestBody payeeLastName(String payeeLastName) {
     this.payeeLastName = payeeLastName;
     return this;
   }
 
   /**
-   * The last name of the payee when the payee is an individual and not a business.
+   * The last name of the payee when the payee is an individual and not a business. Required and should only be defined if &#x60;payeeType&#x60; is &#x60;INDIVIDUAL&#x60;.
    * @return payeeLastName
    */
   @javax.annotation.Nullable
@@ -410,25 +475,6 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
 
-  public AccountsPayableSessionInvoiceWithInvoiceFile description(String description) {
-    this.description = description;
-    return this;
-  }
-
-  /**
-   * The description of the goods or services in the invoice.
-   * @return description
-   */
-  @javax.annotation.Nullable
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
 
   @Override
   public boolean equals(Object o) {
@@ -438,38 +484,43 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AccountsPayableSessionInvoiceWithInvoiceFile accountsPayableSessionInvoiceWithInvoiceFile = (AccountsPayableSessionInvoiceWithInvoiceFile) o;
-    return Objects.equals(this.platformInvoiceId, accountsPayableSessionInvoiceWithInvoiceFile.platformInvoiceId) &&
-        Objects.equals(this.documentId, accountsPayableSessionInvoiceWithInvoiceFile.documentId) &&
-        Objects.equals(this.platformInvoiceNumber, accountsPayableSessionInvoiceWithInvoiceFile.platformInvoiceNumber) &&
-        Objects.equals(this.invoiceAmountCents, accountsPayableSessionInvoiceWithInvoiceFile.invoiceAmountCents) &&
-        Objects.equals(this.invoiceDueDate, accountsPayableSessionInvoiceWithInvoiceFile.invoiceDueDate) &&
-        Objects.equals(this.invoiceIssuedDate, accountsPayableSessionInvoiceWithInvoiceFile.invoiceIssuedDate) &&
-        Objects.equals(this.payeeEmail, accountsPayableSessionInvoiceWithInvoiceFile.payeeEmail) &&
-        Objects.equals(this.payeeAddress, accountsPayableSessionInvoiceWithInvoiceFile.payeeAddress) &&
-        Objects.equals(this.payeeType, accountsPayableSessionInvoiceWithInvoiceFile.payeeType) &&
-        Objects.equals(this.payeeBusinessName, accountsPayableSessionInvoiceWithInvoiceFile.payeeBusinessName) &&
-        Objects.equals(this.payeeFirstName, accountsPayableSessionInvoiceWithInvoiceFile.payeeFirstName) &&
-        Objects.equals(this.payeeMiddleName, accountsPayableSessionInvoiceWithInvoiceFile.payeeMiddleName) &&
-        Objects.equals(this.payeeLastName, accountsPayableSessionInvoiceWithInvoiceFile.payeeLastName) &&
-        Objects.equals(this.description, accountsPayableSessionInvoiceWithInvoiceFile.description);
+    FinanceInvoiceRequestBody financeInvoiceRequestBody = (FinanceInvoiceRequestBody) o;
+    return Objects.equals(this.issuedProductId, financeInvoiceRequestBody.issuedProductId) &&
+        Objects.equals(this.invoicePaymentPlanId, financeInvoiceRequestBody.invoicePaymentPlanId) &&
+        Objects.equals(this.platformInvoiceId, financeInvoiceRequestBody.platformInvoiceId) &&
+        Objects.equals(this.platformInvoiceNumber, financeInvoiceRequestBody.platformInvoiceNumber) &&
+        Objects.equals(this.invoiceAmountCents, financeInvoiceRequestBody.invoiceAmountCents) &&
+        Objects.equals(this.amountRequestedForFinancingCents, financeInvoiceRequestBody.amountRequestedForFinancingCents) &&
+        Objects.equals(this.invoiceDueDate, financeInvoiceRequestBody.invoiceDueDate) &&
+        Objects.equals(this.invoiceIssuedDate, financeInvoiceRequestBody.invoiceIssuedDate) &&
+        Objects.equals(this.description, financeInvoiceRequestBody.description) &&
+        Objects.equals(this.payeeEmail, financeInvoiceRequestBody.payeeEmail) &&
+        Objects.equals(this.payeeAddress, financeInvoiceRequestBody.payeeAddress) &&
+        Objects.equals(this.payeeType, financeInvoiceRequestBody.payeeType) &&
+        Objects.equals(this.payeeBusinessName, financeInvoiceRequestBody.payeeBusinessName) &&
+        Objects.equals(this.payeeFirstName, financeInvoiceRequestBody.payeeFirstName) &&
+        Objects.equals(this.payeeMiddleName, financeInvoiceRequestBody.payeeMiddleName) &&
+        Objects.equals(this.payeeLastName, financeInvoiceRequestBody.payeeLastName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformInvoiceId, documentId, platformInvoiceNumber, invoiceAmountCents, invoiceDueDate, invoiceIssuedDate, payeeEmail, payeeAddress, payeeType, payeeBusinessName, payeeFirstName, payeeMiddleName, payeeLastName, description);
+    return Objects.hash(issuedProductId, invoicePaymentPlanId, platformInvoiceId, platformInvoiceNumber, invoiceAmountCents, amountRequestedForFinancingCents, invoiceDueDate, invoiceIssuedDate, description, payeeEmail, payeeAddress, payeeType, payeeBusinessName, payeeFirstName, payeeMiddleName, payeeLastName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AccountsPayableSessionInvoiceWithInvoiceFile {\n");
+    sb.append("class FinanceInvoiceRequestBody {\n");
+    sb.append("    issuedProductId: ").append(toIndentedString(issuedProductId)).append("\n");
+    sb.append("    invoicePaymentPlanId: ").append(toIndentedString(invoicePaymentPlanId)).append("\n");
     sb.append("    platformInvoiceId: ").append(toIndentedString(platformInvoiceId)).append("\n");
-    sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
     sb.append("    platformInvoiceNumber: ").append(toIndentedString(platformInvoiceNumber)).append("\n");
     sb.append("    invoiceAmountCents: ").append(toIndentedString(invoiceAmountCents)).append("\n");
+    sb.append("    amountRequestedForFinancingCents: ").append(toIndentedString(amountRequestedForFinancingCents)).append("\n");
     sb.append("    invoiceDueDate: ").append(toIndentedString(invoiceDueDate)).append("\n");
     sb.append("    invoiceIssuedDate: ").append(toIndentedString(invoiceIssuedDate)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    payeeEmail: ").append(toIndentedString(payeeEmail)).append("\n");
     sb.append("    payeeAddress: ").append(toIndentedString(payeeAddress)).append("\n");
     sb.append("    payeeType: ").append(toIndentedString(payeeType)).append("\n");
@@ -477,7 +528,6 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
     sb.append("    payeeFirstName: ").append(toIndentedString(payeeFirstName)).append("\n");
     sb.append("    payeeMiddleName: ").append(toIndentedString(payeeMiddleName)).append("\n");
     sb.append("    payeeLastName: ").append(toIndentedString(payeeLastName)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -500,12 +550,15 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("issuedProductId");
+    openapiFields.add("invoicePaymentPlanId");
     openapiFields.add("platformInvoiceId");
-    openapiFields.add("documentId");
     openapiFields.add("platformInvoiceNumber");
     openapiFields.add("invoiceAmountCents");
+    openapiFields.add("amountRequestedForFinancingCents");
     openapiFields.add("invoiceDueDate");
     openapiFields.add("invoiceIssuedDate");
+    openapiFields.add("description");
     openapiFields.add("payeeEmail");
     openapiFields.add("payeeAddress");
     openapiFields.add("payeeType");
@@ -513,56 +566,68 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
     openapiFields.add("payeeFirstName");
     openapiFields.add("payeeMiddleName");
     openapiFields.add("payeeLastName");
-    openapiFields.add("description");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("issuedProductId");
+    openapiRequiredFields.add("invoicePaymentPlanId");
     openapiRequiredFields.add("platformInvoiceId");
-    openapiRequiredFields.add("documentId");
+    openapiRequiredFields.add("platformInvoiceNumber");
+    openapiRequiredFields.add("invoiceAmountCents");
+    openapiRequiredFields.add("amountRequestedForFinancingCents");
+    openapiRequiredFields.add("invoiceDueDate");
+    openapiRequiredFields.add("description");
+    openapiRequiredFields.add("payeeType");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AccountsPayableSessionInvoiceWithInvoiceFile
+   * @throws IOException if the JSON Element is invalid with respect to FinanceInvoiceRequestBody
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!AccountsPayableSessionInvoiceWithInvoiceFile.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AccountsPayableSessionInvoiceWithInvoiceFile is not found in the empty JSON string", AccountsPayableSessionInvoiceWithInvoiceFile.openapiRequiredFields.toString()));
+        if (!FinanceInvoiceRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in FinanceInvoiceRequestBody is not found in the empty JSON string", FinanceInvoiceRequestBody.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AccountsPayableSessionInvoiceWithInvoiceFile.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccountsPayableSessionInvoiceWithInvoiceFile` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!FinanceInvoiceRequestBody.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `FinanceInvoiceRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : AccountsPayableSessionInvoiceWithInvoiceFile.openapiRequiredFields) {
+      for (String requiredField : FinanceInvoiceRequestBody.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if (!jsonObj.get("issuedProductId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `issuedProductId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuedProductId").toString()));
+      }
+      if (!jsonObj.get("invoicePaymentPlanId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `invoicePaymentPlanId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoicePaymentPlanId").toString()));
+      }
       if (!jsonObj.get("platformInvoiceId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformInvoiceId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformInvoiceId").toString()));
       }
-      if (!jsonObj.get("documentId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `documentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("documentId").toString()));
-      }
-      if ((jsonObj.get("platformInvoiceNumber") != null && !jsonObj.get("platformInvoiceNumber").isJsonNull()) && !jsonObj.get("platformInvoiceNumber").isJsonPrimitive()) {
+      if (!jsonObj.get("platformInvoiceNumber").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformInvoiceNumber` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformInvoiceNumber").toString()));
       }
-      if ((jsonObj.get("invoiceDueDate") != null && !jsonObj.get("invoiceDueDate").isJsonNull()) && !jsonObj.get("invoiceDueDate").isJsonPrimitive()) {
+      if (!jsonObj.get("invoiceDueDate").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `invoiceDueDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceDueDate").toString()));
       }
       if ((jsonObj.get("invoiceIssuedDate") != null && !jsonObj.get("invoiceIssuedDate").isJsonNull()) && !jsonObj.get("invoiceIssuedDate").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `invoiceIssuedDate` to be a primitive type in the JSON string but got `%s`", jsonObj.get("invoiceIssuedDate").toString()));
+      }
+      if (!jsonObj.get("description").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
       }
       if ((jsonObj.get("payeeEmail") != null && !jsonObj.get("payeeEmail").isJsonNull()) && !jsonObj.get("payeeEmail").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payeeEmail` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeEmail").toString()));
@@ -571,13 +636,11 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
       if (jsonObj.get("payeeAddress") != null && !jsonObj.get("payeeAddress").isJsonNull()) {
         Address.validateJsonElement(jsonObj.get("payeeAddress"));
       }
-      if ((jsonObj.get("payeeType") != null && !jsonObj.get("payeeType").isJsonNull()) && !jsonObj.get("payeeType").isJsonPrimitive()) {
+      if (!jsonObj.get("payeeType").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payeeType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeType").toString()));
       }
-      // validate the optional field `payeeType`
-      if (jsonObj.get("payeeType") != null && !jsonObj.get("payeeType").isJsonNull()) {
-        PayeeTypeEnum.validateJsonElement(jsonObj.get("payeeType"));
-      }
+      // validate the required field `payeeType`
+      PayeeTypeEnum.validateJsonElement(jsonObj.get("payeeType"));
       if ((jsonObj.get("payeeBusinessName") != null && !jsonObj.get("payeeBusinessName").isJsonNull()) && !jsonObj.get("payeeBusinessName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payeeBusinessName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeBusinessName").toString()));
       }
@@ -590,31 +653,28 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
       if ((jsonObj.get("payeeLastName") != null && !jsonObj.get("payeeLastName").isJsonNull()) && !jsonObj.get("payeeLastName").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payeeLastName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payeeLastName").toString()));
       }
-      if ((jsonObj.get("description") != null && !jsonObj.get("description").isJsonNull()) && !jsonObj.get("description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("description").toString()));
-      }
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AccountsPayableSessionInvoiceWithInvoiceFile.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AccountsPayableSessionInvoiceWithInvoiceFile' and its subtypes
+       if (!FinanceInvoiceRequestBody.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'FinanceInvoiceRequestBody' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AccountsPayableSessionInvoiceWithInvoiceFile> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AccountsPayableSessionInvoiceWithInvoiceFile.class));
+       final TypeAdapter<FinanceInvoiceRequestBody> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(FinanceInvoiceRequestBody.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<AccountsPayableSessionInvoiceWithInvoiceFile>() {
+       return (TypeAdapter<T>) new TypeAdapter<FinanceInvoiceRequestBody>() {
            @Override
-           public void write(JsonWriter out, AccountsPayableSessionInvoiceWithInvoiceFile value) throws IOException {
+           public void write(JsonWriter out, FinanceInvoiceRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public AccountsPayableSessionInvoiceWithInvoiceFile read(JsonReader in) throws IOException {
+           public FinanceInvoiceRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -625,18 +685,18 @@ public class AccountsPayableSessionInvoiceWithInvoiceFile {
   }
 
   /**
-   * Create an instance of AccountsPayableSessionInvoiceWithInvoiceFile given an JSON string
+   * Create an instance of FinanceInvoiceRequestBody given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of AccountsPayableSessionInvoiceWithInvoiceFile
-   * @throws IOException if the JSON string is invalid with respect to AccountsPayableSessionInvoiceWithInvoiceFile
+   * @return An instance of FinanceInvoiceRequestBody
+   * @throws IOException if the JSON string is invalid with respect to FinanceInvoiceRequestBody
    */
-  public static AccountsPayableSessionInvoiceWithInvoiceFile fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AccountsPayableSessionInvoiceWithInvoiceFile.class);
+  public static FinanceInvoiceRequestBody fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, FinanceInvoiceRequestBody.class);
   }
 
   /**
-   * Convert an instance of AccountsPayableSessionInvoiceWithInvoiceFile to an JSON string
+   * Convert an instance of FinanceInvoiceRequestBody to an JSON string
    *
    * @return JSON string
    */

@@ -565,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "4b0af647-83ea-4ee5-8800-1ffcba67aaae,e61586ef-b2a1-41ef-99bd-41a43e233e87"
+        example: "a9ec0d64-1467-4f1f-a422-abfd25026ed8,cba554e6-8213-4064-9e5f-5a03979050a5"
         explode: true
         in: query
         name: businessIds
@@ -1188,6 +1188,69 @@ paths:
           code: "\nkanmonApi.invoices.getAllInvoices({\n  ...params...\n})\n    "
       x-accepts:
       - application/json
+  /api/platform/v2/invoices/finance:
+    post:
+      operationId: financeInvoice
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinanceInvoiceRequestBody'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: Invoice financed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financeInvoice_400_response'
+          description: "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException,\
+            \ InvalidInvoiceDueDateException, \n        IncorrectFinancingAmountException"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financeInvoice_404_response'
+          description: "IssuedProductNotFoundException, InvoicePaymentPlanNotFoundException"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/financeInvoice_409_response'
+          description: "IssuedProductStatusNotCurrentException, IncorrectProductTypeException,\
+            \ InsufficientCreditLimitException"
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Finance an invoice
+      tags:
+      - Invoices
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.invoices.financeInvoice({\n  ...params...\n})\n    "
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /api/platform/v2/offers/{id}:
     get:
       operationId: getOfferById
@@ -1567,7 +1630,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "d632cb91-ef4c-412b-8344-118deb4a8901,997396be-e676-4abf-a0a8-cb07ac737616"
+        example: "0d82a0b0-a88e-4bc6-bbfe-87c82835c44f,31d9f161-e63c-4862-9ac2-0d3c672dcaf9"
         explode: true
         in: query
         name: businessIds
@@ -1934,7 +1997,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "efc8c41d-4a5b-464e-82bc-26c398d1c690,5ad0007f-3306-40c0-8b65-17ede9317c62"
+        example: "55b221a7-3710-4354-96c7-08ea050f9a16,1717ec6a-3a64-462c-a480-debf492db8d0"
         explode: true
         in: query
         name: drawRequestIds
@@ -3989,8 +4052,8 @@ components:
           nullable: true
           type: string
         platformInvoiceNumber:
-          description: Your user-facing identifier for the invoice. This does not
-            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          description: Your user-facing identifier for the invoice. This is unique
+            per issued product. This may or may not be the same as your `platformInvoiceId`.
           example: "123"
           nullable: true
           type: string
@@ -4307,6 +4370,133 @@ components:
       - invoices
       - pagination
       type: object
+    FinanceInvoiceRequestBody:
+      example:
+        payeeFirstName: John
+        payeeLastName: Smith
+        payeeType: BUSINESS
+        issuedProductId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        description: Invoice for equipment purchased.
+        platformInvoiceId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        invoiceDueDate: 2022-06-01
+        invoiceAmountCents: 1000000
+        payeeAddress:
+          city: San Mateo
+          state: CA
+          country: USA
+          zipcode: "94401"
+          addressLineOne: 123 Main Street
+        amountRequestedForFinancingCents: 1000000
+        platformInvoiceNumber: "123"
+        invoiceIssuedDate: 2022-04-01
+        payeeMiddleName: payeeMiddleName
+        invoicePaymentPlanId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+        payeeEmail: user@gmail.com
+        payeeBusinessName: My Business
+      properties:
+        issuedProductId:
+          description: The unique identifier for the issued product within Kanmon.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        invoicePaymentPlanId:
+          description: The unique identifier for the invoice payment plan within Kanmon.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceId:
+          description: Your platform’s unique ID for the invoice.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
+        platformInvoiceNumber:
+          description: Your user-facing identifier for the invoice. This is unique
+            per issued product. This may or may not be the same as your `platformInvoiceId`.
+          example: "123"
+          type: string
+        invoiceAmountCents:
+          description: The invoice amount - in cents. This needs to be greater than
+            or equal to 100.
+          example: 1000000
+          type: number
+        amountRequestedForFinancingCents:
+          description: The amount requested for financing - in cents. The portion
+            of the invoice amount that the business requests to be financed. Must
+            be less than or equal to the `invoiceAmountCents`. This needs to be greater
+            than or equal to 100.
+          example: 1000000
+          type: number
+        invoiceDueDate:
+          description: "The date when the invoice will be paid. ISO 8601 date format.\
+            \ If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`.\
+            \ If product type is `ACCOUNTS_PAYABLE_FINANCING`, this date must be no\
+            \ more than 5 days in the past. If product type is `INVOICE_FINANCING`,\
+            \ this date must be at least 7 days in the future."
+          example: 2022-06-01
+          type: string
+        invoiceIssuedDate:
+          description: The date when the payee issued the invoice. ISO 8601 date format.
+          example: 2022-04-01
+          type: string
+        description:
+          description: The description of the goods or services in the invoice.
+          example: Invoice for equipment purchased.
+          type: string
+        payeeEmail:
+          description: The email of the payee.
+          example: user@gmail.com
+          type: string
+        payeeAddress:
+          allOf:
+          - $ref: '#/components/schemas/Address'
+          description: "The address of the payee. The address is optional. If you\
+            \ provide the address, you need to provide all the required fields in\
+            \ the address. The address must be a street address, not a PO Box."
+          example:
+            city: San Mateo
+            state: CA
+            country: USA
+            zipcode: "94401"
+            addressLineOne: 123 Main Street
+        payeeType:
+          description: '`INDIVIDUAL` if the payee is a person and `BUSINESS` if the
+            payee is a company.'
+          enum:
+          - BUSINESS
+          - INDIVIDUAL
+          example: BUSINESS
+          type: string
+        payeeBusinessName:
+          description: The registered name of the payee business when the payee is
+            a business and not an individual. Required and should only be defined
+            if `payeeType` is `BUSINESS`.
+          example: My Business
+          type: string
+        payeeFirstName:
+          description: The first name of the payee when the payee is an individual
+            and not a business. Required and should only be defined if `payeeType`
+            is `INDIVIDUAL`.
+          example: John
+          type: string
+        payeeMiddleName:
+          description: The middle name of the payee when the payee is an individual
+            and not a business. Optional and should only be defined if `payeeType`
+            is `INDIVIDUAL`.
+          type: string
+        payeeLastName:
+          description: The last name of the payee when the payee is an individual
+            and not a business. Required and should only be defined if `payeeType`
+            is `INDIVIDUAL`.
+          example: Smith
+          type: string
+      required:
+      - amountRequestedForFinancingCents
+      - description
+      - invoiceAmountCents
+      - invoiceDueDate
+      - invoicePaymentPlanId
+      - issuedProductId
+      - payeeType
+      - platformInvoiceId
+      - platformInvoiceNumber
+      type: object
     TermLoanOfferTerms:
       example:
         maxLoanAmountCents: 1000000
@@ -4417,6 +4607,10 @@ components:
       type: object
     InvoicePaymentPlan:
       properties:
+        id:
+          description: The UUID representing the invoice payment plan.
+          example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          type: string
         advanceRatePercentage:
           description: "The percentage of the invoice that is allowed for advances.\
             \ E.g. a value of `80` would mean that $800 would be advanced on a $1,000\
@@ -4432,6 +4626,7 @@ components:
           $ref: '#/components/schemas/InvoicePaymentPlan_repaymentWindow'
       required:
       - advanceRatePercentage
+      - id
       - repaymentWindow
       - transactionFeePercentage
       type: object
@@ -6000,8 +6195,8 @@ components:
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         platformInvoiceNumber:
-          description: Your user-facing identifier for the invoice. This does not
-            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          description: Your user-facing identifier for the invoice. This is unique
+            per issued product. This may or may not be the same as your `platformInvoiceId`.
           example: "123"
           type: string
         invoiceAmountCents:
@@ -6146,8 +6341,8 @@ components:
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         platformInvoiceNumber:
-          description: Your user-facing identifier for the invoice. This does not
-            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          description: Your user-facing identifier for the invoice. This is unique
+            per issued product. This may or may not be the same as your `platformInvoiceId`.
           example: "123"
           type: string
         invoiceAmountCents:
@@ -6242,8 +6437,8 @@ components:
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         platformInvoiceNumber:
-          description: Your user-facing identifier for the invoice. This does not
-            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          description: Your user-facing identifier for the invoice. This is unique
+            per issued product. This may or may not be the same as your `platformInvoiceId`.
           example: "123"
           type: string
         invoiceAmountCents:
@@ -6349,8 +6544,8 @@ components:
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           type: string
         platformInvoiceNumber:
-          description: Your user-facing identifier for the invoice. This does not
-            need to be unique. This may or may not be the same as your `platformInvoiceId`.
+          description: Your user-facing identifier for the invoice. This is unique
+            per issued product. This may or may not be the same as your `platformInvoiceId`.
           example: "123"
           type: string
         invoiceAmountCents:
@@ -6984,6 +7179,135 @@ components:
       - message
       - timestamp
       type: object
+    IssuedProductStatusNotCurrentException:
+      example:
+        errorCode: IssuedProductStatusNotCurrentException
+        message: Issued product status must be CURRENT.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - IssuedProductStatusNotCurrentException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Issued product status must be CURRENT.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    InvoicePaymentPlanNotFoundException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - InvalidInvoicePaymentPlanException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Invoice payment plan id must be valid.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    InsufficientCreditLimitException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - InsufficientCreditLimitException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Available credit limit must be greater than or equal to the requested
+            financing amount.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    IncorrectFinancingAmountException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - IncorrectFinancingAmountException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: The amount requested for financing must equal the invoice amount.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PlatformInvoiceIdAlreadyExistsException:
+      example:
+        errorCode: PlatformInvoiceIdAlreadyExistsException
+        message: An error occurred.
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PlatformInvoiceIdAlreadyExistsException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    PlatformInvoiceNumberAlreadyExistsForIssuedProductException:
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - PlatformInvoiceNumberAlreadyExistsForIssuedProductException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: An error occurred.
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
     createBusiness_404_response:
       oneOf:
       - $ref: '#/components/schemas/BusinessNotFoundException'
@@ -7001,6 +7325,21 @@ components:
       oneOf:
       - $ref: '#/components/schemas/InvoiceNotFoundException'
       - $ref: '#/components/schemas/BusinessNotFoundException'
+    financeInvoice_400_response:
+      oneOf:
+      - $ref: '#/components/schemas/PlatformInvoiceIdAlreadyExistsException'
+      - $ref: '#/components/schemas/InvoicePaymentPlanNotFoundException'
+      - $ref: '#/components/schemas/InvalidInvoiceDueDateException'
+      - $ref: '#/components/schemas/IncorrectFinancingAmountException'
+    financeInvoice_404_response:
+      oneOf:
+      - $ref: '#/components/schemas/IssuedProductNotFoundException'
+      - $ref: '#/components/schemas/InvoicePaymentPlanNotFoundException'
+    financeInvoice_409_response:
+      oneOf:
+      - $ref: '#/components/schemas/IssuedProductStatusNotCurrentException'
+      - $ref: '#/components/schemas/IncorrectProductTypeException'
+      - $ref: '#/components/schemas/InsufficientCreditLimitException'
     createIntegratedMcaReceivable_400_response:
       oneOf:
       - $ref: '#/components/schemas/BadRequestException'

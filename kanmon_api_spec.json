@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "4b0af647-83ea-4ee5-8800-1ffcba67aaae,e61586ef-b2a1-41ef-99bd-41a43e233e87",
+            "example": "a9ec0d64-1467-4f1f-a422-abfd25026ed8,cba554e6-8213-4064-9e5f-5a03979050a5",
             "schema": { "type": "string" }
           },
           {
@@ -1373,6 +1373,123 @@
         "security": [{ "Authorization": [] }]
       }
     },
+    "/api/platform/v2/invoices/finance": {
+      "post": {
+        "operationId": "financeInvoice",
+        "x-readme": {
+          "code-samples": [
+            {
+              "language": "node",
+              "install": "npm install @kanmon/sdk",
+              "name": "SDK",
+              "code": "\nkanmonApi.invoices.financeInvoice({\n  ...params...\n})\n    "
+            }
+          ]
+        },
+        "summary": "Finance an invoice",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinanceInvoiceRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Invoice financed successfully",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Invoice" }
+              }
+            }
+          },
+          "400": {
+            "description": "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException, \n        IncorrectFinancingAmountException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PlatformInvoiceIdAlreadyExistsException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/InvoicePaymentPlanNotFoundException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/InvalidInvoiceDueDateException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IncorrectFinancingAmountException"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "ForbiddenException",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "404": {
+            "description": "IssuedProductNotFoundException, InvoicePaymentPlanNotFoundException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IssuedProductNotFoundException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/InvoicePaymentPlanNotFoundException"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "IssuedProductStatusNotCurrentException, IncorrectProductTypeException, InsufficientCreditLimitException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/IssuedProductStatusNotCurrentException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/IncorrectProductTypeException"
+                    },
+                    {
+                      "$ref": "#/components/schemas/InsufficientCreditLimitException"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "InternalServerErrorException",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalServerErrorException"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Invoices"],
+        "security": [{ "Authorization": [] }]
+      }
+    },
     "/api/platform/v2/offers/{id}": {
       "get": {
         "operationId": "getOfferById",
@@ -1884,7 +2001,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "d632cb91-ef4c-412b-8344-118deb4a8901,997396be-e676-4abf-a0a8-cb07ac737616",
+            "example": "0d82a0b0-a88e-4bc6-bbfe-87c82835c44f,31d9f161-e63c-4862-9ac2-0d3c672dcaf9",
             "schema": { "type": "string" }
           },
           {
@@ -2230,7 +2347,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "efc8c41d-4a5b-464e-82bc-26c398d1c690,5ad0007f-3306-40c0-8b65-17ede9317c62",
+            "example": "55b221a7-3710-4354-96c7-08ea050f9a16,1717ec6a-3a64-462c-a480-debf492db8d0",
             "schema": { "type": "string" }
           },
           {
@@ -4112,7 +4229,7 @@
           },
           "platformInvoiceNumber": {
             "type": "string",
-            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "description": "Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.",
             "example": "123",
             "nullable": true
           },
@@ -4346,6 +4463,108 @@
         },
         "required": ["invoices", "pagination"]
       },
+      "FinanceInvoiceRequestBody": {
+        "type": "object",
+        "properties": {
+          "issuedProductId": {
+            "type": "string",
+            "description": "The unique identifier for the issued product within Kanmon.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "invoicePaymentPlanId": {
+            "type": "string",
+            "description": "The unique identifier for the invoice payment plan within Kanmon.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "platformInvoiceId": {
+            "type": "string",
+            "description": "Your platform’s unique ID for the invoice.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
+          "platformInvoiceNumber": {
+            "type": "string",
+            "description": "Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.",
+            "example": "123"
+          },
+          "invoiceAmountCents": {
+            "type": "number",
+            "description": "The invoice amount - in cents. This needs to be greater than or equal to 100.",
+            "example": 1000000
+          },
+          "amountRequestedForFinancingCents": {
+            "type": "number",
+            "description": "The amount requested for financing - in cents. The portion of the invoice amount that the business requests to be financed. Must be less than or equal to the `invoiceAmountCents`. This needs to be greater than or equal to 100.",
+            "example": 1000000
+          },
+          "invoiceDueDate": {
+            "type": "string",
+            "description": "The date when the invoice will be paid. ISO 8601 date format. If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`. If product type is `ACCOUNTS_PAYABLE_FINANCING`, this date must be no more than 5 days in the past. If product type is `INVOICE_FINANCING`, this date must be at least 7 days in the future.",
+            "example": "2022-06-01"
+          },
+          "invoiceIssuedDate": {
+            "type": "string",
+            "description": "The date when the payee issued the invoice. ISO 8601 date format.",
+            "example": "2022-04-01"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the goods or services in the invoice.",
+            "example": "Invoice for equipment purchased."
+          },
+          "payeeEmail": {
+            "type": "string",
+            "description": "The email of the payee.",
+            "example": "user@gmail.com"
+          },
+          "payeeAddress": {
+            "description": "The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "example": {
+              "city": "San Mateo",
+              "state": "CA",
+              "country": "USA",
+              "zipcode": "94401",
+              "addressLineOne": "123 Main Street"
+            },
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
+          },
+          "payeeType": {
+            "type": "string",
+            "description": "`INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.",
+            "enum": ["BUSINESS", "INDIVIDUAL"],
+            "example": "BUSINESS"
+          },
+          "payeeBusinessName": {
+            "type": "string",
+            "description": "The registered name of the payee business when the payee is a business and not an individual. Required and should only be defined if `payeeType` is `BUSINESS`.",
+            "example": "My Business"
+          },
+          "payeeFirstName": {
+            "type": "string",
+            "description": "The first name of the payee when the payee is an individual and not a business. Required and should only be defined if `payeeType` is `INDIVIDUAL`.",
+            "example": "John"
+          },
+          "payeeMiddleName": {
+            "type": "string",
+            "description": "The middle name of the payee when the payee is an individual and not a business. Optional and should only be defined if `payeeType` is `INDIVIDUAL`."
+          },
+          "payeeLastName": {
+            "type": "string",
+            "description": "The last name of the payee when the payee is an individual and not a business. Required and should only be defined if `payeeType` is `INDIVIDUAL`.",
+            "example": "Smith"
+          }
+        },
+        "required": [
+          "issuedProductId",
+          "invoicePaymentPlanId",
+          "platformInvoiceId",
+          "platformInvoiceNumber",
+          "invoiceAmountCents",
+          "amountRequestedForFinancingCents",
+          "invoiceDueDate",
+          "description",
+          "payeeType"
+        ]
+      },
       "TermLoanOfferTerms": {
         "type": "object",
         "properties": {
@@ -4454,6 +4673,11 @@
       "InvoicePaymentPlan": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "description": "The UUID representing the invoice payment plan.",
+            "example": "2b5d0f14-9b73-4f44-a82a-2182a9ff77bb"
+          },
           "advanceRatePercentage": {
             "type": "number",
             "description": "The percentage of the invoice that is allowed for advances. E.g. a value of `80` would mean that $800 would be advanced on a $1,000 invoice.",
@@ -4480,6 +4704,7 @@
           }
         },
         "required": [
+          "id",
           "advanceRatePercentage",
           "transactionFeePercentage",
           "repaymentWindow"
@@ -5910,7 +6135,7 @@
           },
           "platformInvoiceNumber": {
             "type": "string",
-            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "description": "Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.",
             "example": "123"
           },
           "invoiceAmountCents": {
@@ -6016,7 +6241,7 @@
           },
           "platformInvoiceNumber": {
             "type": "string",
-            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "description": "Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.",
             "example": "123"
           },
           "invoiceAmountCents": {
@@ -6111,7 +6336,7 @@
           },
           "platformInvoiceNumber": {
             "type": "string",
-            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "description": "Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.",
             "example": "123"
           },
           "invoiceAmountCents": {
@@ -6218,7 +6443,7 @@
           },
           "platformInvoiceNumber": {
             "type": "string",
-            "description": "Your user-facing identifier for the invoice. This does not need to be unique. This may or may not be the same as your `platformInvoiceId`.",
+            "description": "Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.",
             "example": "123"
           },
           "invoiceAmountCents": {
@@ -6823,6 +7048,134 @@
           "errorCode": {
             "type": "string",
             "enum": ["CustomInitializationNotFoundException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "An error occurred."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "IssuedProductStatusNotCurrentException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["IssuedProductStatusNotCurrentException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Issued product status must be CURRENT."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "InvoicePaymentPlanNotFoundException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["InvalidInvoicePaymentPlanException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Invoice payment plan id must be valid."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "InsufficientCreditLimitException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["InsufficientCreditLimitException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Available credit limit must be greater than or equal to the requested financing amount."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "IncorrectFinancingAmountException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["IncorrectFinancingAmountException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "The amount requested for financing must equal the invoice amount."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "PlatformInvoiceIdAlreadyExistsException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["PlatformInvoiceIdAlreadyExistsException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "An error occurred."
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "PlatformInvoiceNumberAlreadyExistsForIssuedProductException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": [
+              "PlatformInvoiceNumberAlreadyExistsForIssuedProductException"
+            ],
             "description": "Safe for programmatic use."
           },
           "message": {

@@ -29,6 +29,10 @@ import java.io.IOException;
 
 import com.kanmon.client.model.BadRequestException;
 import java.math.BigDecimal;
+import com.kanmon.client.model.FinanceInvoice400Response;
+import com.kanmon.client.model.FinanceInvoice404Response;
+import com.kanmon.client.model.FinanceInvoice409Response;
+import com.kanmon.client.model.FinanceInvoiceRequestBody;
 import com.kanmon.client.model.ForbiddenException;
 import com.kanmon.client.model.GetInvoice404Response;
 import com.kanmon.client.model.GetInvoicesResponse;
@@ -78,6 +82,149 @@ public class InvoicesApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
+    /**
+     * Build call for financeInvoice
+     * @param financeInvoiceRequestBody  (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Invoice financed successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,          IncorrectFinancingAmountException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> IssuedProductNotFoundException, InvoicePaymentPlanNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IssuedProductStatusNotCurrentException, IncorrectProductTypeException, InsufficientCreditLimitException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call financeInvoiceCall(FinanceInvoiceRequestBody financeInvoiceRequestBody, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = financeInvoiceRequestBody;
+
+        // create path and map variables
+        String localVarPath = "/api/platform/v2/invoices/finance";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "Authorization" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call financeInvoiceValidateBeforeCall(FinanceInvoiceRequestBody financeInvoiceRequestBody, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'financeInvoiceRequestBody' is set
+        if (financeInvoiceRequestBody == null) {
+            throw new ApiException("Missing the required parameter 'financeInvoiceRequestBody' when calling financeInvoice(Async)");
+        }
+
+        return financeInvoiceCall(financeInvoiceRequestBody, _callback);
+
+    }
+
+    /**
+     * Finance an invoice
+     * 
+     * @param financeInvoiceRequestBody  (required)
+     * @return Invoice
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Invoice financed successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,          IncorrectFinancingAmountException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> IssuedProductNotFoundException, InvoicePaymentPlanNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IssuedProductStatusNotCurrentException, IncorrectProductTypeException, InsufficientCreditLimitException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public Invoice financeInvoice(FinanceInvoiceRequestBody financeInvoiceRequestBody) throws ApiException {
+        ApiResponse<Invoice> localVarResp = financeInvoiceWithHttpInfo(financeInvoiceRequestBody);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Finance an invoice
+     * 
+     * @param financeInvoiceRequestBody  (required)
+     * @return ApiResponse&lt;Invoice&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Invoice financed successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,          IncorrectFinancingAmountException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> IssuedProductNotFoundException, InvoicePaymentPlanNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IssuedProductStatusNotCurrentException, IncorrectProductTypeException, InsufficientCreditLimitException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Invoice> financeInvoiceWithHttpInfo(FinanceInvoiceRequestBody financeInvoiceRequestBody) throws ApiException {
+        okhttp3.Call localVarCall = financeInvoiceValidateBeforeCall(financeInvoiceRequestBody, null);
+        Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Finance an invoice (asynchronously)
+     * 
+     * @param financeInvoiceRequestBody  (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Invoice financed successfully </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,          IncorrectFinancingAmountException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> IssuedProductNotFoundException, InvoicePaymentPlanNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> IssuedProductStatusNotCurrentException, IncorrectProductTypeException, InsufficientCreditLimitException </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call financeInvoiceAsync(FinanceInvoiceRequestBody financeInvoiceRequestBody, final ApiCallback<Invoice> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = financeInvoiceValidateBeforeCall(financeInvoiceRequestBody, _callback);
+        Type localVarReturnType = new TypeToken<Invoice>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
     /**
      * Build call for getAllInvoices
      * @param statuses A comma delimited list of invoice statuses. (optional)
