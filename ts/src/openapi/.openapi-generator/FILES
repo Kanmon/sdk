@@ -59,6 +59,10 @@ src/models/DrawRequest.ts
 src/models/DrawRequestNotFoundException.ts
 src/models/DrawRequestState.ts
 src/models/EmbeddedSession.ts
+src/models/FinanceInvoice400Response.ts
+src/models/FinanceInvoice404Response.ts
+src/models/FinanceInvoice409Response.ts
+src/models/FinanceInvoiceRequestBody.ts
 src/models/FixedDateInvoiceRepaymentWindow.ts
 src/models/FixedDurationInvoiceRepaymentWindow.ts
 src/models/ForbiddenException.ts
@@ -75,8 +79,10 @@ src/models/GetOffersResponse.ts
 src/models/GetPaymentScheduleResponse.ts
 src/models/GetPrequalificationsResponse.ts
 src/models/GetUsersResponse.ts
+src/models/IncorrectFinancingAmountException.ts
 src/models/IncorrectProductTypeException.ts
 src/models/IncorrectRepaymentAmountException.ts
+src/models/InsufficientCreditLimitException.ts
 src/models/IntegratedMcaOfferTerms.ts
 src/models/IntegratedMcaPaymentWindow.ts
 src/models/IntegratedMcaReceivable.ts
@@ -91,6 +97,7 @@ src/models/InvoiceFlowSessionTokenData.ts
 src/models/InvoiceFlowWithInvoiceFileSessionTokenData.ts
 src/models/InvoiceNotFoundException.ts
 src/models/InvoicePaymentPlan.ts
+src/models/InvoicePaymentPlanNotFoundException.ts
 src/models/InvoicePaymentPlanRepaymentWindow.ts
 src/models/InvoiceRepaymentSchedule.ts
 src/models/InvoiceRepaymentScheduleItem.ts
@@ -98,6 +105,7 @@ src/models/InvoiceStatus.ts
 src/models/IssuedProduct.ts
 src/models/IssuedProductNotFoundException.ts
 src/models/IssuedProductServicingData.ts
+src/models/IssuedProductStatusNotCurrentException.ts
 src/models/LineOfCreditOfferTerms.ts
 src/models/LineOfCreditServicingData.ts
 src/models/McaOfferTerms.ts
@@ -119,7 +127,9 @@ src/models/PaymentPlanRepaymentSchedule.ts
 src/models/PaymentPlanRepaymentScheduleItem.ts
 src/models/PaymentScheduleItem.ts
 src/models/PlaidAssetReportsInvalidException.ts
+src/models/PlatformInvoiceIdAlreadyExistsException.ts
 src/models/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.ts
+src/models/PlatformInvoiceNumberAlreadyExistsForIssuedProductException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsForBusinessException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsWithEmailException.ts
 src/models/PrimaryBusinessOwnerNotFoundException.ts

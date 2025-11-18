@@ -194,6 +194,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.DrawRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.DrawRequestNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.EmbeddedSession.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoice400Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoice404Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoice409Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoiceRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FixedDateInvoiceRepaymentWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FixedDurationInvoiceRepaymentWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.ForbiddenException.CustomTypeAdapterFactory());
@@ -210,8 +214,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetPaymentScheduleResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetPrequalificationsResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.GetUsersResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IncorrectFinancingAmountException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IncorrectProductTypeException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IncorrectRepaymentAmountException.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InsufficientCreditLimitException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaOfferTerms.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaPaymentWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IntegratedMcaReceivable.CustomTypeAdapterFactory());
@@ -226,12 +232,14 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceFlowWithInvoiceFileSessionTokenData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlan.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlanNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoicePaymentPlanRepaymentWindow.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceRepaymentSchedule.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.InvoiceRepaymentScheduleItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IssuedProduct.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IssuedProductNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IssuedProductServicingData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.IssuedProductStatusNotCurrentException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.LineOfCreditOfferTerms.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.LineOfCreditServicingData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.McaOfferTerms.CustomTypeAdapterFactory());
@@ -252,7 +260,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PaymentPlanRepaymentScheduleItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PaymentScheduleItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PlaidAssetReportsInvalidException.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PlatformInvoiceIdAlreadyExistsException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PlatformInvoiceNumberAlreadyExistsForIssuedProductException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PrimaryBusinessOwnerAlreadyExistsForBusinessException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PrimaryBusinessOwnerAlreadyExistsWithEmailException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.PrimaryBusinessOwnerNotFoundException.CustomTypeAdapterFactory());

@@ -23,128 +23,153 @@ import {
 /**
  * 
  * @export
- * @interface AccountsPayableSessionInvoice
+ * @interface FinanceInvoiceRequestBody
  */
-export interface AccountsPayableSessionInvoice {
+export interface FinanceInvoiceRequestBody {
+    /**
+     * The unique identifier for the issued product within Kanmon.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    issuedProductId: string;
+    /**
+     * The unique identifier for the invoice payment plan within Kanmon.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    invoicePaymentPlanId: string;
     /**
      * Your platform’s unique ID for the invoice.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     platformInvoiceId: string;
     /**
      * Your user-facing identifier for the invoice. This is unique per issued product. This may or may not be the same as your `platformInvoiceId`.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     platformInvoiceNumber: string;
     /**
      * The invoice amount - in cents. This needs to be greater than or equal to 100.
      * @type {number}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     invoiceAmountCents: number;
     /**
-     * The date when the invoice will be paid by the payor. ISO 8601 date format. This date must be no more than 5 days in the past. If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`.
+     * The amount requested for financing - in cents. The portion of the invoice amount that the business requests to be financed. Must be less than or equal to the `invoiceAmountCents`. This needs to be greater than or equal to 100.
+     * @type {number}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    amountRequestedForFinancingCents: number;
+    /**
+     * The date when the invoice will be paid. ISO 8601 date format. If `invoiceIssuedDate` is provided, then it must be after `invoiceIssuedDate`. If product type is `ACCOUNTS_PAYABLE_FINANCING`, this date must be no more than 5 days in the past. If product type is `INVOICE_FINANCING`, this date must be at least 7 days in the future.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     invoiceDueDate: string;
     /**
      * The date when the payee issued the invoice. ISO 8601 date format.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     invoiceIssuedDate?: string;
     /**
+     * The description of the goods or services in the invoice.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    description: string;
+    /**
      * The email of the payee.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     payeeEmail?: string;
     /**
      * The address of the payee. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.
      * @type {Address}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     payeeAddress?: Address;
     /**
      * `INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
-    payeeType: AccountsPayableSessionInvoicePayeeTypeEnum;
+    payeeType: FinanceInvoiceRequestBodyPayeeTypeEnum;
     /**
      * The registered name of the payee business when the payee is a business and not an individual. Required and should only be defined if `payeeType` is `BUSINESS`.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     payeeBusinessName?: string;
     /**
      * The first name of the payee when the payee is an individual and not a business. Required and should only be defined if `payeeType` is `INDIVIDUAL`.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     payeeFirstName?: string;
     /**
      * The middle name of the payee when the payee is an individual and not a business. Optional and should only be defined if `payeeType` is `INDIVIDUAL`.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     payeeMiddleName?: string;
     /**
      * The last name of the payee when the payee is an individual and not a business. Required and should only be defined if `payeeType` is `INDIVIDUAL`.
      * @type {string}
-     * @memberof AccountsPayableSessionInvoice
+     * @memberof FinanceInvoiceRequestBody
      */
     payeeLastName?: string;
-    /**
-     * The description of the goods or services in the invoice.
-     * @type {string}
-     * @memberof AccountsPayableSessionInvoice
-     */
-    description: string;
 }
 
 
 /**
  * @export
  */
-export const AccountsPayableSessionInvoicePayeeTypeEnum = {
+export const FinanceInvoiceRequestBodyPayeeTypeEnum = {
     BUSINESS: 'BUSINESS',
     INDIVIDUAL: 'INDIVIDUAL'
 } as const;
-export type AccountsPayableSessionInvoicePayeeTypeEnum = typeof AccountsPayableSessionInvoicePayeeTypeEnum[keyof typeof AccountsPayableSessionInvoicePayeeTypeEnum];
+export type FinanceInvoiceRequestBodyPayeeTypeEnum = typeof FinanceInvoiceRequestBodyPayeeTypeEnum[keyof typeof FinanceInvoiceRequestBodyPayeeTypeEnum];
 
 
 /**
- * Check if a given object implements the AccountsPayableSessionInvoice interface.
+ * Check if a given object implements the FinanceInvoiceRequestBody interface.
  */
-export function instanceOfAccountsPayableSessionInvoice(value: object): value is AccountsPayableSessionInvoice {
+export function instanceOfFinanceInvoiceRequestBody(value: object): value is FinanceInvoiceRequestBody {
+    if (!('issuedProductId' in value) || value['issuedProductId'] === undefined) return false;
+    if (!('invoicePaymentPlanId' in value) || value['invoicePaymentPlanId'] === undefined) return false;
     if (!('platformInvoiceId' in value) || value['platformInvoiceId'] === undefined) return false;
     if (!('platformInvoiceNumber' in value) || value['platformInvoiceNumber'] === undefined) return false;
     if (!('invoiceAmountCents' in value) || value['invoiceAmountCents'] === undefined) return false;
+    if (!('amountRequestedForFinancingCents' in value) || value['amountRequestedForFinancingCents'] === undefined) return false;
     if (!('invoiceDueDate' in value) || value['invoiceDueDate'] === undefined) return false;
-    if (!('payeeType' in value) || value['payeeType'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('payeeType' in value) || value['payeeType'] === undefined) return false;
     return true;
 }
 
-export function AccountsPayableSessionInvoiceFromJSON(json: any): AccountsPayableSessionInvoice {
-    return AccountsPayableSessionInvoiceFromJSONTyped(json, false);
+export function FinanceInvoiceRequestBodyFromJSON(json: any): FinanceInvoiceRequestBody {
+    return FinanceInvoiceRequestBodyFromJSONTyped(json, false);
 }
 
-export function AccountsPayableSessionInvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountsPayableSessionInvoice {
+export function FinanceInvoiceRequestBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): FinanceInvoiceRequestBody {
     if (json == null) {
         return json;
     }
     return {
         
+        'issuedProductId': json['issuedProductId'],
+        'invoicePaymentPlanId': json['invoicePaymentPlanId'],
         'platformInvoiceId': json['platformInvoiceId'],
         'platformInvoiceNumber': json['platformInvoiceNumber'],
         'invoiceAmountCents': json['invoiceAmountCents'],
+        'amountRequestedForFinancingCents': json['amountRequestedForFinancingCents'],
         'invoiceDueDate': json['invoiceDueDate'],
         'invoiceIssuedDate': json['invoiceIssuedDate'] == null ? undefined : json['invoiceIssuedDate'],
+        'description': json['description'],
         'payeeEmail': json['payeeEmail'] == null ? undefined : json['payeeEmail'],
         'payeeAddress': json['payeeAddress'] == null ? undefined : AddressFromJSON(json['payeeAddress']),
         'payeeType': json['payeeType'],
@@ -152,21 +177,24 @@ export function AccountsPayableSessionInvoiceFromJSONTyped(json: any, ignoreDisc
         'payeeFirstName': json['payeeFirstName'] == null ? undefined : json['payeeFirstName'],
         'payeeMiddleName': json['payeeMiddleName'] == null ? undefined : json['payeeMiddleName'],
         'payeeLastName': json['payeeLastName'] == null ? undefined : json['payeeLastName'],
-        'description': json['description'],
     };
 }
 
-export function AccountsPayableSessionInvoiceToJSON(value?: AccountsPayableSessionInvoice | null): any {
+export function FinanceInvoiceRequestBodyToJSON(value?: FinanceInvoiceRequestBody | null): any {
     if (value == null) {
         return value;
     }
     return {
         
+        'issuedProductId': value['issuedProductId'],
+        'invoicePaymentPlanId': value['invoicePaymentPlanId'],
         'platformInvoiceId': value['platformInvoiceId'],
         'platformInvoiceNumber': value['platformInvoiceNumber'],
         'invoiceAmountCents': value['invoiceAmountCents'],
+        'amountRequestedForFinancingCents': value['amountRequestedForFinancingCents'],
         'invoiceDueDate': value['invoiceDueDate'],
         'invoiceIssuedDate': value['invoiceIssuedDate'],
+        'description': value['description'],
         'payeeEmail': value['payeeEmail'],
         'payeeAddress': AddressToJSON(value['payeeAddress']),
         'payeeType': value['payeeType'],
@@ -174,7 +202,6 @@ export function AccountsPayableSessionInvoiceToJSON(value?: AccountsPayableSessi
         'payeeFirstName': value['payeeFirstName'],
         'payeeMiddleName': value['payeeMiddleName'],
         'payeeLastName': value['payeeLastName'],
-        'description': value['description'],
     };
 }
 

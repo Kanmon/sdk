@@ -86,6 +86,10 @@ src/main/java/com/kanmon/client/model/DrawRequest.java
 src/main/java/com/kanmon/client/model/DrawRequestNotFoundException.java
 src/main/java/com/kanmon/client/model/DrawRequestState.java
 src/main/java/com/kanmon/client/model/EmbeddedSession.java
+src/main/java/com/kanmon/client/model/FinanceInvoice400Response.java
+src/main/java/com/kanmon/client/model/FinanceInvoice404Response.java
+src/main/java/com/kanmon/client/model/FinanceInvoice409Response.java
+src/main/java/com/kanmon/client/model/FinanceInvoiceRequestBody.java
 src/main/java/com/kanmon/client/model/FixedDateInvoiceRepaymentWindow.java
 src/main/java/com/kanmon/client/model/FixedDurationInvoiceRepaymentWindow.java
 src/main/java/com/kanmon/client/model/ForbiddenException.java
@@ -102,8 +106,10 @@ src/main/java/com/kanmon/client/model/GetOffersResponse.java
 src/main/java/com/kanmon/client/model/GetPaymentScheduleResponse.java
 src/main/java/com/kanmon/client/model/GetPrequalificationsResponse.java
 src/main/java/com/kanmon/client/model/GetUsersResponse.java
+src/main/java/com/kanmon/client/model/IncorrectFinancingAmountException.java
 src/main/java/com/kanmon/client/model/IncorrectProductTypeException.java
 src/main/java/com/kanmon/client/model/IncorrectRepaymentAmountException.java
+src/main/java/com/kanmon/client/model/InsufficientCreditLimitException.java
 src/main/java/com/kanmon/client/model/IntegratedMcaOfferTerms.java
 src/main/java/com/kanmon/client/model/IntegratedMcaPaymentWindow.java
 src/main/java/com/kanmon/client/model/IntegratedMcaReceivable.java
@@ -118,6 +124,7 @@ src/main/java/com/kanmon/client/model/InvoiceFlowSessionTokenData.java
 src/main/java/com/kanmon/client/model/InvoiceFlowWithInvoiceFileSessionTokenData.java
 src/main/java/com/kanmon/client/model/InvoiceNotFoundException.java
 src/main/java/com/kanmon/client/model/InvoicePaymentPlan.java
+src/main/java/com/kanmon/client/model/InvoicePaymentPlanNotFoundException.java
 src/main/java/com/kanmon/client/model/InvoicePaymentPlanRepaymentWindow.java
 src/main/java/com/kanmon/client/model/InvoiceRepaymentSchedule.java
 src/main/java/com/kanmon/client/model/InvoiceRepaymentScheduleItem.java
@@ -125,6 +132,7 @@ src/main/java/com/kanmon/client/model/InvoiceStatus.java
 src/main/java/com/kanmon/client/model/IssuedProduct.java
 src/main/java/com/kanmon/client/model/IssuedProductNotFoundException.java
 src/main/java/com/kanmon/client/model/IssuedProductServicingData.java
+src/main/java/com/kanmon/client/model/IssuedProductStatusNotCurrentException.java
 src/main/java/com/kanmon/client/model/LineOfCreditOfferTerms.java
 src/main/java/com/kanmon/client/model/LineOfCreditServicingData.java
 src/main/java/com/kanmon/client/model/McaOfferTerms.java
@@ -146,7 +154,9 @@ src/main/java/com/kanmon/client/model/PaymentPlanRepaymentSchedule.java
 src/main/java/com/kanmon/client/model/PaymentPlanRepaymentScheduleItem.java
 src/main/java/com/kanmon/client/model/PaymentScheduleItem.java
 src/main/java/com/kanmon/client/model/PlaidAssetReportsInvalidException.java
+src/main/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsException.java
 src/main/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException.java
+src/main/java/com/kanmon/client/model/PlatformInvoiceNumberAlreadyExistsForIssuedProductException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsForBusinessException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerNotFoundException.java
@@ -165,3 +175,13 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
+src/test/java/com/kanmon/client/model/FinanceInvoice400ResponseTest.java
+src/test/java/com/kanmon/client/model/FinanceInvoice404ResponseTest.java
+src/test/java/com/kanmon/client/model/FinanceInvoice409ResponseTest.java
+src/test/java/com/kanmon/client/model/FinanceInvoiceRequestBodyTest.java
+src/test/java/com/kanmon/client/model/IncorrectFinancingAmountExceptionTest.java
+src/test/java/com/kanmon/client/model/InsufficientCreditLimitExceptionTest.java
+src/test/java/com/kanmon/client/model/InvoicePaymentPlanNotFoundExceptionTest.java
+src/test/java/com/kanmon/client/model/IssuedProductStatusNotCurrentExceptionTest.java
+src/test/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsExceptionTest.java
+src/test/java/com/kanmon/client/model/PlatformInvoiceNumberAlreadyExistsForIssuedProductExceptionTest.java
