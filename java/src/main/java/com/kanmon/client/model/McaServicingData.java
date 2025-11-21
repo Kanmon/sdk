@@ -140,6 +140,10 @@ public class McaServicingData {
   @SerializedName(SERIALIZED_NAME_ADVANCE_BALANCE_CENTS)
   private BigDecimal advanceBalanceCents;
 
+  public static final String SERIALIZED_NAME_FEE_AMOUNT_CENTS = "feeAmountCents";
+  @SerializedName(SERIALIZED_NAME_FEE_AMOUNT_CENTS)
+  private BigDecimal feeAmountCents;
+
   public McaServicingData() {
   }
 
@@ -295,6 +299,25 @@ public class McaServicingData {
   }
 
 
+  public McaServicingData feeAmountCents(BigDecimal feeAmountCents) {
+    this.feeAmountCents = feeAmountCents;
+    return this;
+  }
+
+  /**
+   * The calculated fee amount in cents.
+   * @return feeAmountCents
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getFeeAmountCents() {
+    return feeAmountCents;
+  }
+
+  public void setFeeAmountCents(BigDecimal feeAmountCents) {
+    this.feeAmountCents = feeAmountCents;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -312,12 +335,13 @@ public class McaServicingData {
         Objects.equals(this.totalRepaymentCents, mcaServicingData.totalRepaymentCents) &&
         Objects.equals(this.repaymentFrequency, mcaServicingData.repaymentFrequency) &&
         Objects.equals(this.nextPaymentDate, mcaServicingData.nextPaymentDate) &&
-        Objects.equals(this.advanceBalanceCents, mcaServicingData.advanceBalanceCents);
+        Objects.equals(this.advanceBalanceCents, mcaServicingData.advanceBalanceCents) &&
+        Objects.equals(this.feeAmountCents, mcaServicingData.feeAmountCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, repaymentFrequency, nextPaymentDate, advanceBalanceCents);
+    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, repaymentFrequency, nextPaymentDate, advanceBalanceCents, feeAmountCents);
   }
 
   @Override
@@ -332,6 +356,7 @@ public class McaServicingData {
     sb.append("    repaymentFrequency: ").append(toIndentedString(repaymentFrequency)).append("\n");
     sb.append("    nextPaymentDate: ").append(toIndentedString(nextPaymentDate)).append("\n");
     sb.append("    advanceBalanceCents: ").append(toIndentedString(advanceBalanceCents)).append("\n");
+    sb.append("    feeAmountCents: ").append(toIndentedString(feeAmountCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -362,6 +387,7 @@ public class McaServicingData {
     openapiFields.add("repaymentFrequency");
     openapiFields.add("nextPaymentDate");
     openapiFields.add("advanceBalanceCents");
+    openapiFields.add("feeAmountCents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -373,6 +399,7 @@ public class McaServicingData {
     openapiRequiredFields.add("repaymentFrequency");
     openapiRequiredFields.add("nextPaymentDate");
     openapiRequiredFields.add("advanceBalanceCents");
+    openapiRequiredFields.add("feeAmountCents");
   }
 
   /**

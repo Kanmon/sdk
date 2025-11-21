@@ -68,6 +68,12 @@ export interface IntegratedMcaServicingData {
      * @memberof IntegratedMcaServicingData
      */
     monthlyMinimumPaymentAmountCents: object | null;
+    /**
+     * The calculated fee amount in cents.
+     * @type {number}
+     * @memberof IntegratedMcaServicingData
+     */
+    feeAmountCents: number;
 }
 
 
@@ -83,6 +89,7 @@ export function instanceOfIntegratedMcaServicingData(value: object): value is In
     if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
     if (!('advanceBalanceCents' in value) || value['advanceBalanceCents'] === undefined) return false;
     if (!('monthlyMinimumPaymentAmountCents' in value) || value['monthlyMinimumPaymentAmountCents'] === undefined) return false;
+    if (!('feeAmountCents' in value) || value['feeAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -103,6 +110,7 @@ export function IntegratedMcaServicingDataFromJSONTyped(json: any, ignoreDiscrim
         'totalRepaymentCents': json['totalRepaymentCents'],
         'advanceBalanceCents': json['advanceBalanceCents'],
         'monthlyMinimumPaymentAmountCents': json['monthlyMinimumPaymentAmountCents'],
+        'feeAmountCents': json['feeAmountCents'],
     };
 }
 
@@ -119,6 +127,7 @@ export function IntegratedMcaServicingDataToJSON(value?: IntegratedMcaServicingD
         'totalRepaymentCents': value['totalRepaymentCents'],
         'advanceBalanceCents': value['advanceBalanceCents'],
         'monthlyMinimumPaymentAmountCents': value['monthlyMinimumPaymentAmountCents'],
+        'feeAmountCents': value['feeAmountCents'],
     };
 }
 
