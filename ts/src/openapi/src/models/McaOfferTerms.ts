@@ -68,6 +68,12 @@ export interface McaOfferTerms {
      * @memberof McaOfferTerms
      */
     maxAdvanceAmountCents: number;
+    /**
+     * The calculated fee amount in cents.
+     * @type {number}
+     * @memberof McaOfferTerms
+     */
+    feeAmountCents: number;
 }
 
 
@@ -94,6 +100,7 @@ export function instanceOfMcaOfferTerms(value: object): value is McaOfferTerms {
     if (!('repaymentFrequency' in value) || value['repaymentFrequency'] === undefined) return false;
     if (!('totalRepaymentCents' in value) || value['totalRepaymentCents'] === undefined) return false;
     if (!('maxAdvanceAmountCents' in value) || value['maxAdvanceAmountCents'] === undefined) return false;
+    if (!('feeAmountCents' in value) || value['feeAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -114,6 +121,7 @@ export function McaOfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boole
         'repaymentFrequency': json['repaymentFrequency'],
         'totalRepaymentCents': json['totalRepaymentCents'],
         'maxAdvanceAmountCents': json['maxAdvanceAmountCents'],
+        'feeAmountCents': json['feeAmountCents'],
     };
 }
 
@@ -130,6 +138,7 @@ export function McaOfferTermsToJSON(value?: McaOfferTerms | null): any {
         'repaymentFrequency': value['repaymentFrequency'],
         'totalRepaymentCents': value['totalRepaymentCents'],
         'maxAdvanceAmountCents': value['maxAdvanceAmountCents'],
+        'feeAmountCents': value['feeAmountCents'],
     };
 }
 

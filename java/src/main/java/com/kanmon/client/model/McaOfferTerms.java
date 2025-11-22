@@ -136,6 +136,10 @@ public class McaOfferTerms {
   @SerializedName(SERIALIZED_NAME_MAX_ADVANCE_AMOUNT_CENTS)
   private BigDecimal maxAdvanceAmountCents;
 
+  public static final String SERIALIZED_NAME_FEE_AMOUNT_CENTS = "feeAmountCents";
+  @SerializedName(SERIALIZED_NAME_FEE_AMOUNT_CENTS)
+  private BigDecimal feeAmountCents;
+
   public McaOfferTerms() {
   }
 
@@ -272,6 +276,25 @@ public class McaOfferTerms {
   }
 
 
+  public McaOfferTerms feeAmountCents(BigDecimal feeAmountCents) {
+    this.feeAmountCents = feeAmountCents;
+    return this;
+  }
+
+  /**
+   * The calculated fee amount in cents.
+   * @return feeAmountCents
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getFeeAmountCents() {
+    return feeAmountCents;
+  }
+
+  public void setFeeAmountCents(BigDecimal feeAmountCents) {
+    this.feeAmountCents = feeAmountCents;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -288,12 +311,13 @@ public class McaOfferTerms {
         Objects.equals(this.feeFactor, mcaOfferTerms.feeFactor) &&
         Objects.equals(this.repaymentFrequency, mcaOfferTerms.repaymentFrequency) &&
         Objects.equals(this.totalRepaymentCents, mcaOfferTerms.totalRepaymentCents) &&
-        Objects.equals(this.maxAdvanceAmountCents, mcaOfferTerms.maxAdvanceAmountCents);
+        Objects.equals(this.maxAdvanceAmountCents, mcaOfferTerms.maxAdvanceAmountCents) &&
+        Objects.equals(this.feeAmountCents, mcaOfferTerms.feeAmountCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, repaymentFrequency, totalRepaymentCents, maxAdvanceAmountCents);
+    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, repaymentFrequency, totalRepaymentCents, maxAdvanceAmountCents, feeAmountCents);
   }
 
   @Override
@@ -307,6 +331,7 @@ public class McaOfferTerms {
     sb.append("    repaymentFrequency: ").append(toIndentedString(repaymentFrequency)).append("\n");
     sb.append("    totalRepaymentCents: ").append(toIndentedString(totalRepaymentCents)).append("\n");
     sb.append("    maxAdvanceAmountCents: ").append(toIndentedString(maxAdvanceAmountCents)).append("\n");
+    sb.append("    feeAmountCents: ").append(toIndentedString(feeAmountCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -336,6 +361,7 @@ public class McaOfferTerms {
     openapiFields.add("repaymentFrequency");
     openapiFields.add("totalRepaymentCents");
     openapiFields.add("maxAdvanceAmountCents");
+    openapiFields.add("feeAmountCents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -346,6 +372,7 @@ public class McaOfferTerms {
     openapiRequiredFields.add("repaymentFrequency");
     openapiRequiredFields.add("totalRepaymentCents");
     openapiRequiredFields.add("maxAdvanceAmountCents");
+    openapiRequiredFields.add("feeAmountCents");
   }
 
   /**

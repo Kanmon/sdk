@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "a9ec0d64-1467-4f1f-a422-abfd25026ed8,cba554e6-8213-4064-9e5f-5a03979050a5",
+            "example": "c2954490-f0c9-4dd4-993b-a247beda781a,b854410f-757d-40b6-8d78-8613d751f5d5",
             "schema": { "type": "string" }
           },
           {
@@ -2001,7 +2001,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "0d82a0b0-a88e-4bc6-bbfe-87c82835c44f,31d9f161-e63c-4862-9ac2-0d3c672dcaf9",
+            "example": "61390c01-efc6-48e1-a6c0-0bc9cf21ac0f,4ee9aad2-f69e-48b7-a638-bfff7b42b731",
             "schema": { "type": "string" }
           },
           {
@@ -2347,7 +2347,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "55b221a7-3710-4354-96c7-08ea050f9a16,1717ec6a-3a64-462c-a480-debf492db8d0",
+            "example": "a2911b75-d8f9-429e-963e-2146b8271dbb,2383a21d-8f6f-4094-8bf0-1e1b64dccdbf",
             "schema": { "type": "string" }
           },
           {
@@ -4767,6 +4767,11 @@
             "type": "number",
             "description": "The maximum loan amount - in cents.",
             "example": 1000000
+          },
+          "feeAmountCents": {
+            "type": "number",
+            "description": "The calculated fee amount in cents.",
+            "example": 300000
           }
         },
         "required": [
@@ -4776,7 +4781,8 @@
           "feeFactor",
           "repaymentFrequency",
           "totalRepaymentCents",
-          "maxAdvanceAmountCents"
+          "maxAdvanceAmountCents",
+          "feeAmountCents"
         ]
       },
       "LineOfCreditOfferTerms": {
@@ -4852,6 +4858,11 @@
             "description": "The monthly minimum payment amount - in cents. `null` if there is no monthly minimum payment.",
             "example": 100000,
             "nullable": true
+          },
+          "feeAmountCents": {
+            "type": "number",
+            "description": "The calculated fee amount in cents.",
+            "example": 300000
           }
         },
         "required": [
@@ -4861,7 +4872,8 @@
           "feeFactor",
           "totalRepaymentCents",
           "maxAdvanceAmountCents",
-          "monthlyMinimumPaymentAmountCents"
+          "monthlyMinimumPaymentAmountCents",
+          "feeAmountCents"
         ]
       },
       "AccountsPayableFinancingOfferTerms": {
@@ -5117,6 +5129,11 @@
             "type": "number",
             "description": "The total repayment amount less the amount repaid - in cents.",
             "example": 1100000
+          },
+          "feeAmountCents": {
+            "type": "number",
+            "description": "The calculated fee amount in cents.",
+            "example": 300000
           }
         },
         "required": [
@@ -5127,7 +5144,8 @@
           "totalRepaymentCents",
           "repaymentFrequency",
           "nextPaymentDate",
-          "advanceBalanceCents"
+          "advanceBalanceCents",
+          "feeAmountCents"
         ]
       },
       "IntegratedMcaServicingData": {
@@ -5167,6 +5185,11 @@
             "description": "The monthly minimum payment amount - in cents. `null` if there is no monthly minimum payment.",
             "example": 100000,
             "nullable": true
+          },
+          "feeAmountCents": {
+            "type": "number",
+            "description": "The calculated fee amount in cents.",
+            "example": 300000
           }
         },
         "required": [
@@ -5176,7 +5199,8 @@
           "feeFactor",
           "totalRepaymentCents",
           "advanceBalanceCents",
-          "monthlyMinimumPaymentAmountCents"
+          "monthlyMinimumPaymentAmountCents",
+          "feeAmountCents"
         ]
       },
       "LineOfCreditServicingData": {

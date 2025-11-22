@@ -74,6 +74,12 @@ export interface McaServicingData {
      * @memberof McaServicingData
      */
     advanceBalanceCents: number;
+    /**
+     * The calculated fee amount in cents.
+     * @type {number}
+     * @memberof McaServicingData
+     */
+    feeAmountCents: number;
 }
 
 
@@ -101,6 +107,7 @@ export function instanceOfMcaServicingData(value: object): value is McaServicing
     if (!('repaymentFrequency' in value) || value['repaymentFrequency'] === undefined) return false;
     if (!('nextPaymentDate' in value) || value['nextPaymentDate'] === undefined) return false;
     if (!('advanceBalanceCents' in value) || value['advanceBalanceCents'] === undefined) return false;
+    if (!('feeAmountCents' in value) || value['feeAmountCents'] === undefined) return false;
     return true;
 }
 
@@ -122,6 +129,7 @@ export function McaServicingDataFromJSONTyped(json: any, ignoreDiscriminator: bo
         'repaymentFrequency': json['repaymentFrequency'],
         'nextPaymentDate': json['nextPaymentDate'],
         'advanceBalanceCents': json['advanceBalanceCents'],
+        'feeAmountCents': json['feeAmountCents'],
     };
 }
 
@@ -139,6 +147,7 @@ export function McaServicingDataToJSON(value?: McaServicingData | null): any {
         'repaymentFrequency': value['repaymentFrequency'],
         'nextPaymentDate': value['nextPaymentDate'],
         'advanceBalanceCents': value['advanceBalanceCents'],
+        'feeAmountCents': value['feeAmountCents'],
     };
 }
 

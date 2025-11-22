@@ -80,6 +80,10 @@ public class IntegratedMcaOfferTerms {
   @SerializedName(SERIALIZED_NAME_MONTHLY_MINIMUM_PAYMENT_AMOUNT_CENTS)
   private BigDecimal monthlyMinimumPaymentAmountCents;
 
+  public static final String SERIALIZED_NAME_FEE_AMOUNT_CENTS = "feeAmountCents";
+  @SerializedName(SERIALIZED_NAME_FEE_AMOUNT_CENTS)
+  private BigDecimal feeAmountCents;
+
   public IntegratedMcaOfferTerms() {
   }
 
@@ -216,6 +220,25 @@ public class IntegratedMcaOfferTerms {
   }
 
 
+  public IntegratedMcaOfferTerms feeAmountCents(BigDecimal feeAmountCents) {
+    this.feeAmountCents = feeAmountCents;
+    return this;
+  }
+
+  /**
+   * The calculated fee amount in cents.
+   * @return feeAmountCents
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getFeeAmountCents() {
+    return feeAmountCents;
+  }
+
+  public void setFeeAmountCents(BigDecimal feeAmountCents) {
+    this.feeAmountCents = feeAmountCents;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -232,12 +255,13 @@ public class IntegratedMcaOfferTerms {
         Objects.equals(this.feeFactor, integratedMcaOfferTerms.feeFactor) &&
         Objects.equals(this.totalRepaymentCents, integratedMcaOfferTerms.totalRepaymentCents) &&
         Objects.equals(this.maxAdvanceAmountCents, integratedMcaOfferTerms.maxAdvanceAmountCents) &&
-        Objects.equals(this.monthlyMinimumPaymentAmountCents, integratedMcaOfferTerms.monthlyMinimumPaymentAmountCents);
+        Objects.equals(this.monthlyMinimumPaymentAmountCents, integratedMcaOfferTerms.monthlyMinimumPaymentAmountCents) &&
+        Objects.equals(this.feeAmountCents, integratedMcaOfferTerms.feeAmountCents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, maxAdvanceAmountCents, monthlyMinimumPaymentAmountCents);
+    return Objects.hash(productType, advanceAmountCents, repaymentPercentage, feeFactor, totalRepaymentCents, maxAdvanceAmountCents, monthlyMinimumPaymentAmountCents, feeAmountCents);
   }
 
   @Override
@@ -251,6 +275,7 @@ public class IntegratedMcaOfferTerms {
     sb.append("    totalRepaymentCents: ").append(toIndentedString(totalRepaymentCents)).append("\n");
     sb.append("    maxAdvanceAmountCents: ").append(toIndentedString(maxAdvanceAmountCents)).append("\n");
     sb.append("    monthlyMinimumPaymentAmountCents: ").append(toIndentedString(monthlyMinimumPaymentAmountCents)).append("\n");
+    sb.append("    feeAmountCents: ").append(toIndentedString(feeAmountCents)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -280,6 +305,7 @@ public class IntegratedMcaOfferTerms {
     openapiFields.add("totalRepaymentCents");
     openapiFields.add("maxAdvanceAmountCents");
     openapiFields.add("monthlyMinimumPaymentAmountCents");
+    openapiFields.add("feeAmountCents");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -290,6 +316,7 @@ public class IntegratedMcaOfferTerms {
     openapiRequiredFields.add("totalRepaymentCents");
     openapiRequiredFields.add("maxAdvanceAmountCents");
     openapiRequiredFields.add("monthlyMinimumPaymentAmountCents");
+    openapiRequiredFields.add("feeAmountCents");
   }
 
   /**
