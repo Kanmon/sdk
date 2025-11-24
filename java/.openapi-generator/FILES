@@ -175,13 +175,3 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/model/FinanceInvoice400ResponseTest.java
-src/test/java/com/kanmon/client/model/FinanceInvoice404ResponseTest.java
-src/test/java/com/kanmon/client/model/FinanceInvoice409ResponseTest.java
-src/test/java/com/kanmon/client/model/FinanceInvoiceRequestBodyTest.java
-src/test/java/com/kanmon/client/model/IncorrectFinancingAmountExceptionTest.java
-src/test/java/com/kanmon/client/model/InsufficientCreditLimitExceptionTest.java
-src/test/java/com/kanmon/client/model/InvoicePaymentPlanNotFoundExceptionTest.java
-src/test/java/com/kanmon/client/model/IssuedProductStatusNotCurrentExceptionTest.java
-src/test/java/com/kanmon/client/model/PlatformInvoiceIdAlreadyExistsExceptionTest.java
-src/test/java/com/kanmon/client/model/PlatformInvoiceNumberAlreadyExistsForIssuedProductExceptionTest.java
