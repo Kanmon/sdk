@@ -735,7 +735,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "c2954490-f0c9-4dd4-993b-a247beda781a,b854410f-757d-40b6-8d78-8613d751f5d5",
+            "example": "ff66f2c2-317e-4693-ba89-f96073414dd9,47a38325-033e-4c02-acfb-27f460577d4d",
             "schema": { "type": "string" }
           },
           {
@@ -1387,6 +1387,7 @@
           ]
         },
         "summary": "Finance an invoice",
+        "description": "Finance an invoice for an issued product directly instead of using the embedded UI. `payeeType` is required for `ACCOUNTS_PAYABLE_FINANCING`, `payorType` for `INVOICE_FINANCING`. Extra payee/payor fields are optional.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2001,7 +2002,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "61390c01-efc6-48e1-a6c0-0bc9cf21ac0f,4ee9aad2-f69e-48b7-a638-bfff7b42b731",
+            "example": "4d4081f0-75d3-4874-a4d9-68668e90aca0,07f23ba1-a506-4aee-892e-b53de00c406d",
             "schema": { "type": "string" }
           },
           {
@@ -2347,7 +2348,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "a2911b75-d8f9-429e-963e-2146b8271dbb,2383a21d-8f6f-4094-8bf0-1e1b64dccdbf",
+            "example": "05a00d90-43ce-4ff7-b618-a1259ad293c8,73ff9ca5-779f-42ba-b870-c88c63a499dc",
             "schema": { "type": "string" }
           },
           {
@@ -4503,13 +4504,61 @@
           },
           "invoiceIssuedDate": {
             "type": "string",
-            "description": "The date when the payee issued the invoice. ISO 8601 date format.",
+            "description": "The date when the payee issued the invoice. This is required if product type is `INVOICE_FINANCING`. ISO 8601 date format.",
             "example": "2022-04-01"
           },
           "description": {
             "type": "string",
             "description": "The description of the goods or services in the invoice.",
             "example": "Invoice for equipment purchased."
+          },
+          "payorType": {
+            "type": "string",
+            "description": "`INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company. This is required if product type is `INVOICE_FINANCING`.",
+            "enum": ["BUSINESS", "INDIVIDUAL"],
+            "example": "BUSINESS"
+          },
+          "payorEmail": {
+            "type": "string",
+            "description": "The email of the payor.",
+            "example": "user@gmail.com"
+          },
+          "payorAddress": {
+            "description": "The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.",
+            "nullable": true,
+            "example": {
+              "city": "San Mateo",
+              "state": "CA",
+              "country": "USA",
+              "zipcode": "94401",
+              "addressLineOne": "123 Main Street"
+            },
+            "allOf": [{ "$ref": "#/components/schemas/Address" }]
+          },
+          "payorBusinessName": {
+            "type": "string",
+            "description": "The registered name of the payor business when the payor is a business and not an individual. Required and should only be defined if `payorType` is `BUSINESS`.",
+            "example": "My Business"
+          },
+          "payorFirstName": {
+            "type": "string",
+            "description": "The first name of the payor when the payor is an individual and not a business. Required and should only be defined if `payorType` is `INDIVIDUAL`.",
+            "example": "John"
+          },
+          "payorMiddleName": {
+            "type": "string",
+            "description": "The middle name of the payor when the payor is an individual and not a business. Optional and should only be defined if `payorType` is `INDIVIDUAL`."
+          },
+          "payorLastName": {
+            "type": "string",
+            "description": "The last name of the payor when the payor is an individual and not a business. Required and should only be defined if `payorType` is `INDIVIDUAL`.",
+            "example": "Smith"
+          },
+          "payeeType": {
+            "type": "string",
+            "description": "`INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company. This is required if product type is `ACCOUNTS_PAYABLE_FINANCING`.",
+            "enum": ["BUSINESS", "INDIVIDUAL"],
+            "example": "BUSINESS"
           },
           "payeeEmail": {
             "type": "string",
@@ -4526,12 +4575,6 @@
               "addressLineOne": "123 Main Street"
             },
             "allOf": [{ "$ref": "#/components/schemas/Address" }]
-          },
-          "payeeType": {
-            "type": "string",
-            "description": "`INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.",
-            "enum": ["BUSINESS", "INDIVIDUAL"],
-            "example": "BUSINESS"
           },
           "payeeBusinessName": {
             "type": "string",
@@ -4561,8 +4604,7 @@
           "invoiceAmountCents",
           "amountRequestedForFinancingCents",
           "invoiceDueDate",
-          "description",
-          "payeeType"
+          "description"
         ]
       },
       "TermLoanOfferTerms": {

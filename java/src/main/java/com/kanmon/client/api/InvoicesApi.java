@@ -157,7 +157,7 @@ public class InvoicesApi {
 
     /**
      * Finance an invoice
-     * 
+     * Finance an invoice for an issued product directly instead of using the embedded UI. &#x60;payeeType&#x60; is required for &#x60;ACCOUNTS_PAYABLE_FINANCING&#x60;, &#x60;payorType&#x60; for &#x60;INVOICE_FINANCING&#x60;. Extra payee/payor fields are optional.
      * @param financeInvoiceRequestBody  (required)
      * @return Invoice
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -179,7 +179,7 @@ public class InvoicesApi {
 
     /**
      * Finance an invoice
-     * 
+     * Finance an invoice for an issued product directly instead of using the embedded UI. &#x60;payeeType&#x60; is required for &#x60;ACCOUNTS_PAYABLE_FINANCING&#x60;, &#x60;payorType&#x60; for &#x60;INVOICE_FINANCING&#x60;. Extra payee/payor fields are optional.
      * @param financeInvoiceRequestBody  (required)
      * @return ApiResponse&lt;Invoice&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -202,7 +202,7 @@ public class InvoicesApi {
 
     /**
      * Finance an invoice (asynchronously)
-     * 
+     * Finance an invoice for an issued product directly instead of using the embedded UI. &#x60;payeeType&#x60; is required for &#x60;ACCOUNTS_PAYABLE_FINANCING&#x60;, &#x60;payorType&#x60; for &#x60;INVOICE_FINANCING&#x60;. Extra payee/payor fields are optional.
      * @param financeInvoiceRequestBody  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
