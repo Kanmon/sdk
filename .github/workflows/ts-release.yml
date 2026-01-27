@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix-npm-build
     paths:
       - "kanmon_api_spec.json"
       - "openapitools.json"
@@ -20,8 +21,9 @@ jobs:
 
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # 4.3.0
         with:
-          node-version: "22.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 24.11.1
+          # Node 24.11.1 comes with npm 11.6.2
+          # we need 11.5.1 or higher for OIDC trusted publishing support
 
       # Temporarily disabled until a new version is pushed including:
       # https://github.com/OpenAPITools/openapi-generator/pull/18877/files
