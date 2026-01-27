@@ -15,13 +15,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Publish SDK to NPM
+    permissions:
+      contents: read
+      id-token: write # REQUIRED for npm Trusted Publishing (OIDC)
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
 
       - uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # 4.3.0
         with:
-          node-version: "22.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: 24.11.1
+          # Node 24.11.1 comes with npm 11.6.2
+          # we need 11.5.1 or higher for OIDC trusted publishing support
 
       # Temporarily disabled until a new version is pushed including:
       # https://github.com/OpenAPITools/openapi-generator/pull/18877/files
@@ -41,15 +46,11 @@ jobs:
           git config user.name "${{ github.event.pusher.name }}"
           git config user.email "${{ github.event.pusher.email }}"
           cd ts
-          yarn version --prerelease --preid next-${{ github.sha }}
-          yarn publish --access public --tag next
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          yarn version --prerelease --preid next-${{ github.sha }} --no-git-tag-version
+          npm publish --access public --tag next
 
       - name: Publish
         if: github.ref_type == 'tag'
         run: |
           cd ts
-          yarn publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          npm publish --access public
