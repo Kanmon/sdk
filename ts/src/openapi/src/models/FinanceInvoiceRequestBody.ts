@@ -69,7 +69,7 @@ export interface FinanceInvoiceRequestBody {
      */
     invoiceDueDate: string;
     /**
-     * The date when the payee issued the invoice. ISO 8601 date format.
+     * The date when the payee issued the invoice. This is required if product type is `INVOICE_FINANCING`. ISO 8601 date format.
      * @type {string}
      * @memberof FinanceInvoiceRequestBody
      */
@@ -80,6 +80,54 @@ export interface FinanceInvoiceRequestBody {
      * @memberof FinanceInvoiceRequestBody
      */
     description: string;
+    /**
+     * `INDIVIDUAL` if the payor is a person and `BUSINESS` if the payor is a company. This is required if product type is `INVOICE_FINANCING`.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorType?: FinanceInvoiceRequestBodyPayorTypeEnum;
+    /**
+     * The email of the payor.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorEmail?: string;
+    /**
+     * The address of the payor. The address is optional. If you provide the address, you need to provide all the required fields in the address. The address must be a street address, not a PO Box.
+     * @type {Address}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorAddress?: Address | null;
+    /**
+     * The registered name of the payor business when the payor is a business and not an individual. Required and should only be defined if `payorType` is `BUSINESS`.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorBusinessName?: string;
+    /**
+     * The first name of the payor when the payor is an individual and not a business. Required and should only be defined if `payorType` is `INDIVIDUAL`.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorFirstName?: string;
+    /**
+     * The middle name of the payor when the payor is an individual and not a business. Optional and should only be defined if `payorType` is `INDIVIDUAL`.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorMiddleName?: string;
+    /**
+     * The last name of the payor when the payor is an individual and not a business. Required and should only be defined if `payorType` is `INDIVIDUAL`.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorLastName?: string;
+    /**
+     * `INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company. This is required if product type is `ACCOUNTS_PAYABLE_FINANCING`.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payeeType?: FinanceInvoiceRequestBodyPayeeTypeEnum;
     /**
      * The email of the payee.
      * @type {string}
@@ -92,12 +140,6 @@ export interface FinanceInvoiceRequestBody {
      * @memberof FinanceInvoiceRequestBody
      */
     payeeAddress?: Address;
-    /**
-     * `INDIVIDUAL` if the payee is a person and `BUSINESS` if the payee is a company.
-     * @type {string}
-     * @memberof FinanceInvoiceRequestBody
-     */
-    payeeType: FinanceInvoiceRequestBodyPayeeTypeEnum;
     /**
      * The registered name of the payee business when the payee is a business and not an individual. Required and should only be defined if `payeeType` is `BUSINESS`.
      * @type {string}
@@ -128,6 +170,15 @@ export interface FinanceInvoiceRequestBody {
 /**
  * @export
  */
+export const FinanceInvoiceRequestBodyPayorTypeEnum = {
+    BUSINESS: 'BUSINESS',
+    INDIVIDUAL: 'INDIVIDUAL'
+} as const;
+export type FinanceInvoiceRequestBodyPayorTypeEnum = typeof FinanceInvoiceRequestBodyPayorTypeEnum[keyof typeof FinanceInvoiceRequestBodyPayorTypeEnum];
+
+/**
+ * @export
+ */
 export const FinanceInvoiceRequestBodyPayeeTypeEnum = {
     BUSINESS: 'BUSINESS',
     INDIVIDUAL: 'INDIVIDUAL'
@@ -147,7 +198,6 @@ export function instanceOfFinanceInvoiceRequestBody(value: object): value is Fin
     if (!('amountRequestedForFinancingCents' in value) || value['amountRequestedForFinancingCents'] === undefined) return false;
     if (!('invoiceDueDate' in value) || value['invoiceDueDate'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
-    if (!('payeeType' in value) || value['payeeType'] === undefined) return false;
     return true;
 }
 
@@ -170,9 +220,16 @@ export function FinanceInvoiceRequestBodyFromJSONTyped(json: any, ignoreDiscrimi
         'invoiceDueDate': json['invoiceDueDate'],
         'invoiceIssuedDate': json['invoiceIssuedDate'] == null ? undefined : json['invoiceIssuedDate'],
         'description': json['description'],
+        'payorType': json['payorType'] == null ? undefined : json['payorType'],
+        'payorEmail': json['payorEmail'] == null ? undefined : json['payorEmail'],
+        'payorAddress': json['payorAddress'] == null ? undefined : AddressFromJSON(json['payorAddress']),
+        'payorBusinessName': json['payorBusinessName'] == null ? undefined : json['payorBusinessName'],
+        'payorFirstName': json['payorFirstName'] == null ? undefined : json['payorFirstName'],
+        'payorMiddleName': json['payorMiddleName'] == null ? undefined : json['payorMiddleName'],
+        'payorLastName': json['payorLastName'] == null ? undefined : json['payorLastName'],
+        'payeeType': json['payeeType'] == null ? undefined : json['payeeType'],
         'payeeEmail': json['payeeEmail'] == null ? undefined : json['payeeEmail'],
         'payeeAddress': json['payeeAddress'] == null ? undefined : AddressFromJSON(json['payeeAddress']),
-        'payeeType': json['payeeType'],
         'payeeBusinessName': json['payeeBusinessName'] == null ? undefined : json['payeeBusinessName'],
         'payeeFirstName': json['payeeFirstName'] == null ? undefined : json['payeeFirstName'],
         'payeeMiddleName': json['payeeMiddleName'] == null ? undefined : json['payeeMiddleName'],
@@ -195,9 +252,16 @@ export function FinanceInvoiceRequestBodyToJSON(value?: FinanceInvoiceRequestBod
         'invoiceDueDate': value['invoiceDueDate'],
         'invoiceIssuedDate': value['invoiceIssuedDate'],
         'description': value['description'],
+        'payorType': value['payorType'],
+        'payorEmail': value['payorEmail'],
+        'payorAddress': AddressToJSON(value['payorAddress']),
+        'payorBusinessName': value['payorBusinessName'],
+        'payorFirstName': value['payorFirstName'],
+        'payorMiddleName': value['payorMiddleName'],
+        'payorLastName': value['payorLastName'],
+        'payeeType': value['payeeType'],
         'payeeEmail': value['payeeEmail'],
         'payeeAddress': AddressToJSON(value['payeeAddress']),
-        'payeeType': value['payeeType'],
         'payeeBusinessName': value['payeeBusinessName'],
         'payeeFirstName': value['payeeFirstName'],
         'payeeMiddleName': value['payeeMiddleName'],

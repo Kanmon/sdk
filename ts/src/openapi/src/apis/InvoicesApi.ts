@@ -76,6 +76,7 @@ export interface GetInvoiceRequest {
 export class InvoicesApi extends runtime.BaseAPI {
 
     /**
+     * Finance an invoice for an issued product directly instead of using the embedded UI. `payeeType` is required for `ACCOUNTS_PAYABLE_FINANCING`, `payorType` for `INVOICE_FINANCING`. Extra payee/payor fields are optional.
      * Finance an invoice
      */
     async financeInvoiceRaw(requestParameters: FinanceInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Invoice>> {
@@ -108,6 +109,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     }
 
     /**
+     * Finance an invoice for an issued product directly instead of using the embedded UI. `payeeType` is required for `ACCOUNTS_PAYABLE_FINANCING`, `payorType` for `INVOICE_FINANCING`. Extra payee/payor fields are optional.
      * Finance an invoice
      */
     async financeInvoice(requestParameters: FinanceInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Invoice> {
