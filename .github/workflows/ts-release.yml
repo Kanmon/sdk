@@ -16,6 +16,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Publish SDK to NPM
+    permissions:
+      contents: read
+      id-token: write # REQUIRED for npm Trusted Publishing (OIDC)
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # 4.2.2
 
