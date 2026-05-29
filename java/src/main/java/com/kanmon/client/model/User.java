@@ -388,7 +388,7 @@ public class User {
   }
 
   /**
-   * Is the user a U.S. citizen or permanent resident?
+   * Is the user a U.S. citizen?
    * @return isUsCitizen
    */
   @javax.annotation.Nullable

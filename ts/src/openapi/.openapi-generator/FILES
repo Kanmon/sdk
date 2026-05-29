@@ -108,6 +108,7 @@ src/models/IssuedProductServicingData.ts
 src/models/IssuedProductStatusNotCurrentException.ts
 src/models/LineOfCreditOfferTerms.ts
 src/models/LineOfCreditServicingData.ts
+src/models/LoanStatus.ts
 src/models/McaOfferTerms.ts
 src/models/McaServicingData.ts
 src/models/MergeUsersRequestBody.ts

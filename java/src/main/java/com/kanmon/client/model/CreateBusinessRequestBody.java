@@ -83,6 +83,10 @@ public class CreateBusinessRequestBody {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
 
+  public static final String SERIALIZED_NAME_IS_SOLE_PROPRIETORSHIP = "isSoleProprietorship";
+  @SerializedName(SERIALIZED_NAME_IS_SOLE_PROPRIETORSHIP)
+  private Boolean isSoleProprietorship;
+
   public CreateBusinessRequestBody() {
   }
 
@@ -238,6 +242,25 @@ public class CreateBusinessRequestBody {
   }
 
 
+  public CreateBusinessRequestBody isSoleProprietorship(Boolean isSoleProprietorship) {
+    this.isSoleProprietorship = isSoleProprietorship;
+    return this;
+  }
+
+  /**
+   * Whether the business is a sole proprietorship.
+   * @return isSoleProprietorship
+   */
+  @javax.annotation.Nullable
+  public Boolean getIsSoleProprietorship() {
+    return isSoleProprietorship;
+  }
+
+  public void setIsSoleProprietorship(Boolean isSoleProprietorship) {
+    this.isSoleProprietorship = isSoleProprietorship;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -255,12 +278,13 @@ public class CreateBusinessRequestBody {
         Objects.equals(this.phoneNumber, createBusinessRequestBody.phoneNumber) &&
         Objects.equals(this.website, createBusinessRequestBody.website) &&
         Objects.equals(this.customInitializationName, createBusinessRequestBody.customInitializationName) &&
-        Objects.equals(this.metadata, createBusinessRequestBody.metadata);
+        Objects.equals(this.metadata, createBusinessRequestBody.metadata) &&
+        Objects.equals(this.isSoleProprietorship, createBusinessRequestBody.isSoleProprietorship);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(platformBusinessId, name, address, ein, phoneNumber, website, customInitializationName, metadata);
+    return Objects.hash(platformBusinessId, name, address, ein, phoneNumber, website, customInitializationName, metadata, isSoleProprietorship);
   }
 
   @Override
@@ -275,6 +299,7 @@ public class CreateBusinessRequestBody {
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
     sb.append("    customInitializationName: ").append(toIndentedString(customInitializationName)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    isSoleProprietorship: ").append(toIndentedString(isSoleProprietorship)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -305,6 +330,7 @@ public class CreateBusinessRequestBody {
     openapiFields.add("website");
     openapiFields.add("customInitializationName");
     openapiFields.add("metadata");
+    openapiFields.add("isSoleProprietorship");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();

@@ -87,7 +87,7 @@ export interface CreateUserRequestBody {
      */
     metadata?: object;
     /**
-     * Whether the user is a U.S. citizen or permanent resident.
+     * Whether the user is a U.S. citizen.
      * @type {boolean}
      * @memberof CreateUserRequestBody
      */

@@ -135,6 +135,7 @@ src/main/java/com/kanmon/client/model/IssuedProductServicingData.java
 src/main/java/com/kanmon/client/model/IssuedProductStatusNotCurrentException.java
 src/main/java/com/kanmon/client/model/LineOfCreditOfferTerms.java
 src/main/java/com/kanmon/client/model/LineOfCreditServicingData.java
+src/main/java/com/kanmon/client/model/LoanStatus.java
 src/main/java/com/kanmon/client/model/McaOfferTerms.java
 src/main/java/com/kanmon/client/model/McaServicingData.java
 src/main/java/com/kanmon/client/model/MergeUsersRequestBody.java
@@ -175,3 +176,4 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
+src/test/java/com/kanmon/client/model/LoanStatusTest.java

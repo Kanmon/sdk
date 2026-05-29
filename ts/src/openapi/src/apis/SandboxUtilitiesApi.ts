@@ -33,10 +33,12 @@ import {
 
 export interface SandboxDeleteBusinessRequest {
     id: any;
+    idType?: SandboxDeleteBusinessIdTypeEnum;
 }
 
 export interface SandboxResetBusinessRequest {
     id: any;
+    idType?: SandboxResetBusinessIdTypeEnum;
 }
 
 /**
@@ -56,6 +58,10 @@ export class SandboxUtilitiesApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters['idType'] != null) {
+            queryParameters['idType'] = requestParameters['idType'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -93,6 +99,10 @@ export class SandboxUtilitiesApi extends runtime.BaseAPI {
 
         const queryParameters: any = {};
 
+        if (requestParameters['idType'] != null) {
+            queryParameters['idType'] = requestParameters['idType'];
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -118,3 +128,20 @@ export class SandboxUtilitiesApi extends runtime.BaseAPI {
     }
 
 }
+
+/**
+ * @export
+ */
+export const SandboxDeleteBusinessIdTypeEnum = {
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
+} as const;
+export type SandboxDeleteBusinessIdTypeEnum = typeof SandboxDeleteBusinessIdTypeEnum[keyof typeof SandboxDeleteBusinessIdTypeEnum];
+/**
+ * @export
+ */
+export const SandboxResetBusinessIdTypeEnum = {
+    KANMON: 'KANMON',
+    PLATFORM: 'PLATFORM'
+} as const;
+export type SandboxResetBusinessIdTypeEnum = typeof SandboxResetBusinessIdTypeEnum[keyof typeof SandboxResetBusinessIdTypeEnum];

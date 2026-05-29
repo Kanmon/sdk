@@ -34,6 +34,14 @@
  *       <td> A payment was made that fully paid off an outstanding invoice.</td>
  *     </tr>
  *     <tr>
+ *       <td>INVOICE_RETURNED</td>
+ *       <td>The invoice was returned (e.g. disbursement cancelled or funds recollected from the platform).</td>
+ *     </tr>
+ *     <tr>
+ *       <td>INVOICE_PENDING_RETURN</td>
+ *       <td>The disbursement return has been initiated and we are waiting for funds to be recollected from the platform.</td>
+ *     </tr>
+ *     <tr>
  *       <td>LATE</td>
  *       <td>A payment was not made towards an outstanding invoice.</td>
  *     </tr>
@@ -53,6 +61,8 @@ export const InvoiceStatus = {
     INVOICE_CREATED: 'INVOICE_CREATED',
     INVOICE_FUNDED: 'INVOICE_FUNDED',
     INVOICE_PAID_IN_FULL: 'INVOICE_PAID_IN_FULL',
+    INVOICE_RETURNED: 'INVOICE_RETURNED',
+    INVOICE_PENDING_RETURN: 'INVOICE_PENDING_RETURN',
     REJECTED: 'REJECTED',
     IN_REVIEW: 'IN_REVIEW',
     DEFAULTED: 'DEFAULTED',

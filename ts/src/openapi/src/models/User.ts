@@ -93,7 +93,7 @@ export interface User {
      */
     metadata: object;
     /**
-     * Is the user a U.S. citizen or permanent resident?
+     * Is the user a U.S. citizen?
      * @type {object}
      * @memberof User
      */

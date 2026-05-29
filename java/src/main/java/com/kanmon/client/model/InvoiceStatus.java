@@ -24,7 +24,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * The status of the invoice.   &lt;table&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_CREATED&lt;/td&gt;       &lt;td&gt;The business has submitted an invoice and it is under review.&lt;td/&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_FUNDED&lt;/td&gt;       &lt;td&gt;         The funds for the invoice have been disbursed. The business is now         expected to pay back the funds. Note that an invoice transitions to         this state when the disbursement is initiated, not when the disbursement         has cleared.       &lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_PAID_IN_FULL&lt;/td&gt;       &lt;td&gt; A payment was made that fully paid off an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;LATE&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;REJECTED&lt;/td&gt;       &lt;td&gt; An invoice was rejected during the funding step.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;DEFAULTED&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.&lt;/td&gt;     &lt;/tr&gt;   &lt;/table&gt;   
+ * The status of the invoice.   &lt;table&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_CREATED&lt;/td&gt;       &lt;td&gt;The business has submitted an invoice and it is under review.&lt;td/&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_FUNDED&lt;/td&gt;       &lt;td&gt;         The funds for the invoice have been disbursed. The business is now         expected to pay back the funds. Note that an invoice transitions to         this state when the disbursement is initiated, not when the disbursement         has cleared.       &lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_PAID_IN_FULL&lt;/td&gt;       &lt;td&gt; A payment was made that fully paid off an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_RETURNED&lt;/td&gt;       &lt;td&gt;The invoice was returned (e.g. disbursement cancelled or funds recollected from the platform).&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;INVOICE_PENDING_RETURN&lt;/td&gt;       &lt;td&gt;The disbursement return has been initiated and we are waiting for funds to be recollected from the platform.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;LATE&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;REJECTED&lt;/td&gt;       &lt;td&gt; An invoice was rejected during the funding step.&lt;/td&gt;     &lt;/tr&gt;     &lt;tr&gt;       &lt;td&gt;DEFAULTED&lt;/td&gt;       &lt;td&gt;A payment was not made towards an outstanding invoice and we were unable to encourage the borrower to make a payment.&lt;/td&gt;     &lt;/tr&gt;   &lt;/table&gt;   
  */
 @JsonAdapter(InvoiceStatus.Adapter.class)
 public enum InvoiceStatus {
@@ -34,6 +34,10 @@ public enum InvoiceStatus {
   INVOICE_FUNDED("INVOICE_FUNDED"),
   
   INVOICE_PAID_IN_FULL("INVOICE_PAID_IN_FULL"),
+  
+  INVOICE_RETURNED("INVOICE_RETURNED"),
+  
+  INVOICE_PENDING_RETURN("INVOICE_PENDING_RETURN"),
   
   REJECTED("REJECTED"),
   
