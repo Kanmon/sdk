@@ -93,6 +93,7 @@ export * from './IssuedProductServicingData';
 export * from './IssuedProductStatusNotCurrentException';
 export * from './LineOfCreditOfferTerms';
 export * from './LineOfCreditServicingData';
+export * from './LoanStatus';
 export * from './McaOfferTerms';
 export * from './McaServicingData';
 export * from './MergeUsersRequestBody';

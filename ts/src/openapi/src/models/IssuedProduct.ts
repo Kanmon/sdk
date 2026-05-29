@@ -13,6 +13,12 @@
  */
 
 import { mapValues } from '../runtime';
+import type { LoanStatus } from './LoanStatus';
+import {
+    LoanStatusFromJSON,
+    LoanStatusFromJSONTyped,
+    LoanStatusToJSON,
+} from './LoanStatus';
 import type { IssuedProductServicingData } from './IssuedProductServicingData';
 import {
     IssuedProductServicingDataFromJSON,
@@ -51,11 +57,11 @@ export interface IssuedProduct {
      */
     platformBusinessId: string | null;
     /**
-     * The current status of the loan.
-     * @type {string}
+     * 
+     * @type {LoanStatus}
      * @memberof IssuedProduct
      */
-    loanStatus: IssuedProductLoanStatusEnum;
+    loanStatus: LoanStatus;
     /**
      * 
      * @type {IssuedProductServicingData}
@@ -76,19 +82,6 @@ export interface IssuedProduct {
     updatedAt: string;
 }
 
-
-/**
- * @export
- */
-export const IssuedProductLoanStatusEnum = {
-    CURRENT: 'CURRENT',
-    LATE: 'LATE',
-    FULLY_PAID: 'FULLY_PAID',
-    REFINANCED: 'REFINANCED',
-    CLOSED: 'CLOSED',
-    DEFAULTED: 'DEFAULTED'
-} as const;
-export type IssuedProductLoanStatusEnum = typeof IssuedProductLoanStatusEnum[keyof typeof IssuedProductLoanStatusEnum];
 
 
 /**
@@ -120,7 +113,7 @@ export function IssuedProductFromJSONTyped(json: any, ignoreDiscriminator: boole
         'offerId': json['offerId'],
         'businessId': json['businessId'],
         'platformBusinessId': json['platformBusinessId'],
-        'loanStatus': json['loanStatus'],
+        'loanStatus': LoanStatusFromJSON(json['loanStatus']),
         'servicingData': IssuedProductServicingDataFromJSON(json['servicingData']),
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
@@ -137,7 +130,7 @@ export function IssuedProductToJSON(value?: IssuedProduct | null): any {
         'offerId': value['offerId'],
         'businessId': value['businessId'],
         'platformBusinessId': value['platformBusinessId'],
-        'loanStatus': value['loanStatus'],
+        'loanStatus': LoanStatusToJSON(value['loanStatus']),
         'servicingData': IssuedProductServicingDataToJSON(value['servicingData']),
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],

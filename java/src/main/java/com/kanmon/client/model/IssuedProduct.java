@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.IssuedProductServicingData;
+import com.kanmon.client.model.LoanStatus;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -67,69 +68,9 @@ public class IssuedProduct {
   @SerializedName(SERIALIZED_NAME_PLATFORM_BUSINESS_ID)
   private String platformBusinessId;
 
-  /**
-   * The current status of the loan.
-   */
-  @JsonAdapter(LoanStatusEnum.Adapter.class)
-  public enum LoanStatusEnum {
-    CURRENT("CURRENT"),
-    
-    LATE("LATE"),
-    
-    FULLY_PAID("FULLY_PAID"),
-    
-    REFINANCED("REFINANCED"),
-    
-    CLOSED("CLOSED"),
-    
-    DEFAULTED("DEFAULTED");
-
-    private String value;
-
-    LoanStatusEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static LoanStatusEnum fromValue(String value) {
-      for (LoanStatusEnum b : LoanStatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<LoanStatusEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final LoanStatusEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public LoanStatusEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return LoanStatusEnum.fromValue(value);
-      }
-    }
-
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      String value = jsonElement.getAsString();
-      LoanStatusEnum.fromValue(value);
-    }
-  }
-
   public static final String SERIALIZED_NAME_LOAN_STATUS = "loanStatus";
   @SerializedName(SERIALIZED_NAME_LOAN_STATUS)
-  private LoanStatusEnum loanStatus;
+  private LoanStatus loanStatus;
 
   public static final String SERIALIZED_NAME_SERVICING_DATA = "servicingData";
   @SerializedName(SERIALIZED_NAME_SERVICING_DATA)
@@ -222,21 +163,21 @@ public class IssuedProduct {
   }
 
 
-  public IssuedProduct loanStatus(LoanStatusEnum loanStatus) {
+  public IssuedProduct loanStatus(LoanStatus loanStatus) {
     this.loanStatus = loanStatus;
     return this;
   }
 
   /**
-   * The current status of the loan.
+   * Get loanStatus
    * @return loanStatus
    */
   @javax.annotation.Nonnull
-  public LoanStatusEnum getLoanStatus() {
+  public LoanStatus getLoanStatus() {
     return loanStatus;
   }
 
-  public void setLoanStatus(LoanStatusEnum loanStatus) {
+  public void setLoanStatus(LoanStatus loanStatus) {
     this.loanStatus = loanStatus;
   }
 
@@ -418,11 +359,8 @@ public class IssuedProduct {
       if ((jsonObj.get("platformBusinessId") != null && !jsonObj.get("platformBusinessId").isJsonNull()) && !jsonObj.get("platformBusinessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platformBusinessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platformBusinessId").toString()));
       }
-      if (!jsonObj.get("loanStatus").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `loanStatus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("loanStatus").toString()));
-      }
       // validate the required field `loanStatus`
-      LoanStatusEnum.validateJsonElement(jsonObj.get("loanStatus"));
+      LoanStatus.validateJsonElement(jsonObj.get("loanStatus"));
       // validate the required field `servicingData`
       IssuedProductServicingData.validateJsonElement(jsonObj.get("servicingData"));
       if (!jsonObj.get("createdAt").isJsonPrimitive()) {

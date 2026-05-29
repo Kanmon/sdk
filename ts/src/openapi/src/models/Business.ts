@@ -81,6 +81,12 @@ export interface Business {
      */
     metadata: object;
     /**
+     * Whether the business is a sole proprietorship.
+     * @type {boolean}
+     * @memberof Business
+     */
+    isSoleProprietorship?: boolean | null;
+    /**
      * Creation UTC ISO 8601 timestamp of the business.
      * @type {string}
      * @memberof Business
@@ -128,6 +134,7 @@ export function BusinessFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'website': json['website'],
         'customInitializationName': json['customInitializationName'] == null ? undefined : json['customInitializationName'],
         'metadata': json['metadata'],
+        'isSoleProprietorship': json['isSoleProprietorship'] == null ? undefined : json['isSoleProprietorship'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
     };
@@ -148,6 +155,7 @@ export function BusinessToJSON(value?: Business | null): any {
         'website': value['website'],
         'customInitializationName': value['customInitializationName'],
         'metadata': value['metadata'],
+        'isSoleProprietorship': value['isSoleProprietorship'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],
     };

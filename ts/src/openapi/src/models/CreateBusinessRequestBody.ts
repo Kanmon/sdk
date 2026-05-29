@@ -74,6 +74,12 @@ export interface CreateBusinessRequestBody {
      * @memberof CreateBusinessRequestBody
      */
     metadata?: object;
+    /**
+     * Whether the business is a sole proprietorship.
+     * @type {boolean}
+     * @memberof CreateBusinessRequestBody
+     */
+    isSoleProprietorship?: boolean;
 }
 
 /**
@@ -102,6 +108,7 @@ export function CreateBusinessRequestBodyFromJSONTyped(json: any, ignoreDiscrimi
         'website': json['website'] == null ? undefined : json['website'],
         'customInitializationName': json['customInitializationName'] == null ? undefined : json['customInitializationName'],
         'metadata': json['metadata'] == null ? undefined : json['metadata'],
+        'isSoleProprietorship': json['isSoleProprietorship'] == null ? undefined : json['isSoleProprietorship'],
     };
 }
 
@@ -119,6 +126,7 @@ export function CreateBusinessRequestBodyToJSON(value?: CreateBusinessRequestBod
         'website': value['website'],
         'customInitializationName': value['customInitializationName'],
         'metadata': value['metadata'],
+        'isSoleProprietorship': value['isSoleProprietorship'],
     };
 }
 

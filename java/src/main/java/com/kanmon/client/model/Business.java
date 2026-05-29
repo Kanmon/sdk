@@ -88,6 +88,10 @@ public class Business {
   @SerializedName(SERIALIZED_NAME_METADATA)
   private Object metadata;
 
+  public static final String SERIALIZED_NAME_IS_SOLE_PROPRIETORSHIP = "isSoleProprietorship";
+  @SerializedName(SERIALIZED_NAME_IS_SOLE_PROPRIETORSHIP)
+  private Boolean isSoleProprietorship;
+
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
@@ -270,6 +274,25 @@ public class Business {
   }
 
 
+  public Business isSoleProprietorship(Boolean isSoleProprietorship) {
+    this.isSoleProprietorship = isSoleProprietorship;
+    return this;
+  }
+
+  /**
+   * Whether the business is a sole proprietorship.
+   * @return isSoleProprietorship
+   */
+  @javax.annotation.Nullable
+  public Boolean getIsSoleProprietorship() {
+    return isSoleProprietorship;
+  }
+
+  public void setIsSoleProprietorship(Boolean isSoleProprietorship) {
+    this.isSoleProprietorship = isSoleProprietorship;
+  }
+
+
   public Business createdAt(String createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -327,6 +350,7 @@ public class Business {
         Objects.equals(this.website, business.website) &&
         Objects.equals(this.customInitializationName, business.customInitializationName) &&
         Objects.equals(this.metadata, business.metadata) &&
+        Objects.equals(this.isSoleProprietorship, business.isSoleProprietorship) &&
         Objects.equals(this.createdAt, business.createdAt) &&
         Objects.equals(this.updatedAt, business.updatedAt);
   }
@@ -337,7 +361,7 @@ public class Business {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platformBusinessId, name, address, ein, phoneNumber, website, customInitializationName, metadata, createdAt, updatedAt);
+    return Objects.hash(id, platformBusinessId, name, address, ein, phoneNumber, website, customInitializationName, metadata, isSoleProprietorship, createdAt, updatedAt);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -360,6 +384,7 @@ public class Business {
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
     sb.append("    customInitializationName: ").append(toIndentedString(customInitializationName)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
+    sb.append("    isSoleProprietorship: ").append(toIndentedString(isSoleProprietorship)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
@@ -393,6 +418,7 @@ public class Business {
     openapiFields.add("website");
     openapiFields.add("customInitializationName");
     openapiFields.add("metadata");
+    openapiFields.add("isSoleProprietorship");
     openapiFields.add("createdAt");
     openapiFields.add("updatedAt");
 

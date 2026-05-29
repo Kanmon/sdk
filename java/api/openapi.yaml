@@ -565,7 +565,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "ff66f2c2-317e-4693-ba89-f96073414dd9,47a38325-033e-4c02-acfb-27f460577d4d"
+        example: "767d9894-7214-4a0a-9c4e-ec4a7c70c1e1,e7935095-6ea8-44d9-a5b5-6235a61dc1cf"
         explode: true
         in: query
         name: businessIds
@@ -1633,7 +1633,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "4d4081f0-75d3-4874-a4d9-68668e90aca0,07f23ba1-a506-4aee-892e-b53de00c406d"
+        example: "7d632bf1-8537-4c93-bc4a-f485a789f95e,1f05fd2d-2140-41c4-b294-5e0b0196cb6f"
         explode: true
         in: query
         name: businessIds
@@ -2000,7 +2000,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "05a00d90-43ce-4ff7-b618-a1259ad293c8,73ff9ca5-779f-42ba-b870-c88c63a499dc"
+        example: "95dbeab9-f94f-460d-85b8-a50b7bb0b136,782ec087-24f5-40d9-91d4-d005b7d06c14"
         explode: true
         in: query
         name: drawRequestIds
@@ -2597,6 +2597,19 @@ paths:
         required: true
         schema: {}
         style: simple
+      - description: Which ID type to query the business by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2649,6 +2662,19 @@ paths:
         required: true
         schema: {}
         style: simple
+      - description: Which ID type to query the business by. Defaults to `KANMON`.
+          Use `PLATFORM` if you want to query by your platform’s ID.
+        example: KANMON
+        explode: true
+        in: query
+        name: idType
+        required: false
+        schema:
+          enum:
+          - KANMON
+          - PLATFORM
+          type: string
+        style: form
       responses:
         "400":
           content:
@@ -3038,6 +3064,7 @@ components:
         phoneNumber: "+14155556789"
         name: My Business
         ein: "123456789"
+        isSoleProprietorship: false
         customInitializationName: custom
       properties:
         platformBusinessId:
@@ -3088,6 +3115,10 @@ components:
           description: Metadata from your system that you want to associate the business
             with.
           type: object
+        isSoleProprietorship:
+          description: Whether the business is a sole proprietorship.
+          example: false
+          type: boolean
       required:
       - platformBusinessId
       type: object
@@ -3107,6 +3138,7 @@ components:
         name: My Business
         id: 1193fdaf-630c-4771-a629-8da7a87947d2
         ein: "123456789"
+        isSoleProprietorship: false
         customInitializationName: custom
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
@@ -3167,6 +3199,11 @@ components:
           description: Metadata from your system that you want to associate the business
             with.
           type: object
+        isSoleProprietorship:
+          description: Whether the business is a sole proprietorship.
+          example: false
+          nullable: true
+          type: boolean
         createdAt:
           description: Creation UTC ISO 8601 timestamp of the business.
           example: 2022-06-01T03:57:26.115Z
@@ -3223,6 +3260,7 @@ components:
         phoneNumber: "+14155556789"
         name: My Business
         ein: "123456789"
+        isSoleProprietorship: false
         customInitializationName: custom
       properties:
         name:
@@ -3273,6 +3311,10 @@ components:
           description: Metadata from your system that you want to associate the business
             with.
           type: object
+        isSoleProprietorship:
+          description: Whether the business is a sole proprietorship.
+          example: false
+          type: boolean
       type: object
     BusinessNotFoundException:
       example:
@@ -3395,6 +3437,7 @@ components:
           name: My Business
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           ein: "123456789"
+          isSoleProprietorship: false
           customInitializationName: custom
           updatedAt: 2022-06-01T03:57:26.115Z
         - createdAt: 2022-06-01T03:57:26.115Z
@@ -3411,6 +3454,7 @@ components:
           name: My Business
           id: 1193fdaf-630c-4771-a629-8da7a87947d2
           ein: "123456789"
+          isSoleProprietorship: false
           customInitializationName: custom
           updatedAt: 2022-06-01T03:57:26.115Z
       properties:
@@ -3517,7 +3561,7 @@ components:
             with.
           type: object
         isUsCitizen:
-          description: Whether the user is a U.S. citizen or permanent resident.
+          description: Whether the user is a U.S. citizen.
           example: true
           type: boolean
       required:
@@ -3623,7 +3667,7 @@ components:
             with.
           type: object
         isUsCitizen:
-          description: Is the user a U.S. citizen or permanent resident?
+          description: Is the user a U.S. citizen?
           example: true
           nullable: true
           type: object
@@ -3940,16 +3984,23 @@ components:
         \      this state when the disbursement is initiated, not when the disbursement\n\
         \        has cleared.\n      </td>\n    </tr>\n    <tr>\n      <td>INVOICE_PAID_IN_FULL</td>\n\
         \      <td> A payment was made that fully paid off an outstanding invoice.</td>\n\
-        \    </tr>\n    <tr>\n      <td>LATE</td>\n      <td>A payment was not made\
-        \ towards an outstanding invoice.</td>\n    </tr>\n    <tr>\n      <td>REJECTED</td>\n\
-        \      <td> An invoice was rejected during the funding step.</td>\n    </tr>\n\
-        \    <tr>\n      <td>DEFAULTED</td>\n      <td>A payment was not made towards\
-        \ an outstanding invoice and we were unable to encourage the borrower to make\
-        \ a payment.</td>\n    </tr>\n  </table>\n  "
+        \    </tr>\n    <tr>\n      <td>INVOICE_RETURNED</td>\n      <td>The invoice\
+        \ was returned (e.g. disbursement cancelled or funds recollected from the\
+        \ platform).</td>\n    </tr>\n    <tr>\n      <td>INVOICE_PENDING_RETURN</td>\n\
+        \      <td>The disbursement return has been initiated and we are waiting for\
+        \ funds to be recollected from the platform.</td>\n    </tr>\n    <tr>\n \
+        \     <td>LATE</td>\n      <td>A payment was not made towards an outstanding\
+        \ invoice.</td>\n    </tr>\n    <tr>\n      <td>REJECTED</td>\n      <td>\
+        \ An invoice was rejected during the funding step.</td>\n    </tr>\n    <tr>\n\
+        \      <td>DEFAULTED</td>\n      <td>A payment was not made towards an outstanding\
+        \ invoice and we were unable to encourage the borrower to make a payment.</td>\n\
+        \    </tr>\n  </table>\n  "
       enum:
       - INVOICE_CREATED
       - INVOICE_FUNDED
       - INVOICE_PAID_IN_FULL
+      - INVOICE_RETURNED
+      - INVOICE_PENDING_RETURN
       - REJECTED
       - IN_REVIEW
       - DEFAULTED
@@ -5224,6 +5275,43 @@ components:
       - productType
       - totalLimitCents
       type: object
+    LoanStatus:
+      description: |-
+        The current status of the loan.<table>
+
+        <tr>
+        <td>CURRENT</td>
+        <td>All scheduled loan payments are up to date</td>
+        </tr>
+        <tr>
+        <td>LATE</td>
+        <td>One or more scheduled loan payments are past due</td>
+        </tr>
+        <tr>
+        <td>FULLY_PAID</td>
+        <td>The loan has been fully repaid and closed. Not applicable for AR, AP, or Line of Credit products</td>
+        </tr>
+        <tr>
+        <td>REFINANCED</td>
+        <td>The loan has been refinanced and replaced by a new loan agreement. Not applicable for AR, AP, or Line of Credit products</td>
+        </tr>
+        <tr>
+        <td>CLOSED</td>
+        <td>The loan has been closed and is no longer active</td>
+        </tr>
+        <tr>
+        <td>DEFAULTED</td>
+        <td>The loan has been marked as defaulted due to missed payments</td>
+        </tr>
+        </table>
+      enum:
+      - CURRENT
+      - LATE
+      - FULLY_PAID
+      - REFINANCED
+      - CLOSED
+      - DEFAULTED
+      type: string
     IssuedProduct:
       example:
         createdAt: 2022-06-01T03:57:26.115Z
@@ -5261,16 +5349,7 @@ components:
           nullable: true
           type: string
         loanStatus:
-          description: The current status of the loan.
-          enum:
-          - CURRENT
-          - LATE
-          - FULLY_PAID
-          - REFINANCED
-          - CLOSED
-          - DEFAULTED
-          example: CURRENT
-          type: string
+          $ref: '#/components/schemas/LoanStatus'
         servicingData:
           $ref: '#/components/schemas/IssuedProduct_servicingData'
         createdAt:

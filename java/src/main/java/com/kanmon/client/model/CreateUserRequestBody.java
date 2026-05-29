@@ -356,7 +356,7 @@ public class CreateUserRequestBody {
   }
 
   /**
-   * Whether the user is a U.S. citizen or permanent resident.
+   * Whether the user is a U.S. citizen.
    * @return isUsCitizen
    */
   @javax.annotation.Nullable
