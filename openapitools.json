@@ -33,7 +33,8 @@
           "openApiNullable": true,
           "library": "okhttp-gson",
           "serializationLibrary": "gson",
-          "hideGenerationTimestamp": true
+          "hideGenerationTimestamp": true,
+          "licenseName": "Proprietary"
         },
         "ignoreFileOverride": "#{cwd}/ignore_file_overrides/.openapi-java-generator-ignore"
       }
