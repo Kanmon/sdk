@@ -1,0 +1,31 @@
+Kanmon Proprietary License
+
+Copyright © 2026 Kanmon Inc. All rights reserved.
+
+This software and all associated files, documentation, and materials
+(collectively, the "Software") are the proprietary and confidential property
+of Kanmon Inc. ("Kanmon") and are protected by copyright and other
+intellectual property laws.
+
+The Software is licensed, not sold. Subject to a valid agreement between you
+and Kanmon, Kanmon grants you a limited, non-exclusive, non-transferable,
+non-sublicensable, revocable license to use the Software solely to integrate
+with and access Kanmon's services in accordance with Kanmon's documentation
+and any applicable agreement between you and Kanmon.
+
+Except as expressly permitted by Kanmon in writing, you may not: (a) copy,
+modify, adapt, or create derivative works of the Software; (b) distribute,
+sell, lease, rent, sublicense, or otherwise transfer the Software to any
+third party; (c) reverse engineer, decompile, or disassemble the Software,
+or attempt to derive its source code, except to the extent such restriction
+is prohibited by applicable law; or (d) remove, obscure, or alter any
+proprietary notices contained in the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+KANMON BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For licensing inquiries, contact Kanmon Inc. at https://kanmon.com.
