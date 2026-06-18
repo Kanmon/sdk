@@ -84,6 +84,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -173,6 +186,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/BusinessAlreadyExistsException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -277,6 +303,19 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -389,6 +428,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -466,6 +518,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/BusinessNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -585,6 +650,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -678,6 +756,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -735,8 +826,16 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "767d9894-7214-4a0a-9c4e-ec4a7c70c1e1,e7935095-6ea8-44d9-a5b5-6235a61dc1cf",
+            "example": "d6fb9273-f9c7-4c87-98ed-9a25fc667815,2a124938-fa43-4861-af81-b262c87f9bc4",
             "schema": { "type": "string" }
+          },
+          {
+            "name": "includeSecondaryOwners",
+            "required": false,
+            "in": "query",
+            "description": "When true, secondary owners are included in results alongside other users. When false, secondary owners are excluded from results. Defaults to `false`.",
+            "example": false,
+            "schema": { "type": "boolean" }
           },
           {
             "name": "offset",
@@ -793,6 +892,19 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -875,6 +987,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/UserNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -983,6 +1108,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1069,6 +1207,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1142,6 +1293,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/UserNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -1227,6 +1391,19 @@
                     { "$ref": "#/components/schemas/BusinessNotFoundException" }
                   ]
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -1358,6 +1535,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1409,7 +1599,7 @@
             }
           },
           "400": {
-            "description": "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException, \n        IncorrectFinancingAmountException",
+            "description": "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,\n        IncorrectFinancingAmountException",
             "content": {
               "application/json": {
                 "schema": {
@@ -1473,6 +1663,19 @@
                     }
                   ]
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -1547,6 +1750,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/OfferNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -1662,6 +1878,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1733,6 +1962,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/IssuedProductNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -1858,6 +2100,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1944,6 +2199,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2002,7 +2270,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "7d632bf1-8537-4c93-bc4a-f485a789f95e,1f05fd2d-2140-41c4-b294-5e0b0196cb6f",
+            "example": "4376bbac-7e0d-4e9a-9c34-a231effbee26,7fc8f162-c95c-4e11-af88-5e4aef993bf1",
             "schema": { "type": "string" }
           },
           {
@@ -2062,6 +2330,19 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -2145,6 +2426,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/BankAccountNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -2239,6 +2533,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2313,6 +2620,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2348,7 +2668,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "95dbeab9-f94f-460d-85b8-a50b7bb0b136,782ec087-24f5-40d9-91d4-d005b7d06c14",
+            "example": "358ff585-7021-4d03-bf63-9446a1506e59,03e3c306-6257-4edf-804f-8cc46b0148f9",
             "schema": { "type": "string" }
           },
           {
@@ -2448,6 +2768,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2519,6 +2852,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/DrawRequestNotFoundException"
                 }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -2644,6 +2990,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2708,6 +3067,19 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -2825,6 +3197,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2927,6 +3312,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3013,6 +3411,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3085,6 +3496,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3133,6 +3557,7 @@
           }
         ],
         "responses": {
+          "204": { "description": "" },
           "400": {
             "description": "BadRequestException",
             "content": {
@@ -3146,6 +3571,19 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
               }
             }
           },
@@ -3242,6 +3680,19 @@
               }
             }
           },
+          "429": {
+            "description": "Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3260,7 +3711,7 @@
   },
   "info": {
     "title": "Kanmon Public V2 API",
-    "description": "Kanmon's public api. Contains all of the endpoints for both capital providers and platforms",
+    "description": "Kanmon's public api. Contains all of the endpoints for both capital providers and platforms.\n\n## Rate limiting\n\nEndpoints in this API enforce a per-platform request quota. Responses include the following headers when a quota is in effect:\n\n- `X-RateLimit-Limit` — maximum requests allowed per minute.\n- `X-RateLimit-Remaining` — requests remaining in the current window.\n\nWhen the quota is exhausted the API responds with `429 Too Many Requests`. Platforms without a configured quota are unlimited and these headers are omitted.",
     "version": "2.0.0",
     "contact": {}
   },
@@ -3902,7 +4353,7 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.",
             "example": ["PRIMARY_OWNER"],
             "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
@@ -3929,7 +4380,8 @@
           "platformUserId": {
             "type": "string",
             "description": "Your platform’s unique ID for the user.",
-            "example": "12345"
+            "example": "12345",
+            "nullable": true
           },
           "platformBusinessId": {
             "type": "string",
@@ -3980,9 +4432,12 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.",
             "example": ["PRIMARY_OWNER"],
-            "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
+            "items": {
+              "type": "string",
+              "enum": ["PRIMARY_OWNER", "OPERATOR", "SECONDARY_OWNER"]
+            }
           },
           "metadata": {
             "type": "object",
@@ -4088,9 +4543,9 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.",
             "example": ["PRIMARY_OWNER"],
-            "items": { "type": "string", "enum": ["OPERATOR", "PRIMARY_OWNER"] }
+            "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
           "metadata": {
             "type": "object",
@@ -4861,6 +5316,7 @@
           "feeAmountCents"
         ]
       },
+      "RepaymentCadence": { "type": "string", "enum": ["WEEKLY", "MONTHLY"] },
       "LineOfCreditOfferTerms": {
         "type": "object",
         "properties": {
@@ -4885,7 +5341,22 @@
           },
           "repaymentDurationMonths": {
             "type": "number",
-            "description": "The duration of the repayment for each draw - in months.",
+            "description": "The duration of the repayment for each draw - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.",
+            "example": 3,
+            "deprecated": true
+          },
+          "repaymentCadence": {
+            "example": "MONTHLY",
+            "$ref": "#/components/schemas/RepaymentCadence"
+          },
+          "gracePeriodDays": {
+            "type": "number",
+            "description": "The number of days after each draw during which no installment payments are due. Interest still accrues.",
+            "example": 30
+          },
+          "numPaymentPeriods": {
+            "type": "number",
+            "description": "The number of installment payment periods for each draw.",
             "example": 3
           }
         },
@@ -4894,7 +5365,10 @@
           "totalLimitCents",
           "interestRatePercentage",
           "feePercentage",
-          "repaymentDurationMonths"
+          "repaymentDurationMonths",
+          "repaymentCadence",
+          "gracePeriodDays",
+          "numPaymentPeriods"
         ]
       },
       "IntegratedMcaOfferTerms": {
@@ -5308,7 +5782,22 @@
           },
           "repaymentDurationMonths": {
             "type": "number",
-            "description": "The duration of the repayment for each draw - in months.",
+            "description": "The duration of the repayment for each draw - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.",
+            "example": 3,
+            "deprecated": true
+          },
+          "repaymentCadence": {
+            "example": "MONTHLY",
+            "$ref": "#/components/schemas/RepaymentCadence"
+          },
+          "gracePeriodDays": {
+            "type": "number",
+            "description": "The number of days after each draw during which no installment payments are due. Interest still accrues.",
+            "example": 30
+          },
+          "numPaymentPeriods": {
+            "type": "number",
+            "description": "The number of installment payment periods for each draw.",
             "example": 3
           }
         },
@@ -5318,7 +5807,10 @@
           "availableLimitCents",
           "interestRatePercentage",
           "feePercentage",
-          "repaymentDurationMonths"
+          "repaymentDurationMonths",
+          "repaymentCadence",
+          "gracePeriodDays",
+          "numPaymentPeriods"
         ]
       },
       "AccountsPayableFinancingServicingData": {
@@ -5906,8 +6398,28 @@
           },
           "repaymentDurationMonths": {
             "type": "number",
-            "description": "The duration of the repayment for the draw request - in months.",
-            "example": 6
+            "description": "The duration of the repayment for the draw request - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.",
+            "example": 6,
+            "deprecated": true
+          },
+          "repaymentCadence": {
+            "example": "MONTHLY",
+            "$ref": "#/components/schemas/RepaymentCadence"
+          },
+          "gracePeriodDays": {
+            "type": "number",
+            "description": "The number of days after the draw during which no installment payments are due. Interest still accrues.",
+            "example": 30
+          },
+          "numPaymentPeriods": {
+            "type": "number",
+            "description": "The number of installment payment periods for the draw request.",
+            "example": 3
+          },
+          "remainingBalanceCents": {
+            "type": "number",
+            "description": "The outstanding principal balance on the draw request - in cents. Equal to the original draw amount minus confirmed principal repayments.",
+            "example": 500000
           },
           "createdAt": {
             "type": "string",
@@ -5930,6 +6442,10 @@
           "interestRatePercentage",
           "feePercentage",
           "repaymentDurationMonths",
+          "repaymentCadence",
+          "gracePeriodDays",
+          "numPaymentPeriods",
+          "remainingBalanceCents",
           "createdAt",
           "updatedAt"
         ]

@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Kanmon Public V2 API
- * Kanmon\'s public api. Contains all of the endpoints for both capital providers and platforms
+ * Kanmon\'s public api. Contains all of the endpoints for both capital providers and platforms.  ## Rate limiting  Endpoints in this API enforce a per-platform request quota. Responses include the following headers when a quota is in effect:  - `X-RateLimit-Limit` — maximum requests allowed per minute. - `X-RateLimit-Remaining` — requests remaining in the current window.  When the quota is exhausted the API responds with `429 Too Many Requests`. Platforms without a configured quota are unlimited and these headers are omitted.
  *
  * The version of the OpenAPI document: 2.0.0
  * 
@@ -19,6 +19,12 @@ import {
     DrawRequestStateFromJSONTyped,
     DrawRequestStateToJSON,
 } from './DrawRequestState';
+import type { RepaymentCadence } from './RepaymentCadence';
+import {
+    RepaymentCadenceFromJSON,
+    RepaymentCadenceFromJSONTyped,
+    RepaymentCadenceToJSON,
+} from './RepaymentCadence';
 
 /**
  * 
@@ -75,11 +81,36 @@ export interface DrawRequest {
      */
     feePercentage: number;
     /**
-     * The duration of the repayment for the draw request - in months.
+     * The duration of the repayment for the draw request - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.
+     * @type {number}
+     * @memberof DrawRequest
+     * @deprecated
+     */
+    repaymentDurationMonths: number;
+    /**
+     * 
+     * @type {RepaymentCadence}
+     * @memberof DrawRequest
+     */
+    repaymentCadence: RepaymentCadence;
+    /**
+     * The number of days after the draw during which no installment payments are due. Interest still accrues.
      * @type {number}
      * @memberof DrawRequest
      */
-    repaymentDurationMonths: number;
+    gracePeriodDays: number;
+    /**
+     * The number of installment payment periods for the draw request.
+     * @type {number}
+     * @memberof DrawRequest
+     */
+    numPaymentPeriods: number;
+    /**
+     * The outstanding principal balance on the draw request - in cents. Equal to the original draw amount minus confirmed principal repayments.
+     * @type {number}
+     * @memberof DrawRequest
+     */
+    remainingBalanceCents: number;
     /**
      * Creation UTC ISO 8601 timestamp of the draw request.
      * @type {string}
@@ -109,6 +140,10 @@ export function instanceOfDrawRequest(value: object): value is DrawRequest {
     if (!('interestRatePercentage' in value) || value['interestRatePercentage'] === undefined) return false;
     if (!('feePercentage' in value) || value['feePercentage'] === undefined) return false;
     if (!('repaymentDurationMonths' in value) || value['repaymentDurationMonths'] === undefined) return false;
+    if (!('repaymentCadence' in value) || value['repaymentCadence'] === undefined) return false;
+    if (!('gracePeriodDays' in value) || value['gracePeriodDays'] === undefined) return false;
+    if (!('numPaymentPeriods' in value) || value['numPaymentPeriods'] === undefined) return false;
+    if (!('remainingBalanceCents' in value) || value['remainingBalanceCents'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
@@ -133,6 +168,10 @@ export function DrawRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'interestRatePercentage': json['interestRatePercentage'],
         'feePercentage': json['feePercentage'],
         'repaymentDurationMonths': json['repaymentDurationMonths'],
+        'repaymentCadence': RepaymentCadenceFromJSON(json['repaymentCadence']),
+        'gracePeriodDays': json['gracePeriodDays'],
+        'numPaymentPeriods': json['numPaymentPeriods'],
+        'remainingBalanceCents': json['remainingBalanceCents'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
     };
@@ -153,6 +192,10 @@ export function DrawRequestToJSON(value?: DrawRequest | null): any {
         'interestRatePercentage': value['interestRatePercentage'],
         'feePercentage': value['feePercentage'],
         'repaymentDurationMonths': value['repaymentDurationMonths'],
+        'repaymentCadence': RepaymentCadenceToJSON(value['repaymentCadence']),
+        'gracePeriodDays': value['gracePeriodDays'],
+        'numPaymentPeriods': value['numPaymentPeriods'],
+        'remainingBalanceCents': value['remainingBalanceCents'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],
     };

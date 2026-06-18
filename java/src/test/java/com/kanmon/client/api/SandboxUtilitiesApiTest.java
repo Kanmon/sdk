@@ -1,6 +1,6 @@
 /*
  * Kanmon Public V2 API
- * Kanmon's public api. Contains all of the endpoints for both capital providers and platforms
+ * Kanmon's public api. Contains all of the endpoints for both capital providers and platforms.  ## Rate limiting  Endpoints in this API enforce a per-platform request quota. Responses include the following headers when a quota is in effect:  - `X-RateLimit-Limit` — maximum requests allowed per minute. - `X-RateLimit-Remaining` — requests remaining in the current window.  When the quota is exhausted the API responds with `429 Too Many Requests`. Platforms without a configured quota are unlimited and these headers are omitted.
  *
  * The version of the OpenAPI document: 2.0.0
  * 
@@ -42,7 +42,8 @@ public class SandboxUtilitiesApiTest {
     @Test
     public void sandboxDeleteBusinessTest() throws ApiException {
         Object id = null;
-        api.sandboxDeleteBusiness(id);
+        String idType = null;
+        api.sandboxDeleteBusiness(id, idType);
         // TODO: test validations
     }
 
@@ -54,7 +55,8 @@ public class SandboxUtilitiesApiTest {
     @Test
     public void sandboxResetBusinessTest() throws ApiException {
         Object id = null;
-        Business response = api.sandboxResetBusiness(id);
+        String idType = null;
+        Business response = api.sandboxResetBusiness(id, idType);
         // TODO: test validations
     }
 

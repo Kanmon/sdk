@@ -11,26 +11,22 @@
  */
 
 
-package com.kanmon.client.auth;
+package com.kanmon.client.model;
 
-import com.kanmon.client.Pair;
-import com.kanmon.client.ApiException;
+import com.google.gson.annotations.SerializedName;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-import java.net.URI;
-import java.util.Map;
-import java.util.List;
-
-public interface Authentication {
+/**
+ * Model tests for RepaymentCadence
+ */
+public class RepaymentCadenceTest {
     /**
-     * Apply authentication settings to header and query params.
-     *
-     * @param queryParams List of query parameters
-     * @param headerParams Map of header parameters
-     * @param cookieParams Map of cookie parameters
-     * @param payload HTTP request body
-     * @param method HTTP method
-     * @param uri URI
-     * @throws ApiException if failed to update the parameters
+     * Model tests for RepaymentCadence
      */
-    void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams, String payload, String method, URI uri) throws ApiException;
+    @Test
+    public void testRepaymentCadence() {
+        // TODO: test RepaymentCadence
+    }
+
 }

@@ -24,26 +24,18 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 /**
- * Gets or Sets ProductType
+ * Gets or Sets RepaymentCadence
  */
-@JsonAdapter(ProductType.Adapter.class)
-public enum ProductType {
+@JsonAdapter(RepaymentCadence.Adapter.class)
+public enum RepaymentCadence {
   
-  INVOICE_FINANCING("INVOICE_FINANCING"),
+  WEEKLY("WEEKLY"),
   
-  TERM_LOAN("TERM_LOAN"),
-  
-  MCA("MCA"),
-  
-  LINE_OF_CREDIT("LINE_OF_CREDIT"),
-  
-  INTEGRATED_MCA("INTEGRATED_MCA"),
-  
-  ACCOUNTS_PAYABLE_FINANCING("ACCOUNTS_PAYABLE_FINANCING");
+  MONTHLY("MONTHLY");
 
   private String value;
 
-  ProductType(String value) {
+  RepaymentCadence(String value) {
     this.value = value;
   }
 
@@ -56,8 +48,8 @@ public enum ProductType {
     return String.valueOf(value);
   }
 
-  public static ProductType fromValue(String value) {
-    for (ProductType b : ProductType.values()) {
+  public static RepaymentCadence fromValue(String value) {
+    for (RepaymentCadence b : RepaymentCadence.values()) {
       if (b.value.equals(value)) {
         return b;
       }
@@ -65,22 +57,22 @@ public enum ProductType {
     throw new IllegalArgumentException("Unexpected value '" + value + "'");
   }
 
-  public static class Adapter extends TypeAdapter<ProductType> {
+  public static class Adapter extends TypeAdapter<RepaymentCadence> {
     @Override
-    public void write(final JsonWriter jsonWriter, final ProductType enumeration) throws IOException {
+    public void write(final JsonWriter jsonWriter, final RepaymentCadence enumeration) throws IOException {
       jsonWriter.value(enumeration.getValue());
     }
 
     @Override
-    public ProductType read(final JsonReader jsonReader) throws IOException {
+    public RepaymentCadence read(final JsonReader jsonReader) throws IOException {
       String value = jsonReader.nextString();
-      return ProductType.fromValue(value);
+      return RepaymentCadence.fromValue(value);
     }
   }
 
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
     String value = jsonElement.getAsString();
-    ProductType.fromValue(value);
+    RepaymentCadence.fromValue(value);
   }
 }
 

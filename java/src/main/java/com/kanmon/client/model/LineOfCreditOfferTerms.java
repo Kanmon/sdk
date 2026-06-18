@@ -1,6 +1,6 @@
 /*
  * Kanmon Public V2 API
- * Kanmon's public api. Contains all of the endpoints for both capital providers and platforms
+ * Kanmon's public api. Contains all of the endpoints for both capital providers and platforms.  ## Rate limiting  Endpoints in this API enforce a per-platform request quota. Responses include the following headers when a quota is in effect:  - `X-RateLimit-Limit` — maximum requests allowed per minute. - `X-RateLimit-Remaining` — requests remaining in the current window.  When the quota is exhausted the API responds with `429 Too Many Requests`. Platforms without a configured quota are unlimited and these headers are omitted.
  *
  * The version of the OpenAPI document: 2.0.0
  * 
@@ -20,6 +20,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.kanmon.client.model.ProductType;
+import com.kanmon.client.model.RepaymentCadence;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -69,8 +70,21 @@ public class LineOfCreditOfferTerms {
   private BigDecimal feePercentage;
 
   public static final String SERIALIZED_NAME_REPAYMENT_DURATION_MONTHS = "repaymentDurationMonths";
+  @Deprecated
   @SerializedName(SERIALIZED_NAME_REPAYMENT_DURATION_MONTHS)
   private BigDecimal repaymentDurationMonths;
+
+  public static final String SERIALIZED_NAME_REPAYMENT_CADENCE = "repaymentCadence";
+  @SerializedName(SERIALIZED_NAME_REPAYMENT_CADENCE)
+  private RepaymentCadence repaymentCadence;
+
+  public static final String SERIALIZED_NAME_GRACE_PERIOD_DAYS = "gracePeriodDays";
+  @SerializedName(SERIALIZED_NAME_GRACE_PERIOD_DAYS)
+  private BigDecimal gracePeriodDays;
+
+  public static final String SERIALIZED_NAME_NUM_PAYMENT_PERIODS = "numPaymentPeriods";
+  @SerializedName(SERIALIZED_NAME_NUM_PAYMENT_PERIODS)
+  private BigDecimal numPaymentPeriods;
 
   public LineOfCreditOfferTerms() {
   }
@@ -151,24 +165,129 @@ public class LineOfCreditOfferTerms {
   }
 
 
+  @Deprecated
   public LineOfCreditOfferTerms repaymentDurationMonths(BigDecimal repaymentDurationMonths) {
     this.repaymentDurationMonths = repaymentDurationMonths;
     return this;
   }
 
   /**
-   * The duration of the repayment for each draw - in months.
+   * The duration of the repayment for each draw - in months. Deprecated: use &#x60;numPaymentPeriods&#x60; and &#x60;repaymentCadence&#x60; instead.
    * @return repaymentDurationMonths
+   * @deprecated
    */
+  @Deprecated
   @javax.annotation.Nonnull
   public BigDecimal getRepaymentDurationMonths() {
     return repaymentDurationMonths;
   }
 
+  @Deprecated
   public void setRepaymentDurationMonths(BigDecimal repaymentDurationMonths) {
     this.repaymentDurationMonths = repaymentDurationMonths;
   }
 
+
+  public LineOfCreditOfferTerms repaymentCadence(RepaymentCadence repaymentCadence) {
+    this.repaymentCadence = repaymentCadence;
+    return this;
+  }
+
+  /**
+   * Get repaymentCadence
+   * @return repaymentCadence
+   */
+  @javax.annotation.Nonnull
+  public RepaymentCadence getRepaymentCadence() {
+    return repaymentCadence;
+  }
+
+  public void setRepaymentCadence(RepaymentCadence repaymentCadence) {
+    this.repaymentCadence = repaymentCadence;
+  }
+
+
+  public LineOfCreditOfferTerms gracePeriodDays(BigDecimal gracePeriodDays) {
+    this.gracePeriodDays = gracePeriodDays;
+    return this;
+  }
+
+  /**
+   * The number of days after each draw during which no installment payments are due. Interest still accrues.
+   * @return gracePeriodDays
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getGracePeriodDays() {
+    return gracePeriodDays;
+  }
+
+  public void setGracePeriodDays(BigDecimal gracePeriodDays) {
+    this.gracePeriodDays = gracePeriodDays;
+  }
+
+
+  public LineOfCreditOfferTerms numPaymentPeriods(BigDecimal numPaymentPeriods) {
+    this.numPaymentPeriods = numPaymentPeriods;
+    return this;
+  }
+
+  /**
+   * The number of installment payment periods for each draw.
+   * @return numPaymentPeriods
+   */
+  @javax.annotation.Nonnull
+  public BigDecimal getNumPaymentPeriods() {
+    return numPaymentPeriods;
+  }
+
+  public void setNumPaymentPeriods(BigDecimal numPaymentPeriods) {
+    this.numPaymentPeriods = numPaymentPeriods;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the LineOfCreditOfferTerms instance itself
+   */
+  public LineOfCreditOfferTerms putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
+  }
 
 
   @Override
@@ -184,12 +303,16 @@ public class LineOfCreditOfferTerms {
         Objects.equals(this.totalLimitCents, lineOfCreditOfferTerms.totalLimitCents) &&
         Objects.equals(this.interestRatePercentage, lineOfCreditOfferTerms.interestRatePercentage) &&
         Objects.equals(this.feePercentage, lineOfCreditOfferTerms.feePercentage) &&
-        Objects.equals(this.repaymentDurationMonths, lineOfCreditOfferTerms.repaymentDurationMonths);
+        Objects.equals(this.repaymentDurationMonths, lineOfCreditOfferTerms.repaymentDurationMonths) &&
+        Objects.equals(this.repaymentCadence, lineOfCreditOfferTerms.repaymentCadence) &&
+        Objects.equals(this.gracePeriodDays, lineOfCreditOfferTerms.gracePeriodDays) &&
+        Objects.equals(this.numPaymentPeriods, lineOfCreditOfferTerms.numPaymentPeriods)&&
+        Objects.equals(this.additionalProperties, lineOfCreditOfferTerms.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(productType, totalLimitCents, interestRatePercentage, feePercentage, repaymentDurationMonths);
+    return Objects.hash(productType, totalLimitCents, interestRatePercentage, feePercentage, repaymentDurationMonths, repaymentCadence, gracePeriodDays, numPaymentPeriods, additionalProperties);
   }
 
   @Override
@@ -201,6 +324,10 @@ public class LineOfCreditOfferTerms {
     sb.append("    interestRatePercentage: ").append(toIndentedString(interestRatePercentage)).append("\n");
     sb.append("    feePercentage: ").append(toIndentedString(feePercentage)).append("\n");
     sb.append("    repaymentDurationMonths: ").append(toIndentedString(repaymentDurationMonths)).append("\n");
+    sb.append("    repaymentCadence: ").append(toIndentedString(repaymentCadence)).append("\n");
+    sb.append("    gracePeriodDays: ").append(toIndentedString(gracePeriodDays)).append("\n");
+    sb.append("    numPaymentPeriods: ").append(toIndentedString(numPaymentPeriods)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -228,6 +355,9 @@ public class LineOfCreditOfferTerms {
     openapiFields.add("interestRatePercentage");
     openapiFields.add("feePercentage");
     openapiFields.add("repaymentDurationMonths");
+    openapiFields.add("repaymentCadence");
+    openapiFields.add("gracePeriodDays");
+    openapiFields.add("numPaymentPeriods");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -236,6 +366,9 @@ public class LineOfCreditOfferTerms {
     openapiRequiredFields.add("interestRatePercentage");
     openapiRequiredFields.add("feePercentage");
     openapiRequiredFields.add("repaymentDurationMonths");
+    openapiRequiredFields.add("repaymentCadence");
+    openapiRequiredFields.add("gracePeriodDays");
+    openapiRequiredFields.add("numPaymentPeriods");
   }
 
   /**
@@ -251,14 +384,6 @@ public class LineOfCreditOfferTerms {
         }
       }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LineOfCreditOfferTerms.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LineOfCreditOfferTerms` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
       // check to make sure all required properties/fields are present in the JSON string
       for (String requiredField : LineOfCreditOfferTerms.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
@@ -268,6 +393,8 @@ public class LineOfCreditOfferTerms {
         JsonObject jsonObj = jsonElement.getAsJsonObject();
       // validate the required field `productType`
       ProductType.validateJsonElement(jsonObj.get("productType"));
+      // validate the required field `repaymentCadence`
+      RepaymentCadence.validateJsonElement(jsonObj.get("repaymentCadence"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
@@ -285,6 +412,28 @@ public class LineOfCreditOfferTerms {
            @Override
            public void write(JsonWriter out, LineOfCreditOfferTerms value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -292,7 +441,28 @@ public class LineOfCreditOfferTerms {
            public LineOfCreditOfferTerms read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             LineOfCreditOfferTerms instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();

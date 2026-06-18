@@ -135,6 +135,7 @@ src/models/PrimaryBusinessOwnerAlreadyExistsForBusinessException.ts
 src/models/PrimaryBusinessOwnerAlreadyExistsWithEmailException.ts
 src/models/PrimaryBusinessOwnerNotFoundException.ts
 src/models/ProductType.ts
+src/models/RepaymentCadence.ts
 src/models/SessionInvoice.ts
 src/models/SessionInvoiceWithInvoiceFile.ts
 src/models/SomeOffersHaveExpiredException.ts

@@ -1,6 +1,6 @@
 /*
  * Kanmon Public V2 API
- * Kanmon's public api. Contains all of the endpoints for both capital providers and platforms
+ * Kanmon's public api. Contains all of the endpoints for both capital providers and platforms.  ## Rate limiting  Endpoints in this API enforce a per-platform request quota. Responses include the following headers when a quota is in effect:  - `X-RateLimit-Limit` — maximum requests allowed per minute. - `X-RateLimit-Remaining` — requests remaining in the current window.  When the quota is exhausted the API responds with `429 Too Many Requests`. Platforms without a configured quota are unlimited and these headers are omitted.
  *
  * The version of the OpenAPI document: 2.0.0
  * 
@@ -97,6 +97,7 @@ public class IssuedProductsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -201,6 +202,7 @@ public class IssuedProductsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -228,6 +230,7 @@ public class IssuedProductsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -257,6 +260,7 @@ public class IssuedProductsApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -280,6 +284,7 @@ public class IssuedProductsApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -352,6 +357,7 @@ public class IssuedProductsApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -373,6 +379,7 @@ public class IssuedProductsApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -396,6 +403,7 @@ public class IssuedProductsApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> IssuedProductNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> Too Many Requests. Returned when rate limiting applies to this platform and the request limit has been exceeded. </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */

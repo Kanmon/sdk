@@ -14,19 +14,20 @@
 
 
 /**
- * The type of document that is uploaded.
+ * 
  * @export
  */
-export const BusinessDocumentType = {
-    INVOICE: 'INVOICE'
+export const RepaymentCadence = {
+    WEEKLY: 'WEEKLY',
+    MONTHLY: 'MONTHLY'
 } as const;
-export type BusinessDocumentType = typeof BusinessDocumentType[keyof typeof BusinessDocumentType];
+export type RepaymentCadence = typeof RepaymentCadence[keyof typeof RepaymentCadence];
 
 
-export function instanceOfBusinessDocumentType(value: any): boolean {
-    for (const key in BusinessDocumentType) {
-        if (Object.prototype.hasOwnProperty.call(BusinessDocumentType, key)) {
-            if (BusinessDocumentType[key as keyof typeof BusinessDocumentType] === value) {
+export function instanceOfRepaymentCadence(value: any): boolean {
+    for (const key in RepaymentCadence) {
+        if (Object.prototype.hasOwnProperty.call(RepaymentCadence, key)) {
+            if (RepaymentCadence[key as keyof typeof RepaymentCadence] === value) {
                 return true;
             }
         }
@@ -34,15 +35,15 @@ export function instanceOfBusinessDocumentType(value: any): boolean {
     return false;
 }
 
-export function BusinessDocumentTypeFromJSON(json: any): BusinessDocumentType {
-    return BusinessDocumentTypeFromJSONTyped(json, false);
+export function RepaymentCadenceFromJSON(json: any): RepaymentCadence {
+    return RepaymentCadenceFromJSONTyped(json, false);
 }
 
-export function BusinessDocumentTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): BusinessDocumentType {
-    return json as BusinessDocumentType;
+export function RepaymentCadenceFromJSONTyped(json: any, ignoreDiscriminator: boolean): RepaymentCadence {
+    return json as RepaymentCadence;
 }
 
-export function BusinessDocumentTypeToJSON(value?: BusinessDocumentType | null): any {
+export function RepaymentCadenceToJSON(value?: RepaymentCadence | null): any {
     return value as any;
 }
 
