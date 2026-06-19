@@ -25,6 +25,7 @@ import type {
   GetActivityLogsResponse,
   GetBusinessesResponse,
   InternalServerErrorException,
+  TooManyRequestsException,
   UpdateBusinessRequestBody,
 } from '../models/index';
 import {
@@ -48,6 +49,8 @@ import {
     GetBusinessesResponseToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
     UpdateBusinessRequestBodyFromJSON,
     UpdateBusinessRequestBodyToJSON,
 } from '../models/index';

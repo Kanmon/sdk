@@ -24,6 +24,7 @@ import type {
   ForbiddenException,
   GetBusinessBankAccountsResponse,
   InternalServerErrorException,
+  TooManyRequestsException,
   UpdateBusinessAccountRequestBody,
 } from '../models/index';
 import {
@@ -45,6 +46,8 @@ import {
     GetBusinessBankAccountsResponseToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
     UpdateBusinessAccountRequestBodyFromJSON,
     UpdateBusinessAccountRequestBodyToJSON,
 } from '../models/index';

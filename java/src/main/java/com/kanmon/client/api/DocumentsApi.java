@@ -32,6 +32,7 @@ import com.kanmon.client.model.CreateBusinessDocumentsResponse;
 import java.io.File;
 import com.kanmon.client.model.ForbiddenException;
 import com.kanmon.client.model.InternalServerErrorException;
+import com.kanmon.client.model.TooManyRequestsException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -90,6 +91,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -175,6 +177,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -197,6 +200,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -221,6 +225,7 @@ public class DocumentsApi {
         <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */

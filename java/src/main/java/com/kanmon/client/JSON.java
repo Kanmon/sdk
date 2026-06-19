@@ -271,6 +271,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.SomeOffersHaveExpiredException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.TermLoanOfferTerms.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.TermLoanServicingData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.TooManyRequestsException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UnmergeableBusinessException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UpdateBusinessAccountRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.UpdateBusinessRequestBody.CustomTypeAdapterFactory());

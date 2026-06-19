@@ -26,6 +26,7 @@ import type {
   IntegratedMcaReceivable,
   InternalServerErrorException,
   IssuedProductNotFoundException,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -50,6 +51,8 @@ import {
     InternalServerErrorExceptionToJSON,
     IssuedProductNotFoundExceptionFromJSON,
     IssuedProductNotFoundExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface CreateIntegratedMcaReceivableRequest {

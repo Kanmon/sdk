@@ -34,6 +34,7 @@ import com.kanmon.client.model.CreateSessionTokenRequestBody;
 import com.kanmon.client.model.EmbeddedSession;
 import com.kanmon.client.model.ForbiddenException;
 import com.kanmon.client.model.InternalServerErrorException;
+import com.kanmon.client.model.TooManyRequestsException;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -92,6 +93,7 @@ public class EmbeddedSessionsApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessHasNoInvoiceFinancingProductException, PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -165,6 +167,7 @@ public class EmbeddedSessionsApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessHasNoInvoiceFinancingProductException, PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -187,6 +190,7 @@ public class EmbeddedSessionsApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessHasNoInvoiceFinancingProductException, PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -211,6 +215,7 @@ public class EmbeddedSessionsApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessHasNoInvoiceFinancingProductException, PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */

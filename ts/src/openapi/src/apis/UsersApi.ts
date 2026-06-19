@@ -25,6 +25,7 @@ import type {
   MergeUsersRequestBody,
   MergeUsersResponseBody,
   PrimaryBusinessOwnerAlreadyExistsForBusinessException,
+  TooManyRequestsException,
   UpdateUser409Response,
   UpdateUserRequestBody,
   User,
@@ -51,6 +52,8 @@ import {
     MergeUsersResponseBodyToJSON,
     PrimaryBusinessOwnerAlreadyExistsForBusinessExceptionFromJSON,
     PrimaryBusinessOwnerAlreadyExistsForBusinessExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
     UpdateUser409ResponseFromJSON,
     UpdateUser409ResponseToJSON,
     UpdateUserRequestBodyFromJSON,
@@ -70,6 +73,7 @@ export interface GetAllUsersRequest {
     platformUserIds?: string;
     platformBusinessIds?: string;
     businessIds?: string;
+    includeSecondaryOwners?: boolean;
     offset?: number;
     limit?: number;
     createdAtStart?: string;
@@ -156,6 +160,10 @@ export class UsersApi extends runtime.BaseAPI {
 
         if (requestParameters['businessIds'] != null) {
             queryParameters['businessIds'] = requestParameters['businessIds'];
+        }
+
+        if (requestParameters['includeSecondaryOwners'] != null) {
+            queryParameters['includeSecondaryOwners'] = requestParameters['includeSecondaryOwners'];
         }
 
         if (requestParameters['offset'] != null) {

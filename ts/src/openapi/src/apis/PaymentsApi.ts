@@ -23,6 +23,7 @@ import type {
   PaymentOrder,
   PaymentOrderNotFoundException,
   PaymentOrderStatus,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -41,6 +42,8 @@ import {
     PaymentOrderNotFoundExceptionToJSON,
     PaymentOrderStatusFromJSON,
     PaymentOrderStatusToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface GetPaymentByIdRequest {

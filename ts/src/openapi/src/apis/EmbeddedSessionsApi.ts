@@ -22,6 +22,7 @@ import type {
   EmbeddedSession,
   ForbiddenException,
   InternalServerErrorException,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -38,6 +39,8 @@ import {
     ForbiddenExceptionToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface CreateEmbeddedSessionRequest {

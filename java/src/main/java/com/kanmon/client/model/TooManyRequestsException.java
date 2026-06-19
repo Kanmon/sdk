@@ -46,16 +46,16 @@ import java.util.Set;
 import com.kanmon.client.JSON;
 
 /**
- * IncorrectRepaymentAmountException
+ * TooManyRequestsException
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
-public class IncorrectRepaymentAmountException {
+public class TooManyRequestsException {
   /**
    * Safe for programmatic use.
    */
   @JsonAdapter(ErrorCodeEnum.Adapter.class)
   public enum ErrorCodeEnum {
-    INCORRECT_REPAYMENT_AMOUNT_EXCEPTION("IncorrectRepaymentAmountException");
+    TOO_MANY_REQUESTS_EXCEPTION("TooManyRequestsException");
 
     private String value;
 
@@ -112,10 +112,10 @@ public class IncorrectRepaymentAmountException {
   @SerializedName(SERIALIZED_NAME_TIMESTAMP)
   private String timestamp;
 
-  public IncorrectRepaymentAmountException() {
+  public TooManyRequestsException() {
   }
 
-  public IncorrectRepaymentAmountException errorCode(ErrorCodeEnum errorCode) {
+  public TooManyRequestsException errorCode(ErrorCodeEnum errorCode) {
     this.errorCode = errorCode;
     return this;
   }
@@ -134,7 +134,7 @@ public class IncorrectRepaymentAmountException {
   }
 
 
-  public IncorrectRepaymentAmountException message(String message) {
+  public TooManyRequestsException message(String message) {
     this.message = message;
     return this;
   }
@@ -153,7 +153,7 @@ public class IncorrectRepaymentAmountException {
   }
 
 
-  public IncorrectRepaymentAmountException timestamp(String timestamp) {
+  public TooManyRequestsException timestamp(String timestamp) {
     this.timestamp = timestamp;
     return this;
   }
@@ -184,9 +184,9 @@ public class IncorrectRepaymentAmountException {
    *
    * @param key name of the property
    * @param value value of the property
-   * @return the IncorrectRepaymentAmountException instance itself
+   * @return the TooManyRequestsException instance itself
    */
-  public IncorrectRepaymentAmountException putAdditionalProperty(String key, Object value) {
+  public TooManyRequestsException putAdditionalProperty(String key, Object value) {
     if (this.additionalProperties == null) {
         this.additionalProperties = new HashMap<String, Object>();
     }
@@ -225,11 +225,11 @@ public class IncorrectRepaymentAmountException {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IncorrectRepaymentAmountException incorrectRepaymentAmountException = (IncorrectRepaymentAmountException) o;
-    return Objects.equals(this.errorCode, incorrectRepaymentAmountException.errorCode) &&
-        Objects.equals(this.message, incorrectRepaymentAmountException.message) &&
-        Objects.equals(this.timestamp, incorrectRepaymentAmountException.timestamp)&&
-        Objects.equals(this.additionalProperties, incorrectRepaymentAmountException.additionalProperties);
+    TooManyRequestsException tooManyRequestsException = (TooManyRequestsException) o;
+    return Objects.equals(this.errorCode, tooManyRequestsException.errorCode) &&
+        Objects.equals(this.message, tooManyRequestsException.message) &&
+        Objects.equals(this.timestamp, tooManyRequestsException.timestamp)&&
+        Objects.equals(this.additionalProperties, tooManyRequestsException.additionalProperties);
   }
 
   @Override
@@ -240,7 +240,7 @@ public class IncorrectRepaymentAmountException {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IncorrectRepaymentAmountException {\n");
+    sb.append("class TooManyRequestsException {\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
@@ -282,17 +282,17 @@ public class IncorrectRepaymentAmountException {
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to IncorrectRepaymentAmountException
+   * @throws IOException if the JSON Element is invalid with respect to TooManyRequestsException
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!IncorrectRepaymentAmountException.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in IncorrectRepaymentAmountException is not found in the empty JSON string", IncorrectRepaymentAmountException.openapiRequiredFields.toString()));
+        if (!TooManyRequestsException.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in TooManyRequestsException is not found in the empty JSON string", TooManyRequestsException.openapiRequiredFields.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : IncorrectRepaymentAmountException.openapiRequiredFields) {
+      for (String requiredField : TooManyRequestsException.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
@@ -315,16 +315,16 @@ public class IncorrectRepaymentAmountException {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!IncorrectRepaymentAmountException.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'IncorrectRepaymentAmountException' and its subtypes
+       if (!TooManyRequestsException.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'TooManyRequestsException' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<IncorrectRepaymentAmountException> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(IncorrectRepaymentAmountException.class));
+       final TypeAdapter<TooManyRequestsException> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(TooManyRequestsException.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<IncorrectRepaymentAmountException>() {
+       return (TypeAdapter<T>) new TypeAdapter<TooManyRequestsException>() {
            @Override
-           public void write(JsonWriter out, IncorrectRepaymentAmountException value) throws IOException {
+           public void write(JsonWriter out, TooManyRequestsException value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              obj.remove("additionalProperties");
              // serialize additional properties
@@ -352,12 +352,12 @@ public class IncorrectRepaymentAmountException {
            }
 
            @Override
-           public IncorrectRepaymentAmountException read(JsonReader in) throws IOException {
+           public TooManyRequestsException read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              JsonObject jsonObj = jsonElement.getAsJsonObject();
              // store additional fields in the deserialized instance
-             IncorrectRepaymentAmountException instance = thisAdapter.fromJsonTree(jsonObj);
+             TooManyRequestsException instance = thisAdapter.fromJsonTree(jsonObj);
              for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
                if (!openapiFields.contains(entry.getKey())) {
                  if (entry.getValue().isJsonPrimitive()) { // primitive type
@@ -384,18 +384,18 @@ public class IncorrectRepaymentAmountException {
   }
 
   /**
-   * Create an instance of IncorrectRepaymentAmountException given an JSON string
+   * Create an instance of TooManyRequestsException given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of IncorrectRepaymentAmountException
-   * @throws IOException if the JSON string is invalid with respect to IncorrectRepaymentAmountException
+   * @return An instance of TooManyRequestsException
+   * @throws IOException if the JSON string is invalid with respect to TooManyRequestsException
    */
-  public static IncorrectRepaymentAmountException fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, IncorrectRepaymentAmountException.class);
+  public static TooManyRequestsException fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, TooManyRequestsException.class);
   }
 
   /**
-   * Convert an instance of IncorrectRepaymentAmountException to an JSON string
+   * Convert an instance of TooManyRequestsException to an JSON string
    *
    * @return JSON string
    */

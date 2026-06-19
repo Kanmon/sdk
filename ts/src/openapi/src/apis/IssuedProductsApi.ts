@@ -21,6 +21,7 @@ import type {
   InternalServerErrorException,
   IssuedProduct,
   IssuedProductNotFoundException,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -35,6 +36,8 @@ import {
     IssuedProductToJSON,
     IssuedProductNotFoundExceptionFromJSON,
     IssuedProductNotFoundExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface GetAllIssuedProductsRequest {

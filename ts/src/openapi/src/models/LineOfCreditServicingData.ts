@@ -19,6 +19,12 @@ import {
     ProductTypeFromJSONTyped,
     ProductTypeToJSON,
 } from './ProductType';
+import type { RepaymentCadence } from './RepaymentCadence';
+import {
+    RepaymentCadenceFromJSON,
+    RepaymentCadenceFromJSONTyped,
+    RepaymentCadenceToJSON,
+} from './RepaymentCadence';
 
 /**
  * 
@@ -57,11 +63,30 @@ export interface LineOfCreditServicingData {
      */
     feePercentage: number;
     /**
-     * The duration of the repayment for each draw - in months.
+     * The duration of the repayment for each draw - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.
+     * @type {number}
+     * @memberof LineOfCreditServicingData
+     * @deprecated
+     */
+    repaymentDurationMonths: number;
+    /**
+     * 
+     * @type {RepaymentCadence}
+     * @memberof LineOfCreditServicingData
+     */
+    repaymentCadence: RepaymentCadence;
+    /**
+     * The number of days after each draw during which no installment payments are due. Interest still accrues.
      * @type {number}
      * @memberof LineOfCreditServicingData
      */
-    repaymentDurationMonths: number;
+    gracePeriodDays: number;
+    /**
+     * The number of installment payment periods for each draw.
+     * @type {number}
+     * @memberof LineOfCreditServicingData
+     */
+    numPaymentPeriods: number;
 }
 
 
@@ -76,6 +101,9 @@ export function instanceOfLineOfCreditServicingData(value: object): value is Lin
     if (!('interestRatePercentage' in value) || value['interestRatePercentage'] === undefined) return false;
     if (!('feePercentage' in value) || value['feePercentage'] === undefined) return false;
     if (!('repaymentDurationMonths' in value) || value['repaymentDurationMonths'] === undefined) return false;
+    if (!('repaymentCadence' in value) || value['repaymentCadence'] === undefined) return false;
+    if (!('gracePeriodDays' in value) || value['gracePeriodDays'] === undefined) return false;
+    if (!('numPaymentPeriods' in value) || value['numPaymentPeriods'] === undefined) return false;
     return true;
 }
 
@@ -95,6 +123,9 @@ export function LineOfCreditServicingDataFromJSONTyped(json: any, ignoreDiscrimi
         'interestRatePercentage': json['interestRatePercentage'],
         'feePercentage': json['feePercentage'],
         'repaymentDurationMonths': json['repaymentDurationMonths'],
+        'repaymentCadence': RepaymentCadenceFromJSON(json['repaymentCadence']),
+        'gracePeriodDays': json['gracePeriodDays'],
+        'numPaymentPeriods': json['numPaymentPeriods'],
     };
 }
 
@@ -110,6 +141,9 @@ export function LineOfCreditServicingDataToJSON(value?: LineOfCreditServicingDat
         'interestRatePercentage': value['interestRatePercentage'],
         'feePercentage': value['feePercentage'],
         'repaymentDurationMonths': value['repaymentDurationMonths'],
+        'repaymentCadence': RepaymentCadenceToJSON(value['repaymentCadence']),
+        'gracePeriodDays': value['gracePeriodDays'],
+        'numPaymentPeriods': value['numPaymentPeriods'],
     };
 }
 

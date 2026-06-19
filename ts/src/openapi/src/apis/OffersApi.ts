@@ -21,6 +21,7 @@ import type {
   InternalServerErrorException,
   Offer,
   OfferNotFoundException,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -35,6 +36,8 @@ import {
     OfferToJSON,
     OfferNotFoundExceptionFromJSON,
     OfferNotFoundExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface GetAllOffersRequest {

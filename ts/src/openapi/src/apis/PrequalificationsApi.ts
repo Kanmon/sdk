@@ -19,6 +19,7 @@ import type {
   ForbiddenException,
   GetPrequalificationsResponse,
   InternalServerErrorException,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -29,6 +30,8 @@ import {
     GetPrequalificationsResponseToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface GetAllPrequalifiedBusinessesRequest {

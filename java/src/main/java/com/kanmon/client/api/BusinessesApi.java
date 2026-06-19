@@ -38,6 +38,7 @@ import com.kanmon.client.model.ForbiddenException;
 import com.kanmon.client.model.GetActivityLogsResponse;
 import com.kanmon.client.model.GetBusinessesResponse;
 import com.kanmon.client.model.InternalServerErrorException;
+import com.kanmon.client.model.TooManyRequestsException;
 import com.kanmon.client.model.UpdateBusinessRequestBody;
 
 import java.lang.reflect.Type;
@@ -97,6 +98,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -170,6 +172,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -192,6 +195,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -216,6 +220,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -243,6 +248,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -337,6 +343,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -362,6 +369,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -389,6 +397,7 @@ public class BusinessesApi {
         <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -413,6 +422,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -490,6 +500,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -512,6 +523,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -536,6 +548,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -564,6 +577,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -661,6 +675,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -687,6 +702,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -715,6 +731,7 @@ public class BusinessesApi {
         <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -741,6 +758,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -826,6 +844,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -850,6 +869,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
@@ -876,6 +896,7 @@ public class BusinessesApi {
         <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
         <tr><td> 404 </td><td> BusinessNotFoundException, CustomInitializationNotFoundException </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> BusinessAlreadyExistsException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */

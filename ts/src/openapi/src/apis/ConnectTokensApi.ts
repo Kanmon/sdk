@@ -20,6 +20,7 @@ import type {
   CreateConnectTokenRequestBody,
   ForbiddenException,
   InternalServerErrorException,
+  TooManyRequestsException,
   UserNotFoundException,
 } from '../models/index';
 import {
@@ -33,6 +34,8 @@ import {
     ForbiddenExceptionToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
     UserNotFoundExceptionFromJSON,
     UserNotFoundExceptionToJSON,
 } from '../models/index';

@@ -57,7 +57,7 @@ export interface UpdateUserRequestBody {
      */
     email?: string;
     /**
-     * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>
+     * The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.
      * @type {Array<string>}
      * @memberof UpdateUserRequestBody
      */
@@ -75,8 +75,8 @@ export interface UpdateUserRequestBody {
  * @export
  */
 export const UpdateUserRequestBodyRolesEnum = {
-    OPERATOR: 'OPERATOR',
-    PRIMARY_OWNER: 'PRIMARY_OWNER'
+    PRIMARY_OWNER: 'PRIMARY_OWNER',
+    OPERATOR: 'OPERATOR'
 } as const;
 export type UpdateUserRequestBodyRolesEnum = typeof UpdateUserRequestBodyRolesEnum[keyof typeof UpdateUserRequestBodyRolesEnum];
 

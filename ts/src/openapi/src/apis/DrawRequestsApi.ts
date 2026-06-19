@@ -21,6 +21,7 @@ import type {
   ForbiddenException,
   GetDrawRequestsResponse,
   InternalServerErrorException,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -35,6 +36,8 @@ import {
     GetDrawRequestsResponseToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface GetAllDrawRequestsRequest {

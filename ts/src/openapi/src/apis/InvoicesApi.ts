@@ -25,6 +25,7 @@ import type {
   GetInvoicesResponse,
   InternalServerErrorException,
   Invoice,
+  TooManyRequestsException,
 } from '../models/index';
 import {
     BadRequestExceptionFromJSON,
@@ -47,6 +48,8 @@ import {
     InternalServerErrorExceptionToJSON,
     InvoiceFromJSON,
     InvoiceToJSON,
+    TooManyRequestsExceptionFromJSON,
+    TooManyRequestsExceptionToJSON,
 } from '../models/index';
 
 export interface FinanceInvoiceRequest {

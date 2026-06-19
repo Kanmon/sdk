@@ -162,11 +162,13 @@ src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsForBusine
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/PrimaryBusinessOwnerNotFoundException.java
 src/main/java/com/kanmon/client/model/ProductType.java
+src/main/java/com/kanmon/client/model/RepaymentCadence.java
 src/main/java/com/kanmon/client/model/SessionInvoice.java
 src/main/java/com/kanmon/client/model/SessionInvoiceWithInvoiceFile.java
 src/main/java/com/kanmon/client/model/SomeOffersHaveExpiredException.java
 src/main/java/com/kanmon/client/model/TermLoanOfferTerms.java
 src/main/java/com/kanmon/client/model/TermLoanServicingData.java
+src/main/java/com/kanmon/client/model/TooManyRequestsException.java
 src/main/java/com/kanmon/client/model/UnmergeableBusinessException.java
 src/main/java/com/kanmon/client/model/UpdateBusinessAccountRequestBody.java
 src/main/java/com/kanmon/client/model/UpdateBusinessRequestBody.java
@@ -176,4 +178,3 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/model/LoanStatusTest.java
