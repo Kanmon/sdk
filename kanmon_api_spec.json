@@ -84,6 +84,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -172,6 +192,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BusinessAlreadyExistsException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -277,6 +317,26 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
               }
             }
           },
@@ -389,6 +449,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -465,6 +545,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BusinessNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -585,6 +685,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -678,6 +798,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -735,8 +875,16 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for users.",
-            "example": "767d9894-7214-4a0a-9c4e-ec4a7c70c1e1,e7935095-6ea8-44d9-a5b5-6235a61dc1cf",
+            "example": "2fe62ed3-ad61-4bd0-bde0-43421dc542b2,b1b3b4ed-de64-4909-be6d-476753a3f88b",
             "schema": { "type": "string" }
+          },
+          {
+            "name": "includeSecondaryOwners",
+            "required": false,
+            "in": "query",
+            "description": "Whether to include secondary owners in results. Defaults to `false`.",
+            "example": false,
+            "schema": { "type": "boolean" }
           },
           {
             "name": "offset",
@@ -793,6 +941,26 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
               }
             }
           },
@@ -874,6 +1042,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -983,6 +1171,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1069,6 +1277,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1141,6 +1369,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -1226,6 +1474,26 @@
                     { "$ref": "#/components/schemas/InvoiceNotFoundException" },
                     { "$ref": "#/components/schemas/BusinessNotFoundException" }
                   ]
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -1358,6 +1626,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1409,7 +1697,7 @@
             }
           },
           "400": {
-            "description": "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException, \n        IncorrectFinancingAmountException",
+            "description": "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,\n        IncorrectFinancingAmountException",
             "content": {
               "application/json": {
                 "schema": {
@@ -1472,6 +1760,26 @@
                       "$ref": "#/components/schemas/InsufficientCreditLimitException"
                     }
                   ]
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -1546,6 +1854,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/OfferNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -1662,6 +1990,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1732,6 +2080,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/IssuedProductNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -1858,6 +2226,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -1944,6 +2332,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2002,7 +2410,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of your Kanmon’s unique business IDs for bannk accounts.",
-            "example": "7d632bf1-8537-4c93-bc4a-f485a789f95e,1f05fd2d-2140-41c4-b294-5e0b0196cb6f",
+            "example": "0c8feb0b-8ad3-4855-9723-79059e1ddc28,1f7500c3-c9fc-4cfa-b531-13b7e8f58817",
             "schema": { "type": "string" }
           },
           {
@@ -2062,6 +2470,26 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
               }
             }
           },
@@ -2144,6 +2572,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BankAccountNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -2239,6 +2687,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2313,6 +2781,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2348,7 +2836,7 @@
             "required": false,
             "in": "query",
             "description": "A comma delimited list of Kanmon’s unique draw request IDs.",
-            "example": "95dbeab9-f94f-460d-85b8-a50b7bb0b136,782ec087-24f5-40d9-91d4-d005b7d06c14",
+            "example": "e45cc442-d3a7-4395-b71f-79d98c6b2d82,d87ecfcc-c95e-431a-95c9-264b3b06af35",
             "schema": { "type": "string" }
           },
           {
@@ -2448,6 +2936,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2518,6 +3026,26 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DrawRequestNotFoundException"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
                 }
               }
             }
@@ -2644,6 +3172,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2708,6 +3256,26 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
               }
             }
           },
@@ -2825,6 +3393,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -2927,6 +3515,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3013,6 +3621,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3085,6 +3713,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3133,6 +3781,7 @@
           }
         ],
         "responses": {
+          "204": { "description": "" },
           "400": {
             "description": "BadRequestException",
             "content": {
@@ -3146,6 +3795,26 @@
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/ForbiddenException" }
+              }
+            }
+          },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
               }
             }
           },
@@ -3242,6 +3911,26 @@
               }
             }
           },
+          "429": {
+            "description": "TooManyRequestsException",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "description": "Maximum number of requests allowed per minute.",
+                "schema": { "type": "integer" }
+              },
+              "X-RateLimit-Remaining": {
+                "description": "Number of remaining requests available.",
+                "schema": { "type": "integer" }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TooManyRequestsException"
+                }
+              }
+            }
+          },
           "500": {
             "description": "InternalServerErrorException",
             "content": {
@@ -3260,7 +3949,7 @@
   },
   "info": {
     "title": "Kanmon Public V2 API",
-    "description": "Kanmon's public api. Contains all of the endpoints for both capital providers and platforms",
+    "description": "",
     "version": "2.0.0",
     "contact": {}
   },
@@ -3416,6 +4105,27 @@
             "type": "string",
             "description": "The human readable description of the error.",
             "example": "Forbidden"
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "When the error occurred - ISO 8601 format.",
+            "example": "2022-06-01T03:57:26.115Z"
+          }
+        },
+        "required": ["errorCode", "message", "timestamp"]
+      },
+      "TooManyRequestsException": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "enum": ["TooManyRequestsException"],
+            "description": "Safe for programmatic use."
+          },
+          "message": {
+            "type": "string",
+            "description": "The human readable description of the error.",
+            "example": "Too Many Requests"
           },
           "timestamp": {
             "type": "string",
@@ -3902,7 +4612,7 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.",
             "example": ["PRIMARY_OWNER"],
             "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
@@ -3929,7 +4639,8 @@
           "platformUserId": {
             "type": "string",
             "description": "Your platform’s unique ID for the user.",
-            "example": "12345"
+            "example": "12345",
+            "nullable": true
           },
           "platformBusinessId": {
             "type": "string",
@@ -3980,9 +4691,12 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.",
             "example": ["PRIMARY_OWNER"],
-            "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
+            "items": {
+              "type": "string",
+              "enum": ["PRIMARY_OWNER", "OPERATOR", "SECONDARY_OWNER"]
+            }
           },
           "metadata": {
             "type": "object",
@@ -4088,9 +4802,9 @@
           },
           "roles": {
             "type": "array",
-            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>Please note Kanmon supports an additional user role called secondary owners. Secondary owners are beneficial owners of a business, like primary owners, and Kanmon must perform KYC checks for these users. Kanmon will handle creating and managing these users for KYC purposes through a separate process. <br/>",
+            "description": "The user’s roles. If no roles are defined, the user will be prompted to select a role within Kanmon. <br/><br/>A primary owner is a user with the authority to issue debt on behalf of the business. This means the user can complete onboarding, receive offers, choose to accept offers, sign financing agreements, and service an active issued product. <br/><br/>An operator is a user with permission to service an active issued product. Examples are uploading invoices on behalf of the business, checking the status of payments, etc. <br /><br/>A secondary owner is a beneficial owner of the business who must complete KYC. This means the user can sign financing agreements when required and service an active issued product. During onboarding, the primary owner invites secondary owners. Secondary owners are directed to a separate Kanmon-hosted page where they complete onboarding, sign legal documents, and KYC. They can also access servicing from that page. Kanmon sends a `USER.CREATED` webhook when a secondary owner is created.",
             "example": ["PRIMARY_OWNER"],
-            "items": { "type": "string", "enum": ["OPERATOR", "PRIMARY_OWNER"] }
+            "items": { "type": "string", "enum": ["PRIMARY_OWNER", "OPERATOR"] }
           },
           "metadata": {
             "type": "object",
@@ -4861,6 +5575,7 @@
           "feeAmountCents"
         ]
       },
+      "RepaymentCadence": { "type": "string", "enum": ["WEEKLY", "MONTHLY"] },
       "LineOfCreditOfferTerms": {
         "type": "object",
         "properties": {
@@ -4885,7 +5600,22 @@
           },
           "repaymentDurationMonths": {
             "type": "number",
-            "description": "The duration of the repayment for each draw - in months.",
+            "description": "The duration of the repayment for each draw - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.",
+            "example": 3,
+            "deprecated": true
+          },
+          "repaymentCadence": {
+            "example": "MONTHLY",
+            "$ref": "#/components/schemas/RepaymentCadence"
+          },
+          "gracePeriodDays": {
+            "type": "number",
+            "description": "The number of days after each draw during which no installment payments are due. Interest still accrues.",
+            "example": 30
+          },
+          "numPaymentPeriods": {
+            "type": "number",
+            "description": "The number of installment payment periods for each draw.",
             "example": 3
           }
         },
@@ -4894,7 +5624,10 @@
           "totalLimitCents",
           "interestRatePercentage",
           "feePercentage",
-          "repaymentDurationMonths"
+          "repaymentDurationMonths",
+          "repaymentCadence",
+          "gracePeriodDays",
+          "numPaymentPeriods"
         ]
       },
       "IntegratedMcaOfferTerms": {
@@ -5308,7 +6041,22 @@
           },
           "repaymentDurationMonths": {
             "type": "number",
-            "description": "The duration of the repayment for each draw - in months.",
+            "description": "The duration of the repayment for each draw - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.",
+            "example": 3,
+            "deprecated": true
+          },
+          "repaymentCadence": {
+            "example": "MONTHLY",
+            "$ref": "#/components/schemas/RepaymentCadence"
+          },
+          "gracePeriodDays": {
+            "type": "number",
+            "description": "The number of days after each draw during which no installment payments are due. Interest still accrues.",
+            "example": 30
+          },
+          "numPaymentPeriods": {
+            "type": "number",
+            "description": "The number of installment payment periods for each draw.",
             "example": 3
           }
         },
@@ -5318,7 +6066,10 @@
           "availableLimitCents",
           "interestRatePercentage",
           "feePercentage",
-          "repaymentDurationMonths"
+          "repaymentDurationMonths",
+          "repaymentCadence",
+          "gracePeriodDays",
+          "numPaymentPeriods"
         ]
       },
       "AccountsPayableFinancingServicingData": {
@@ -5906,8 +6657,28 @@
           },
           "repaymentDurationMonths": {
             "type": "number",
-            "description": "The duration of the repayment for the draw request - in months.",
-            "example": 6
+            "description": "The duration of the repayment for the draw request - in months. Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead.",
+            "example": 6,
+            "deprecated": true
+          },
+          "repaymentCadence": {
+            "example": "MONTHLY",
+            "$ref": "#/components/schemas/RepaymentCadence"
+          },
+          "gracePeriodDays": {
+            "type": "number",
+            "description": "The number of days after the draw during which no installment payments are due. Interest still accrues.",
+            "example": 30
+          },
+          "numPaymentPeriods": {
+            "type": "number",
+            "description": "The number of installment payment periods for the draw request.",
+            "example": 3
+          },
+          "remainingBalanceCents": {
+            "type": "number",
+            "description": "The outstanding principal balance on the draw request - in cents. Equal to the original draw amount minus confirmed principal repayments.",
+            "example": 500000
           },
           "createdAt": {
             "type": "string",
@@ -5930,6 +6701,10 @@
           "interestRatePercentage",
           "feePercentage",
           "repaymentDurationMonths",
+          "repaymentCadence",
+          "gracePeriodDays",
+          "numPaymentPeriods",
+          "remainingBalanceCents",
           "createdAt",
           "updatedAt"
         ]

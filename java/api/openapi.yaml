@@ -1,8 +1,7 @@
 openapi: 3.0.0
 info:
   contact: {}
-  description: Kanmon's public api. Contains all of the endpoints for both capital
-    providers and platforms
+  description: ""
   title: Kanmon Public V2 API
   version: 2.0.0
 servers:
@@ -87,6 +86,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -188,6 +206,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -248,6 +285,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BusinessAlreadyExistsException'
           description: BusinessAlreadyExistsException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -319,6 +375,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BusinessNotFoundException'
           description: BusinessNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -400,6 +475,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BusinessAlreadyExistsException'
           description: BusinessAlreadyExistsException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -511,6 +605,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BusinessNotFoundException'
           description: BusinessNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -565,13 +678,22 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "767d9894-7214-4a0a-9c4e-ec4a7c70c1e1,e7935095-6ea8-44d9-a5b5-6235a61dc1cf"
+        example: "2fe62ed3-ad61-4bd0-bde0-43421dc542b2,b1b3b4ed-de64-4909-be6d-476753a3f88b"
         explode: true
         in: query
         name: businessIds
         required: false
         schema:
           type: string
+        style: form
+      - description: Whether to include secondary owners in results. Defaults to `false`.
+        example: false
+        explode: true
+        in: query
+        name: includeSecondaryOwners
+        required: false
+        schema:
+          type: boolean
         style: form
       - description: The number of records to skip when performing pagination. Defaults
           to `0`.
@@ -632,6 +754,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -692,6 +833,25 @@ paths:
                 $ref: '#/components/schemas/createUser_409_response'
           description: "PrimaryBusinessOwnerAlreadyExistsForBusinessException, UserAlreadyExistsWithPlatformUserIdException,\
             \ UserAlreadyExistsWithEmailException"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -764,6 +924,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserNotFoundException'
           description: UserNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -846,6 +1025,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/updateUser_409_response'
           description: "UserAlreadyExistsWithEmailException, PrimaryBusinessOwnerAlreadyExistsForBusinessException"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -910,6 +1108,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/PrimaryBusinessOwnerAlreadyExistsForBusinessException'
           description: PrimaryBusinessOwnerAlreadyExistsForBusinessException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -969,6 +1186,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserNotFoundException'
           description: UserNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1042,6 +1278,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/getInvoice_404_response'
           description: "InvoiceNotFoundException, BusinessNotFoundException"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1169,6 +1424,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1213,8 +1487,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/financeInvoice_400_response'
-          description: "PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException,\
-            \ InvalidInvoiceDueDateException, \n        IncorrectFinancingAmountException"
+          description: |-
+            PlatformInvoiceIdAlreadyExistsException, InvoicePaymentPlanNotFoundException, InvalidInvoiceDueDateException,
+                    IncorrectFinancingAmountException
         "403":
           content:
             application/json:
@@ -1234,6 +1509,25 @@ paths:
                 $ref: '#/components/schemas/financeInvoice_409_response'
           description: "IssuedProductStatusNotCurrentException, IncorrectProductTypeException,\
             \ InsufficientCreditLimitException"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1292,6 +1586,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/OfferNotFoundException'
           description: OfferNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1401,6 +1714,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1458,6 +1790,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/IssuedProductNotFoundException'
           description: IssuedProductNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1577,6 +1928,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1633,7 +2003,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "7d632bf1-8537-4c93-bc4a-f485a789f95e,1f05fd2d-2140-41c4-b294-5e0b0196cb6f"
+        example: "0c8feb0b-8ad3-4855-9723-79059e1ddc28,1f7500c3-c9fc-4cfa-b531-13b7e8f58817"
         explode: true
         in: query
         name: businessIds
@@ -1700,6 +2070,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1763,6 +2152,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BankAccountAlreadyExistException'
           description: BankAccountAlreadyExistException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1837,6 +2245,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BankAccountNotFoundException'
           description: BankAccountNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1917,6 +2344,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BankAccountNotFoundException'
           description: BankAccountNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -1976,6 +2422,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/PaymentOrderNotFoundException'
           description: PaymentOrderNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2000,7 +2465,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "95dbeab9-f94f-460d-85b8-a50b7bb0b136,782ec087-24f5-40d9-91d4-d005b7d06c14"
+        example: "e45cc442-d3a7-4395-b71f-79d98c6b2d82,d87ecfcc-c95e-431a-95c9-264b3b06af35"
         explode: true
         in: query
         name: drawRequestIds
@@ -2101,6 +2566,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/IssuedProductNotFoundException'
           description: IssuedProductNotFoundException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2159,6 +2643,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/DrawRequestNotFoundException'
           description: ""
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2278,6 +2781,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2327,6 +2849,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2439,6 +2980,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2499,6 +3059,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/createIntegratedMcaReceivable_409_response'
           description: "IncorrectProductTypeException, IntegratedMcaReceivableAlreadyExistsException"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2564,6 +3143,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/BusinessHasNoIntegratedMcaProductException'
           description: BusinessHasNoIntegratedMcaProductException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2629,6 +3227,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2676,6 +3293,8 @@ paths:
           type: string
         style: form
       responses:
+        "204":
+          description: ""
         "400":
           content:
             application/json:
@@ -2688,6 +3307,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForbiddenException'
           description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2752,6 +3390,25 @@ paths:
               schema:
                 $ref: '#/components/schemas/createEmbeddedSession_409_response'
           description: "BusinessHasNoInvoiceFinancingProductException, PlatformInvoiceIdAlreadyExistsForAnotherIssuedProductException"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "500":
           content:
             application/json:
@@ -2928,6 +3585,30 @@ components:
         message:
           description: The human readable description of the error.
           example: Forbidden
+          type: string
+        timestamp:
+          description: When the error occurred - ISO 8601 format.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+      required:
+      - errorCode
+      - message
+      - timestamp
+      type: object
+    TooManyRequestsException:
+      example:
+        errorCode: TooManyRequestsException
+        message: Too Many Requests
+        timestamp: 2022-06-01T03:57:26.115Z
+      properties:
+        errorCode:
+          description: Safe for programmatic use.
+          enum:
+          - TooManyRequestsException
+          type: string
+        message:
+          description: The human readable description of the error.
+          example: Too Many Requests
           type: string
         timestamp:
           description: When the error occurred - ISO 8601 format.
@@ -3542,12 +4223,14 @@ components:
             \ offers, sign financing agreements, and service an active issued product.\
             \ <br/><br/>An operator is a user with permission to service an active\
             \ issued product. Examples are uploading invoices on behalf of the business,\
-            \ checking the status of payments, etc. <br /><br/>Please note Kanmon\
-            \ supports an additional user role called secondary owners. Secondary\
-            \ owners are beneficial owners of a business, like primary owners, and\
-            \ Kanmon must perform KYC checks for these users. Kanmon will handle creating\
-            \ and managing these users for KYC purposes through a separate process.\
-            \ <br/>"
+            \ checking the status of payments, etc. <br /><br/>A secondary owner is\
+            \ a beneficial owner of the business who must complete KYC. This means\
+            \ the user can sign financing agreements when required and service an\
+            \ active issued product. During onboarding, the primary owner invites\
+            \ secondary owners. Secondary owners are directed to a separate Kanmon-hosted\
+            \ page where they complete onboarding, sign legal documents, and KYC.\
+            \ They can also access servicing from that page. Kanmon sends a `USER.CREATED`\
+            \ webhook when a secondary owner is created."
           example:
           - PRIMARY_OWNER
           items:
@@ -3597,6 +4280,7 @@ components:
         platformUserId:
           description: Your platform’s unique ID for the user.
           example: "12345"
+          nullable: true
           type: string
         platformBusinessId:
           description: Your platform’s unique business ID for the user.
@@ -3641,25 +4325,27 @@ components:
           nullable: true
           type: string
         roles:
-          description: "The user’s roles. If no roles are defined, the user will be\
-            \ prompted to select a role within Kanmon. <br/><br/>A primary owner is\
-            \ a user with the authority to issue debt on behalf of the business. This\
-            \ means the user can complete onboarding, receive offers, choose to accept\
-            \ offers, sign financing agreements, and service an active issued product.\
-            \ <br/><br/>An operator is a user with permission to service an active\
-            \ issued product. Examples are uploading invoices on behalf of the business,\
-            \ checking the status of payments, etc. <br /><br/>Please note Kanmon\
-            \ supports an additional user role called secondary owners. Secondary\
-            \ owners are beneficial owners of a business, like primary owners, and\
-            \ Kanmon must perform KYC checks for these users. Kanmon will handle creating\
-            \ and managing these users for KYC purposes through a separate process.\
-            \ <br/>"
+          description: "The user’s roles. <br/><br/>A primary owner is a user with\
+            \ the authority to issue debt on behalf of the business. This means the\
+            \ user can complete onboarding, receive offers, choose to accept offers,\
+            \ sign financing agreements, and service an active issued product. <br/><br/>An\
+            \ operator is a user with permission to service an active issued product.\
+            \ Examples are uploading invoices on behalf of the business, checking\
+            \ the status of payments, etc. <br /><br/>A secondary owner is a beneficial\
+            \ owner of the business who must complete KYC. This means the user can\
+            \ sign financing agreements when required and service an active issued\
+            \ product. During onboarding, the primary owner invites secondary owners.\
+            \ Secondary owners are directed to a separate Kanmon-hosted page where\
+            \ they complete onboarding, sign legal documents, and KYC. They can also\
+            \ access servicing from that page. Kanmon sends a `USER.CREATED` webhook\
+            \ when a secondary owner is created."
           example:
           - PRIMARY_OWNER
           items:
             enum:
             - PRIMARY_OWNER
             - OPERATOR
+            - SECONDARY_OWNER
             type: string
           type: array
         metadata:
@@ -3824,18 +4510,20 @@ components:
             \ offers, sign financing agreements, and service an active issued product.\
             \ <br/><br/>An operator is a user with permission to service an active\
             \ issued product. Examples are uploading invoices on behalf of the business,\
-            \ checking the status of payments, etc. <br /><br/>Please note Kanmon\
-            \ supports an additional user role called secondary owners. Secondary\
-            \ owners are beneficial owners of a business, like primary owners, and\
-            \ Kanmon must perform KYC checks for these users. Kanmon will handle creating\
-            \ and managing these users for KYC purposes through a separate process.\
-            \ <br/>"
+            \ checking the status of payments, etc. <br /><br/>A secondary owner is\
+            \ a beneficial owner of the business who must complete KYC. This means\
+            \ the user can sign financing agreements when required and service an\
+            \ active issued product. During onboarding, the primary owner invites\
+            \ secondary owners. Secondary owners are directed to a separate Kanmon-hosted\
+            \ page where they complete onboarding, sign legal documents, and KYC.\
+            \ They can also access servicing from that page. Kanmon sends a `USER.CREATED`\
+            \ webhook when a secondary owner is created."
           example:
           - PRIMARY_OWNER
           items:
             enum:
-            - OPERATOR
             - PRIMARY_OWNER
+            - OPERATOR
             type: string
           type: array
         metadata:
@@ -4815,6 +5503,11 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
+    RepaymentCadence:
+      enum:
+      - WEEKLY
+      - MONTHLY
+      type: string
     LineOfCreditOfferTerms:
       properties:
         productType:
@@ -4834,13 +5527,29 @@ components:
           example: 2
           type: number
         repaymentDurationMonths:
-          description: The duration of the repayment for each draw - in months.
+          deprecated: true
+          description: "The duration of the repayment for each draw - in months. Deprecated:\
+            \ use `numPaymentPeriods` and `repaymentCadence` instead."
+          example: 3
+          type: number
+        repaymentCadence:
+          $ref: '#/components/schemas/RepaymentCadence'
+        gracePeriodDays:
+          description: The number of days after each draw during which no installment
+            payments are due. Interest still accrues.
+          example: 30
+          type: number
+        numPaymentPeriods:
+          description: The number of installment payment periods for each draw.
           example: 3
           type: number
       required:
       - feePercentage
+      - gracePeriodDays
       - interestRatePercentage
+      - numPaymentPeriods
       - productType
+      - repaymentCadence
       - repaymentDurationMonths
       - totalLimitCents
       type: object
@@ -5242,14 +5951,30 @@ components:
           example: 2
           type: number
         repaymentDurationMonths:
-          description: The duration of the repayment for each draw - in months.
+          deprecated: true
+          description: "The duration of the repayment for each draw - in months. Deprecated:\
+            \ use `numPaymentPeriods` and `repaymentCadence` instead."
+          example: 3
+          type: number
+        repaymentCadence:
+          $ref: '#/components/schemas/RepaymentCadence'
+        gracePeriodDays:
+          description: The number of days after each draw during which no installment
+            payments are due. Interest still accrues.
+          example: 30
+          type: number
+        numPaymentPeriods:
+          description: The number of installment payment periods for each draw.
           example: 3
           type: number
       required:
       - availableLimitCents
       - feePercentage
+      - gracePeriodDays
       - interestRatePercentage
+      - numPaymentPeriods
       - productType
+      - repaymentCadence
       - repaymentDurationMonths
       - totalLimitCents
       type: object
@@ -5895,16 +6620,20 @@ components:
       type: string
     DrawRequest:
       example:
-        createdAt: 2022-06-01T03:57:26.115Z
-        amountCents: 1000000
+        gracePeriodDays: 30
+        remainingBalanceCents: 500000
         feePercentage: 5
         issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         disbursementAmountCents: 960000
+        createdAt: 2022-06-01T03:57:26.115Z
+        amountCents: 1000000
+        repaymentCadence: WEEKLY
         id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
         feeAmountCents: 40000
         interestRatePercentage: 10
         repaymentDurationMonths: 6
         status: DRAW_REQUEST_CREATED
+        numPaymentPeriods: 3
         updatedAt: 2022-06-01T03:57:26.115Z
       properties:
         id:
@@ -5941,8 +6670,26 @@ components:
           example: 5
           type: number
         repaymentDurationMonths:
-          description: The duration of the repayment for the draw request - in months.
+          deprecated: true
+          description: "The duration of the repayment for the draw request - in months.\
+            \ Deprecated: use `numPaymentPeriods` and `repaymentCadence` instead."
           example: 6
+          type: number
+        repaymentCadence:
+          $ref: '#/components/schemas/RepaymentCadence'
+        gracePeriodDays:
+          description: The number of days after the draw during which no installment
+            payments are due. Interest still accrues.
+          example: 30
+          type: number
+        numPaymentPeriods:
+          description: The number of installment payment periods for the draw request.
+          example: 3
+          type: number
+        remainingBalanceCents:
+          description: The outstanding principal balance on the draw request - in
+            cents. Equal to the original draw amount minus confirmed principal repayments.
+          example: 500000
           type: number
         createdAt:
           description: Creation UTC ISO 8601 timestamp of the draw request.
@@ -5958,9 +6705,13 @@ components:
       - disbursementAmountCents
       - feeAmountCents
       - feePercentage
+      - gracePeriodDays
       - id
       - interestRatePercentage
       - issuedProductId
+      - numPaymentPeriods
+      - remainingBalanceCents
+      - repaymentCadence
       - repaymentDurationMonths
       - status
       - updatedAt
@@ -5992,27 +6743,35 @@ components:
     GetDrawRequestsResponse:
       example:
         drawRequests:
-        - createdAt: 2022-06-01T03:57:26.115Z
-          amountCents: 1000000
+        - gracePeriodDays: 30
+          remainingBalanceCents: 500000
           feePercentage: 5
           issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           disbursementAmountCents: 960000
+          createdAt: 2022-06-01T03:57:26.115Z
+          amountCents: 1000000
+          repaymentCadence: WEEKLY
           id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           feeAmountCents: 40000
           interestRatePercentage: 10
           repaymentDurationMonths: 6
           status: DRAW_REQUEST_CREATED
+          numPaymentPeriods: 3
           updatedAt: 2022-06-01T03:57:26.115Z
-        - createdAt: 2022-06-01T03:57:26.115Z
-          amountCents: 1000000
+        - gracePeriodDays: 30
+          remainingBalanceCents: 500000
           feePercentage: 5
           issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           disbursementAmountCents: 960000
+          createdAt: 2022-06-01T03:57:26.115Z
+          amountCents: 1000000
+          repaymentCadence: WEEKLY
           id: adbcccf9-3a7f-4040-add3-55c9d6da2d37
           feeAmountCents: 40000
           interestRatePercentage: 10
           repaymentDurationMonths: 6
           status: DRAW_REQUEST_CREATED
+          numPaymentPeriods: 3
           updatedAt: 2022-06-01T03:57:26.115Z
         pagination: ""
       properties:
