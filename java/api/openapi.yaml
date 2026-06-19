@@ -1,7 +1,8 @@
 openapi: 3.0.0
 info:
   contact: {}
-  description: ""
+  description: Kanmon's public api. Contains all of the endpoints for both capital
+    providers and platforms
   title: Kanmon Public V2 API
   version: 2.0.0
 servers:

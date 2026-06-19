@@ -178,7 +178,3 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
-src/test/java/com/kanmon/client/api/SandboxUtilitiesApiTest.java
-src/test/java/com/kanmon/client/api/UsersApiTest.java
-src/test/java/com/kanmon/client/model/RepaymentCadenceTest.java
-src/test/java/com/kanmon/client/model/TooManyRequestsExceptionTest.java
