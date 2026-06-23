@@ -589,7 +589,6 @@ public class User {
     openapiRequiredFields.add("id");
     openapiRequiredFields.add("platformBusinessId");
     openapiRequiredFields.add("businessId");
-    openapiRequiredFields.add("address");
     openapiRequiredFields.add("email");
     openapiRequiredFields.add("metadata");
     openapiRequiredFields.add("createdAt");
@@ -631,8 +630,10 @@ public class User {
       if (!jsonObj.get("businessId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `businessId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("businessId").toString()));
       }
-      // validate the required field `address`
-      Address.validateJsonElement(jsonObj.get("address"));
+      // validate the optional field `address`
+      if (jsonObj.get("address") != null && !jsonObj.get("address").isJsonNull()) {
+        Address.validateJsonElement(jsonObj.get("address"));
+      }
       if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
       }

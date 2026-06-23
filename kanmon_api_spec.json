@@ -4723,7 +4723,6 @@
           "id",
           "platformBusinessId",
           "businessId",
-          "address",
           "email",
           "metadata",
           "createdAt",
