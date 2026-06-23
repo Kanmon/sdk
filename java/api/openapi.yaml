@@ -4367,7 +4367,6 @@ components:
           example: 2022-06-01T03:57:26.115Z
           type: string
       required:
-      - address
       - businessId
       - createdAt
       - email
