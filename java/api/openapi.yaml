@@ -679,7 +679,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "2fe62ed3-ad61-4bd0-bde0-43421dc542b2,b1b3b4ed-de64-4909-be6d-476753a3f88b"
+        example: "fb571913-3f40-4ba1-a885-d9002e33e999,b8c8cca3-67b3-4d7f-aa79-9532db67390a"
         explode: true
         in: query
         name: businessIds
@@ -2004,7 +2004,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "0c8feb0b-8ad3-4855-9723-79059e1ddc28,1f7500c3-c9fc-4cfa-b531-13b7e8f58817"
+        example: "5ce67992-2c98-48cd-8c33-d3ec2fb9521b,d4db2935-4bab-4692-9cfd-132ef49d1293"
         explode: true
         in: query
         name: businessIds
@@ -2466,7 +2466,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "e45cc442-d3a7-4395-b71f-79d98c6b2d82,d87ecfcc-c95e-431a-95c9-264b3b06af35"
+        example: "27a96c6d-ac44-4432-a1df-1c81c332c64d,37e92841-930f-4273-a930-bb30fa2906fc"
         explode: true
         in: query
         name: drawRequestIds
@@ -2604,6 +2604,172 @@ paths:
           name: SDK
           code: "\nkanmonApi.payments.getPaymentScheduleForAIssuedProduct({\n  ...params...\n\
             })\n    "
+      x-accepts:
+      - application/json
+  /api/platform/v2/payment-intents:
+    get:
+      operationId: getPaymentIntents
+      parameters:
+      - description: A comma delimited list of Kanmon’s unique payment intent IDs.
+        example: "401f7ed8-7f2b-448a-b491-ced12079b9c9,0e6ea2e4-848a-4f7f-b3c4-c2a470698c18"
+        explode: true
+        in: query
+        name: ids
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for invoices.
+        example: "cf95a71d-a462-44ca-a8cd-b694abf611a4,cebc81da-138d-4659-8f16-417b13069455"
+        explode: true
+        in: query
+        name: invoiceIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for draw requests.
+        example: "21f35824-7801-4436-96df-adb03c64dc5b,df104f6a-8a1e-4019-94d4-c4e0f84eb2a1"
+        explode: true
+        in: query
+        name: drawRequestIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for issued products.
+        example: "c17eeb20-5671-4425-95ae-2b9741a2d8ad,8b4ff596-525c-46f1-b64e-a665a48e42a0"
+        explode: true
+        in: query
+        name: issuedProductIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: A comma delimited list of Kanmon’s unique IDs for businesses.
+        example: "a1a165b2-0019-4334-bc8b-d89d67170cb7,1c646a6a-d69f-4db4-9d1e-5745dfc02a1a"
+        explode: true
+        in: query
+        name: businessIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "When true, return only cancelled payment intents. When false,\
+          \ return only non-cancelled payment intents."
+        example: false
+        explode: true
+        in: query
+        name: cancelled
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Filter payment intents by what caused them to be created.
+        example: SCHEDULED_REPAYMENT
+        explode: true
+        in: query
+        name: trigger
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaymentIntentTriggerType'
+        style: form
+      - description: The number of records to skip when performing pagination. Defaults
+          to `0`.
+        example: "0"
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: "The number of records to limit when performing pagination. Defaults\
+          \ to `100`, which is the max."
+        example: "100"
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: number
+        style: form
+      - description: Filter for records where `createdAt` is greater than or equal
+          to this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtStart
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filter for records where `createdAt` is less than or equal to
+          this value. ISO 8601 format.
+        example: 2022-06-01T03:57:26.115Z
+        explode: true
+        in: query
+        name: createdAtEnd
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPaymentIntentsResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestException'
+          description: BadRequestException
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenException'
+          description: ForbiddenException
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsException'
+          description: TooManyRequestsException
+          headers:
+            X-RateLimit-Limit:
+              description: Maximum number of requests allowed per minute.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-RateLimit-Remaining:
+              description: Number of remaining requests available.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerErrorException'
+          description: InternalServerErrorException
+      security:
+      - Authorization: []
+      summary: Fetch payment intents
+      tags:
+      - Payments
+      x-readme:
+        code-samples:
+        - language: node
+          install: npm install @kanmon/sdk
+          name: SDK
+          code: "\nkanmonApi.payments.getPaymentIntents({\n  ...params...\n})\n  \
+            \  "
       x-accepts:
       - application/json
   /api/platform/v2/draw-requests/{id}:
@@ -4367,6 +4533,7 @@ components:
           example: 2022-06-01T03:57:26.115Z
           type: string
       required:
+      - address
       - businessId
       - createdAt
       - email
@@ -5602,24 +5769,6 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
-    AccountsPayableFinancingOfferTerms:
-      properties:
-        productType:
-          $ref: '#/components/schemas/ProductType'
-        totalLimitCents:
-          description: The total limit allowed for this offer - in cents.
-          example: 1000000
-          type: number
-        pricingPlans:
-          description: The pricing plans available for this offer.
-          items:
-            $ref: '#/components/schemas/InvoicePaymentPlan'
-          type: array
-      required:
-      - pricingPlans
-      - productType
-      - totalLimitCents
-      type: object
     Offer:
       example:
         expiredAt: 2023-12-29T03:57:26.115Z
@@ -5976,28 +6125,6 @@ components:
       - productType
       - repaymentCadence
       - repaymentDurationMonths
-      - totalLimitCents
-      type: object
-    AccountsPayableFinancingServicingData:
-      properties:
-        productType:
-          $ref: '#/components/schemas/ProductType'
-        totalLimitCents:
-          description: The total limit allowed - in cents.
-          type: number
-        pricingPlans:
-          description: The pricing plans available for this issued product.
-          items:
-            $ref: '#/components/schemas/InvoicePaymentPlan'
-          type: array
-        availableLimitCents:
-          description: The total limit less the amount of balance outstanding - in
-            cents.
-          type: number
-      required:
-      - availableLimitCents
-      - pricingPlans
-      - productType
       - totalLimitCents
       type: object
     LoanStatus:
@@ -6608,6 +6735,387 @@ components:
       required:
       - pagination
       - paymentSchedule
+      type: object
+    PaymentIntentTriggerType:
+      enum:
+      - DISBURSEMENT
+      - DISBURSEMENT_RETURN
+      - SCHEDULED_REPAYMENT
+      - EARLY_PAYOFF
+      - REFINANCE_PAYOFF
+      - FEE
+      - REFUND
+      - MINIMUM_PAYMENT
+      - AD_HOC_REPAYMENT
+      type: string
+    PaymentIntent:
+      example:
+        drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+        confirmedRemainingBalanceCents: 0
+        confirmedPrincipalAmountCents: 80000
+        confirmedFeeAmountCents: 10000
+        createdAt: 2022-06-01T03:57:26.115Z
+        totalAmountCents: 100000
+        paymentOrders:
+        - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          feeType: INSUFFICIENT_FUNDS
+          totalPaymentAmountCents: 100000
+          createdAt: 2022-06-01T03:57:26.115Z
+          principalPaymentAmountCents: 80000
+          interestPaymentAmountCents: 10000
+          invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          settledDate: 2024-01-03
+          effectiveDate: 2024-01-01
+          feePaymentAmountCents: 10000
+          direction: DISBURSEMENT
+          status: FAILED
+          updatedAt: 2022-06-01T03:57:26.115Z
+        - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          feeType: INSUFFICIENT_FUNDS
+          totalPaymentAmountCents: 100000
+          createdAt: 2022-06-01T03:57:26.115Z
+          principalPaymentAmountCents: 80000
+          interestPaymentAmountCents: 10000
+          invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          settledDate: 2024-01-03
+          effectiveDate: 2024-01-01
+          feePaymentAmountCents: 10000
+          direction: DISBURSEMENT
+          status: FAILED
+          updatedAt: 2022-06-01T03:57:26.115Z
+        pendingFeeAmountCents: 0
+        isLate: false
+        pendingInterestAmountCents: 0
+        pendingRemainingBalanceCents: 0
+        confirmedTotalAmountCents: 100000
+        id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+        interestAmountCents: 10000
+        pendingPrincipalAmountCents: 0
+        direction: REPAYMENT
+        updatedAt: 2022-06-01T03:57:26.115Z
+        cancelledAt: 2024-01-03T03:57:26.115Z
+        issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+        trigger: SCHEDULED_REPAYMENT
+        feeType: INSUFFICIENT_FUNDS
+        pendingTotalAmountCents: 0
+        principalAmountCents: 80000
+        confirmedInterestAmountCents: 10000
+        invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+        feeAmountCents: 10000
+        scheduledPaymentDate: 2024-01-01
+      properties:
+        id:
+          description: The UUID representing the payment intent in Kanmon.
+          example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          type: string
+        issuedProductId:
+          description: The UUID representing the issued product in Kanmon.
+          example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          type: string
+        drawRequestId:
+          description: The UUID representing the draw request in Kanmon. (only present
+            for Line of Credit).
+          example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          nullable: true
+          type: string
+        invoiceId:
+          description: The UUID representing the invoice in Kanmon. (only present
+            for Invoice Financing).
+          example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          nullable: true
+          type: string
+        direction:
+          description: The direction of the payment.
+          enum:
+          - DISBURSEMENT
+          - REPAYMENT
+          example: REPAYMENT
+          type: string
+        trigger:
+          description: What caused this payment intent to be created.
+          enum:
+          - DISBURSEMENT
+          - DISBURSEMENT_RETURN
+          - SCHEDULED_REPAYMENT
+          - EARLY_PAYOFF
+          - REFINANCE_PAYOFF
+          - FEE
+          - REFUND
+          - MINIMUM_PAYMENT
+          - AD_HOC_REPAYMENT
+          example: SCHEDULED_REPAYMENT
+          type: string
+        totalAmountCents:
+          description: The total intended payment amount - in cents.
+          example: 100000
+          type: number
+        principalAmountCents:
+          description: The intended principal payment amount - in cents. (null for
+            disbursements).
+          example: 80000
+          nullable: true
+          type: number
+        interestAmountCents:
+          description: The intended interest payment amount - in cents. (null for
+            disbursements).
+          example: 10000
+          nullable: true
+          type: number
+        feeAmountCents:
+          description: The intended fee payment amount - in cents. (null for disbursements).
+          example: 10000
+          nullable: true
+          type: number
+        feeType:
+          description: The type of the fee. (only present when `feeAmountCents` is
+            not 0 or null).
+          enum:
+          - LATE_PAYMENT
+          - INSUFFICIENT_FUNDS
+          - TRANSACTION_FEE
+          - MAINTENANCE
+          - EXTENSION_FEE
+          example: INSUFFICIENT_FUNDS
+          nullable: true
+          type: string
+        scheduledPaymentDate:
+          description: The UTC ISO 8601 date that the payment is scheduled to process.
+          example: 2024-01-01
+          type: string
+        isLate:
+          description: Whether this scheduled repayment is past due and unpaid. Only
+            applies to scheduled repayments that are not cancelled or fully paid.
+          example: false
+          type: boolean
+        confirmedPrincipalAmountCents:
+          description: The confirmed (settled) principal amount - in cents.
+          example: 80000
+          type: number
+        confirmedInterestAmountCents:
+          description: The confirmed (settled) interest amount - in cents.
+          example: 10000
+          type: number
+        confirmedFeeAmountCents:
+          description: The confirmed (settled) fee amount - in cents.
+          example: 10000
+          type: number
+        confirmedTotalAmountCents:
+          description: The confirmed (settled) total amount - in cents.
+          example: 100000
+          type: number
+        pendingPrincipalAmountCents:
+          description: The pending (in-flight) principal amount - in cents.
+          example: 0
+          type: number
+        pendingInterestAmountCents:
+          description: The pending (in-flight) interest amount - in cents.
+          example: 0
+          type: number
+        pendingFeeAmountCents:
+          description: The pending (in-flight) fee amount - in cents.
+          example: 0
+          type: number
+        pendingTotalAmountCents:
+          description: The pending (in-flight) total amount - in cents.
+          example: 0
+          type: number
+        confirmedRemainingBalanceCents:
+          description: The remaining balance after confirmed payments are applied
+            - in cents.
+          example: 0
+          type: number
+        pendingRemainingBalanceCents:
+          description: The remaining balance after confirmed and pending payments
+            are applied - in cents.
+          example: 0
+          type: number
+        cancelledAt:
+          description: The UTC ISO 8601 timestamp that the payment intent was cancelled.
+          example: 2024-01-03T03:57:26.115Z
+          nullable: true
+          type: string
+        createdAt:
+          description: Creation UTC ISO 8601 timestamp of the payment intent.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        updatedAt:
+          description: Last updated UTC ISO 8601 timestamp of the payment intent.
+          example: 2022-06-01T03:57:26.115Z
+          type: string
+        paymentOrders:
+          description: The payment orders associated with this payment intent.
+          items:
+            $ref: '#/components/schemas/PaymentOrder'
+          type: array
+      required:
+      - cancelledAt
+      - confirmedFeeAmountCents
+      - confirmedInterestAmountCents
+      - confirmedPrincipalAmountCents
+      - confirmedRemainingBalanceCents
+      - confirmedTotalAmountCents
+      - createdAt
+      - direction
+      - drawRequestId
+      - feeAmountCents
+      - id
+      - interestAmountCents
+      - invoiceId
+      - isLate
+      - issuedProductId
+      - paymentOrders
+      - pendingFeeAmountCents
+      - pendingInterestAmountCents
+      - pendingPrincipalAmountCents
+      - pendingRemainingBalanceCents
+      - pendingTotalAmountCents
+      - principalAmountCents
+      - scheduledPaymentDate
+      - totalAmountCents
+      - trigger
+      - updatedAt
+      type: object
+    GetPaymentIntentsResponse:
+      example:
+        pagination: ""
+        paymentIntents:
+        - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          confirmedRemainingBalanceCents: 0
+          confirmedPrincipalAmountCents: 80000
+          confirmedFeeAmountCents: 10000
+          createdAt: 2022-06-01T03:57:26.115Z
+          totalAmountCents: 100000
+          paymentOrders:
+          - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            feeType: INSUFFICIENT_FUNDS
+            totalPaymentAmountCents: 100000
+            createdAt: 2022-06-01T03:57:26.115Z
+            principalPaymentAmountCents: 80000
+            interestPaymentAmountCents: 10000
+            invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            settledDate: 2024-01-03
+            effectiveDate: 2024-01-01
+            feePaymentAmountCents: 10000
+            direction: DISBURSEMENT
+            status: FAILED
+            updatedAt: 2022-06-01T03:57:26.115Z
+          - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            feeType: INSUFFICIENT_FUNDS
+            totalPaymentAmountCents: 100000
+            createdAt: 2022-06-01T03:57:26.115Z
+            principalPaymentAmountCents: 80000
+            interestPaymentAmountCents: 10000
+            invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            settledDate: 2024-01-03
+            effectiveDate: 2024-01-01
+            feePaymentAmountCents: 10000
+            direction: DISBURSEMENT
+            status: FAILED
+            updatedAt: 2022-06-01T03:57:26.115Z
+          pendingFeeAmountCents: 0
+          isLate: false
+          pendingInterestAmountCents: 0
+          pendingRemainingBalanceCents: 0
+          confirmedTotalAmountCents: 100000
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          interestAmountCents: 10000
+          pendingPrincipalAmountCents: 0
+          direction: REPAYMENT
+          updatedAt: 2022-06-01T03:57:26.115Z
+          cancelledAt: 2024-01-03T03:57:26.115Z
+          issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          trigger: SCHEDULED_REPAYMENT
+          feeType: INSUFFICIENT_FUNDS
+          pendingTotalAmountCents: 0
+          principalAmountCents: 80000
+          confirmedInterestAmountCents: 10000
+          invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          feeAmountCents: 10000
+          scheduledPaymentDate: 2024-01-01
+        - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          confirmedRemainingBalanceCents: 0
+          confirmedPrincipalAmountCents: 80000
+          confirmedFeeAmountCents: 10000
+          createdAt: 2022-06-01T03:57:26.115Z
+          totalAmountCents: 100000
+          paymentOrders:
+          - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            feeType: INSUFFICIENT_FUNDS
+            totalPaymentAmountCents: 100000
+            createdAt: 2022-06-01T03:57:26.115Z
+            principalPaymentAmountCents: 80000
+            interestPaymentAmountCents: 10000
+            invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            settledDate: 2024-01-03
+            effectiveDate: 2024-01-01
+            feePaymentAmountCents: 10000
+            direction: DISBURSEMENT
+            status: FAILED
+            updatedAt: 2022-06-01T03:57:26.115Z
+          - drawRequestId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            platformInvoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            feeType: INSUFFICIENT_FUNDS
+            totalPaymentAmountCents: 100000
+            createdAt: 2022-06-01T03:57:26.115Z
+            principalPaymentAmountCents: 80000
+            interestPaymentAmountCents: 10000
+            invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            settledDate: 2024-01-03
+            effectiveDate: 2024-01-01
+            feePaymentAmountCents: 10000
+            direction: DISBURSEMENT
+            status: FAILED
+            updatedAt: 2022-06-01T03:57:26.115Z
+          pendingFeeAmountCents: 0
+          isLate: false
+          pendingInterestAmountCents: 0
+          pendingRemainingBalanceCents: 0
+          confirmedTotalAmountCents: 100000
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          interestAmountCents: 10000
+          pendingPrincipalAmountCents: 0
+          direction: REPAYMENT
+          updatedAt: 2022-06-01T03:57:26.115Z
+          cancelledAt: 2024-01-03T03:57:26.115Z
+          issuedProductId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          trigger: SCHEDULED_REPAYMENT
+          feeType: INSUFFICIENT_FUNDS
+          pendingTotalAmountCents: 0
+          principalAmountCents: 80000
+          confirmedInterestAmountCents: 10000
+          invoiceId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          feeAmountCents: 10000
+          scheduledPaymentDate: 2024-01-01
+      properties:
+        paymentIntents:
+          description: Array of payment intents.
+          items:
+            $ref: '#/components/schemas/PaymentIntent'
+          type: array
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/PaginationResult'
+          description: Pagination metadata.
+      required:
+      - pagination
+      - paymentIntents
       type: object
     DrawRequestState:
       description: The state of the draw request.
@@ -8289,7 +8797,7 @@ components:
           MCA: '#/components/schemas/McaOfferTerms'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaOfferTerms'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditOfferTerms'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingOfferTerms'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingOfferTerms'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
@@ -8297,7 +8805,6 @@ components:
       - $ref: '#/components/schemas/McaOfferTerms'
       - $ref: '#/components/schemas/IntegratedMcaOfferTerms'
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
-      - $ref: '#/components/schemas/AccountsPayableFinancingOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
       discriminator:
@@ -8307,7 +8814,7 @@ components:
           MCA: '#/components/schemas/McaServicingData'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingServicingData'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
@@ -8315,7 +8822,6 @@ components:
       - $ref: '#/components/schemas/McaServicingData'
       - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
-      - $ref: '#/components/schemas/AccountsPayableFinancingServicingData'
     CreateSessionTokenRequestBody_data:
       description: This will differ depending on which `component` is used.
       discriminator:

@@ -15,8 +15,6 @@ src/apis/SandboxUtilitiesApi.ts
 src/apis/UsersApi.ts
 src/apis/index.ts
 src/index.ts
-src/models/AccountsPayableFinancingOfferTerms.ts
-src/models/AccountsPayableFinancingServicingData.ts
 src/models/AccountsPayableInvoiceFlowSessionTokenData.ts
 src/models/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.ts
 src/models/AccountsPayableSessionInvoice.ts
@@ -76,6 +74,7 @@ src/models/GetInvoice404Response.ts
 src/models/GetInvoicesResponse.ts
 src/models/GetIssuedProductsResponse.ts
 src/models/GetOffersResponse.ts
+src/models/GetPaymentIntentsResponse.ts
 src/models/GetPaymentScheduleResponse.ts
 src/models/GetPrequalificationsResponse.ts
 src/models/GetUsersResponse.ts
@@ -121,6 +120,8 @@ src/models/OfferNotFoundException.ts
 src/models/OfferNotLockedException.ts
 src/models/OfferTerms.ts
 src/models/PaginationResult.ts
+src/models/PaymentIntent.ts
+src/models/PaymentIntentTriggerType.ts
 src/models/PaymentOrder.ts
 src/models/PaymentOrderNotFoundException.ts
 src/models/PaymentOrderStatus.ts

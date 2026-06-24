@@ -42,8 +42,6 @@ src/main/java/com/kanmon/client/auth/Authentication.java
 src/main/java/com/kanmon/client/auth/HttpBasicAuth.java
 src/main/java/com/kanmon/client/auth/HttpBearerAuth.java
 src/main/java/com/kanmon/client/model/AbstractOpenApiSchema.java
-src/main/java/com/kanmon/client/model/AccountsPayableFinancingOfferTerms.java
-src/main/java/com/kanmon/client/model/AccountsPayableFinancingServicingData.java
 src/main/java/com/kanmon/client/model/AccountsPayableInvoiceFlowSessionTokenData.java
 src/main/java/com/kanmon/client/model/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.java
 src/main/java/com/kanmon/client/model/AccountsPayableSessionInvoice.java
@@ -103,6 +101,7 @@ src/main/java/com/kanmon/client/model/GetInvoice404Response.java
 src/main/java/com/kanmon/client/model/GetInvoicesResponse.java
 src/main/java/com/kanmon/client/model/GetIssuedProductsResponse.java
 src/main/java/com/kanmon/client/model/GetOffersResponse.java
+src/main/java/com/kanmon/client/model/GetPaymentIntentsResponse.java
 src/main/java/com/kanmon/client/model/GetPaymentScheduleResponse.java
 src/main/java/com/kanmon/client/model/GetPrequalificationsResponse.java
 src/main/java/com/kanmon/client/model/GetUsersResponse.java
@@ -148,6 +147,8 @@ src/main/java/com/kanmon/client/model/OfferNotFoundException.java
 src/main/java/com/kanmon/client/model/OfferNotLockedException.java
 src/main/java/com/kanmon/client/model/OfferTerms.java
 src/main/java/com/kanmon/client/model/PaginationResult.java
+src/main/java/com/kanmon/client/model/PaymentIntent.java
+src/main/java/com/kanmon/client/model/PaymentIntentTriggerType.java
 src/main/java/com/kanmon/client/model/PaymentOrder.java
 src/main/java/com/kanmon/client/model/PaymentOrderNotFoundException.java
 src/main/java/com/kanmon/client/model/PaymentOrderStatus.java

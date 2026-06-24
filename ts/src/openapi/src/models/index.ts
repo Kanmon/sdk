@@ -1,7 +1,5 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './AccountsPayableFinancingOfferTerms';
-export * from './AccountsPayableFinancingServicingData';
 export * from './AccountsPayableInvoiceFlowSessionTokenData';
 export * from './AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData';
 export * from './AccountsPayableSessionInvoice';
@@ -61,6 +59,7 @@ export * from './GetInvoice404Response';
 export * from './GetInvoicesResponse';
 export * from './GetIssuedProductsResponse';
 export * from './GetOffersResponse';
+export * from './GetPaymentIntentsResponse';
 export * from './GetPaymentScheduleResponse';
 export * from './GetPrequalificationsResponse';
 export * from './GetUsersResponse';
@@ -106,6 +105,8 @@ export * from './OfferNotFoundException';
 export * from './OfferNotLockedException';
 export * from './OfferTerms';
 export * from './PaginationResult';
+export * from './PaymentIntent';
+export * from './PaymentIntentTriggerType';
 export * from './PaymentOrder';
 export * from './PaymentOrderNotFoundException';
 export * from './PaymentOrderStatus';

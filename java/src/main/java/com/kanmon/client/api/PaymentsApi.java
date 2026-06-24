@@ -30,9 +30,11 @@ import java.io.IOException;
 import com.kanmon.client.model.BadRequestException;
 import java.math.BigDecimal;
 import com.kanmon.client.model.ForbiddenException;
+import com.kanmon.client.model.GetPaymentIntentsResponse;
 import com.kanmon.client.model.GetPaymentScheduleResponse;
 import com.kanmon.client.model.InternalServerErrorException;
 import com.kanmon.client.model.IssuedProductNotFoundException;
+import com.kanmon.client.model.PaymentIntentTriggerType;
 import com.kanmon.client.model.PaymentOrder;
 import com.kanmon.client.model.PaymentOrderNotFoundException;
 import com.kanmon.client.model.PaymentOrderStatus;
@@ -221,6 +223,223 @@ public class PaymentsApi {
 
         okhttp3.Call localVarCall = getPaymentByIdValidateBeforeCall(id, _callback);
         Type localVarReturnType = new TypeToken<PaymentOrder>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for getPaymentIntents
+     * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
+     * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
+     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getPaymentIntentsCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/api/platform/v2/payment-intents";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (ids != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ids", ids));
+        }
+
+        if (invoiceIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("invoiceIds", invoiceIds));
+        }
+
+        if (drawRequestIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("drawRequestIds", drawRequestIds));
+        }
+
+        if (issuedProductIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("issuedProductIds", issuedProductIds));
+        }
+
+        if (businessIds != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
+        }
+
+        if (cancelled != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cancelled", cancelled));
+        }
+
+        if (trigger != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("trigger", trigger));
+        }
+
+        if (offset != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("offset", offset));
+        }
+
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
+        }
+
+        if (createdAtStart != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtStart", createdAtStart));
+        }
+
+        if (createdAtEnd != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtEnd", createdAtEnd));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "Authorization" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call getPaymentIntentsValidateBeforeCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getPaymentIntentsCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd, _callback);
+
+    }
+
+    /**
+     * Fetch payment intents
+     * 
+     * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
+     * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
+     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @return GetPaymentIntentsResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public GetPaymentIntentsResponse getPaymentIntents(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetPaymentIntentsResponse> localVarResp = getPaymentIntentsWithHttpInfo(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Fetch payment intents
+     * 
+     * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
+     * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
+     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @return ApiResponse&lt;GetPaymentIntentsResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<GetPaymentIntentsResponse> getPaymentIntentsWithHttpInfo(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd, null);
+        Type localVarReturnType = new TypeToken<GetPaymentIntentsResponse>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Fetch payment intents (asynchronously)
+     * 
+     * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
+     * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
+     * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
+     * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
+     * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
+     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
+     * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
+     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
+     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> BadRequestException </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> ForbiddenException </td><td>  -  </td></tr>
+        <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
+        <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call getPaymentIntentsAsync(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPaymentIntentsResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd, _callback);
+        Type localVarReturnType = new TypeToken<GetPaymentIntentsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

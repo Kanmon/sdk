@@ -17,9 +17,11 @@ import * as runtime from '../runtime';
 import type {
   BadRequestException,
   ForbiddenException,
+  GetPaymentIntentsResponse,
   GetPaymentScheduleResponse,
   InternalServerErrorException,
   IssuedProductNotFoundException,
+  PaymentIntentTriggerType,
   PaymentOrder,
   PaymentOrderNotFoundException,
   PaymentOrderStatus,
@@ -30,12 +32,16 @@ import {
     BadRequestExceptionToJSON,
     ForbiddenExceptionFromJSON,
     ForbiddenExceptionToJSON,
+    GetPaymentIntentsResponseFromJSON,
+    GetPaymentIntentsResponseToJSON,
     GetPaymentScheduleResponseFromJSON,
     GetPaymentScheduleResponseToJSON,
     InternalServerErrorExceptionFromJSON,
     InternalServerErrorExceptionToJSON,
     IssuedProductNotFoundExceptionFromJSON,
     IssuedProductNotFoundExceptionToJSON,
+    PaymentIntentTriggerTypeFromJSON,
+    PaymentIntentTriggerTypeToJSON,
     PaymentOrderFromJSON,
     PaymentOrderToJSON,
     PaymentOrderNotFoundExceptionFromJSON,
@@ -48,6 +54,20 @@ import {
 
 export interface GetPaymentByIdRequest {
     id: string;
+}
+
+export interface GetPaymentIntentsRequest {
+    ids?: string;
+    invoiceIds?: string;
+    drawRequestIds?: string;
+    issuedProductIds?: string;
+    businessIds?: string;
+    cancelled?: boolean;
+    trigger?: PaymentIntentTriggerType;
+    offset?: number;
+    limit?: number;
+    createdAtStart?: string;
+    createdAtEnd?: string;
 }
 
 export interface GetPaymentScheduleForAIssuedProductRequest {
@@ -100,6 +120,80 @@ export class PaymentsApi extends runtime.BaseAPI {
      */
     async getPaymentById(requestParameters: GetPaymentByIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PaymentOrder> {
         const response = await this.getPaymentByIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch payment intents
+     */
+    async getPaymentIntentsRaw(requestParameters: GetPaymentIntentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaymentIntentsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['ids'] != null) {
+            queryParameters['ids'] = requestParameters['ids'];
+        }
+
+        if (requestParameters['invoiceIds'] != null) {
+            queryParameters['invoiceIds'] = requestParameters['invoiceIds'];
+        }
+
+        if (requestParameters['drawRequestIds'] != null) {
+            queryParameters['drawRequestIds'] = requestParameters['drawRequestIds'];
+        }
+
+        if (requestParameters['issuedProductIds'] != null) {
+            queryParameters['issuedProductIds'] = requestParameters['issuedProductIds'];
+        }
+
+        if (requestParameters['businessIds'] != null) {
+            queryParameters['businessIds'] = requestParameters['businessIds'];
+        }
+
+        if (requestParameters['cancelled'] != null) {
+            queryParameters['cancelled'] = requestParameters['cancelled'];
+        }
+
+        if (requestParameters['trigger'] != null) {
+            queryParameters['trigger'] = requestParameters['trigger'];
+        }
+
+        if (requestParameters['offset'] != null) {
+            queryParameters['offset'] = requestParameters['offset'];
+        }
+
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
+        }
+
+        if (requestParameters['createdAtStart'] != null) {
+            queryParameters['createdAtStart'] = requestParameters['createdAtStart'];
+        }
+
+        if (requestParameters['createdAtEnd'] != null) {
+            queryParameters['createdAtEnd'] = requestParameters['createdAtEnd'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["Authorization"] = await this.configuration.apiKey("Authorization"); // Authorization authentication
+        }
+
+        const response = await this.request({
+            path: `/api/platform/v2/payment-intents`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPaymentIntentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch payment intents
+     */
+    async getPaymentIntents(requestParameters: GetPaymentIntentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaymentIntentsResponse> {
+        const response = await this.getPaymentIntentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
