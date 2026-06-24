@@ -43,9 +43,7 @@ public enum PaymentIntentTriggerType {
   
   REFUND("REFUND"),
   
-  MINIMUM_PAYMENT("MINIMUM_PAYMENT"),
-  
-  AD_HOC_REPAYMENT("AD_HOC_REPAYMENT");
+  MINIMUM_PAYMENT("MINIMUM_PAYMENT");
 
   private String value;
 

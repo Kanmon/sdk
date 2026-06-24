@@ -79,7 +79,7 @@ public class GetPaymentIntentsResponse {
   }
 
   /**
-   * Array of payment intents.
+   * A payment intent represents a planned payment on an issued product, such as a disbursement, scheduled repayment, fee, or refund. It tracks intended amounts, whether the payment is late, settlement progress via the confirmed and pending amount fields, and the payment orders that actually move funds. Payment intents may be cancelled when superseded — for example, by an early payoff.
    * @return paymentIntents
    */
   @javax.annotation.Nonnull

@@ -79,13 +79,12 @@ public class JSON {
                     @Override
                     public Class<? extends com.kanmon.client.model.IssuedProductServicingData> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("ACCOUNTS_PAYABLE_FINANCING", com.kanmon.client.model.AccountsPayableFinancingServicingData.class);
+                        classByDiscriminatorValue.put("ACCOUNTS_PAYABLE_FINANCING", com.kanmon.client.model.InvoiceFinancingServicingData.class);
                         classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaServicingData.class);
                         classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingServicingData.class);
                         classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditServicingData.class);
                         classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaServicingData.class);
                         classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanServicingData.class);
-                        classByDiscriminatorValue.put("AccountsPayableFinancingServicingData", com.kanmon.client.model.AccountsPayableFinancingServicingData.class);
                         classByDiscriminatorValue.put("IntegratedMcaServicingData", com.kanmon.client.model.IntegratedMcaServicingData.class);
                         classByDiscriminatorValue.put("InvoiceFinancingServicingData", com.kanmon.client.model.InvoiceFinancingServicingData.class);
                         classByDiscriminatorValue.put("LineOfCreditServicingData", com.kanmon.client.model.LineOfCreditServicingData.class);
@@ -100,13 +99,12 @@ public class JSON {
                     @Override
                     public Class<? extends com.kanmon.client.model.OfferTerms> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
-                        classByDiscriminatorValue.put("ACCOUNTS_PAYABLE_FINANCING", com.kanmon.client.model.AccountsPayableFinancingOfferTerms.class);
+                        classByDiscriminatorValue.put("ACCOUNTS_PAYABLE_FINANCING", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
                         classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaOfferTerms.class);
                         classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
                         classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditOfferTerms.class);
                         classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaOfferTerms.class);
                         classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanOfferTerms.class);
-                        classByDiscriminatorValue.put("AccountsPayableFinancingOfferTerms", com.kanmon.client.model.AccountsPayableFinancingOfferTerms.class);
                         classByDiscriminatorValue.put("IntegratedMcaOfferTerms", com.kanmon.client.model.IntegratedMcaOfferTerms.class);
                         classByDiscriminatorValue.put("InvoiceFinancingOfferTerms", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
                         classByDiscriminatorValue.put("LineOfCreditOfferTerms", com.kanmon.client.model.LineOfCreditOfferTerms.class);
@@ -152,8 +150,6 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(OffsetDateTime.class, offsetDateTimeTypeAdapter);
         gsonBuilder.registerTypeAdapter(LocalDate.class, localDateTypeAdapter);
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
-        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.AccountsPayableFinancingOfferTerms.CustomTypeAdapterFactory());
-        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.AccountsPayableFinancingServicingData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.AccountsPayableInvoiceFlowSessionTokenData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.AccountsPayableSessionInvoice.CustomTypeAdapterFactory());

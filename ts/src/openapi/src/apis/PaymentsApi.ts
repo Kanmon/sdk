@@ -21,6 +21,7 @@ import type {
   GetPaymentScheduleResponse,
   InternalServerErrorException,
   IssuedProductNotFoundException,
+  PaymentIntentTriggerType,
   PaymentOrder,
   PaymentOrderNotFoundException,
   PaymentOrderStatus,
@@ -39,6 +40,8 @@ import {
     InternalServerErrorExceptionToJSON,
     IssuedProductNotFoundExceptionFromJSON,
     IssuedProductNotFoundExceptionToJSON,
+    PaymentIntentTriggerTypeFromJSON,
+    PaymentIntentTriggerTypeToJSON,
     PaymentOrderFromJSON,
     PaymentOrderToJSON,
     PaymentOrderNotFoundExceptionFromJSON,
@@ -59,12 +62,10 @@ export interface GetPaymentIntentsRequest {
     drawRequestIds?: string;
     issuedProductIds?: string;
     businessIds?: string;
+    triggers?: PaymentIntentTriggerType;
     cancelled?: boolean;
-    triggers?: string;
     offset?: number;
     limit?: number;
-    createdAtStart?: string;
-    createdAtEnd?: string;
 }
 
 export interface GetPaymentScheduleForAIssuedProductRequest {
@@ -121,6 +122,7 @@ export class PaymentsApi extends runtime.BaseAPI {
     }
 
     /**
+     * A payment intent represents a planned payment on an issued product, such as a disbursement, scheduled repayment, fee, or refund. It tracks intended amounts, whether the payment is late, settlement progress via the confirmed and pending amount fields, and the payment orders that actually move funds. Payment intents may be cancelled when superseded — for example, by an early payoff.
      * Fetch payment intents
      */
     async getPaymentIntentsRaw(requestParameters: GetPaymentIntentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaymentIntentsResponse>> {
@@ -146,12 +148,12 @@ export class PaymentsApi extends runtime.BaseAPI {
             queryParameters['businessIds'] = requestParameters['businessIds'];
         }
 
-        if (requestParameters['cancelled'] != null) {
-            queryParameters['cancelled'] = requestParameters['cancelled'];
-        }
-
         if (requestParameters['triggers'] != null) {
             queryParameters['triggers'] = requestParameters['triggers'];
+        }
+
+        if (requestParameters['cancelled'] != null) {
+            queryParameters['cancelled'] = requestParameters['cancelled'];
         }
 
         if (requestParameters['offset'] != null) {
@@ -160,14 +162,6 @@ export class PaymentsApi extends runtime.BaseAPI {
 
         if (requestParameters['limit'] != null) {
             queryParameters['limit'] = requestParameters['limit'];
-        }
-
-        if (requestParameters['createdAtStart'] != null) {
-            queryParameters['createdAtStart'] = requestParameters['createdAtStart'];
-        }
-
-        if (requestParameters['createdAtEnd'] != null) {
-            queryParameters['createdAtEnd'] = requestParameters['createdAtEnd'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -187,6 +181,7 @@ export class PaymentsApi extends runtime.BaseAPI {
     }
 
     /**
+     * A payment intent represents a planned payment on an issued product, such as a disbursement, scheduled repayment, fee, or refund. It tracks intended amounts, whether the payment is late, settlement progress via the confirmed and pending amount fields, and the payment orders that actually move funds. Payment intents may be cancelled when superseded — for example, by an early payoff.
      * Fetch payment intents
      */
     async getPaymentIntents(requestParameters: GetPaymentIntentsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaymentIntentsResponse> {
@@ -195,7 +190,9 @@ export class PaymentsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Deprecated. Prefer Fetch payment intents (`getPaymentIntents`) instead.
      * Fetch payment schedule for an issued product
+     * @deprecated
      */
     async getPaymentScheduleForAIssuedProductRaw(requestParameters: GetPaymentScheduleForAIssuedProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaymentScheduleResponse>> {
         if (requestParameters['id'] == null) {
@@ -252,7 +249,9 @@ export class PaymentsApi extends runtime.BaseAPI {
     }
 
     /**
+     * Deprecated. Prefer Fetch payment intents (`getPaymentIntents`) instead.
      * Fetch payment schedule for an issued product
+     * @deprecated
      */
     async getPaymentScheduleForAIssuedProduct(requestParameters: GetPaymentScheduleForAIssuedProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaymentScheduleResponse> {
         const response = await this.getPaymentScheduleForAIssuedProductRaw(requestParameters, initOverrides);

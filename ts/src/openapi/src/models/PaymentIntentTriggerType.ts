@@ -25,8 +25,7 @@ export const PaymentIntentTriggerType = {
     REFINANCE_PAYOFF: 'REFINANCE_PAYOFF',
     FEE: 'FEE',
     REFUND: 'REFUND',
-    MINIMUM_PAYMENT: 'MINIMUM_PAYMENT',
-    AD_HOC_REPAYMENT: 'AD_HOC_REPAYMENT'
+    MINIMUM_PAYMENT: 'MINIMUM_PAYMENT'
 } as const;
 export type PaymentIntentTriggerType = typeof PaymentIntentTriggerType[keyof typeof PaymentIntentTriggerType];
 

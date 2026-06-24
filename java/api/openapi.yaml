@@ -679,7 +679,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "1e1d938b-1780-49ef-bd56-014029fd3877,722c74e8-4f47-4a4b-945d-64fdb4559887"
+        example: "d4824e09-7857-49cb-8dc1-3410d14a1621,361530c5-9180-4ec8-9287-44c5dc9d3686"
         explode: true
         in: query
         name: businessIds
@@ -2004,7 +2004,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "46d01348-c3b6-4fcb-884d-6b981989dcb8,0ab7dedf-e735-417b-bdd6-365df5be78f1"
+        example: "e3765dce-bbc6-4038-ae73-4e63b6ce990b,e2b4d6a0-26d2-4c28-96f3-a40aea7187f7"
         explode: true
         in: query
         name: businessIds
@@ -2463,10 +2463,13 @@ paths:
       - application/json
   /api/platform/v2/issued-products/{id}/payment-schedule:
     get:
+      deprecated: true
+      description: Deprecated. Prefer Fetch payment intents (`getPaymentIntents`)
+        instead.
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "f8380a70-934a-4438-a8df-e247a123496d,a9bf9f4d-1b4f-4b3a-9650-e45e9456bc21"
+        example: "dd2ac3c3-249e-455c-a3bc-a0907cb82817,7f6126db-b592-4d17-bcdf-29663a54a80f"
         explode: true
         in: query
         name: drawRequestIds
@@ -2608,10 +2611,16 @@ paths:
       - application/json
   /api/platform/v2/payment-intents:
     get:
+      description: "A payment intent represents a planned payment on an issued product,\
+        \ such as a disbursement, scheduled repayment, fee, or refund. It tracks intended\
+        \ amounts, whether the payment is late, settlement progress via the confirmed\
+        \ and pending amount fields, and the payment orders that actually move funds.\
+        \ Payment intents may be cancelled when superseded — for example, by an early\
+        \ payoff."
       operationId: getPaymentIntents
       parameters:
       - description: A comma delimited list of Kanmon’s unique payment intent IDs.
-        example: "080ebf0d-1eb4-40d7-b7cc-fc9f575f7780,f52bd70d-46f2-4e03-acc0-f2804ba63341"
+        example: "3789e162-b5ba-45a9-a8ea-27682ed7ea66,fa075e48-014f-46c6-a8cc-b2b9b74c5e4a"
         explode: true
         in: query
         name: ids
@@ -2620,7 +2629,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for invoices.
-        example: "8e63b9ce-8d70-4bcd-bae8-32e59b48eee6,ba057c93-6e3e-4909-b076-584e85b05a18"
+        example: "2a479896-c24c-4bd3-a8af-b3e15092974a,92eede22-dccc-4bb7-bae7-74b62a403c9d"
         explode: true
         in: query
         name: invoiceIds
@@ -2629,7 +2638,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for draw requests.
-        example: "0dcf1323-914a-4877-bd29-99a434427150,ff99fd2c-e478-4980-815b-d62c9b4408a4"
+        example: "6ea29646-8f2a-456c-a58a-fe3caa640bc4,a01d5deb-f25a-4299-8fd7-34b1f2a2757d"
         explode: true
         in: query
         name: drawRequestIds
@@ -2638,7 +2647,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for issued products.
-        example: "c3b8b469-f9ec-4657-b66b-6729975e8486,4bf8b078-199b-4727-956d-0b03880df2d1"
+        example: "b77f03df-f9bc-4faa-b4ee-8dd12a27848f,56692a55-9fb0-43e8-8af9-03a799f17268"
         explode: true
         in: query
         name: issuedProductIds
@@ -2647,13 +2656,57 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for businesses.
-        example: "19ee28b0-5e83-441e-b1aa-7b4506e397a3,7dda0881-af47-4235-bf5d-36f077410991"
+        example: "8d0f3d97-3c2d-4811-871e-8b8fe9c93136,85fb1f58-2b85-42f8-903b-77973d941d39"
         explode: true
         in: query
         name: businessIds
         required: false
         schema:
           type: string
+        style: form
+      - description: |-
+          A comma delimited list of payment intent triggers to filter by.<table>
+
+          <tr>
+          <td>DISBURSEMENT</td>
+          <td>Funds disbursed to the business.</td>
+          </tr>
+          <tr>
+          <td>DISBURSEMENT_RETURN</td>
+          <td>Return of previously disbursed funds. Only relevant for some AP financing setups.</td>
+          </tr>
+          <tr>
+          <td>SCHEDULED_REPAYMENT</td>
+          <td>A repayment scheduled on the payment schedule.</td>
+          </tr>
+          <tr>
+          <td>EARLY_PAYOFF</td>
+          <td>An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.</td>
+          </tr>
+          <tr>
+          <td>REFINANCE_PAYOFF</td>
+          <td>A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.</td>
+          </tr>
+          <tr>
+          <td>FEE</td>
+          <td>A fee charged to the business, such as a maintenance or transaction fee.</td>
+          </tr>
+          <tr>
+          <td>REFUND</td>
+          <td>A refund or rebate issued to the business.</td>
+          </tr>
+          <tr>
+          <td>MINIMUM_PAYMENT</td>
+          <td>A minimum payment, relevant only for Integrated MCA products.</td>
+          </tr>
+          </table>
+        example: "SCHEDULED_REPAYMENT,DISBURSEMENT"
+        explode: true
+        in: query
+        name: triggers
+        required: false
+        schema:
+          $ref: '#/components/schemas/PaymentIntentTriggerType'
         style: form
       - description: "When true, return only cancelled payment intents. When false,\
           \ return only non-cancelled payment intents."
@@ -2664,16 +2717,6 @@ paths:
         required: false
         schema:
           type: boolean
-        style: form
-      - description: A comma delimited list of payment intent trigger types to filter
-          by.
-        example: "DISBURSEMENT,SCHEDULED_REPAYMENT"
-        explode: true
-        in: query
-        name: triggers
-        required: false
-        schema:
-          type: string
         style: form
       - description: The number of records to skip when performing pagination. Defaults
           to `0`.
@@ -2694,26 +2737,6 @@ paths:
         required: false
         schema:
           type: number
-        style: form
-      - description: Filter for records where `createdAt` is greater than or equal
-          to this value. ISO 8601 format.
-        example: 2022-06-01T03:57:26.115Z
-        explode: true
-        in: query
-        name: createdAtStart
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Filter for records where `createdAt` is less than or equal to
-          this value. ISO 8601 format.
-        example: 2022-06-01T03:57:26.115Z
-        explode: true
-        in: query
-        name: createdAtEnd
-        required: false
-        schema:
-          type: string
         style: form
       responses:
         "200":
@@ -4534,6 +4557,7 @@ components:
           example: 2022-06-01T03:57:26.115Z
           type: string
       required:
+      - address
       - businessId
       - createdAt
       - email
@@ -5769,24 +5793,6 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
-    AccountsPayableFinancingOfferTerms:
-      properties:
-        productType:
-          $ref: '#/components/schemas/ProductType'
-        totalLimitCents:
-          description: The total limit allowed for this offer - in cents.
-          example: 1000000
-          type: number
-        pricingPlans:
-          description: The pricing plans available for this offer.
-          items:
-            $ref: '#/components/schemas/InvoicePaymentPlan'
-          type: array
-      required:
-      - pricingPlans
-      - productType
-      - totalLimitCents
-      type: object
     Offer:
       example:
         expiredAt: 2023-12-29T03:57:26.115Z
@@ -6143,28 +6149,6 @@ components:
       - productType
       - repaymentCadence
       - repaymentDurationMonths
-      - totalLimitCents
-      type: object
-    AccountsPayableFinancingServicingData:
-      properties:
-        productType:
-          $ref: '#/components/schemas/ProductType'
-        totalLimitCents:
-          description: The total limit allowed - in cents.
-          type: number
-        pricingPlans:
-          description: The pricing plans available for this issued product.
-          items:
-            $ref: '#/components/schemas/InvoicePaymentPlan'
-          type: array
-        availableLimitCents:
-          description: The total limit less the amount of balance outstanding - in
-            cents.
-          type: number
-      required:
-      - availableLimitCents
-      - pricingPlans
-      - productType
       - totalLimitCents
       type: object
     LoanStatus:
@@ -6786,7 +6770,6 @@ components:
       - FEE
       - REFUND
       - MINIMUM_PAYMENT
-      - AD_HOC_REPAYMENT
       type: string
     PaymentIntent:
       example:
@@ -6878,7 +6861,42 @@ components:
           example: REPAYMENT
           type: string
         trigger:
-          description: What caused this payment intent to be created.
+          description: |-
+            What caused this payment intent to be created.<table>
+
+            <tr>
+            <td>DISBURSEMENT</td>
+            <td>Funds disbursed to the business.</td>
+            </tr>
+            <tr>
+            <td>DISBURSEMENT_RETURN</td>
+            <td>Return of previously disbursed funds. Only relevant for some AP financing setups.</td>
+            </tr>
+            <tr>
+            <td>SCHEDULED_REPAYMENT</td>
+            <td>A repayment scheduled on the payment schedule.</td>
+            </tr>
+            <tr>
+            <td>EARLY_PAYOFF</td>
+            <td>An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.</td>
+            </tr>
+            <tr>
+            <td>REFINANCE_PAYOFF</td>
+            <td>A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.</td>
+            </tr>
+            <tr>
+            <td>FEE</td>
+            <td>A fee charged to the business, such as a maintenance or transaction fee.</td>
+            </tr>
+            <tr>
+            <td>REFUND</td>
+            <td>A refund or rebate issued to the business.</td>
+            </tr>
+            <tr>
+            <td>MINIMUM_PAYMENT</td>
+            <td>A minimum payment, relevant only for Integrated MCA products.</td>
+            </tr>
+            </table>
           enum:
           - DISBURSEMENT
           - DISBURSEMENT_RETURN
@@ -6888,7 +6906,6 @@ components:
           - FEE
           - REFUND
           - MINIMUM_PAYMENT
-          - AD_HOC_REPAYMENT
           example: SCHEDULED_REPAYMENT
           type: string
         totalAmountCents:
@@ -7145,7 +7162,12 @@ components:
           scheduledPaymentDate: 2024-01-01
       properties:
         paymentIntents:
-          description: Array of payment intents.
+          description: "A payment intent represents a planned payment on an issued\
+            \ product, such as a disbursement, scheduled repayment, fee, or refund.\
+            \ It tracks intended amounts, whether the payment is late, settlement\
+            \ progress via the confirmed and pending amount fields, and the payment\
+            \ orders that actually move funds. Payment intents may be cancelled when\
+            \ superseded — for example, by an early payoff."
           items:
             $ref: '#/components/schemas/PaymentIntent'
           type: array
@@ -8837,7 +8859,7 @@ components:
           MCA: '#/components/schemas/McaOfferTerms'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaOfferTerms'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditOfferTerms'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingOfferTerms'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingOfferTerms'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
@@ -8845,7 +8867,6 @@ components:
       - $ref: '#/components/schemas/McaOfferTerms'
       - $ref: '#/components/schemas/IntegratedMcaOfferTerms'
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
-      - $ref: '#/components/schemas/AccountsPayableFinancingOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
       discriminator:
@@ -8855,7 +8876,7 @@ components:
           MCA: '#/components/schemas/McaServicingData'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingServicingData'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
@@ -8863,7 +8884,6 @@ components:
       - $ref: '#/components/schemas/McaServicingData'
       - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
-      - $ref: '#/components/schemas/AccountsPayableFinancingServicingData'
     CreateSessionTokenRequestBody_data:
       description: This will differ depending on which `component` is used.
       discriminator:

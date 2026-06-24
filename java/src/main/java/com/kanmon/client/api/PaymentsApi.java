@@ -34,6 +34,7 @@ import com.kanmon.client.model.GetPaymentIntentsResponse;
 import com.kanmon.client.model.GetPaymentScheduleResponse;
 import com.kanmon.client.model.InternalServerErrorException;
 import com.kanmon.client.model.IssuedProductNotFoundException;
+import com.kanmon.client.model.PaymentIntentTriggerType;
 import com.kanmon.client.model.PaymentOrder;
 import com.kanmon.client.model.PaymentOrderNotFoundException;
 import com.kanmon.client.model.PaymentOrderStatus;
@@ -232,12 +233,10 @@ public class PaymentsApi {
      * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param triggers A comma delimited list of payment intent triggers to filter by.&lt;table&gt;  &lt;tr&gt; &lt;td&gt;DISBURSEMENT&lt;/td&gt; &lt;td&gt;Funds disbursed to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DISBURSEMENT_RETURN&lt;/td&gt; &lt;td&gt;Return of previously disbursed funds. Only relevant for some AP financing setups.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SCHEDULED_REPAYMENT&lt;/td&gt; &lt;td&gt;A repayment scheduled on the payment schedule.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EARLY_PAYOFF&lt;/td&gt; &lt;td&gt;An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFINANCE_PAYOFF&lt;/td&gt; &lt;td&gt;A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FEE&lt;/td&gt; &lt;td&gt;A fee charged to the business, such as a maintenance or transaction fee.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFUND&lt;/td&gt; &lt;td&gt;A refund or rebate issued to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MINIMUM_PAYMENT&lt;/td&gt; &lt;td&gt;A minimum payment, relevant only for Integrated MCA products.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -251,7 +250,7 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPaymentIntentsCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPaymentIntentsCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, PaymentIntentTriggerType triggers, Boolean cancelled, BigDecimal offset, BigDecimal limit, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -296,12 +295,12 @@ public class PaymentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("businessIds", businessIds));
         }
 
-        if (cancelled != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cancelled", cancelled));
-        }
-
         if (triggers != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("triggers", triggers));
+        }
+
+        if (cancelled != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cancelled", cancelled));
         }
 
         if (offset != null) {
@@ -310,14 +309,6 @@ public class PaymentsApi {
 
         if (limit != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
-        }
-
-        if (createdAtStart != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtStart", createdAtStart));
-        }
-
-        if (createdAtEnd != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("createdAtEnd", createdAtEnd));
         }
 
         final String[] localVarAccepts = {
@@ -340,25 +331,23 @@ public class PaymentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPaymentIntentsValidateBeforeCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getPaymentIntentsCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd, _callback);
+    private okhttp3.Call getPaymentIntentsValidateBeforeCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, PaymentIntentTriggerType triggers, Boolean cancelled, BigDecimal offset, BigDecimal limit, final ApiCallback _callback) throws ApiException {
+        return getPaymentIntentsCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, triggers, cancelled, offset, limit, _callback);
 
     }
 
     /**
      * Fetch payment intents
-     * 
+     * A payment intent represents a planned payment on an issued product, such as a disbursement, scheduled repayment, fee, or refund. It tracks intended amounts, whether the payment is late, settlement progress via the confirmed and pending amount fields, and the payment orders that actually move funds. Payment intents may be cancelled when superseded — for example, by an early payoff.
      * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
      * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
      * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param triggers A comma delimited list of payment intent triggers to filter by.&lt;table&gt;  &lt;tr&gt; &lt;td&gt;DISBURSEMENT&lt;/td&gt; &lt;td&gt;Funds disbursed to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DISBURSEMENT_RETURN&lt;/td&gt; &lt;td&gt;Return of previously disbursed funds. Only relevant for some AP financing setups.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SCHEDULED_REPAYMENT&lt;/td&gt; &lt;td&gt;A repayment scheduled on the payment schedule.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EARLY_PAYOFF&lt;/td&gt; &lt;td&gt;An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFINANCE_PAYOFF&lt;/td&gt; &lt;td&gt;A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FEE&lt;/td&gt; &lt;td&gt;A fee charged to the business, such as a maintenance or transaction fee.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFUND&lt;/td&gt; &lt;td&gt;A refund or rebate issued to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MINIMUM_PAYMENT&lt;/td&gt; &lt;td&gt;A minimum payment, relevant only for Integrated MCA products.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
      * @return GetPaymentIntentsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -371,25 +360,23 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public GetPaymentIntentsResponse getPaymentIntents(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetPaymentIntentsResponse> localVarResp = getPaymentIntentsWithHttpInfo(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd);
+    public GetPaymentIntentsResponse getPaymentIntents(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, PaymentIntentTriggerType triggers, Boolean cancelled, BigDecimal offset, BigDecimal limit) throws ApiException {
+        ApiResponse<GetPaymentIntentsResponse> localVarResp = getPaymentIntentsWithHttpInfo(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, triggers, cancelled, offset, limit);
         return localVarResp.getData();
     }
 
     /**
      * Fetch payment intents
-     * 
+     * A payment intent represents a planned payment on an issued product, such as a disbursement, scheduled repayment, fee, or refund. It tracks intended amounts, whether the payment is late, settlement progress via the confirmed and pending amount fields, and the payment orders that actually move funds. Payment intents may be cancelled when superseded — for example, by an early payoff.
      * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
      * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
      * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param triggers A comma delimited list of payment intent triggers to filter by.&lt;table&gt;  &lt;tr&gt; &lt;td&gt;DISBURSEMENT&lt;/td&gt; &lt;td&gt;Funds disbursed to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DISBURSEMENT_RETURN&lt;/td&gt; &lt;td&gt;Return of previously disbursed funds. Only relevant for some AP financing setups.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SCHEDULED_REPAYMENT&lt;/td&gt; &lt;td&gt;A repayment scheduled on the payment schedule.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EARLY_PAYOFF&lt;/td&gt; &lt;td&gt;An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFINANCE_PAYOFF&lt;/td&gt; &lt;td&gt;A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FEE&lt;/td&gt; &lt;td&gt;A fee charged to the business, such as a maintenance or transaction fee.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFUND&lt;/td&gt; &lt;td&gt;A refund or rebate issued to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MINIMUM_PAYMENT&lt;/td&gt; &lt;td&gt;A minimum payment, relevant only for Integrated MCA products.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
      * @return ApiResponse&lt;GetPaymentIntentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -402,26 +389,24 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPaymentIntentsResponse> getPaymentIntentsWithHttpInfo(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd, null);
+    public ApiResponse<GetPaymentIntentsResponse> getPaymentIntentsWithHttpInfo(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, PaymentIntentTriggerType triggers, Boolean cancelled, BigDecimal offset, BigDecimal limit) throws ApiException {
+        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, triggers, cancelled, offset, limit, null);
         Type localVarReturnType = new TypeToken<GetPaymentIntentsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Fetch payment intents (asynchronously)
-     * 
+     * A payment intent represents a planned payment on an issued product, such as a disbursement, scheduled repayment, fee, or refund. It tracks intended amounts, whether the payment is late, settlement progress via the confirmed and pending amount fields, and the payment orders that actually move funds. Payment intents may be cancelled when superseded — for example, by an early payoff.
      * @param ids A comma delimited list of Kanmon’s unique payment intent IDs. (optional)
      * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
      * @param drawRequestIds A comma delimited list of Kanmon’s unique IDs for draw requests. (optional)
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
+     * @param triggers A comma delimited list of payment intent triggers to filter by.&lt;table&gt;  &lt;tr&gt; &lt;td&gt;DISBURSEMENT&lt;/td&gt; &lt;td&gt;Funds disbursed to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DISBURSEMENT_RETURN&lt;/td&gt; &lt;td&gt;Return of previously disbursed funds. Only relevant for some AP financing setups.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SCHEDULED_REPAYMENT&lt;/td&gt; &lt;td&gt;A repayment scheduled on the payment schedule.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EARLY_PAYOFF&lt;/td&gt; &lt;td&gt;An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFINANCE_PAYOFF&lt;/td&gt; &lt;td&gt;A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FEE&lt;/td&gt; &lt;td&gt;A fee charged to the business, such as a maintenance or transaction fee.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFUND&lt;/td&gt; &lt;td&gt;A refund or rebate issued to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MINIMUM_PAYMENT&lt;/td&gt; &lt;td&gt;A minimum payment, relevant only for Integrated MCA products.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt; (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
-     * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
-     * @param createdAtEnd Filter for records where &#x60;createdAt&#x60; is less than or equal to this value. ISO 8601 format. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -435,9 +420,9 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPaymentIntentsAsync(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPaymentIntentsResponse> _callback) throws ApiException {
+    public okhttp3.Call getPaymentIntentsAsync(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, PaymentIntentTriggerType triggers, Boolean cancelled, BigDecimal offset, BigDecimal limit, final ApiCallback<GetPaymentIntentsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd, _callback);
+        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, triggers, cancelled, offset, limit, _callback);
         Type localVarReturnType = new TypeToken<GetPaymentIntentsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -465,7 +450,9 @@ public class PaymentsApi {
         <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getPaymentScheduleForAIssuedProductCall(String id, String drawRequestIds, String invoiceIds, String platformInvoiceIds, String direction, PaymentOrderStatus status, BigDecimal offset, BigDecimal limit, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -539,6 +526,7 @@ public class PaymentsApi {
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call getPaymentScheduleForAIssuedProductValidateBeforeCall(String id, String drawRequestIds, String invoiceIds, String platformInvoiceIds, String direction, PaymentOrderStatus status, BigDecimal offset, BigDecimal limit, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'id' is set
@@ -552,7 +540,7 @@ public class PaymentsApi {
 
     /**
      * Fetch payment schedule for an issued product
-     * 
+     * Deprecated. Prefer Fetch payment intents (&#x60;getPaymentIntents&#x60;) instead.
      * @param id The Kanmon issued product UUID. (required)
      * @param drawRequestIds A comma delimited list of Kanmon’s unique draw request IDs. (optional)
      * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
@@ -573,7 +561,9 @@ public class PaymentsApi {
         <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public GetPaymentScheduleResponse getPaymentScheduleForAIssuedProduct(String id, String drawRequestIds, String invoiceIds, String platformInvoiceIds, String direction, PaymentOrderStatus status, BigDecimal offset, BigDecimal limit) throws ApiException {
         ApiResponse<GetPaymentScheduleResponse> localVarResp = getPaymentScheduleForAIssuedProductWithHttpInfo(id, drawRequestIds, invoiceIds, platformInvoiceIds, direction, status, offset, limit);
         return localVarResp.getData();
@@ -581,7 +571,7 @@ public class PaymentsApi {
 
     /**
      * Fetch payment schedule for an issued product
-     * 
+     * Deprecated. Prefer Fetch payment intents (&#x60;getPaymentIntents&#x60;) instead.
      * @param id The Kanmon issued product UUID. (required)
      * @param drawRequestIds A comma delimited list of Kanmon’s unique draw request IDs. (optional)
      * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
@@ -602,7 +592,9 @@ public class PaymentsApi {
         <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<GetPaymentScheduleResponse> getPaymentScheduleForAIssuedProductWithHttpInfo(String id, String drawRequestIds, String invoiceIds, String platformInvoiceIds, String direction, PaymentOrderStatus status, BigDecimal offset, BigDecimal limit) throws ApiException {
         okhttp3.Call localVarCall = getPaymentScheduleForAIssuedProductValidateBeforeCall(id, drawRequestIds, invoiceIds, platformInvoiceIds, direction, status, offset, limit, null);
         Type localVarReturnType = new TypeToken<GetPaymentScheduleResponse>(){}.getType();
@@ -611,7 +603,7 @@ public class PaymentsApi {
 
     /**
      * Fetch payment schedule for an issued product (asynchronously)
-     * 
+     * Deprecated. Prefer Fetch payment intents (&#x60;getPaymentIntents&#x60;) instead.
      * @param id The Kanmon issued product UUID. (required)
      * @param drawRequestIds A comma delimited list of Kanmon’s unique draw request IDs. (optional)
      * @param invoiceIds A comma delimited list of Kanmon’s unique IDs for invoices. (optional)
@@ -633,7 +625,9 @@ public class PaymentsApi {
         <tr><td> 429 </td><td> TooManyRequestsException </td><td>  * X-RateLimit-Limit - Maximum number of requests allowed per minute. <br>  * X-RateLimit-Remaining - Number of remaining requests available. <br>  </td></tr>
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call getPaymentScheduleForAIssuedProductAsync(String id, String drawRequestIds, String invoiceIds, String platformInvoiceIds, String direction, PaymentOrderStatus status, BigDecimal offset, BigDecimal limit, final ApiCallback<GetPaymentScheduleResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getPaymentScheduleForAIssuedProductValidateBeforeCall(id, drawRequestIds, invoiceIds, platformInvoiceIds, direction, status, offset, limit, _callback);

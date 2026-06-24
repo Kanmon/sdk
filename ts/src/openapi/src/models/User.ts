@@ -61,7 +61,7 @@ export interface User {
      * @type {Address}
      * @memberof User
      */
-    address?: Address | null;
+    address: Address | null;
     /**
      * The user’s email.
      * @type {string}
@@ -131,6 +131,7 @@ export function instanceOfUser(value: object): value is User {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('platformBusinessId' in value) || value['platformBusinessId'] === undefined) return false;
     if (!('businessId' in value) || value['businessId'] === undefined) return false;
+    if (!('address' in value) || value['address'] === undefined) return false;
     if (!('email' in value) || value['email'] === undefined) return false;
     if (!('metadata' in value) || value['metadata'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
@@ -153,7 +154,7 @@ export function UserFromJSONTyped(json: any, ignoreDiscriminator: boolean): User
         'platformBusinessId': json['platformBusinessId'],
         'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
         'businessId': json['businessId'],
-        'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
+        'address': AddressFromJSON(json['address']),
         'email': json['email'],
         'firstName': json['firstName'] == null ? undefined : json['firstName'],
         'lastName': json['lastName'] == null ? undefined : json['lastName'],

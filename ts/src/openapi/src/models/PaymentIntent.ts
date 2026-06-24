@@ -57,7 +57,41 @@ export interface PaymentIntent {
      */
     direction: PaymentIntentDirectionEnum;
     /**
-     * What caused this payment intent to be created.
+     * What caused this payment intent to be created.<table>
+     * 
+     * <tr>
+     * <td>DISBURSEMENT</td>
+     * <td>Funds disbursed to the business.</td>
+     * </tr>
+     * <tr>
+     * <td>DISBURSEMENT_RETURN</td>
+     * <td>Return of previously disbursed funds. Only relevant for some AP financing setups.</td>
+     * </tr>
+     * <tr>
+     * <td>SCHEDULED_REPAYMENT</td>
+     * <td>A repayment scheduled on the payment schedule.</td>
+     * </tr>
+     * <tr>
+     * <td>EARLY_PAYOFF</td>
+     * <td>An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.</td>
+     * </tr>
+     * <tr>
+     * <td>REFINANCE_PAYOFF</td>
+     * <td>A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.</td>
+     * </tr>
+     * <tr>
+     * <td>FEE</td>
+     * <td>A fee charged to the business, such as a maintenance or transaction fee.</td>
+     * </tr>
+     * <tr>
+     * <td>REFUND</td>
+     * <td>A refund or rebate issued to the business.</td>
+     * </tr>
+     * <tr>
+     * <td>MINIMUM_PAYMENT</td>
+     * <td>A minimum payment, relevant only for Integrated MCA products.</td>
+     * </tr>
+     * </table>
      * @type {string}
      * @memberof PaymentIntent
      */
@@ -211,8 +245,7 @@ export const PaymentIntentTriggerEnum = {
     REFINANCE_PAYOFF: 'REFINANCE_PAYOFF',
     FEE: 'FEE',
     REFUND: 'REFUND',
-    MINIMUM_PAYMENT: 'MINIMUM_PAYMENT',
-    AD_HOC_REPAYMENT: 'AD_HOC_REPAYMENT'
+    MINIMUM_PAYMENT: 'MINIMUM_PAYMENT'
 } as const;
 export type PaymentIntentTriggerEnum = typeof PaymentIntentTriggerEnum[keyof typeof PaymentIntentTriggerEnum];
 

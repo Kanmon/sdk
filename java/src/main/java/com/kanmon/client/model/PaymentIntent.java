@@ -128,7 +128,7 @@ public class PaymentIntent {
   private DirectionEnum direction;
 
   /**
-   * What caused this payment intent to be created.
+   * What caused this payment intent to be created.&lt;table&gt;  &lt;tr&gt; &lt;td&gt;DISBURSEMENT&lt;/td&gt; &lt;td&gt;Funds disbursed to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DISBURSEMENT_RETURN&lt;/td&gt; &lt;td&gt;Return of previously disbursed funds. Only relevant for some AP financing setups.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SCHEDULED_REPAYMENT&lt;/td&gt; &lt;td&gt;A repayment scheduled on the payment schedule.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EARLY_PAYOFF&lt;/td&gt; &lt;td&gt;An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFINANCE_PAYOFF&lt;/td&gt; &lt;td&gt;A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FEE&lt;/td&gt; &lt;td&gt;A fee charged to the business, such as a maintenance or transaction fee.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFUND&lt;/td&gt; &lt;td&gt;A refund or rebate issued to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MINIMUM_PAYMENT&lt;/td&gt; &lt;td&gt;A minimum payment, relevant only for Integrated MCA products.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
    */
   @JsonAdapter(TriggerEnum.Adapter.class)
   public enum TriggerEnum {
@@ -146,9 +146,7 @@ public class PaymentIntent {
     
     REFUND("REFUND"),
     
-    MINIMUM_PAYMENT("MINIMUM_PAYMENT"),
-    
-    AD_HOC_REPAYMENT("AD_HOC_REPAYMENT");
+    MINIMUM_PAYMENT("MINIMUM_PAYMENT");
 
     private String value;
 
@@ -443,7 +441,7 @@ public class PaymentIntent {
   }
 
   /**
-   * What caused this payment intent to be created.
+   * What caused this payment intent to be created.&lt;table&gt;  &lt;tr&gt; &lt;td&gt;DISBURSEMENT&lt;/td&gt; &lt;td&gt;Funds disbursed to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;DISBURSEMENT_RETURN&lt;/td&gt; &lt;td&gt;Return of previously disbursed funds. Only relevant for some AP financing setups.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;SCHEDULED_REPAYMENT&lt;/td&gt; &lt;td&gt;A repayment scheduled on the payment schedule.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;EARLY_PAYOFF&lt;/td&gt; &lt;td&gt;An early payoff of outstanding principal and interest. Early payoffs will cancel remaining scheduled repayments for installment products once they settle.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFINANCE_PAYOFF&lt;/td&gt; &lt;td&gt;A bookkeeping record to pay off existing principal as part of refinancing into a new loan agreement.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;FEE&lt;/td&gt; &lt;td&gt;A fee charged to the business, such as a maintenance or transaction fee.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;REFUND&lt;/td&gt; &lt;td&gt;A refund or rebate issued to the business.&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;MINIMUM_PAYMENT&lt;/td&gt; &lt;td&gt;A minimum payment, relevant only for Integrated MCA products.&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;
    * @return trigger
    */
   @javax.annotation.Nonnull
