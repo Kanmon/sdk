@@ -2665,14 +2665,15 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: Filter payment intents by what caused them to be created.
-        example: SCHEDULED_REPAYMENT
+      - description: A comma delimited list of payment intent trigger types to filter
+          by.
+        example: "DISBURSEMENT,SCHEDULED_REPAYMENT"
         explode: true
         in: query
-        name: trigger
+        name: triggers
         required: false
         schema:
-          $ref: '#/components/schemas/PaymentIntentTriggerType'
+          type: string
         style: form
       - description: The number of records to skip when performing pagination. Defaults
           to `0`.
@@ -4533,7 +4534,6 @@ components:
           example: 2022-06-01T03:57:26.115Z
           type: string
       required:
-      - address
       - businessId
       - createdAt
       - email

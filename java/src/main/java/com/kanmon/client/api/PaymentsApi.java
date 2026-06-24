@@ -34,7 +34,6 @@ import com.kanmon.client.model.GetPaymentIntentsResponse;
 import com.kanmon.client.model.GetPaymentScheduleResponse;
 import com.kanmon.client.model.InternalServerErrorException;
 import com.kanmon.client.model.IssuedProductNotFoundException;
-import com.kanmon.client.model.PaymentIntentTriggerType;
 import com.kanmon.client.model.PaymentOrder;
 import com.kanmon.client.model.PaymentOrderNotFoundException;
 import com.kanmon.client.model.PaymentOrderStatus;
@@ -234,7 +233,7 @@ public class PaymentsApi {
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
@@ -252,7 +251,7 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPaymentIntentsCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call getPaymentIntentsCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -301,8 +300,8 @@ public class PaymentsApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("cancelled", cancelled));
         }
 
-        if (trigger != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("trigger", trigger));
+        if (triggers != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("triggers", triggers));
         }
 
         if (offset != null) {
@@ -341,8 +340,8 @@ public class PaymentsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call getPaymentIntentsValidateBeforeCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
-        return getPaymentIntentsCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd, _callback);
+    private okhttp3.Call getPaymentIntentsValidateBeforeCall(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback _callback) throws ApiException {
+        return getPaymentIntentsCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd, _callback);
 
     }
 
@@ -355,7 +354,7 @@ public class PaymentsApi {
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
@@ -372,8 +371,8 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public GetPaymentIntentsResponse getPaymentIntents(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        ApiResponse<GetPaymentIntentsResponse> localVarResp = getPaymentIntentsWithHttpInfo(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd);
+    public GetPaymentIntentsResponse getPaymentIntents(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        ApiResponse<GetPaymentIntentsResponse> localVarResp = getPaymentIntentsWithHttpInfo(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd);
         return localVarResp.getData();
     }
 
@@ -386,7 +385,7 @@ public class PaymentsApi {
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
@@ -403,8 +402,8 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPaymentIntentsResponse> getPaymentIntentsWithHttpInfo(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
-        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd, null);
+    public ApiResponse<GetPaymentIntentsResponse> getPaymentIntentsWithHttpInfo(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd) throws ApiException {
+        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd, null);
         Type localVarReturnType = new TypeToken<GetPaymentIntentsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -418,7 +417,7 @@ public class PaymentsApi {
      * @param issuedProductIds A comma delimited list of Kanmon’s unique IDs for issued products. (optional)
      * @param businessIds A comma delimited list of Kanmon’s unique IDs for businesses. (optional)
      * @param cancelled When true, return only cancelled payment intents. When false, return only non-cancelled payment intents. (optional)
-     * @param trigger Filter payment intents by what caused them to be created. (optional)
+     * @param triggers A comma delimited list of payment intent trigger types to filter by. (optional)
      * @param offset The number of records to skip when performing pagination. Defaults to &#x60;0&#x60;. (optional)
      * @param limit The number of records to limit when performing pagination. Defaults to &#x60;100&#x60;, which is the max. (optional)
      * @param createdAtStart Filter for records where &#x60;createdAt&#x60; is greater than or equal to this value. ISO 8601 format. (optional)
@@ -436,9 +435,9 @@ public class PaymentsApi {
         <tr><td> 500 </td><td> InternalServerErrorException </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getPaymentIntentsAsync(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, PaymentIntentTriggerType trigger, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPaymentIntentsResponse> _callback) throws ApiException {
+    public okhttp3.Call getPaymentIntentsAsync(String ids, String invoiceIds, String drawRequestIds, String issuedProductIds, String businessIds, Boolean cancelled, String triggers, BigDecimal offset, BigDecimal limit, String createdAtStart, String createdAtEnd, final ApiCallback<GetPaymentIntentsResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, trigger, offset, limit, createdAtStart, createdAtEnd, _callback);
+        okhttp3.Call localVarCall = getPaymentIntentsValidateBeforeCall(ids, invoiceIds, drawRequestIds, issuedProductIds, businessIds, cancelled, triggers, offset, limit, createdAtStart, createdAtEnd, _callback);
         Type localVarReturnType = new TypeToken<GetPaymentIntentsResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
