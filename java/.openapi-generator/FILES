@@ -42,6 +42,8 @@ src/main/java/com/kanmon/client/auth/Authentication.java
 src/main/java/com/kanmon/client/auth/HttpBasicAuth.java
 src/main/java/com/kanmon/client/auth/HttpBearerAuth.java
 src/main/java/com/kanmon/client/model/AbstractOpenApiSchema.java
+src/main/java/com/kanmon/client/model/AccountsPayableFinancingOfferTerms.java
+src/main/java/com/kanmon/client/model/AccountsPayableFinancingServicingData.java
 src/main/java/com/kanmon/client/model/AccountsPayableInvoiceFlowSessionTokenData.java
 src/main/java/com/kanmon/client/model/AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.java
 src/main/java/com/kanmon/client/model/AccountsPayableSessionInvoice.java

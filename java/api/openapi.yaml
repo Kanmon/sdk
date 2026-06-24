@@ -679,7 +679,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           users.
-        example: "fb571913-3f40-4ba1-a885-d9002e33e999,b8c8cca3-67b3-4d7f-aa79-9532db67390a"
+        example: "1e1d938b-1780-49ef-bd56-014029fd3877,722c74e8-4f47-4a4b-945d-64fdb4559887"
         explode: true
         in: query
         name: businessIds
@@ -2004,7 +2004,7 @@ paths:
         style: form
       - description: A comma delimited list of your Kanmon’s unique business IDs for
           bannk accounts.
-        example: "5ce67992-2c98-48cd-8c33-d3ec2fb9521b,d4db2935-4bab-4692-9cfd-132ef49d1293"
+        example: "46d01348-c3b6-4fcb-884d-6b981989dcb8,0ab7dedf-e735-417b-bdd6-365df5be78f1"
         explode: true
         in: query
         name: businessIds
@@ -2466,7 +2466,7 @@ paths:
       operationId: getPaymentScheduleForAIssuedProduct
       parameters:
       - description: A comma delimited list of Kanmon’s unique draw request IDs.
-        example: "27a96c6d-ac44-4432-a1df-1c81c332c64d,37e92841-930f-4273-a930-bb30fa2906fc"
+        example: "f8380a70-934a-4438-a8df-e247a123496d,a9bf9f4d-1b4f-4b3a-9650-e45e9456bc21"
         explode: true
         in: query
         name: drawRequestIds
@@ -2611,7 +2611,7 @@ paths:
       operationId: getPaymentIntents
       parameters:
       - description: A comma delimited list of Kanmon’s unique payment intent IDs.
-        example: "401f7ed8-7f2b-448a-b491-ced12079b9c9,0e6ea2e4-848a-4f7f-b3c4-c2a470698c18"
+        example: "080ebf0d-1eb4-40d7-b7cc-fc9f575f7780,f52bd70d-46f2-4e03-acc0-f2804ba63341"
         explode: true
         in: query
         name: ids
@@ -2620,7 +2620,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for invoices.
-        example: "cf95a71d-a462-44ca-a8cd-b694abf611a4,cebc81da-138d-4659-8f16-417b13069455"
+        example: "8e63b9ce-8d70-4bcd-bae8-32e59b48eee6,ba057c93-6e3e-4909-b076-584e85b05a18"
         explode: true
         in: query
         name: invoiceIds
@@ -2629,7 +2629,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for draw requests.
-        example: "21f35824-7801-4436-96df-adb03c64dc5b,df104f6a-8a1e-4019-94d4-c4e0f84eb2a1"
+        example: "0dcf1323-914a-4877-bd29-99a434427150,ff99fd2c-e478-4980-815b-d62c9b4408a4"
         explode: true
         in: query
         name: drawRequestIds
@@ -2638,7 +2638,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for issued products.
-        example: "c17eeb20-5671-4425-95ae-2b9741a2d8ad,8b4ff596-525c-46f1-b64e-a665a48e42a0"
+        example: "c3b8b469-f9ec-4657-b66b-6729975e8486,4bf8b078-199b-4727-956d-0b03880df2d1"
         explode: true
         in: query
         name: issuedProductIds
@@ -2647,7 +2647,7 @@ paths:
           type: string
         style: form
       - description: A comma delimited list of Kanmon’s unique IDs for businesses.
-        example: "a1a165b2-0019-4334-bc8b-d89d67170cb7,1c646a6a-d69f-4db4-9d1e-5745dfc02a1a"
+        example: "19ee28b0-5e83-441e-b1aa-7b4506e397a3,7dda0881-af47-4235-bf5d-36f077410991"
         explode: true
         in: query
         name: businessIds
@@ -5769,6 +5769,24 @@ components:
       - repaymentPercentage
       - totalRepaymentCents
       type: object
+    AccountsPayableFinancingOfferTerms:
+      properties:
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        totalLimitCents:
+          description: The total limit allowed for this offer - in cents.
+          example: 1000000
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this offer.
+          items:
+            $ref: '#/components/schemas/InvoicePaymentPlan'
+          type: array
+      required:
+      - pricingPlans
+      - productType
+      - totalLimitCents
+      type: object
     Offer:
       example:
         expiredAt: 2023-12-29T03:57:26.115Z
@@ -6125,6 +6143,28 @@ components:
       - productType
       - repaymentCadence
       - repaymentDurationMonths
+      - totalLimitCents
+      type: object
+    AccountsPayableFinancingServicingData:
+      properties:
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        totalLimitCents:
+          description: The total limit allowed - in cents.
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this issued product.
+          items:
+            $ref: '#/components/schemas/InvoicePaymentPlan'
+          type: array
+        availableLimitCents:
+          description: The total limit less the amount of balance outstanding - in
+            cents.
+          type: number
+      required:
+      - availableLimitCents
+      - pricingPlans
+      - productType
       - totalLimitCents
       type: object
     LoanStatus:
@@ -8797,7 +8837,7 @@ components:
           MCA: '#/components/schemas/McaOfferTerms'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaOfferTerms'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditOfferTerms'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingOfferTerms'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingOfferTerms'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanOfferTerms'
@@ -8805,6 +8845,7 @@ components:
       - $ref: '#/components/schemas/McaOfferTerms'
       - $ref: '#/components/schemas/IntegratedMcaOfferTerms'
       - $ref: '#/components/schemas/LineOfCreditOfferTerms'
+      - $ref: '#/components/schemas/AccountsPayableFinancingOfferTerms'
     IssuedProduct_servicingData:
       description: The data needed to service this specific type of issued product
       discriminator:
@@ -8814,7 +8855,7 @@ components:
           MCA: '#/components/schemas/McaServicingData'
           INTEGRATED_MCA: '#/components/schemas/IntegratedMcaServicingData'
           LINE_OF_CREDIT: '#/components/schemas/LineOfCreditServicingData'
-          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
+          ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/AccountsPayableFinancingServicingData'
         propertyName: productType
       oneOf:
       - $ref: '#/components/schemas/TermLoanServicingData'
@@ -8822,6 +8863,7 @@ components:
       - $ref: '#/components/schemas/McaServicingData'
       - $ref: '#/components/schemas/IntegratedMcaServicingData'
       - $ref: '#/components/schemas/LineOfCreditServicingData'
+      - $ref: '#/components/schemas/AccountsPayableFinancingServicingData'
     CreateSessionTokenRequestBody_data:
       description: This will differ depending on which `component` is used.
       discriminator:
