@@ -140,6 +140,68 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+                    // use discriminator value for faster oneOf lookup
+                    IssuedProductServicingData newIssuedProductServicingData = new IssuedProductServicingData();
+                    if (jsonObject.get("productType") == null) {
+                        log.log(Level.WARNING, "Failed to lookup discriminator value for IssuedProductServicingData as `productType` was not found in the payload or the payload is empty.");
+                    } else  {
+                        // look up the discriminator value in the field `productType`
+                        switch (jsonObject.get("productType").getAsString()) {
+                            case "ACCOUNTS_PAYABLE_FINANCING":
+                                deserialized = adapterAccountsPayableFinancingServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "INTEGRATED_MCA":
+                                deserialized = adapterIntegratedMcaServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "INVOICE_FINANCING":
+                                deserialized = adapterInvoiceFinancingServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "LINE_OF_CREDIT":
+                                deserialized = adapterLineOfCreditServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "MCA":
+                                deserialized = adapterMcaServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "TERM_LOAN":
+                                deserialized = adapterTermLoanServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "AccountsPayableFinancingServicingData":
+                                deserialized = adapterAccountsPayableFinancingServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "IntegratedMcaServicingData":
+                                deserialized = adapterIntegratedMcaServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "InvoiceFinancingServicingData":
+                                deserialized = adapterInvoiceFinancingServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "LineOfCreditServicingData":
+                                deserialized = adapterLineOfCreditServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "McaServicingData":
+                                deserialized = adapterMcaServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            case "TermLoanServicingData":
+                                deserialized = adapterTermLoanServicingData.fromJsonTree(jsonObject);
+                                newIssuedProductServicingData.setActualInstance(deserialized);
+                                return newIssuedProductServicingData;
+                            default:
+                                log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for IssuedProductServicingData. Possible values: ACCOUNTS_PAYABLE_FINANCING INTEGRATED_MCA INVOICE_FINANCING LINE_OF_CREDIT MCA TERM_LOAN AccountsPayableFinancingServicingData IntegratedMcaServicingData InvoiceFinancingServicingData LineOfCreditServicingData McaServicingData TermLoanServicingData", jsonObject.get("productType").getAsString()));
+                        }
+                    }
+
                     int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
@@ -377,6 +439,55 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
      * @throws IOException if the JSON Element is invalid with respect to IssuedProductServicingData
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // [kanmon-template] discriminator-aware oneOf validation: when a discriminator
+        // is present, validate only against the mapped schema so structurally identical
+        // oneOf members (distinguished solely by the discriminator value) are accepted.
+        if (jsonElement.isJsonObject()) {
+            JsonElement discriminatorElement = jsonElement.getAsJsonObject().get("productType");
+            if (discriminatorElement != null && discriminatorElement.isJsonPrimitive()) {
+                switch (discriminatorElement.getAsString()) {
+                    case "ACCOUNTS_PAYABLE_FINANCING":
+                        AccountsPayableFinancingServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "INTEGRATED_MCA":
+                        IntegratedMcaServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "INVOICE_FINANCING":
+                        InvoiceFinancingServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "LINE_OF_CREDIT":
+                        LineOfCreditServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "MCA":
+                        McaServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "TERM_LOAN":
+                        TermLoanServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "AccountsPayableFinancingServicingData":
+                        AccountsPayableFinancingServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "IntegratedMcaServicingData":
+                        IntegratedMcaServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "InvoiceFinancingServicingData":
+                        InvoiceFinancingServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "LineOfCreditServicingData":
+                        LineOfCreditServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "McaServicingData":
+                        McaServicingData.validateJsonElement(jsonElement);
+                        return;
+                    case "TermLoanServicingData":
+                        TermLoanServicingData.validateJsonElement(jsonElement);
+                        return;
+                    default:
+                        // unknown discriminator value, fall back to oneOf validation below
+                        break;
+                }
+            }
+        }
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();

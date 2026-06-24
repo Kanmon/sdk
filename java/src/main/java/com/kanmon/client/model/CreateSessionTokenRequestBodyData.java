@@ -121,6 +121,52 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+                    // use discriminator value for faster oneOf lookup
+                    CreateSessionTokenRequestBodyData newCreateSessionTokenRequestBodyData = new CreateSessionTokenRequestBodyData();
+                    if (jsonObject.get("component") == null) {
+                        log.log(Level.WARNING, "Failed to lookup discriminator value for CreateSessionTokenRequestBodyData as `component` was not found in the payload or the payload is empty.");
+                    } else  {
+                        // look up the discriminator value in the field `component`
+                        switch (jsonObject.get("component").getAsString()) {
+                            case "SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW":
+                                deserialized = adapterAccountsPayableInvoiceFlowSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE":
+                                deserialized = adapterAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "SESSION_INVOICE_FLOW":
+                                deserialized = adapterInvoiceFlowSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "SESSION_INVOICE_FLOW_WITH_INVOICE_FILE":
+                                deserialized = adapterInvoiceFlowWithInvoiceFileSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "AccountsPayableInvoiceFlowSessionTokenData":
+                                deserialized = adapterAccountsPayableInvoiceFlowSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData":
+                                deserialized = adapterAccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "InvoiceFlowSessionTokenData":
+                                deserialized = adapterInvoiceFlowSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            case "InvoiceFlowWithInvoiceFileSessionTokenData":
+                                deserialized = adapterInvoiceFlowWithInvoiceFileSessionTokenData.fromJsonTree(jsonObject);
+                                newCreateSessionTokenRequestBodyData.setActualInstance(deserialized);
+                                return newCreateSessionTokenRequestBodyData;
+                            default:
+                                log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for CreateSessionTokenRequestBodyData. Possible values: SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE SESSION_INVOICE_FLOW SESSION_INVOICE_FLOW_WITH_INVOICE_FILE AccountsPayableInvoiceFlowSessionTokenData AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData InvoiceFlowSessionTokenData InvoiceFlowWithInvoiceFileSessionTokenData", jsonObject.get("component").getAsString()));
+                        }
+                    }
+
                     int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
@@ -302,6 +348,43 @@ public class CreateSessionTokenRequestBodyData extends AbstractOpenApiSchema {
      * @throws IOException if the JSON Element is invalid with respect to CreateSessionTokenRequestBodyData
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // [kanmon-template] discriminator-aware oneOf validation: when a discriminator
+        // is present, validate only against the mapped schema so structurally identical
+        // oneOf members (distinguished solely by the discriminator value) are accepted.
+        if (jsonElement.isJsonObject()) {
+            JsonElement discriminatorElement = jsonElement.getAsJsonObject().get("component");
+            if (discriminatorElement != null && discriminatorElement.isJsonPrimitive()) {
+                switch (discriminatorElement.getAsString()) {
+                    case "SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW":
+                        AccountsPayableInvoiceFlowSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "SESSION_ACCOUNTS_PAYABLE_INVOICE_FLOW_WITH_INVOICE_FILE":
+                        AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "SESSION_INVOICE_FLOW":
+                        InvoiceFlowSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "SESSION_INVOICE_FLOW_WITH_INVOICE_FILE":
+                        InvoiceFlowWithInvoiceFileSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "AccountsPayableInvoiceFlowSessionTokenData":
+                        AccountsPayableInvoiceFlowSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData":
+                        AccountsPayableInvoiceFlowWithInvoiceFileSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "InvoiceFlowSessionTokenData":
+                        InvoiceFlowSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    case "InvoiceFlowWithInvoiceFileSessionTokenData":
+                        InvoiceFlowWithInvoiceFileSessionTokenData.validateJsonElement(jsonElement);
+                        return;
+                    default:
+                        // unknown discriminator value, fall back to oneOf validation below
+                        break;
+                }
+            }
+        }
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();

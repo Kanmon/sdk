@@ -22,6 +22,7 @@
         "inputSpec": "#{cwd}/kanmon_api_spec.json",
         "output": "#{cwd}/java",
         "generatorName": "java",
+        "templateDir": "#{cwd}/openapi-templates",
         "additionalProperties": {
           "apiPackage": "com.kanmon.client.api",
           "artifactDescription": "Kanmon API SDK",
@@ -33,6 +34,7 @@
           "openApiNullable": true,
           "library": "okhttp-gson",
           "serializationLibrary": "gson",
+          "useOneOfDiscriminatorLookup": true,
           "hideGenerationTimestamp": true,
           "licenseName": "Proprietary",
           "disallowAdditionalPropertiesIfNotPresent": false

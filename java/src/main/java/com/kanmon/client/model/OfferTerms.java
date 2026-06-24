@@ -140,6 +140,68 @@ public class OfferTerms extends AbstractOpenApiSchema {
                     Object deserialized = null;
                     JsonElement jsonElement = elementAdapter.read(in);
 
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+                    // use discriminator value for faster oneOf lookup
+                    OfferTerms newOfferTerms = new OfferTerms();
+                    if (jsonObject.get("productType") == null) {
+                        log.log(Level.WARNING, "Failed to lookup discriminator value for OfferTerms as `productType` was not found in the payload or the payload is empty.");
+                    } else  {
+                        // look up the discriminator value in the field `productType`
+                        switch (jsonObject.get("productType").getAsString()) {
+                            case "ACCOUNTS_PAYABLE_FINANCING":
+                                deserialized = adapterAccountsPayableFinancingOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "INTEGRATED_MCA":
+                                deserialized = adapterIntegratedMcaOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "INVOICE_FINANCING":
+                                deserialized = adapterInvoiceFinancingOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "LINE_OF_CREDIT":
+                                deserialized = adapterLineOfCreditOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "MCA":
+                                deserialized = adapterMcaOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "TERM_LOAN":
+                                deserialized = adapterTermLoanOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "AccountsPayableFinancingOfferTerms":
+                                deserialized = adapterAccountsPayableFinancingOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "IntegratedMcaOfferTerms":
+                                deserialized = adapterIntegratedMcaOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "InvoiceFinancingOfferTerms":
+                                deserialized = adapterInvoiceFinancingOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "LineOfCreditOfferTerms":
+                                deserialized = adapterLineOfCreditOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "McaOfferTerms":
+                                deserialized = adapterMcaOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            case "TermLoanOfferTerms":
+                                deserialized = adapterTermLoanOfferTerms.fromJsonTree(jsonObject);
+                                newOfferTerms.setActualInstance(deserialized);
+                                return newOfferTerms;
+                            default:
+                                log.log(Level.WARNING, String.format("Failed to lookup discriminator value `%s` for OfferTerms. Possible values: ACCOUNTS_PAYABLE_FINANCING INTEGRATED_MCA INVOICE_FINANCING LINE_OF_CREDIT MCA TERM_LOAN AccountsPayableFinancingOfferTerms IntegratedMcaOfferTerms InvoiceFinancingOfferTerms LineOfCreditOfferTerms McaOfferTerms TermLoanOfferTerms", jsonObject.get("productType").getAsString()));
+                        }
+                    }
+
                     int match = 0;
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
@@ -377,6 +439,55 @@ public class OfferTerms extends AbstractOpenApiSchema {
      * @throws IOException if the JSON Element is invalid with respect to OfferTerms
      */
     public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        // [kanmon-template] discriminator-aware oneOf validation: when a discriminator
+        // is present, validate only against the mapped schema so structurally identical
+        // oneOf members (distinguished solely by the discriminator value) are accepted.
+        if (jsonElement.isJsonObject()) {
+            JsonElement discriminatorElement = jsonElement.getAsJsonObject().get("productType");
+            if (discriminatorElement != null && discriminatorElement.isJsonPrimitive()) {
+                switch (discriminatorElement.getAsString()) {
+                    case "ACCOUNTS_PAYABLE_FINANCING":
+                        AccountsPayableFinancingOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "INTEGRATED_MCA":
+                        IntegratedMcaOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "INVOICE_FINANCING":
+                        InvoiceFinancingOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "LINE_OF_CREDIT":
+                        LineOfCreditOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "MCA":
+                        McaOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "TERM_LOAN":
+                        TermLoanOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "AccountsPayableFinancingOfferTerms":
+                        AccountsPayableFinancingOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "IntegratedMcaOfferTerms":
+                        IntegratedMcaOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "InvoiceFinancingOfferTerms":
+                        InvoiceFinancingOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "LineOfCreditOfferTerms":
+                        LineOfCreditOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "McaOfferTerms":
+                        McaOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    case "TermLoanOfferTerms":
+                        TermLoanOfferTerms.validateJsonElement(jsonElement);
+                        return;
+                    default:
+                        // unknown discriminator value, fall back to oneOf validation below
+                        break;
+                }
+            }
+        }
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
