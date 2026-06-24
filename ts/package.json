@@ -1,6 +1,6 @@
 {
   "name": "@kanmon/sdk",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "Kanmon API client",
   "author": "Kanmon",
   "repository": {
