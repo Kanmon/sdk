@@ -21,7 +21,6 @@ import type {
   GetPaymentScheduleResponse,
   InternalServerErrorException,
   IssuedProductNotFoundException,
-  PaymentIntentTriggerType,
   PaymentOrder,
   PaymentOrderNotFoundException,
   PaymentOrderStatus,
@@ -40,8 +39,6 @@ import {
     InternalServerErrorExceptionToJSON,
     IssuedProductNotFoundExceptionFromJSON,
     IssuedProductNotFoundExceptionToJSON,
-    PaymentIntentTriggerTypeFromJSON,
-    PaymentIntentTriggerTypeToJSON,
     PaymentOrderFromJSON,
     PaymentOrderToJSON,
     PaymentOrderNotFoundExceptionFromJSON,
@@ -63,7 +60,7 @@ export interface GetPaymentIntentsRequest {
     issuedProductIds?: string;
     businessIds?: string;
     cancelled?: boolean;
-    trigger?: PaymentIntentTriggerType;
+    triggers?: string;
     offset?: number;
     limit?: number;
     createdAtStart?: string;
@@ -153,8 +150,8 @@ export class PaymentsApi extends runtime.BaseAPI {
             queryParameters['cancelled'] = requestParameters['cancelled'];
         }
 
-        if (requestParameters['trigger'] != null) {
-            queryParameters['trigger'] = requestParameters['trigger'];
+        if (requestParameters['triggers'] != null) {
+            queryParameters['triggers'] = requestParameters['triggers'];
         }
 
         if (requestParameters['offset'] != null) {
