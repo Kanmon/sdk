@@ -4128,6 +4128,7 @@
         "type": "string",
         "enum": [
           "INVOICE_FINANCING",
+          "FACTORING",
           "TERM_LOAN",
           "MCA",
           "LINE_OF_CREDIT",
@@ -5370,6 +5371,11 @@
       "FinanceInvoiceRequestBody": {
         "type": "object",
         "properties": {
+          "payorId": {
+            "type": "string",
+            "description": "The unique identifier for the payor within Kanmon. Required when financing a factoring issued product. Rejected when the issued product is not factoring.",
+            "example": "adbcccf9-3a7f-4040-add3-55c9d6da2d37"
+          },
           "issuedProductId": {
             "type": "string",
             "description": "The unique identifier for the issued product within Kanmon.",
@@ -5655,6 +5661,28 @@
           "repaymentWindow"
         ]
       },
+      "FactoringOfferTerms": {
+        "type": "object",
+        "properties": {
+          "productType": {
+            "example": "FACTORING",
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "creditLimitAmountCents": {
+            "type": "number",
+            "description": "Payee credit limit in cents; null means no limit.",
+            "nullable": true
+          },
+          "pricingPlans": {
+            "description": "The pricing plans available for this factoring offer.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FactoringInvoicePaymentPlan"
+            }
+          }
+        },
+        "required": ["productType", "creditLimitAmountCents", "pricingPlans"]
+      },
       "InvoiceFinancingOfferTerms": {
         "type": "object",
         "properties": {
@@ -5861,6 +5889,7 @@
           },
           "terms": {
             "oneOf": [
+              { "$ref": "#/components/schemas/FactoringOfferTerms" },
               { "$ref": "#/components/schemas/TermLoanOfferTerms" },
               { "$ref": "#/components/schemas/InvoiceFinancingOfferTerms" },
               { "$ref": "#/components/schemas/McaOfferTerms" },
@@ -5870,6 +5899,7 @@
             "discriminator": {
               "propertyName": "productType",
               "mapping": {
+                "FACTORING": "#/components/schemas/FactoringOfferTerms",
                 "TERM_LOAN": "#/components/schemas/TermLoanOfferTerms",
                 "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingOfferTerms",
                 "MCA": "#/components/schemas/McaOfferTerms",
@@ -5998,6 +6028,74 @@
           "interestRate",
           "nextPaymentDate"
         ]
+      },
+      "FactoringInvoicePaymentPlan": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The UUID representing the invoice payment plan.",
+            "example": "2b5d0f14-9b73-4f44-a82a-2182a9ff77bb"
+          },
+          "advanceRatePercentage": {
+            "type": "number",
+            "description": "The percentage of the invoice that is allowed for advances. E.g. a value of `80` would mean that $800 would be advanced on a $1,000 invoice.",
+            "example": "80"
+          },
+          "transactionFeePercentage": {
+            "type": "number",
+            "description": "The percentage of the transaction that is charged as a fee. E.g. a value of `5` means 5%.",
+            "example": "5"
+          },
+          "repaymentWindow": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FixedDateInvoiceRepaymentWindow"
+              },
+              {
+                "$ref": "#/components/schemas/FixedDurationInvoiceRepaymentWindow"
+              },
+              {
+                "$ref": "#/components/schemas/MultipleDurationInvoiceRepaymentWindow"
+              }
+            ],
+            "description": "The repayment window"
+          },
+          "flatFeeAmountCents": {
+            "type": "number",
+            "description": "Flat funding fee withheld from the payee payout, in cents."
+          }
+        },
+        "required": [
+          "id",
+          "advanceRatePercentage",
+          "transactionFeePercentage",
+          "repaymentWindow",
+          "flatFeeAmountCents"
+        ]
+      },
+      "FactoringServicingData": {
+        "type": "object",
+        "properties": {
+          "productType": {
+            "description": "Factoring issued product.",
+            "example": "FACTORING",
+            "$ref": "#/components/schemas/ProductType"
+          },
+          "creditLimitAmountCents": {
+            "type": "number",
+            "description": "Payee credit limit in cents; null means no limit.",
+            "nullable": true
+          },
+          "pricingPlans": {
+            "description": "Saved plans from the accepted factoring offer.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FactoringInvoicePaymentPlan"
+            }
+          }
+        },
+        "required": ["productType", "creditLimitAmountCents", "pricingPlans"]
       },
       "InvoiceFinancingServicingData": {
         "type": "object",
@@ -6246,6 +6344,7 @@
           },
           "servicingData": {
             "oneOf": [
+              { "$ref": "#/components/schemas/FactoringServicingData" },
               { "$ref": "#/components/schemas/TermLoanServicingData" },
               { "$ref": "#/components/schemas/InvoiceFinancingServicingData" },
               { "$ref": "#/components/schemas/McaServicingData" },
@@ -6255,6 +6354,7 @@
             "discriminator": {
               "propertyName": "productType",
               "mapping": {
+                "FACTORING": "#/components/schemas/FactoringServicingData",
                 "TERM_LOAN": "#/components/schemas/TermLoanServicingData",
                 "INVOICE_FINANCING": "#/components/schemas/InvoiceFinancingServicingData",
                 "MCA": "#/components/schemas/McaServicingData",

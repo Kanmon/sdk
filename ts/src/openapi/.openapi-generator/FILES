@@ -57,6 +57,9 @@ src/models/DrawRequest.ts
 src/models/DrawRequestNotFoundException.ts
 src/models/DrawRequestState.ts
 src/models/EmbeddedSession.ts
+src/models/FactoringInvoicePaymentPlan.ts
+src/models/FactoringOfferTerms.ts
+src/models/FactoringServicingData.ts
 src/models/FinanceInvoice400Response.ts
 src/models/FinanceInvoice404Response.ts
 src/models/FinanceInvoice409Response.ts

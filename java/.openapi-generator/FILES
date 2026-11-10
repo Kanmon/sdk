@@ -84,6 +84,9 @@ src/main/java/com/kanmon/client/model/DrawRequest.java
 src/main/java/com/kanmon/client/model/DrawRequestNotFoundException.java
 src/main/java/com/kanmon/client/model/DrawRequestState.java
 src/main/java/com/kanmon/client/model/EmbeddedSession.java
+src/main/java/com/kanmon/client/model/FactoringInvoicePaymentPlan.java
+src/main/java/com/kanmon/client/model/FactoringOfferTerms.java
+src/main/java/com/kanmon/client/model/FactoringServicingData.java
 src/main/java/com/kanmon/client/model/FinanceInvoice400Response.java
 src/main/java/com/kanmon/client/model/FinanceInvoice404Response.java
 src/main/java/com/kanmon/client/model/FinanceInvoice409Response.java
@@ -179,3 +182,6 @@ src/main/java/com/kanmon/client/model/User.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithEmailException.java
 src/main/java/com/kanmon/client/model/UserAlreadyExistsWithPlatformUserIdException.java
 src/main/java/com/kanmon/client/model/UserNotFoundException.java
+src/test/java/com/kanmon/client/model/FactoringInvoicePaymentPlanTest.java
+src/test/java/com/kanmon/client/model/FactoringOfferTermsTest.java
+src/test/java/com/kanmon/client/model/FactoringServicingDataTest.java

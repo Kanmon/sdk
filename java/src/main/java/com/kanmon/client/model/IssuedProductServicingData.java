@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.kanmon.client.model.FactoringServicingData;
 import com.kanmon.client.model.IntegratedMcaServicingData;
 import com.kanmon.client.model.InvoiceFinancingServicingData;
 import com.kanmon.client.model.InvoicePaymentPlan;
@@ -80,6 +81,7 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
                 return null; // this class only serializes 'IssuedProductServicingData' and its subtypes
             }
             final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<FactoringServicingData> adapterFactoringServicingData = gson.getDelegateAdapter(this, TypeToken.get(FactoringServicingData.class));
             final TypeAdapter<TermLoanServicingData> adapterTermLoanServicingData = gson.getDelegateAdapter(this, TypeToken.get(TermLoanServicingData.class));
             final TypeAdapter<InvoiceFinancingServicingData> adapterInvoiceFinancingServicingData = gson.getDelegateAdapter(this, TypeToken.get(InvoiceFinancingServicingData.class));
             final TypeAdapter<McaServicingData> adapterMcaServicingData = gson.getDelegateAdapter(this, TypeToken.get(McaServicingData.class));
@@ -94,6 +96,12 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
                         return;
                     }
 
+                    // check if the actual instance is of the type `FactoringServicingData`
+                    if (value.getActualInstance() instanceof FactoringServicingData) {
+                        JsonElement element = adapterFactoringServicingData.toJsonTree((FactoringServicingData)value.getActualInstance());
+                        elementAdapter.write(out, element);
+                        return;
+                    }
                     // check if the actual instance is of the type `TermLoanServicingData`
                     if (value.getActualInstance() instanceof TermLoanServicingData) {
                         JsonElement element = adapterTermLoanServicingData.toJsonTree((TermLoanServicingData)value.getActualInstance());
@@ -124,7 +132,7 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
                         elementAdapter.write(out, element);
                         return;
                     }
-                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData");
+                    throw new IOException("Failed to serialize as the type doesn't match oneOf schemas: FactoringServicingData, IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData");
                 }
 
                 @Override
@@ -136,6 +144,18 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
                     ArrayList<String> errorMessages = new ArrayList<>();
                     TypeAdapter actualAdapter = elementAdapter;
 
+                    // deserialize FactoringServicingData
+                    try {
+                        // validate the JSON object to see if any exception is thrown
+                        FactoringServicingData.validateJsonElement(jsonElement);
+                        actualAdapter = adapterFactoringServicingData;
+                        match++;
+                        log.log(Level.FINER, "Input data matches schema 'FactoringServicingData'");
+                    } catch (Exception e) {
+                        // deserialization failed, continue
+                        errorMessages.add(String.format("Deserialization for FactoringServicingData failed with `%s`.", e.getMessage()));
+                        log.log(Level.FINER, "Input data does not match schema 'FactoringServicingData'", e);
+                    }
                     // deserialize TermLoanServicingData
                     try {
                         // validate the JSON object to see if any exception is thrown
@@ -222,6 +242,7 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
     }
 
     static {
+        schemas.put("FactoringServicingData", FactoringServicingData.class);
         schemas.put("TermLoanServicingData", TermLoanServicingData.class);
         schemas.put("InvoiceFinancingServicingData", InvoiceFinancingServicingData.class);
         schemas.put("McaServicingData", McaServicingData.class);
@@ -237,12 +258,17 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
     /**
      * Set the instance that matches the oneOf child schema, check
      * the instance parameter is valid against the oneOf child schemas:
-     * IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData
+     * FactoringServicingData, IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData
      *
      * It could be an instance of the 'oneOf' schemas.
      */
     @Override
     public void setActualInstance(Object instance) {
+        if (instance instanceof FactoringServicingData) {
+            super.setActualInstance(instance);
+            return;
+        }
+
         if (instance instanceof TermLoanServicingData) {
             super.setActualInstance(instance);
             return;
@@ -268,14 +294,14 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
             return;
         }
 
-        throw new RuntimeException("Invalid instance type. Must be IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData");
+        throw new RuntimeException("Invalid instance type. Must be FactoringServicingData, IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData");
     }
 
     /**
      * Get the actual instance, which can be the following:
-     * IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData
+     * FactoringServicingData, IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData
      *
-     * @return The actual instance (IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData)
+     * @return The actual instance (FactoringServicingData, IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData)
      */
     @SuppressWarnings("unchecked")
     @Override
@@ -283,6 +309,16 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
         return super.getActualInstance();
     }
 
+    /**
+     * Get the actual instance of `FactoringServicingData`. If the actual instance is not `FactoringServicingData`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `FactoringServicingData`
+     * @throws ClassCastException if the instance is not `FactoringServicingData`
+     */
+    public FactoringServicingData getFactoringServicingData() throws ClassCastException {
+        return (FactoringServicingData)super.getActualInstance();
+    }
     /**
      * Get the actual instance of `TermLoanServicingData`. If the actual instance is not `TermLoanServicingData`,
      * the ClassCastException will be thrown.
@@ -344,6 +380,14 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
         // validate oneOf schemas one by one
         int validCount = 0;
         ArrayList<String> errorMessages = new ArrayList<>();
+        // validate the json string with FactoringServicingData
+        try {
+            FactoringServicingData.validateJsonElement(jsonElement);
+            validCount++;
+        } catch (Exception e) {
+            errorMessages.add(String.format("Deserialization for FactoringServicingData failed with `%s`.", e.getMessage()));
+            // continue to the next one
+        }
         // validate the json string with TermLoanServicingData
         try {
             TermLoanServicingData.validateJsonElement(jsonElement);
@@ -385,7 +429,7 @@ public class IssuedProductServicingData extends AbstractOpenApiSchema {
             // continue to the next one
         }
         if (validCount != 1) {
-            throw new IOException(String.format("The JSON string is invalid for IssuedProductServicingData with oneOf schemas: IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
+            throw new IOException(String.format("The JSON string is invalid for IssuedProductServicingData with oneOf schemas: FactoringServicingData, IntegratedMcaServicingData, InvoiceFinancingServicingData, LineOfCreditServicingData, McaServicingData, TermLoanServicingData. %d class(es) match the result, expected 1. Detailed failure message for oneOf schemas: %s. JSON: %s", validCount, errorMessages, jsonElement.toString()));
         }
     }
 

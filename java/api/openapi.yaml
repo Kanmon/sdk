@@ -3626,6 +3626,7 @@ components:
     ProductType:
       enum:
       - INVOICE_FINANCING
+      - FACTORING
       - TERM_LOAN
       - MCA
       - LINE_OF_CREDIT
@@ -5333,11 +5334,18 @@ components:
         amountRequestedForFinancingCents: 1000000
         platformInvoiceNumber: "123"
         invoiceIssuedDate: 2022-04-01
+        payorId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
         payeeMiddleName: payeeMiddleName
         invoicePaymentPlanId: adbcccf9-3a7f-4040-add3-55c9d6da2d37
         payeeEmail: user@gmail.com
         payeeBusinessName: My Business
       properties:
+        payorId:
+          description: The unique identifier for the payor within Kanmon. Required
+            when financing a factoring issued product. Rejected when the issued product
+            is not factoring.
+          example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
+          type: string
         issuedProductId:
           description: The unique identifier for the issued product within Kanmon.
           example: adbcccf9-3a7f-4040-add3-55c9d6da2d37
@@ -5490,13 +5498,6 @@ components:
       - platformInvoiceNumber
       type: object
     TermLoanOfferTerms:
-      example:
-        maxLoanAmountCents: 1000000
-        loanAmountCents: 1000000
-        durationMonths: 6
-        feePercentage: 3
-        interestRatePercentage: 10
-        productType: INVOICE_FINANCING
       properties:
         productType:
           $ref: '#/components/schemas/ProductType'
@@ -5531,6 +5532,9 @@ components:
       - productType
       type: object
     FixedDateInvoiceRepaymentWindow:
+      example:
+        repaymentType: FIXED_DATE
+        monthlyRepaymentDay: 15
       properties:
         repaymentType:
           enum:
@@ -5621,6 +5625,42 @@ components:
       - id
       - repaymentWindow
       - transactionFeePercentage
+      type: object
+    FactoringOfferTerms:
+      example:
+        pricingPlans:
+        - advanceRatePercentage: 80
+          flatFeeAmountCents: 6.027456183070403
+          repaymentWindow:
+            repaymentType: FIXED_DATE
+            monthlyRepaymentDay: 15
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          transactionFeePercentage: 5
+        - advanceRatePercentage: 80
+          flatFeeAmountCents: 6.027456183070403
+          repaymentWindow:
+            repaymentType: FIXED_DATE
+            monthlyRepaymentDay: 15
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          transactionFeePercentage: 5
+        productType: INVOICE_FINANCING
+        creditLimitAmountCents: 0.8008281904610115
+      properties:
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        creditLimitAmountCents:
+          description: Payee credit limit in cents; null means no limit.
+          nullable: true
+          type: number
+        pricingPlans:
+          description: The pricing plans available for this factoring offer.
+          items:
+            $ref: '#/components/schemas/FactoringInvoicePaymentPlan'
+          type: array
+      required:
+      - creditLimitAmountCents
+      - pricingPlans
+      - productType
       type: object
     InvoiceFinancingOfferTerms:
       properties:
@@ -5798,12 +5838,23 @@ components:
         createdAt: 2023-12-15T03:57:26.115Z
         platformBusinessId: "12345"
         terms:
-          maxLoanAmountCents: 1000000
-          loanAmountCents: 1000000
-          durationMonths: 6
-          feePercentage: 3
-          interestRatePercentage: 10
+          pricingPlans:
+          - advanceRatePercentage: 80
+            flatFeeAmountCents: 6.027456183070403
+            repaymentWindow:
+              repaymentType: FIXED_DATE
+              monthlyRepaymentDay: 15
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            transactionFeePercentage: 5
+          - advanceRatePercentage: 80
+            flatFeeAmountCents: 6.027456183070403
+            repaymentWindow:
+              repaymentType: FIXED_DATE
+              monthlyRepaymentDay: 15
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            transactionFeePercentage: 5
           productType: INVOICE_FINANCING
+          creditLimitAmountCents: 0.8008281904610115
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         selectedAt: 2023-12-15T03:57:26.115Z
@@ -5884,12 +5935,23 @@ components:
           createdAt: 2023-12-15T03:57:26.115Z
           platformBusinessId: "12345"
           terms:
-            maxLoanAmountCents: 1000000
-            loanAmountCents: 1000000
-            durationMonths: 6
-            feePercentage: 3
-            interestRatePercentage: 10
+            pricingPlans:
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
             productType: INVOICE_FINANCING
+            creditLimitAmountCents: 0.8008281904610115
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -5898,12 +5960,23 @@ components:
           createdAt: 2023-12-15T03:57:26.115Z
           platformBusinessId: "12345"
           terms:
-            maxLoanAmountCents: 1000000
-            loanAmountCents: 1000000
-            durationMonths: 6
-            feePercentage: 3
-            interestRatePercentage: 10
+            pricingPlans:
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
             productType: INVOICE_FINANCING
+            creditLimitAmountCents: 0.8008281904610115
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           selectedAt: 2023-12-15T03:57:26.115Z
@@ -5924,14 +5997,6 @@ components:
       - pagination
       type: object
     TermLoanServicingData:
-      example:
-        interestRate: 10
-        loanAmountCents: 1000000
-        monthlyPaymentCents: 100000
-        nextPaymentDate: 2023-12-15
-        originationFeeCents: 100000
-        productType: INVOICE_FINANCING
-        principalBalanceCents: 1000000
       properties:
         productType:
           $ref: '#/components/schemas/ProductType'
@@ -5967,6 +6032,79 @@ components:
       - nextPaymentDate
       - originationFeeCents
       - principalBalanceCents
+      - productType
+      type: object
+    FactoringInvoicePaymentPlan:
+      example:
+        advanceRatePercentage: 80
+        flatFeeAmountCents: 6.027456183070403
+        repaymentWindow:
+          repaymentType: FIXED_DATE
+          monthlyRepaymentDay: 15
+        id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+        transactionFeePercentage: 5
+      properties:
+        id:
+          description: The UUID representing the invoice payment plan.
+          example: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          type: string
+        advanceRatePercentage:
+          description: "The percentage of the invoice that is allowed for advances.\
+            \ E.g. a value of `80` would mean that $800 would be advanced on a $1,000\
+            \ invoice."
+          example: 80
+          type: number
+        transactionFeePercentage:
+          description: The percentage of the transaction that is charged as a fee.
+            E.g. a value of `5` means 5%.
+          example: 5
+          type: number
+        repaymentWindow:
+          $ref: '#/components/schemas/InvoicePaymentPlan_repaymentWindow'
+        flatFeeAmountCents:
+          description: "Flat funding fee withheld from the payee payout, in cents."
+          type: number
+      required:
+      - advanceRatePercentage
+      - flatFeeAmountCents
+      - id
+      - repaymentWindow
+      - transactionFeePercentage
+      type: object
+    FactoringServicingData:
+      example:
+        pricingPlans:
+        - advanceRatePercentage: 80
+          flatFeeAmountCents: 6.027456183070403
+          repaymentWindow:
+            repaymentType: FIXED_DATE
+            monthlyRepaymentDay: 15
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          transactionFeePercentage: 5
+        - advanceRatePercentage: 80
+          flatFeeAmountCents: 6.027456183070403
+          repaymentWindow:
+            repaymentType: FIXED_DATE
+            monthlyRepaymentDay: 15
+          id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+          transactionFeePercentage: 5
+        productType: INVOICE_FINANCING
+        creditLimitAmountCents: 0.8008281904610115
+      properties:
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        creditLimitAmountCents:
+          description: Payee credit limit in cents; null means no limit.
+          nullable: true
+          type: number
+        pricingPlans:
+          description: Saved plans from the accepted factoring offer.
+          items:
+            $ref: '#/components/schemas/FactoringInvoicePaymentPlan'
+          type: array
+      required:
+      - creditLimitAmountCents
+      - pricingPlans
       - productType
       type: object
     InvoiceFinancingServicingData:
@@ -6192,13 +6330,23 @@ components:
         createdAt: 2022-06-01T03:57:26.115Z
         platformBusinessId: "12345"
         servicingData:
-          interestRate: 10
-          loanAmountCents: 1000000
-          monthlyPaymentCents: 100000
-          nextPaymentDate: 2023-12-15
-          originationFeeCents: 100000
+          pricingPlans:
+          - advanceRatePercentage: 80
+            flatFeeAmountCents: 6.027456183070403
+            repaymentWindow:
+              repaymentType: FIXED_DATE
+              monthlyRepaymentDay: 15
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            transactionFeePercentage: 5
+          - advanceRatePercentage: 80
+            flatFeeAmountCents: 6.027456183070403
+            repaymentWindow:
+              repaymentType: FIXED_DATE
+              monthlyRepaymentDay: 15
+            id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+            transactionFeePercentage: 5
           productType: INVOICE_FINANCING
-          principalBalanceCents: 1000000
+          creditLimitAmountCents: 0.8008281904610115
         businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
         loanStatus: CURRENT
         offerId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -6276,13 +6424,23 @@ components:
         - createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           servicingData:
-            interestRate: 10
-            loanAmountCents: 1000000
-            monthlyPaymentCents: 100000
-            nextPaymentDate: 2023-12-15
-            originationFeeCents: 100000
+            pricingPlans:
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
             productType: INVOICE_FINANCING
-            principalBalanceCents: 1000000
+            creditLimitAmountCents: 0.8008281904610115
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
           offerId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -6291,13 +6449,23 @@ components:
         - createdAt: 2022-06-01T03:57:26.115Z
           platformBusinessId: "12345"
           servicingData:
-            interestRate: 10
-            loanAmountCents: 1000000
-            monthlyPaymentCents: 100000
-            nextPaymentDate: 2023-12-15
-            originationFeeCents: 100000
+            pricingPlans:
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
+            - advanceRatePercentage: 80
+              flatFeeAmountCents: 6.027456183070403
+              repaymentWindow:
+                repaymentType: FIXED_DATE
+                monthlyRepaymentDay: 15
+              id: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
+              transactionFeePercentage: 5
             productType: INVOICE_FINANCING
-            principalBalanceCents: 1000000
+            creditLimitAmountCents: 0.8008281904610115
           businessId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
           loanStatus: CURRENT
           offerId: 2b5d0f14-9b73-4f44-a82a-2182a9ff77bb
@@ -8853,6 +9021,7 @@ components:
       description: Terms of the offer.
       discriminator:
         mapping:
+          FACTORING: '#/components/schemas/FactoringOfferTerms'
           TERM_LOAN: '#/components/schemas/TermLoanOfferTerms'
           INVOICE_FINANCING: '#/components/schemas/InvoiceFinancingOfferTerms'
           MCA: '#/components/schemas/McaOfferTerms'
@@ -8861,6 +9030,7 @@ components:
           ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingOfferTerms'
         propertyName: productType
       oneOf:
+      - $ref: '#/components/schemas/FactoringOfferTerms'
       - $ref: '#/components/schemas/TermLoanOfferTerms'
       - $ref: '#/components/schemas/InvoiceFinancingOfferTerms'
       - $ref: '#/components/schemas/McaOfferTerms'
@@ -8870,6 +9040,7 @@ components:
       description: The data needed to service this specific type of issued product
       discriminator:
         mapping:
+          FACTORING: '#/components/schemas/FactoringServicingData'
           TERM_LOAN: '#/components/schemas/TermLoanServicingData'
           INVOICE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
           MCA: '#/components/schemas/McaServicingData'
@@ -8878,6 +9049,7 @@ components:
           ACCOUNTS_PAYABLE_FINANCING: '#/components/schemas/InvoiceFinancingServicingData'
         propertyName: productType
       oneOf:
+      - $ref: '#/components/schemas/FactoringServicingData'
       - $ref: '#/components/schemas/TermLoanServicingData'
       - $ref: '#/components/schemas/InvoiceFinancingServicingData'
       - $ref: '#/components/schemas/McaServicingData'

@@ -80,11 +80,13 @@ public class JSON {
                     public Class<? extends com.kanmon.client.model.IssuedProductServicingData> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("ACCOUNTS_PAYABLE_FINANCING", com.kanmon.client.model.InvoiceFinancingServicingData.class);
+                        classByDiscriminatorValue.put("FACTORING", com.kanmon.client.model.FactoringServicingData.class);
                         classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaServicingData.class);
                         classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingServicingData.class);
                         classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditServicingData.class);
                         classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaServicingData.class);
                         classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanServicingData.class);
+                        classByDiscriminatorValue.put("FactoringServicingData", com.kanmon.client.model.FactoringServicingData.class);
                         classByDiscriminatorValue.put("IntegratedMcaServicingData", com.kanmon.client.model.IntegratedMcaServicingData.class);
                         classByDiscriminatorValue.put("InvoiceFinancingServicingData", com.kanmon.client.model.InvoiceFinancingServicingData.class);
                         classByDiscriminatorValue.put("LineOfCreditServicingData", com.kanmon.client.model.LineOfCreditServicingData.class);
@@ -100,11 +102,13 @@ public class JSON {
                     public Class<? extends com.kanmon.client.model.OfferTerms> getClassForElement(JsonElement readElement) {
                         Map<String, Class> classByDiscriminatorValue = new HashMap<String, Class>();
                         classByDiscriminatorValue.put("ACCOUNTS_PAYABLE_FINANCING", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
+                        classByDiscriminatorValue.put("FACTORING", com.kanmon.client.model.FactoringOfferTerms.class);
                         classByDiscriminatorValue.put("INTEGRATED_MCA", com.kanmon.client.model.IntegratedMcaOfferTerms.class);
                         classByDiscriminatorValue.put("INVOICE_FINANCING", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
                         classByDiscriminatorValue.put("LINE_OF_CREDIT", com.kanmon.client.model.LineOfCreditOfferTerms.class);
                         classByDiscriminatorValue.put("MCA", com.kanmon.client.model.McaOfferTerms.class);
                         classByDiscriminatorValue.put("TERM_LOAN", com.kanmon.client.model.TermLoanOfferTerms.class);
+                        classByDiscriminatorValue.put("FactoringOfferTerms", com.kanmon.client.model.FactoringOfferTerms.class);
                         classByDiscriminatorValue.put("IntegratedMcaOfferTerms", com.kanmon.client.model.IntegratedMcaOfferTerms.class);
                         classByDiscriminatorValue.put("InvoiceFinancingOfferTerms", com.kanmon.client.model.InvoiceFinancingOfferTerms.class);
                         classByDiscriminatorValue.put("LineOfCreditOfferTerms", com.kanmon.client.model.LineOfCreditOfferTerms.class);
@@ -190,6 +194,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.DrawRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.DrawRequestNotFoundException.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.EmbeddedSession.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FactoringInvoicePaymentPlan.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FactoringOfferTerms.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FactoringServicingData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoice400Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoice404Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new com.kanmon.client.model.FinanceInvoice409Response.CustomTypeAdapterFactory());
