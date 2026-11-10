@@ -19,6 +19,7 @@
  */
 export const ProductType = {
     INVOICE_FINANCING: 'INVOICE_FINANCING',
+    FACTORING: 'FACTORING',
     TERM_LOAN: 'TERM_LOAN',
     MCA: 'MCA',
     LINE_OF_CREDIT: 'LINE_OF_CREDIT',

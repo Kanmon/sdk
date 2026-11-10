@@ -12,6 +12,13 @@
  * Do not edit the class manually.
  */
 
+import type { FactoringOfferTerms } from './FactoringOfferTerms';
+import {
+    instanceOfFactoringOfferTerms,
+    FactoringOfferTermsFromJSON,
+    FactoringOfferTermsFromJSONTyped,
+    FactoringOfferTermsToJSON,
+} from './FactoringOfferTerms';
 import type { IntegratedMcaOfferTerms } from './IntegratedMcaOfferTerms';
 import {
     instanceOfIntegratedMcaOfferTerms,
@@ -53,7 +60,7 @@ import {
  * Terms of the offer.
  * @export
  */
-export type OfferTerms = { productType: 'ACCOUNTS_PAYABLE_FINANCING' } & InvoiceFinancingOfferTerms | { productType: 'INTEGRATED_MCA' } & IntegratedMcaOfferTerms | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingOfferTerms | { productType: 'LINE_OF_CREDIT' } & LineOfCreditOfferTerms | { productType: 'MCA' } & McaOfferTerms | { productType: 'TERM_LOAN' } & TermLoanOfferTerms;
+export type OfferTerms = { productType: 'ACCOUNTS_PAYABLE_FINANCING' } & InvoiceFinancingOfferTerms | { productType: 'FACTORING' } & FactoringOfferTerms | { productType: 'INTEGRATED_MCA' } & IntegratedMcaOfferTerms | { productType: 'INVOICE_FINANCING' } & InvoiceFinancingOfferTerms | { productType: 'LINE_OF_CREDIT' } & LineOfCreditOfferTerms | { productType: 'MCA' } & McaOfferTerms | { productType: 'TERM_LOAN' } & TermLoanOfferTerms;
 
 export function OfferTermsFromJSON(json: any): OfferTerms {
     return OfferTermsFromJSONTyped(json, false);
@@ -66,6 +73,8 @@ export function OfferTermsFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     switch (json['productType']) {
         case 'ACCOUNTS_PAYABLE_FINANCING':
             return Object.assign({}, InvoiceFinancingOfferTermsFromJSONTyped(json, true), { productType: 'ACCOUNTS_PAYABLE_FINANCING' } as const);
+        case 'FACTORING':
+            return Object.assign({}, FactoringOfferTermsFromJSONTyped(json, true), { productType: 'FACTORING' } as const);
         case 'INTEGRATED_MCA':
             return Object.assign({}, IntegratedMcaOfferTermsFromJSONTyped(json, true), { productType: 'INTEGRATED_MCA' } as const);
         case 'INVOICE_FINANCING':
@@ -88,6 +97,8 @@ export function OfferTermsToJSON(value?: OfferTerms | null): any {
     switch (value['productType']) {
         case 'ACCOUNTS_PAYABLE_FINANCING':
             return InvoiceFinancingOfferTermsToJSON(value);
+        case 'FACTORING':
+            return FactoringOfferTermsToJSON(value);
         case 'INTEGRATED_MCA':
             return IntegratedMcaOfferTermsToJSON(value);
         case 'INVOICE_FINANCING':

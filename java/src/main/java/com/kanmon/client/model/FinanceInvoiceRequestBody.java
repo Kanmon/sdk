@@ -53,6 +53,10 @@ import com.kanmon.client.JSON;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.8.0")
 public class FinanceInvoiceRequestBody {
+  public static final String SERIALIZED_NAME_PAYOR_ID = "payorId";
+  @SerializedName(SERIALIZED_NAME_PAYOR_ID)
+  private String payorId;
+
   public static final String SERIALIZED_NAME_ISSUED_PRODUCT_ID = "issuedProductId";
   @SerializedName(SERIALIZED_NAME_ISSUED_PRODUCT_ID)
   private String issuedProductId;
@@ -251,6 +255,25 @@ public class FinanceInvoiceRequestBody {
 
   public FinanceInvoiceRequestBody() {
   }
+
+  public FinanceInvoiceRequestBody payorId(String payorId) {
+    this.payorId = payorId;
+    return this;
+  }
+
+  /**
+   * The unique identifier for the payor within Kanmon. Required when financing a factoring issued product. Rejected when the issued product is not factoring.
+   * @return payorId
+   */
+  @javax.annotation.Nullable
+  public String getPayorId() {
+    return payorId;
+  }
+
+  public void setPayorId(String payorId) {
+    this.payorId = payorId;
+  }
+
 
   public FinanceInvoiceRequestBody issuedProductId(String issuedProductId) {
     this.issuedProductId = issuedProductId;
@@ -743,7 +766,8 @@ public class FinanceInvoiceRequestBody {
       return false;
     }
     FinanceInvoiceRequestBody financeInvoiceRequestBody = (FinanceInvoiceRequestBody) o;
-    return Objects.equals(this.issuedProductId, financeInvoiceRequestBody.issuedProductId) &&
+    return Objects.equals(this.payorId, financeInvoiceRequestBody.payorId) &&
+        Objects.equals(this.issuedProductId, financeInvoiceRequestBody.issuedProductId) &&
         Objects.equals(this.invoicePaymentPlanId, financeInvoiceRequestBody.invoicePaymentPlanId) &&
         Objects.equals(this.platformInvoiceId, financeInvoiceRequestBody.platformInvoiceId) &&
         Objects.equals(this.platformInvoiceNumber, financeInvoiceRequestBody.platformInvoiceNumber) &&
@@ -775,7 +799,7 @@ public class FinanceInvoiceRequestBody {
 
   @Override
   public int hashCode() {
-    return Objects.hash(issuedProductId, invoicePaymentPlanId, platformInvoiceId, platformInvoiceNumber, invoiceAmountCents, amountRequestedForFinancingCents, invoiceDueDate, invoiceIssuedDate, description, payorType, payorEmail, payorAddress, payorBusinessName, payorFirstName, payorMiddleName, payorLastName, payeeType, payeeEmail, payeeAddress, payeeBusinessName, payeeFirstName, payeeMiddleName, payeeLastName, additionalProperties);
+    return Objects.hash(payorId, issuedProductId, invoicePaymentPlanId, platformInvoiceId, platformInvoiceNumber, invoiceAmountCents, amountRequestedForFinancingCents, invoiceDueDate, invoiceIssuedDate, description, payorType, payorEmail, payorAddress, payorBusinessName, payorFirstName, payorMiddleName, payorLastName, payeeType, payeeEmail, payeeAddress, payeeBusinessName, payeeFirstName, payeeMiddleName, payeeLastName, additionalProperties);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -789,6 +813,7 @@ public class FinanceInvoiceRequestBody {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FinanceInvoiceRequestBody {\n");
+    sb.append("    payorId: ").append(toIndentedString(payorId)).append("\n");
     sb.append("    issuedProductId: ").append(toIndentedString(issuedProductId)).append("\n");
     sb.append("    invoicePaymentPlanId: ").append(toIndentedString(invoicePaymentPlanId)).append("\n");
     sb.append("    platformInvoiceId: ").append(toIndentedString(platformInvoiceId)).append("\n");
@@ -835,6 +860,7 @@ public class FinanceInvoiceRequestBody {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
+    openapiFields.add("payorId");
     openapiFields.add("issuedProductId");
     openapiFields.add("invoicePaymentPlanId");
     openapiFields.add("platformInvoiceId");
@@ -891,6 +917,9 @@ public class FinanceInvoiceRequestBody {
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+      if ((jsonObj.get("payorId") != null && !jsonObj.get("payorId").isJsonNull()) && !jsonObj.get("payorId").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payorId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payorId").toString()));
+      }
       if (!jsonObj.get("issuedProductId").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `issuedProductId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("issuedProductId").toString()));
       }

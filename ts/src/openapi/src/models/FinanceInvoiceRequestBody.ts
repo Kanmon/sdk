@@ -27,6 +27,12 @@ import {
  */
 export interface FinanceInvoiceRequestBody {
     /**
+     * The unique identifier for the payor within Kanmon. Required when financing a factoring issued product. Rejected when the issued product is not factoring.
+     * @type {string}
+     * @memberof FinanceInvoiceRequestBody
+     */
+    payorId?: string;
+    /**
      * The unique identifier for the issued product within Kanmon.
      * @type {string}
      * @memberof FinanceInvoiceRequestBody
@@ -211,6 +217,7 @@ export function FinanceInvoiceRequestBodyFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'payorId': json['payorId'] == null ? undefined : json['payorId'],
         'issuedProductId': json['issuedProductId'],
         'invoicePaymentPlanId': json['invoicePaymentPlanId'],
         'platformInvoiceId': json['platformInvoiceId'],
@@ -243,6 +250,7 @@ export function FinanceInvoiceRequestBodyToJSON(value?: FinanceInvoiceRequestBod
     }
     return {
         
+        'payorId': value['payorId'],
         'issuedProductId': value['issuedProductId'],
         'invoicePaymentPlanId': value['invoicePaymentPlanId'],
         'platformInvoiceId': value['platformInvoiceId'],
